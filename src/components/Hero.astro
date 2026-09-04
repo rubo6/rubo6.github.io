@@ -23,11 +23,11 @@ const skyData = {
 
 <section id="sky" class="hero" aria-labelledby="hero-title">
   <div class="sky-wrap" aria-hidden="false">
+    <!-- Decorative background at 0.55 opacity behind a veil: phones get a ~55 vw candidate, which halves the AVIF decode on the LCP element without a visible difference. -->
     <Picture
       src={heroBg}
       formats={['avif', 'webp']}
       widths={[640, 960, 1280, 1672]}
-      {/* Decorative background at 0.55 opacity behind a veil: phones get a ~55 vw candidate, which halves the AVIF decode on the LCP element without a visible difference. */}
       sizes="(max-width: 900px) 55vw, 100vw"
       alt=""
       class="sky-bg"
