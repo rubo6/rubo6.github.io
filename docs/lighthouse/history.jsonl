@@ -2,3 +2,4 @@
 {"measuredAt":"2026-09-04T22:18:48.017Z","runner":"github-actions#33924844518","mobile":[81,97,100,100],"desktop":[100,97,100,100],"lcpMs":{"mobile":3972,"desktop":728}}
 {"measuredAt":"2026-09-04T22:26:53.250Z","runner":"github-actions#33925413334","mobile":[72,97,100,100],"desktop":[100,97,100,100],"lcpMs":{"mobile":4222,"desktop":719}}
 {"measuredAt":"2026-09-04T22:28:43.174Z","runner":"github-actions#33925542117","mobile":[77,97,100,100],"desktop":[100,97,100,100],"lcpMs":{"mobile":4085,"desktop":731}}
+{"measuredAt":"2026-09-04T22:32:15.516Z","runner":"github-actions#33925795018","mobile":[77,97,100,100],"desktop":[100,97,100,100],"lcpMs":{"mobile":4068,"desktop":727}}
