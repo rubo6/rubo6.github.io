@@ -1,0 +1,235 @@
+---
+import Base from '@/layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import { formatLongDate, getPosts, readingMinutes, type Post } from '@/lib/content';
+import { render } from 'astro:content';
+
+interface Props {
+  locale: Locale;
+  post: Post;
+}
+const { locale, post } = Astro.props;
+const t = useTranslations(locale);
+const { Content } = await render(post);
+const all = await getPosts(locale);
+const idx = all.findIndex((p) => p.data.key === post.data.key);
+const newer = idx > 0 ? all[idx - 1] : undefined;
+const older = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : undefined;
+const path = `/log/${post.data.key}`;
+---
+
+<Base locale={locale} path={path} title={post.data.title} description={post.data.summary}>
+  <Nav locale={locale} path={path} minimal />
+  <main id="main" class:list={['container-content entry', `area-${post.data.area}`]}>
+    <a class="back mono text-sm" href={localePath(locale, '/log')}>← {t('log.back')}</a>
+
+    <header class="head">
+      <p class="mono kicker">
+        <span class="area">{t(`log.area.${post.data.area}` as 'log.area.math')}</span>
+        <span
+          >· <time datetime={post.data.date}>{formatLongDate(post.data.date, locale)}</time></span
+        >
+        {
+          post.data.semester && (
+            <span>
+              · {t('log.semester')}: {post.data.semester}
+            </span>
+          )
+        }
+        <span>· {readingMinutes(post.body)} {t('log.read')}</span>
+      </p>
+      <h1 class="mt-4">{post.data.title}</h1>
+      <p class="text-ink-muted mt-5 max-w-3xl text-lg">{post.data.summary}</p>
+      {
+        post.data.courses.length > 0 && (
+          <ul class="courses" aria-label={t('log.courses')}>
+            {post.data.courses.map((c) => (
+              <li>{c}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    <nav class="pager" aria-label={t('log.title')}>
+      {
+        older ? (
+          <a href={localePath(locale, `/log/${older.data.key}`)}>
+            <span class="mono text-xs text-ink-muted">← {t('log.prev')}</span>
+            <span>{older.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        newer ? (
+          <a href={localePath(locale, `/log/${newer.data.key}`)} class="next">
+            <span class="mono text-xs text-ink-muted">{t('log.next')} →</span>
+            <span>{newer.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<style>
+  .entry {
+    --area: var(--accent);
+    padding-block: 3rem 5rem;
+  }
+  .area-math {
+    --area: #f2c46d;
+  }
+  .area-stats {
+    --area: #9ad9e8;
+  }
+  .area-computing {
+    --area: #a8e6cf;
+  }
+  .area-datascience {
+    --area: #f07a6e;
+  }
+  .area-economics {
+    --area: #d9a45b;
+  }
+  .area-humanities {
+    --area: #c9b8ff;
+  }
+  .area-astronomy {
+    --area: #f4efe6;
+  }
+  .area-work {
+    --area: #ffd6a5;
+  }
+  :global([data-theme='atlas']) .entry {
+    --area: var(--accent);
+  }
+  .back {
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+  .head {
+    margin-top: 2rem;
+    max-width: 60rem;
+  }
+  .kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .area {
+    color: var(--area);
+  }
+  h1 {
+    font-size: var(--text-3xl);
+    max-width: 22ch;
+  }
+  .courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+  .courses li {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--ink-muted);
+  }
+  .prose {
+    margin-top: 3rem;
+    max-width: 68ch;
+    font-size: var(--text-lg);
+    line-height: 1.75;
+  }
+  .prose :global(h2) {
+    font-size: var(--text-xl);
+    margin: 2.4rem 0 0.8rem;
+  }
+  .prose :global(h3) {
+    font-size: var(--text-lg);
+    margin: 1.8rem 0 0.6rem;
+  }
+  .prose :global(p + p) {
+    margin-top: 1.1em;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 1em 0;
+    padding-left: 1.4em;
+  }
+  .prose :global(li + li) {
+    margin-top: 0.35em;
+  }
+  .prose :global(li::marker) {
+    color: var(--area);
+  }
+  .prose :global(blockquote) {
+    margin: 1.5em 0;
+    padding: 0.2em 0 0.2em 1.2em;
+    border-left: 2px solid var(--area);
+    color: var(--ink-muted);
+    font-family: var(--font-display);
+    font-size: 1.1em;
+  }
+  .prose :global(code) {
+    background: color-mix(in oklab, var(--bg-2) 70%, transparent);
+    padding: 0.1em 0.4em;
+    border-radius: var(--radius-sm);
+  }
+  .prose :global(pre) {
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    overflow-x: auto;
+    font-size: 0.85em;
+  }
+  .prose :global(strong) {
+    color: var(--ink);
+  }
+  .pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .pager a {
+    display: grid;
+    gap: 0.3rem;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+  }
+  .pager .next {
+    text-align: right;
+  }
+  @media (max-width: 700px) {
+    .pager {
+      grid-template-columns: 1fr;
+    }
+    .pager .next {
+      text-align: left;
+    }
+  }
+</style>

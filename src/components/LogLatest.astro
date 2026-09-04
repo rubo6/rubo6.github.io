@@ -1,0 +1,47 @@
+---
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import { getPosts } from '@/lib/content';
+import LogCard from './LogCard.astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const posts = (await getPosts(locale)).slice(0, 3);
+---
+
+{
+  posts.length > 0 && (
+    <section id="log" class="log-latest container-content" aria-labelledby="log-title">
+      <SectionHeading id="log-title" kicker="04" title={t('log.title')} lead={t('log.lead')} />
+      <ol class="grid">
+        {posts.map((p, i) => (
+          <LogCard locale={locale} post={p} index={i} />
+        ))}
+      </ol>
+      <a class="btn btn-ghost all" href={localePath(locale, '/log')}>
+        {t('log.all')} →
+      </a>
+    </section>
+  )
+}
+
+<style>
+  .log-latest {
+    padding-block: 5rem;
+    scroll-margin-top: var(--nav-h);
+  }
+  .grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.25rem;
+  }
+  .all {
+    margin-top: 1.5rem;
+  }
+</style>

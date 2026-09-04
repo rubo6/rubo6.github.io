@@ -19,9 +19,9 @@ const CROP = {
   professional: 'attention', // Orion Bar (weic2315b): bright stars + orange bar sit lower-right
   academic: 'attention', // Cosmic Cliffs (weic2205a): the cliff edge runs along the lower half
   research: 'centre', // Pillars full view (weic2216b): portrait, pillars are centred
-  personal: 'centre', // Helix (weic2601a): ring fills the frame
+  personal: 'centre', // Helix (weic2601a): NIRCam close-up of the knots; detail is spread evenly
   community: 'centre', // Lagoon (heic1808a): portrait, Herschel 36 region is centred
-  upcoming: 'attention', // Horsehead (weic2411a): the mane occupies the upper part
+  upcoming: 'attention', // Horsehead (weic2411a): near-square source; mane along the bottom, bright star top
 };
 
 async function encodeUnder(pipeline, format, max) {

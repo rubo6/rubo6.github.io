@@ -181,6 +181,35 @@ const personal = defineCollection({
   }),
 });
 
+/** Study log ("bitácora"): Markdown per entry per locale, folder per locale, cross-locale `key`. */
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string(),
+    key: z.string().regex(/^[a-z0-9-]+$/),
+    locale,
+    date: isoDate,
+    summary: z.string().max(280),
+    /** Knowledge area; drives the colour and the "instrument" label. */
+    area: z.enum([
+      'math',
+      'stats',
+      'computing',
+      'datascience',
+      'economics',
+      'humanities',
+      'astronomy',
+      'work',
+    ]),
+    /** Academic term label, e.g. "Otoño 2025". */
+    semester: z.string().optional(),
+    courses: z.array(z.string()).default([]),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
 /** Live repository facts fetched at build time (see src/loaders/github.ts). Empty when offline. */
 const repoStats = defineCollection({
   loader: githubLoader(),
@@ -213,4 +242,5 @@ export const collections = {
   skills,
   personal,
   repoStats,
+  posts,
 };

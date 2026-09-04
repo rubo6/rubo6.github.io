@@ -2,6 +2,23 @@
 
 Append one entry per working session: what changed, decisions, what is pending. Newest first. Keep entries factual and short; details belong in ADRs and docs.
 
+## 2026-09-04 · Session 2 (Claude Code, Fable 5.1) — imagery, portrait, study log
+
+**Done**
+
+- Owner-generated art integrated: three illustrated portraits (editorial / constellation / atlas) in a hero "eyepiece" that follows theme×mode, with optional video/photo tabs rendered only when files exist; hero Milky Way background; personal-scene background. `scripts/optimize-generated.mjs`; raw PNGs git-ignored.
+- Official nebula imagery (ESA/Webb + ESA/Hubble, CC BY 4.0) via subagent: `src/assets/nebulae/*.avif|webp` + `credits.json`, `scripts/optimize-nebulae.mjs`; rendered behind the procedural gas with a radial mask; credit line in each panel. Raw JPEGs untracked (they slipped into commit 0a35329; removed from the tree in the next commit, still in history ≈18 MB).
+- Study log ("bitácora"): `posts` collection, 9 entries × EN/ES following the official Plan B curriculum (research subagent, sources in ADR-0007), routes `/log/`, `/log/<key>`, `/log/rss.xml` per locale, latest-3 section on home, nav link. `@astrojs/rss` added.
+- Lighthouse pass (session 1 late): mobile 90/100/100/100, desktop 93/100/100/100; JSON-LD Person; Xbox gamertag.
+- WhisperFlow: release v0.1.0 published by Rubo; README Mermaid fixed by subagent (5726c4f).
+
+**Pending / next**
+
+- Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).
+- Tier-2 locales + translation pass at the very end (Rubo's decision).
+- Mobile LCP (Fraunces) still the perf lever; consider `font-display: optional` or smaller subset.
+- Consider purging the 18 MB raw JPEGs from history only if the repo size becomes a problem (needs force-push; Rubo's call).
+
 ## 2026-09-03 · Session 1 (Claude Code, Fable 5.1) — rebuild from scratch
 
 **Done**

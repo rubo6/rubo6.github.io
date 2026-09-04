@@ -6,6 +6,7 @@ import Observatory from './Observatory.astro';
 import Trajectory from './Trajectory.astro';
 import Constellation from './Constellation.astro';
 import Contact from './Contact.astro';
+import LogLatest from './LogLatest.astro';
 import Footer from './Footer.astro';
 import { clientStrings, type Locale } from '@/i18n/ui';
 import { safeJson } from '@/lib/json';
@@ -82,6 +83,7 @@ const jsonLd = {
     <Observatory locale={locale} nebulae={nebulae} projects={projects} personal={personal} />
     <Trajectory locale={locale} entries={trajectory} />
     <Constellation locale={locale} groups={skills} certifications={certifications} />
+    <LogLatest locale={locale} />
     <Contact locale={locale} profile={profile} />
   </main>
   <Footer locale={locale} />

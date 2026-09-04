@@ -1,0 +1,140 @@
+---
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import { formatLongDate, readingMinutes, type Post } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+  post: Post;
+  index?: number;
+}
+const { locale, post, index = 0 } = Astro.props;
+const t = useTranslations(locale);
+const area = post.data.area;
+---
+
+<li class:list={['log-card reveal', `area-${area}`]} data-delay={String((index % 4) + 1)}>
+  <a href={localePath(locale, `/log/${post.data.key}`)} class="card-link">
+    <p class="meta mono">
+      <time datetime={post.data.date}>{formatLongDate(post.data.date, locale)}</time>
+      {post.data.semester && <span>· {post.data.semester}</span>}
+      <span>· {readingMinutes(post.body)} {t('log.read')}</span>
+    </p>
+    <span class="area-badge mono">
+      <i aria-hidden="true"></i>
+      {t(`log.area.${area}` as 'log.area.math')}
+    </span>
+    <h3>{post.data.title}</h3>
+    <p class="summary text-ink-muted">{post.data.summary}</p>
+    {
+      post.data.courses.length > 0 && (
+        <ul class="courses" aria-label={t('log.courses')}>
+          {post.data.courses.slice(0, 4).map((c) => (
+            <li>{c}</li>
+          ))}
+        </ul>
+      )
+    }
+  </a>
+</li>
+
+<style>
+  .log-card {
+    --area: var(--accent);
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+  .log-card:hover {
+    border-color: var(--area);
+    transform: translateY(-2px);
+  }
+  .area-math {
+    --area: #f2c46d;
+  }
+  .area-stats {
+    --area: #9ad9e8;
+  }
+  .area-computing {
+    --area: #a8e6cf;
+  }
+  .area-datascience {
+    --area: #f07a6e;
+  }
+  .area-economics {
+    --area: #d9a45b;
+  }
+  .area-humanities {
+    --area: #c9b8ff;
+  }
+  .area-astronomy {
+    --area: #f4efe6;
+  }
+  .area-work {
+    --area: #ffd6a5;
+  }
+  :global([data-theme='atlas']) .log-card {
+    --area: var(--accent);
+  }
+  .card-link {
+    display: grid;
+    gap: 0.6rem;
+    padding: 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+  .card-link:hover {
+    color: inherit;
+  }
+  .meta {
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .area-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--area);
+  }
+  .area-badge i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--area);
+    box-shadow: 0 0 8px color-mix(in oklab, var(--area) 70%, transparent);
+  }
+  h3 {
+    font-size: var(--text-xl);
+    line-height: 1.15;
+  }
+  .summary {
+    font-size: var(--text-sm);
+  }
+  .courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0;
+  }
+  .courses li {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--ink-muted);
+  }
+</style>

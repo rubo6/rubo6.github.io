@@ -1,0 +1,68 @@
+[
+  {
+    "id": "professional",
+    "object": "Orion Nebula (M42) — Orion Bar",
+    "source": "https://esawebb.org/images/weic2315b/",
+    "download": "https://cdn.esawebb.org/archives/images/publicationjpg/weic2315b.jpg",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2023-06-26",
+    "credit": "ESA/Webb, NASA, CSA, M. Zamani (ESA/Webb), the PDRs4All ERS Team",
+    "license": "CC BY 4.0 (ESA/Webb)"
+  },
+  {
+    "id": "academic",
+    "object": "Carina Nebula (NGC 3372) — Cosmic Cliffs",
+    "source": "https://esawebb.org/images/weic2205a/",
+    "download": "https://cdn.esawebb.org/archives/images/publicationjpg/weic2205a.jpg",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2022-07-12",
+    "credit": "NASA, ESA, CSA, and STScI",
+    "license": "CC BY 4.0 (ESA/Webb)"
+  },
+  {
+    "id": "research",
+    "object": "Eagle Nebula (M16) — Pillars of Creation",
+    "source": "https://esawebb.org/images/weic2216b/",
+    "download": "https://cdn.esawebb.org/archives/images/publicationjpg/weic2216b.jpg",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2022-10-19",
+    "credit": "NASA, ESA, CSA, STScI; J. DePasquale, A. Koekemoer, A. Pagan (STScI)",
+    "license": "CC BY 4.0 (ESA/Webb)"
+  },
+  {
+    "id": "personal",
+    "object": "Helix Nebula (NGC 7293)",
+    "source": "https://esawebb.org/images/weic2601a/",
+    "download": "https://cdn.esawebb.org/archives/images/publicationjpg/weic2601a.jpg",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2026-01-20",
+    "credit": "NASA, ESA, CSA, STScI, A. Pagan (STScI)",
+    "license": "CC BY 4.0 (ESA/Webb)"
+  },
+  {
+    "id": "community",
+    "object": "Lagoon Nebula (M8)",
+    "source": "https://esahubble.org/images/heic1808a/",
+    "download": "https://cdn.esahubble.org/archives/images/publicationjpg/heic1808a.jpg",
+    "telescope": "Hubble",
+    "instrument": "WFC3",
+    "released": "2018-04-19",
+    "credit": "NASA, ESA, STScI",
+    "license": "CC BY 4.0 (ESA/Hubble)"
+  },
+  {
+    "id": "upcoming",
+    "object": "Horsehead Nebula (Barnard 33)",
+    "source": "https://esawebb.org/images/weic2411a/",
+    "download": "https://cdn.esawebb.org/archives/images/publicationjpg/weic2411a.jpg",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2024-04-29",
+    "credit": "ESA/Webb, NASA, CSA, K. Misselt (University of Arizona) and A. Abergel (IAS/University Paris-Saclay, CNRS)",
+    "license": "CC BY 4.0 (ESA/Webb)"
+  }
+]

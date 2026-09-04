@@ -1,0 +1,66 @@
+---
+import Base from '@/layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import LogCard from './LogCard.astro';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import { getPosts } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const posts = await getPosts(locale);
+---
+
+<Base locale={locale} path="/log" title={t('log.title')} description={t('log.lead')}>
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={t('log.title')}
+    href={localePath(locale, '/log/rss.xml')}
+    slot="head"
+  />
+  <Nav locale={locale} path="/log" minimal />
+  <main id="main" class="container-content log">
+    <header class="head">
+      <p class="mono text-accent-3 text-xs uppercase tracking-[0.22em]">
+        {t('log.all')} · {posts.length}
+      </p>
+      <h1 class="mt-3">{t('log.title')}</h1>
+      <p class="text-ink-muted mt-5 max-w-3xl text-lg">{t('log.lead')}</p>
+      <a class="mono text-sm rss" href={localePath(locale, '/log/rss.xml')}>{t('log.rss')} ↗</a>
+    </header>
+    <ol class="grid">
+      {posts.map((p, i) => <LogCard locale={locale} post={p} index={i} />)}
+    </ol>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<style>
+  .log {
+    padding-block: 3rem 5rem;
+  }
+  .head {
+    max-width: 60rem;
+  }
+  h1 {
+    font-size: var(--text-3xl);
+  }
+  .rss {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+  .grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.25rem;
+  }
+</style>

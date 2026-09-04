@@ -1,0 +1,14 @@
+---
+import LogPostPage from '@/components/LogPostPage.astro';
+import { getPosts, type Post } from '@/lib/content';
+
+export async function getStaticPaths() {
+  return (await getPosts('pt-br')).map((post) => ({
+    params: { key: post.data.key },
+    props: { post },
+  }));
+}
+const { post } = Astro.props as { post: Post };
+---
+
+<LogPostPage locale="pt-br" post={post} />

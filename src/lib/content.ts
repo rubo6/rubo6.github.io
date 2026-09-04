@@ -14,6 +14,7 @@ export type SkillGroup = CollectionEntry<'skills'>['data'];
 export type Certification = CollectionEntry<'certifications'>['data'];
 export type Personal = CollectionEntry<'personal'>['data'];
 export type RepoStats = CollectionEntry<'repoStats'>['data'];
+export type Post = CollectionEntry<'posts'>;
 
 async function pickLocale<T extends { data: { locale: Locale } }>(
   entries: T[],
@@ -89,4 +90,32 @@ export async function getRepoStats(): Promise<Map<string, RepoStats>> {
 export function formatCount(n: number, locale: Locale): string {
   const tag = locale === 'pt-br' ? 'pt-BR' : locale === 'es' ? 'es-MX' : 'en-US';
   return new Intl.NumberFormat(tag, { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+}
+
+/** Log entries for a locale (English fallback per key), newest first, drafts excluded. */
+export async function getPosts(locale: Locale): Promise<Post[]> {
+  const all = (await getCollection('posts')).filter((p) => !p.data.draft);
+  const byKey = new Map<string, Post>();
+  for (const p of all) if (p.data.locale === defaultLocale) byKey.set(p.data.key, p);
+  for (const p of all) if (p.data.locale === locale) byKey.set(p.data.key, p);
+  return [...byKey.values()].sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+}
+
+export async function getPost(locale: Locale, key: string): Promise<Post | undefined> {
+  return (await getPosts(locale)).find((p) => p.data.key === key);
+}
+
+/** Rough reading time in minutes from the Markdown body (220 wpm). */
+export function readingMinutes(body: string | undefined): number {
+  const words = (body ?? '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+/** Long date per locale (e.g. "June 2023" / "junio de 2023"). */
+export function formatLongDate(iso: string, locale: Locale): string {
+  const [y, m, d] = iso.split('-').map(Number) as [number, number, number];
+  const tag = locale === 'pt-br' ? 'pt-BR' : locale === 'es' ? 'es-MX' : 'en-US';
+  return new Intl.DateTimeFormat(tag, { dateStyle: 'long', timeZone: 'UTC' }).format(
+    new Date(Date.UTC(y, m - 1, d)),
+  );
 }
