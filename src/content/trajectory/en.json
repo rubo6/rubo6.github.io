@@ -108,6 +108,23 @@
       ],
       "stack": ["Statistics", "Algorithms", "Parallel Computing", "NoSQL"],
       "orbit": 5
+    },
+    {
+      "id": "cecyt9-ipn",
+      "kind": "education",
+      "org": "CECyT No. 9 \"Juan de Dios Bátiz\" · Instituto Politécnico Nacional",
+      "orgUrl": "https://www.cecyt9.ipn.mx",
+      "role": "Technical Degree in Programming (Técnico en Programación)",
+      "location": "Mexico City",
+      "start": "2018-08-13",
+      "end": "2021-07-23",
+      "summary": "Bivalent upper-secondary programme of the IPN: high-school diploma plus a technical degree. Title issued December 2022.",
+      "bullets": [
+        "Programming fundamentals, object-oriented programming, algorithms and data structures, relational databases, web development and software testing.",
+        "Graduated from the IPN's most demanded and selective upper-secondary campus, historically the highest COMIPEMS cut-off score in the country."
+      ],
+      "stack": ["C++", "JavaScript", "SQL", "Software testing"],
+      "orbit": 6
     }
   ]
 }

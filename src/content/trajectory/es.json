@@ -108,6 +108,23 @@
       ],
       "stack": ["Estadística", "Algoritmos", "Cómputo paralelo", "NoSQL"],
       "orbit": 5
+    },
+    {
+      "id": "cecyt9-ipn",
+      "kind": "education",
+      "org": "CECyT No. 9 \"Juan de Dios Bátiz\" · Instituto Politécnico Nacional",
+      "orgUrl": "https://www.cecyt9.ipn.mx",
+      "role": "Técnico en Programación",
+      "location": "Ciudad de México",
+      "start": "2018-08-13",
+      "end": "2021-07-23",
+      "summary": "Bachillerato bivalente del IPN: certificado de nivel medio superior más título de técnico. Título expedido en diciembre de 2022.",
+      "bullets": [
+        "Fundamentos de programación, programación orientada a objetos, algoritmos y estructuras de datos, bases de datos relacionales, desarrollo web y pruebas de software.",
+        "Egresado del plantel de nivel medio superior más demandado y selectivo del IPN, históricamente el puntaje de corte más alto del examen COMIPEMS en el país."
+      ],
+      "stack": ["C++", "JavaScript", "SQL", "Pruebas de software"],
+      "orbit": 6
     }
   ]
 }

@@ -1,5 +1,20 @@
 [
   {
+    "id": "ipn-technical-degree",
+    "issuer": "Instituto Politécnico Nacional · CECyT No. 9",
+    "name": "Technical Degree in Programming (título de Técnico en Programación)",
+    "status": "earned",
+    "date": "2022-12-01",
+    "skills": [
+      "Programming fundamentals",
+      "OOP",
+      "Data structures",
+      "Relational databases",
+      "Web development",
+      "Software testing"
+    ]
+  },
+  {
     "id": "ibero-ai-diploma",
     "issuer": "Universidad Iberoamericana",
     "name": "Artificial Intelligence Diploma Program",
