@@ -1,0 +1,90 @@
+# Prompts para assets visuales (meliGPT)
+
+> Genera estos assets con los modelos indicados y pásame los archivos. Yo los convierto a AVIF/WebP, genero variantes responsive y los meto en `src/assets/`. Todo lo generado se acredita en `docs/DESIGN-SYSTEM.md` como "ilustración generada, inspirada en <objeto real>". No uses fotos con personas ni texto dentro de la imagen.
+
+## Reglas generales para todos los prompts
+
+- Paleta obligatoria: fondo índigo profundo `#0B1026` a `#141B3D`; acentos dorado `#F2C46D`, coral `#F07A6E`, cian pálido `#9AD9E8`. Nada de morado saturado ni neón.
+- Sin texto, sin letras, sin marcas de agua, sin planetas caricaturescos, sin naves.
+- Estilo: fotografía astronómica de largo tiempo de exposición, tipo Hubble/JWST, con grano fino y estrellas puntuales, **no** render 3D ni ilustración plana.
+- Formato: el más grande que permita el modelo. Relación de aspecto indicada por asset.
+
+## Modelo recomendado por asset
+
+| Asset                         | Modelo                                                                | Por qué                                                |
+| ----------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------ |
+| Nebulosas (6)                 | **Nano Banana** (Google) primero; si falla la paleta, **GPT Image 2** | Mejor control de color y textura fotográfica en stills |
+| Fondo hero                    | **GPT Image 2**                                                       | Composición amplia y limpia, buena para recorte        |
+| Universo personal             | **Nano Banana**                                                       | Colores cálidos y orgánicos                            |
+| Video (opcional, fase futura) | **Veo 3.1 Generate**                                                  | Solo si decidimos loop de fondo; hoy no, por peso      |
+
+## 1. Nebulosas profesionales (una por categoría)
+
+Aspect ratio 1:1 para todas. Cada una será una "nebulosa" clicable en el observatorio.
+
+### 1.1 Orión (M42) — Profesional / Mercado Libre
+
+```
+Deep-space astrophotography of the Orion Nebula M42, wide field, seen through a large telescope. Glowing gas clouds in warm gold (#F2C46D) and soft coral (#F07A6E) over a deep indigo background (#0B1026), with pale cyan (#9AD9E8) highlights at the core. Sharp pinpoint stars, fine film grain, long exposure look, Hubble-style processing. Square composition, nebula centered with dark empty space around it. No text, no watermark, no planets, no spacecraft.
+```
+
+### 1.2 Carina (NGC 3372) — Académico / ITAM
+
+```
+Deep-space astrophotography of the Carina Nebula, JWST-style cliffs of gas and dust. Towering dust structures rendered in muted gold and amber (#F2C46D), backlit by pale cyan (#9AD9E8) ionized gas, on a deep indigo sky (#0B1026). Dense field of sharp pinpoint stars, subtle film grain, long exposure. Square composition, cliffs rising from the lower-left, dark space upper-right. No text, no watermark.
+```
+
+### 1.3 Águila / Pilares de la Creación (M16) — Investigación
+
+```
+Deep-space astrophotography of the Pillars of Creation in the Eagle Nebula M16. Three columns of dark dust rendered in deep indigo and charcoal (#141B3D), edges glowing in gold (#F2C46D) and coral (#F07A6E), against a faint pale cyan (#9AD9E8) background haze. Sharp stars, fine grain, Hubble-style. Square composition, pillars slightly off-center. No text, no watermark.
+```
+
+### 1.4 Hélice (NGC 7293) — Personal / side projects
+
+```
+Deep-space astrophotography of the Helix Nebula, a planetary nebula seen face-on like a giant eye. Concentric rings of gas in pale cyan (#9AD9E8) fading to gold (#F2C46D) at the outer edge, dark indigo center (#0B1026), a single bright white dwarf at the middle. Deep indigo background with sharp stars, subtle grain. Perfectly centered square composition. No text, no watermark.
+```
+
+### 1.5 Laguna (M8) — Comunidad / liderazgo (DataLab, AIESEC)
+
+```
+Deep-space astrophotography of the Lagoon Nebula M8, a wide bright emission nebula. Flowing warm coral (#F07A6E) and gold (#F2C46D) gas with a dark lane crossing the center, a scattered open star cluster embedded in it, on a deep indigo sky (#0B1026). Sharp stars, fine grain, long exposure. Square composition. No text, no watermark.
+```
+
+### 1.6 Cabeza de Caballo (Barnard 33) — Aprendizaje en curso / próximos proyectos
+
+```
+Deep-space astrophotography of the Horsehead Nebula, a dark silhouette of dust shaped like a horse's head rising against a glowing backdrop. Backdrop in soft coral (#F07A6E) blending to gold (#F2C46D), silhouette in deep indigo (#0B1026) with pale cyan (#9AD9E8) rim light. Sparse sharp stars, fine grain, Hubble-style. Square composition, silhouette in lower-center. No text, no watermark.
+```
+
+## 2. Fondo del hero (cielo profundo, se combina con el canvas de estrellas reales)
+
+Aspect ratio 16:9 (o el más ancho disponible). Debe ser oscuro y limpio: las estrellas reales las dibujo yo encima.
+
+```
+Ultra-wide deep-space background, almost empty sky, very dark indigo (#0B1026 to #141B3D) with an extremely faint band of the Milky Way crossing diagonally from lower-left to upper-right in muted gold (#F2C46D at 10% opacity) and pale cyan haze (#9AD9E8 at 5% opacity). No bright stars, no nebulae, no planets, no horizon. Subtle film grain. Smooth gradients suitable as a website background. No text, no watermark.
+```
+
+## 3. Universo personal (fondo del modo "Rubo")
+
+Aspect ratio 16:9. Mismo universo, otra temperatura: más cálido y orgánico, para el cambio de modo.
+
+```
+Ultra-wide deep-space background for a warm, personal mood. Deep indigo sky (#141B3D) with soft flowing clouds of amber and gold (#F2C46D) and gentle coral (#F07A6E), like a distant reflection nebula seen through thin dust, plus a faint pale cyan (#9AD9E8) glow on one side. No bright stars, no planets, no horizon, no text. Smooth, low-contrast gradients suitable as a website background. Subtle film grain. No watermark.
+```
+
+## 4. Opcional: avatar ilustrado (si no quieres foto)
+
+Aspect ratio 1:1, modelo **GPT Image 2**.
+
+```
+Minimal line-art portrait avatar of a young man with short dark hair and glasses, drawn as a single continuous gold (#F2C46D) line on deep indigo (#0B1026), in the style of a constellation chart: a few small star points at the vertices of the lines, connected like a constellation. Clean, elegant, no text, no background clutter, no watermark.
+```
+
+_(Ajusta la descripción física a la tuya antes de generar.)_
+
+## Qué NO vamos a generar
+
+- Video de fondo en loop: pesa mucho y baja Lighthouse; se reserva para una fase futura con Veo 3.1 si el sitio ya vuela.
+- Imágenes con texto: todo el texto va en HTML por accesibilidad y traducción.
