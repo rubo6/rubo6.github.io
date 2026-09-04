@@ -3,18 +3,18 @@ title: WhisperFlow — ditado por voz offline para Windows
 key: whisperflow
 locale: pt-br
 nebula: personal
-summary: Ditado push-to-talk local, offline e privado para Windows 11 (ES/EN): atalho global, reconhecimento de voz no dispositivo e texto inserido no app em foco.
+summary: 'Ditado push-to-talk local, offline e privado para Windows 11 (ES/EN): atalho global, reconhecimento de voz no dispositivo e texto inserido no app em foco.'
 role: Autor
 period: { start: '2026-07-15', end: null }
 stack: [Python 3.12, ONNX Runtime, Parakeet TDT, faster-whisper, Win32 API (ctypes), pytest, ruff]
 highlights:
-  - Zero rede em runtime: sem conta, sem telemetria; áudio e texto vivem só na RAM
-  - Dois motores de voz intercambiáveis com fallback automático; o padrão roda ~2× mais rápido que o tempo real na CPU de um laptop
-  - Overlay nativo Win32 em camadas ("orbe") com transparência por pixel renderizado com NumPy
-  - Atalho push-to-talk e toggle, modo mãos livres com detecção local de atividade de voz
-  - Dicionário pessoal, snippets, auto-espaçamento e maiúsculas que leem o texto antes do cursor
-  - Pacote portátil com interpretador congelado, SBOM, inventário de licenças e verificação SHA-256 na inicialização
-  - Threat model documentado; o texto ditado nunca é executado como comando, e o lint garante isso
+  - 'Zero rede em runtime: sem conta, sem telemetria; áudio e texto vivem só na RAM'
+  - 'Dois motores de voz intercambiáveis com fallback automático; o padrão roda ~2× mais rápido que o tempo real na CPU de um laptop'
+  - 'Overlay nativo Win32 em camadas ("orbe") com transparência por pixel renderizado com NumPy'
+  - 'Atalho push-to-talk e toggle, modo mãos livres com detecção local de atividade de voz'
+  - 'Dicionário pessoal, snippets, auto-espaçamento e maiúsculas que leem o texto antes do cursor'
+  - 'Pacote portátil com interpretador congelado, SBOM, inventário de licenças e verificação SHA-256 na inicialização'
+  - 'Threat model documentado; o texto ditado nunca é executado como comando, e o lint garante isso'
 repo: rubo6/whisperflow
 featured: true
 order: 5
