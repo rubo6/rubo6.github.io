@@ -17,20 +17,28 @@ interface Props {
 const { locale, groups, certifications } = Astro.props;
 const t = useTranslations(locale);
 
-const W = 320;
-const H = 200;
+const W = 360;
+const PAD_X = 64;
+const ROW_H = 78;
 
 function layout(group: SkillGroup) {
   const nodes = group.items.map((item, i) => {
     // Spread on a loose grid then jitter deterministically so labels rarely collide.
-    const cols = 4;
+    const cols = 3;
+    const rows = Math.ceil(group.items.length / cols);
+    const H = 60 + rows * ROW_H;
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const jx = (unitHash(`${group.id}:${item.name}:x`) - 0.5) * 40;
-    const jy = (unitHash(`${group.id}:${item.name}:y`) - 0.5) * 34;
-    const x = 36 + col * ((W - 72) / (cols - 1)) + jx;
-    const y = 40 + row * 62 + jy;
-    return { ...item, x: Math.min(W - 24, Math.max(24, x)), y: Math.min(H - 22, Math.max(22, y)) };
+    const jx = (unitHash(`${group.id}:${item.name}:x`) - 0.5) * 16;
+    const jy = (unitHash(`${group.id}:${item.name}:y`) - 0.5) * 18;
+    const x = PAD_X + col * ((W - PAD_X * 2) / Math.max(1, cols - 1)) + jx;
+    const y = 46 + row * ROW_H + jy;
+    const cx = Math.min(W - PAD_X, Math.max(PAD_X, x));
+    const anchor: 'start' | 'middle' | 'end' =
+      cx < W * 0.28 ? 'start' : cx > W * 0.72 ? 'end' : 'middle';
+    const labelDx = anchor === 'start' ? -6 : anchor === 'end' ? 6 : 0;
+    const labelBelow = col % 2 === 0;
+    return { ...item, x: cx, y: Math.min(H - 30, Math.max(30, y)), anchor, labelDx, labelBelow, H };
   });
   const lines: [number, number][] = [];
   for (let i = 1; i < nodes.length; i++) {
@@ -45,7 +53,8 @@ function layout(group: SkillGroup) {
     }
     lines.push([i, best]);
   }
-  return { nodes, lines };
+  const height = nodes[0]?.H ?? 200;
+  return { nodes, lines, height };
 }
 const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
 ---
@@ -65,14 +74,14 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
   <div class="groups">
     {
       groups.map((g, gi) => {
-        const { nodes, lines } = layout(g);
+        const { nodes, lines, height } = layout(g);
         return (
           <article class="group reveal" data-delay={String((gi % 4) + 1)}>
             <header>
               <h3 class="text-lg">{pick(g.labels, locale)}</h3>
               <p class="mono text-xs text-ink-muted">{g.constellation}</p>
             </header>
-            <svg viewBox={`0 0 ${W} ${H}`} role="list" aria-label={pick(g.labels, locale)}>
+            <svg viewBox={`0 0 ${W} ${height}`} role="list" aria-label={pick(g.labels, locale)}>
               <g stroke="var(--accent-3)" stroke-width="0.7" opacity="0.5">
                 {lines.map(([a, b]) => (
                   <line x1={nodes[a]!.x} y1={nodes[a]!.y} x2={nodes[b]!.x} y2={nodes[b]!.y} />
@@ -97,9 +106,9 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
                     fill={n.level >= 4 ? 'var(--accent)' : 'var(--ink)'}
                   />
                   <text
-                    x={n.x}
-                    y={n.y + radius(n.level) + 11}
-                    text-anchor="middle"
+                    x={n.x + n.labelDx}
+                    y={n.labelBelow ? n.y + radius(n.level) + 12 : n.y - radius(n.level) - 6}
+                    text-anchor={n.anchor}
                     font-size="9.5"
                     fill="var(--ink)"
                     font-family="var(--font-mono)"

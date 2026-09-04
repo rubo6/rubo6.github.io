@@ -93,8 +93,8 @@
       "pt-br": "Projetos pessoais feitos por prazer, incluindo este observatório."
     },
     "scene": {
-      "x": 84,
-      "y": 58,
+      "x": 80,
+      "y": 60,
       "scale": 0.85
     },
     "palette": ["#9ad9e8", "#f2c46d", "#f4efe6"]
@@ -143,7 +143,7 @@
       "pt-br": "Certificações e programas em andamento: Anthropic, DataCamp, AWS Academy, diploma em IA da Ibero."
     },
     "scene": {
-      "x": 88,
+      "x": 82,
       "y": 20,
       "scale": 0.7
     },
