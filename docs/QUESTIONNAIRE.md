@@ -1,5 +1,7 @@
 # Cuestionario para Rubo
 
+> **Estado 2026-09-03:** respondido por Rubo (dictado) y aplicado en `src/content/`. Quedan abiertas: 12 (Steam público), 17 (generar avatar con los prompts), 20 (dominio), 21 (crear el token), 22 (crear cuenta de analítica), 23 (activar 2FA). Ver `docs/OWNER-GUIDE.md`.
+>
 > Responde en el chat cuando quieras, en cualquier orden, con el número. Todo lo que no respondas tiene un default marcado con ⭐ y se puede cambiar después editando `src/content/`.
 
 ## A. Datos duros para los cronómetros y timelines
