@@ -31,7 +31,12 @@ function pick(path) {
     // Diagnostics so a run can be understood without downloading the artifact.
     failedAudits: Object.entries(a)
       .filter(([, v]) => v.scoreDisplayMode === 'binary' && v.score === 0)
-      .map(([k, v]) => ({ id: k, sample: v.details?.items?.[0]?.node?.selector ?? null })),
+      .map(([k, v]) => ({
+        id: k,
+        sample: v.details?.items?.[0]?.node?.selector ?? null,
+        snippet: v.details?.items?.[0]?.node?.snippet?.slice(0, 160) ?? null,
+        explanation: v.details?.items?.[0]?.node?.explanation?.slice(0, 300) ?? null,
+      })),
     lcp: lcpBreakdown(a),
   };
 }
