@@ -20,7 +20,13 @@ const older = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : undefined;
 const path = `/log/${post.data.key}`;
 ---
 
-<Base locale={locale} path={path} title={post.data.title} description={post.data.summary}>
+<Base
+  locale={locale}
+  path={path}
+  title={post.data.title}
+  description={post.data.summary}
+  ogImage={`/og/log/${post.data.key}.png`}
+>
   <Nav locale={locale} path={path} minimal />
   <main id="main" class:list={['container-content entry', `area-${post.data.area}`]}>
     <a class="back mono text-sm" href={localePath(locale, '/log')}>← {t('log.back')}</a>
@@ -39,6 +45,14 @@ const path = `/log/${post.data.key}`;
           )
         }
         <span>· {readingMinutes(post.body)} {t('log.read')}</span>
+        {
+          post.data.updated && (
+            <span>
+              · {t('log.updated')}{' '}
+              <time datetime={post.data.updated}>{formatLongDate(post.data.updated, locale)}</time>
+            </span>
+          )
+        }
       </p>
       <h1 class="mt-4">{post.data.title}</h1>
       <p class="text-ink-muted mt-5 max-w-3xl text-lg">{post.data.summary}</p>

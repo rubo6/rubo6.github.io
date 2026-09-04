@@ -1,0 +1,85 @@
+---
+/**
+ * "Now" page (nownownow.com convention): what the owner is doing these days, hand-updated.
+ * Content: src/content/now/<locale>.json. Falls back to English.
+ */
+import Base from '@/layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { useTranslations, type Locale } from '@/i18n/ui';
+import { formatLongDate, getNow } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const now = await getNow(locale);
+---
+
+<Base locale={locale} path="/now" title={t('now.title')} description={t('now.lead')}>
+  <Nav locale={locale} path="/now" minimal />
+  <main id="main" class="container-content now">
+    <header class="head">
+      <p class="mono text-accent-3 text-xs uppercase tracking-[0.22em]">
+        {t('now.updated')}: <time datetime={now.updated}>{formatLongDate(now.updated, locale)}</time
+        >
+      </p>
+      <h1 class="mt-3">{t('now.title')}</h1>
+      <p class="text-ink-muted mt-5 max-w-2xl text-lg">{t('now.lead')}</p>
+    </header>
+    <div class="grid">
+      {
+        now.sections.map((s, i) => (
+          <section
+            class="card reveal"
+            data-delay={String((i % 4) + 1)}
+            aria-labelledby={`now-${s.id}`}
+          >
+            <h2 id={`now-${s.id}`} class="text-lg">
+              {s.title}
+            </h2>
+            <ul>
+              {s.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<style>
+  .now {
+    padding-block: 3rem 5rem;
+  }
+  h1 {
+    font-size: var(--text-3xl);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .card {
+    padding: 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+  }
+  .card ul {
+    margin: 0.8rem 0 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--ink);
+  }
+  .card li::marker {
+    color: var(--accent);
+  }
+</style>

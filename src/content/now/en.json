@@ -1,0 +1,54 @@
+{
+  "locale": "en",
+  "updated": "2026-09-04",
+  "sections": [
+    {
+      "id": "studying",
+      "title": "Studying",
+      "items": [
+        "Eighth of nine terms of the B.S. in Data Science at ITAM: Architecture for Large Data Volumes, Data Mining and Analysis, Multivariate Methods, Applied Data Science I, Public Policy II.",
+        "Artificial Intelligence diploma at Universidad Iberoamericana (diploma expected December 2026).",
+        "Certifications in progress: Anthropic, DataCamp, AWS Academy."
+      ]
+    },
+    {
+      "id": "working",
+      "title": "Working on",
+      "items": [
+        "Data and analytics engineering for Mercado Pago Point at Mercado Libre: pipelines, BigQuery models and an internal data platform.",
+        "WhisperFlow, my offline voice-dictation tool for Windows, now public with model packs on GitHub Releases.",
+        "This observatory: next up are the remaining translations and a Playwright test suite."
+      ]
+    },
+    {
+      "id": "reading",
+      "title": "Reading",
+      "items": [
+        "Classical philosophy, one dialogue at a time.",
+        "Astronomy popular science, especially anything about pulsars and black holes."
+      ]
+    },
+    {
+      "id": "listening",
+      "title": "Listening to",
+      "items": ["Michael Jackson, always.", "Led Zeppelin and Muse on rotation while coding."]
+    },
+    {
+      "id": "playing",
+      "title": "Playing",
+      "items": [
+        "Rainbow Six Siege on PC.",
+        "Halo, again, on console.",
+        "Clash of Clans when there are five spare minutes."
+      ]
+    },
+    {
+      "id": "looking-up",
+      "title": "Looking up at",
+      "items": [
+        "A brand-new telescope I am still learning to use.",
+        "Every JWST release the week it comes out."
+      ]
+    }
+  ]
+}

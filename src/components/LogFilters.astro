@@ -1,0 +1,257 @@
+---
+/**
+ * Client-side filters for the log index: free-text search, area chips and term select.
+ * Pure DOM filtering over the already-rendered cards (no third party, no network).
+ * URL reflects state (?q=&area=&term=) so filtered views can be shared.
+ */
+import { useTranslations, type Locale } from '@/i18n/ui';
+import type { Post } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+  posts: Post[];
+}
+const { locale, posts } = Astro.props;
+const t = useTranslations(locale);
+const areas = [...new Set(posts.map((p) => p.data.area))];
+const semesters = [...new Set(posts.map((p) => p.data.semester).filter(Boolean))] as string[];
+---
+
+<form
+  class="filters"
+  data-log-filters
+  role="search"
+  aria-label={t('log.title')}
+  onsubmit="return false"
+>
+  <label class="search">
+    <span class="sr-only-focusable">{t('log.search')}</span>
+    <input
+      type="search"
+      name="q"
+      placeholder={t('log.search')}
+      autocomplete="off"
+      spellcheck="false"
+      data-filter-q
+    />
+  </label>
+
+  <div class="chips" role="group" aria-label={t('log.filter.area')}>
+    <button type="button" class="chip" data-filter-area="" aria-pressed="true"
+      >{t('log.filter.all')}</button
+    >
+    {
+      areas.map((a) => (
+        <button type="button" class={`chip area-${a}`} data-filter-area={a} aria-pressed="false">
+          <i aria-hidden="true" />
+          {t(`log.area.${a}` as 'log.area.math')}
+        </button>
+      ))
+    }
+  </div>
+
+  <label class="term">
+    <span class="mono text-xs text-ink-muted">{t('log.filter.semester')}</span>
+    <select name="term" data-filter-term>
+      <option value="">{t('log.filter.anySemester')}</option>
+      {semesters.map((s) => <option value={s}>{s}</option>)}
+    </select>
+  </label>
+
+  <p class="mono status" data-filter-status aria-live="polite">
+    <span data-filter-count>{posts.length}</span>
+    {t('log.results')}
+  </p>
+  <button type="button" class="btn btn-ghost btn-sm" data-filter-clear hidden
+    >{t('log.clear')}</button
+  >
+  <p class="empty text-ink-muted" data-filter-empty hidden>{t('log.empty')}</p>
+</form>
+
+<style>
+  .filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.9rem 1.5rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+  }
+  .search input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    background: color-mix(in oklab, var(--bg-0) 60%, transparent);
+    color: var(--ink);
+    font: inherit;
+  }
+  .search input:focus-visible {
+    border-color: var(--accent);
+  }
+  .term {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .term select {
+    min-height: 2.75rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background-color: var(--bg-1);
+    color: var(--ink);
+    font: inherit;
+  }
+  .chips {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    --area: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.25rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+  }
+  .chip i {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--area);
+  }
+  .chip:hover {
+    border-color: var(--area);
+    color: var(--ink);
+  }
+  .chip[aria-pressed='true'] {
+    background: color-mix(in oklab, var(--area) 22%, transparent);
+    border-color: var(--area);
+    color: var(--ink);
+  }
+  .area-math {
+    --area: #f2c46d;
+  }
+  .area-stats {
+    --area: #9ad9e8;
+  }
+  .area-computing {
+    --area: #a8e6cf;
+  }
+  .area-datascience {
+    --area: #f07a6e;
+  }
+  .area-economics {
+    --area: #d9a45b;
+  }
+  .area-humanities {
+    --area: #c9b8ff;
+  }
+  .area-astronomy {
+    --area: #f4efe6;
+  }
+  .area-work {
+    --area: #ffd6a5;
+  }
+  .area-leadership {
+    --area: #f07a6e;
+  }
+  .status {
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+  .empty {
+    grid-column: 1 / -1;
+    font-size: var(--text-sm);
+  }
+  @media (max-width: 700px) {
+    .filters {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function mount() {
+    const form = document.querySelector<HTMLFormElement>('[data-log-filters]:not([data-bound])');
+    if (!form) return;
+    form.dataset.bound = '1';
+    const cards = [...document.querySelectorAll<HTMLElement>('.log-card')];
+    const q = form.querySelector<HTMLInputElement>('[data-filter-q]')!;
+    const term = form.querySelector<HTMLSelectElement>('[data-filter-term]')!;
+    const chips = [...form.querySelectorAll<HTMLButtonElement>('[data-filter-area]')];
+    const count = form.querySelector<HTMLElement>('[data-filter-count]')!;
+    const empty = form.querySelector<HTMLElement>('[data-filter-empty]')!;
+    const clear = form.querySelector<HTMLButtonElement>('[data-filter-clear]')!;
+    let area = '';
+
+    const apply = (updateUrl = true) => {
+      const needle = q.value.trim().toLowerCase();
+      let shown = 0;
+      for (const c of cards) {
+        const ok =
+          (!area || c.dataset.area === area) &&
+          (!term.value || c.dataset.semester === term.value) &&
+          (!needle || (c.dataset.text ?? '').includes(needle));
+        c.hidden = !ok;
+        if (ok) shown += 1;
+      }
+      count.textContent = String(shown);
+      empty.hidden = shown > 0;
+      clear.hidden = !(needle || area || term.value);
+      for (const b of chips)
+        b.setAttribute('aria-pressed', String((b.dataset.filterArea ?? '') === area));
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        const set = (k: string, v: string) =>
+          v ? url.searchParams.set(k, v) : url.searchParams.delete(k);
+        set('q', needle);
+        set('area', area);
+        set('term', term.value);
+        history.replaceState(null, '', url);
+      }
+    };
+
+    q.addEventListener('input', () => apply());
+    term.addEventListener('change', () => apply());
+    chips.forEach((b) =>
+      b.addEventListener('click', () => {
+        area = b.dataset.filterArea ?? '';
+        apply();
+      }),
+    );
+    clear.addEventListener('click', () => {
+      q.value = '';
+      term.value = '';
+      area = '';
+      apply();
+      q.focus();
+    });
+
+    // Restore state from the URL
+    const params = new URLSearchParams(window.location.search);
+    q.value = params.get('q') ?? '';
+    area = params.get('area') ?? '';
+    const t = params.get('term') ?? '';
+    if ([...term.options].some((o) => o.value === t)) term.value = t;
+    apply(false);
+  }
+  mount();
+  document.addEventListener('astro:after-swap', mount);
+</script>

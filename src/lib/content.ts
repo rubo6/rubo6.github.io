@@ -15,6 +15,7 @@ export type Certification = CollectionEntry<'certifications'>['data'];
 export type Personal = CollectionEntry<'personal'>['data'];
 export type RepoStats = CollectionEntry<'repoStats'>['data'];
 export type Post = CollectionEntry<'posts'>;
+export type Now = CollectionEntry<'now'>['data'];
 
 async function pickLocale<T extends { data: { locale: Locale } }>(
   entries: T[],
@@ -118,4 +119,8 @@ export function formatLongDate(iso: string, locale: Locale): string {
   return new Intl.DateTimeFormat(tag, { dateStyle: 'long', timeZone: 'UTC' }).format(
     new Date(Date.UTC(y, m - 1, d)),
   );
+}
+
+export async function getNow(locale: Locale): Promise<Now> {
+  return (await pickLocale(await getCollection('now'), locale)).data;
 }

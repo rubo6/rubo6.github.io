@@ -1,0 +1,54 @@
+{
+  "locale": "es",
+  "updated": "2026-09-04",
+  "sections": [
+    {
+      "id": "studying",
+      "title": "Estudiando",
+      "items": [
+        "Octavo de nueve semestres de la Licenciatura en Ciencia de Datos del ITAM: Arquitectura para Grandes Volúmenes de Datos, Minería y Análisis de Datos, Métodos Multivariados, Ciencia de Datos Aplicada I, Políticas Públicas II.",
+        "Diplomado en Inteligencia Artificial en la Universidad Iberoamericana (diploma previsto para diciembre de 2026).",
+        "Certificaciones en curso: Anthropic, DataCamp, AWS Academy."
+      ]
+    },
+    {
+      "id": "working",
+      "title": "Trabajando en",
+      "items": [
+        "Ingeniería de datos y analítica para Mercado Pago Point en Mercado Libre: pipelines, modelos en BigQuery y una plataforma interna de datos.",
+        "WhisperFlow, mi herramienta de dictado por voz offline para Windows, ya pública con paquetes de modelos en GitHub Releases.",
+        "Este observatorio: lo que sigue son las traducciones pendientes y una suite de pruebas con Playwright."
+      ]
+    },
+    {
+      "id": "reading",
+      "title": "Leyendo",
+      "items": [
+        "Filosofía clásica, un diálogo a la vez.",
+        "Divulgación de astronomía, sobre todo si habla de púlsares y agujeros negros."
+      ]
+    },
+    {
+      "id": "listening",
+      "title": "Escuchando",
+      "items": ["Michael Jackson, siempre.", "Led Zeppelin y Muse en rotación mientras programo."]
+    },
+    {
+      "id": "playing",
+      "title": "Jugando",
+      "items": [
+        "Rainbow Six Siege en PC.",
+        "Halo, otra vez, en consola.",
+        "Clash of Clans cuando sobran cinco minutos."
+      ]
+    },
+    {
+      "id": "looking-up",
+      "title": "Mirando hacia arriba",
+      "items": [
+        "Un telescopio recién comprado que todavía estoy aprendiendo a usar.",
+        "Cada lanzamiento del JWST la semana en que sale."
+      ]
+    }
+  ]
+}

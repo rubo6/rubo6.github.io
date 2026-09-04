@@ -189,6 +189,8 @@ const posts = defineCollection({
     key: z.string().regex(/^[a-z0-9-]+$/),
     locale,
     date: isoDate,
+    /** Optional last-revision date shown on the entry page. */
+    updated: isoDate.optional(),
     summary: z.string().max(280),
     /** Knowledge area; drives the colour and the "instrument" label. */
     area: z.enum([
@@ -208,6 +210,18 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+  }),
+});
+
+/** "Now" page content: what the owner is doing these days. One file per locale, hand-updated. */
+const now = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/now' }),
+  schema: z.object({
+    locale,
+    updated: isoDate,
+    sections: z.array(
+      z.object({ id: z.string(), title: z.string(), items: z.array(z.string()).min(1) }),
+    ),
   }),
 });
 
@@ -244,4 +258,5 @@ export const collections = {
   personal,
   repoStats,
   posts,
+  now,
 };
