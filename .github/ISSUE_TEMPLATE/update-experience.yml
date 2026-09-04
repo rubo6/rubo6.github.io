@@ -1,0 +1,36 @@
+name: 'Update trajectory / certification'
+description: Add or update a role, education entry or certification
+title: 'content: update <what>'
+labels: ['content']
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - experience
+        - education
+        - certification
+        - leadership
+    validations:
+      required: true
+  - type: input
+    id: org
+    attributes:
+      label: Organisation
+    validations:
+      required: true
+  - type: input
+    id: dates
+    attributes:
+      label: Dates (YYYY-MM-DD → YYYY-MM-DD or "present")
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details (bullets, English)
+  - type: input
+    id: verify
+    attributes:
+      label: Verification URL (certifications only)

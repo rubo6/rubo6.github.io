@@ -1,0 +1,51 @@
+{
+  "name": "rubo6.github.io",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal observatory of Eduardo Rubén \"Rubo\" Bernal Puente — Data & Analytics Engineer. Built with Astro 7, Tailwind CSS 4 and real astronomy.",
+  "homepage": "https://rubo6.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rubo6/rubo6.github.io.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "validate": "npm run format:check && npm run lint && npm run check && npm run test && npm run build",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.1",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.1",
+    "eslint-plugin-astro": "^3.1.0",
+    "globals": "^17.12.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^5.0.0"
+  }
+}

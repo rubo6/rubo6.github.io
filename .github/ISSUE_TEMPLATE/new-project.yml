@@ -1,0 +1,42 @@
+name: 'New project (nebula star)'
+description: Add a project to the observatory
+title: 'content: add project <name>'
+labels: ['content', 'project']
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Nebula (category)
+      options:
+        - professional
+        - academic
+        - research
+        - personal
+        - community
+        - upcoming
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub repository (owner/name) — leave empty if private
+  - type: textarea
+    id: summary
+    attributes:
+      label: One-paragraph summary (English). Spanish and Portuguese can be added later.
+    validations:
+      required: true
+  - type: input
+    id: stack
+    attributes:
+      label: Stack (comma separated)
+  - type: textarea
+    id: highlights
+    attributes:
+      label: Highlights (one per line) — these become the stars of the nebula

@@ -1,0 +1,471 @@
+/*
+ * Observatory design system — single source of truth for visual tokens.
+ * Documented in docs/DESIGN-SYSTEM.md. Edit tokens here, never inline in components.
+ *
+ * Two independent axes:
+ *   data-theme = "night" | "atlas"   → dark sky vs. 19th‑century star‑atlas paper
+ *   data-mode  = "pro"   | "personal" → professional observatory vs. personal universe
+ * Every token below is registered with @property so the universe can *animate*
+ * between states (colors interpolate instead of snapping).
+ */
+
+@import 'tailwindcss';
+
+/* Self‑hosted fonts: zero third‑party requests at runtime. */
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/instrument-sans';
+@import '@fontsource-variable/jetbrains-mono';
+
+@custom-variant atlas (&:where([data-theme='atlas'], [data-theme='atlas'] *));
+@custom-variant personal (&:where([data-mode='personal'], [data-mode='personal'] *));
+
+/* ---------- Animatable custom properties ---------- */
+@property --bg-0 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0b1026;
+}
+@property --bg-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #111838;
+}
+@property --bg-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1a2350;
+}
+@property --ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f4efe6;
+}
+@property --ink-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #b9b6c9;
+}
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2c46d;
+}
+@property --accent-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f07a6e;
+}
+@property --accent-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #9ad9e8;
+}
+@property --line {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f4efe61f;
+}
+@property --nebula-a {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2c46d33;
+}
+@property --nebula-b {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f07a6e26;
+}
+@property --nebula-c {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #9ad9e81f;
+}
+@property --sky-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 200deg;
+}
+
+/* ---------- Theme tokens ---------- */
+:root {
+  color-scheme: dark;
+
+  /* Night · Pro (default) */
+  --bg-0: #0b1026;
+  --bg-1: #111838;
+  --bg-2: #1a2350;
+  --ink: #f4efe6;
+  --ink-muted: #b9b6c9;
+  --accent: #f2c46d; /* starlight gold */
+  --accent-2: #f07a6e; /* nebula coral */
+  --accent-3: #9ad9e8; /* pale cyan, data & mono */
+  --line: #f4efe61f;
+  --nebula-a: #f2c46d33;
+  --nebula-b: #f07a6e26;
+  --nebula-c: #9ad9e81f;
+  --sky-angle: 200deg;
+
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Instrument Sans Variable', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur-base: 320ms;
+  --dur-slow: 900ms;
+  --dur-universe: 1400ms;
+
+  --nav-h: 4rem;
+  --content-w: 72rem;
+}
+
+/* Night · Personal — warmer, plum‑amber universe */
+:root[data-mode='personal'] {
+  --bg-0: #160f2e;
+  --bg-1: #22183f;
+  --bg-2: #2f2255;
+  --accent: #f07a6e;
+  --accent-2: #f2c46d;
+  --accent-3: #a8e6cf;
+  --nebula-a: #f07a6e40;
+  --nebula-b: #f2c46d2e;
+  --nebula-c: #a8e6cf26;
+  --sky-angle: 320deg;
+}
+
+/* Atlas · Pro — ivory paper, night‑blue ink, engraved gold */
+:root[data-theme='atlas'] {
+  color-scheme: light;
+  --bg-0: #f6f1e7;
+  --bg-1: #efe7d6;
+  --bg-2: #e6dcc6;
+  --ink: #1b2240;
+  --ink-muted: #4e5470;
+  --accent: #a67c2e;
+  --accent-2: #b8473c;
+  --accent-3: #2e7c8c;
+  --line: #1b224024;
+  --nebula-a: #a67c2e26;
+  --nebula-b: #b8473c1a;
+  --nebula-c: #2e7c8c1a;
+}
+
+/* Atlas · Personal — warm parchment */
+:root[data-theme='atlas'][data-mode='personal'] {
+  --bg-0: #f8efe4;
+  --bg-1: #f1e3d0;
+  --bg-2: #e8d5bb;
+  --accent: #b8473c;
+  --accent-2: #a67c2e;
+  --accent-3: #2f7f6a;
+  --nebula-a: #b8473c26;
+  --nebula-b: #a67c2e26;
+  --nebula-c: #2f7f6a1a;
+  --sky-angle: 320deg;
+}
+
+/* ---------- Tailwind theme bridge ---------- */
+@theme inline {
+  --color-bg-0: var(--bg-0);
+  --color-bg-1: var(--bg-1);
+  --color-bg-2: var(--bg-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-line: var(--line);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+
+  --ease-out: var(--ease-out);
+  --ease-spring: var(--ease-spring);
+
+  /* Fluid type scale (min 320px → max 1280px viewport) */
+  --text-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --text-sm: clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.375rem);
+  --text-xl: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+  --text-2xl: clamp(1.9rem, 1.5rem + 2vw, 2.8rem);
+  --text-3xl: clamp(2.6rem, 1.8rem + 3.8vw, 4.4rem);
+  --text-4xl: clamp(3.2rem, 2rem + 6vw, 6.4rem);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 100%;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Animate the universe when theme or mode changes */
+    transition:
+      --bg-0 var(--dur-universe) var(--ease-out),
+      --bg-1 var(--dur-universe) var(--ease-out),
+      --bg-2 var(--dur-universe) var(--ease-out),
+      --ink var(--dur-universe) var(--ease-out),
+      --ink-muted var(--dur-universe) var(--ease-out),
+      --accent var(--dur-universe) var(--ease-out),
+      --accent-2 var(--dur-universe) var(--ease-out),
+      --accent-3 var(--dur-universe) var(--ease-out),
+      --line var(--dur-universe) var(--ease-out),
+      --nebula-a var(--dur-universe) var(--ease-out),
+      --nebula-b var(--dur-universe) var(--ease-out),
+      --nebula-c var(--dur-universe) var(--ease-out),
+      --sky-angle var(--dur-universe) var(--ease-out);
+  }
+
+  body {
+    min-height: 100dvh;
+    margin: 0;
+    background:
+      radial-gradient(120% 80% at 50% -20%, var(--bg-2) 0%, transparent 60%),
+      linear-gradient(var(--sky-angle), var(--bg-1), var(--bg-0) 70%);
+    background-attachment: fixed;
+    color: var(--ink);
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern', 'liga', 'calt';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-variation-settings:
+      'opsz' 144,
+      'SOFT' 30,
+      'WONK' 1;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: 400;
+  }
+  h2 {
+    font-size: var(--text-3xl);
+  }
+  h3 {
+    font-size: var(--text-xl);
+  }
+  h4 {
+    font-size: var(--text-lg);
+  }
+
+  p {
+    text-wrap: pretty;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: color-mix(in oklab, var(--accent) 60%, transparent);
+    text-underline-offset: 0.2em;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      text-decoration-color var(--dur-fast) var(--ease-out);
+  }
+  a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  code,
+  kbd,
+  samp,
+  pre,
+  .mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.92em;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 35%, transparent);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  img,
+  svg,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+  [hidden] {
+    display: none !important;
+  }
+}
+
+/* ---------- Utilities ---------- */
+@utility container-content {
+  width: min(100% - 2.5rem, var(--content-w));
+  margin-inline: auto;
+}
+
+@utility grain {
+  position: relative;
+  isolation: isolate;
+}
+@utility text-gradient-accent {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Visually hidden but accessible */
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  &:focus,
+  &:focus-visible {
+    position: fixed;
+    inset: 1rem auto auto 1rem;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    white-space: normal;
+    padding: 0.75rem 1rem;
+    background: var(--bg-2);
+    color: var(--ink);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-2%, 1%, 0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal.is-visible {
+  animation: rise var(--dur-slow) var(--ease-out) forwards;
+}
+.reveal[data-delay='1'].is-visible {
+  animation-delay: 90ms;
+}
+.reveal[data-delay='2'].is-visible {
+  animation-delay: 180ms;
+}
+.reveal[data-delay='3'].is-visible {
+  animation-delay: 270ms;
+}
+.reveal[data-delay='4'].is-visible {
+  animation-delay: 360ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Print (used by /cv) ---------- */
+@media print {
+  :root {
+    --bg-0: #fff;
+    --bg-1: #fff;
+    --bg-2: #fff;
+    --ink: #111;
+    --ink-muted: #444;
+    --accent: #111;
+  }
+  body {
+    background: #fff;
+  }
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}
