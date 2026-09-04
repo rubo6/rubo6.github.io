@@ -15,7 +15,7 @@ GitHub Actions: push to main ─► withastro/action (build) ─► deploy-pages
 
 - `astro build` produces `dist/` with one HTML file per route per locale (31 pages today), hashed assets under `dist/_astro/`, `sitemap-index.xml`, `robots.txt`, icons and the OG image.
 - Output is fully static (`output: 'static'`). There is no server, no middleware, no runtime environment variables.
-- `inlineStylesheets: 'auto'` lets Astro inline tiny stylesheets; `style-src` allows `'unsafe-inline'` for that reason (styles cannot execute code; scripts stay strict).
+- `vite.build.assetsInlineLimit: 0` keeps every JS chunk and font as an external file (the CSP forbids inline scripts and `data:` fonts). `inlineStylesheets: 'auto'` lets Astro inline tiny stylesheets; `style-src` allows `'unsafe-inline'` for that reason (styles cannot execute code; scripts stay strict).
 
 ## Routing and i18n
 
