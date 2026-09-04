@@ -30,13 +30,19 @@ const profile = defineCollection({
     location: z.object({ city: z.string(), country: z.string(), lat: z.number(), lon: z.number() }),
     email: z.string().email(),
     links: z.array(
-      z.object({ label: z.string(), url: httpsUrl, kind: z.enum(['github', 'linkedin', 'other']) }),
+      z.object({
+        label: z.string(),
+        url: httpsUrl,
+        kind: z.enum(['github', 'linkedin', 'spotify', 'steam', 'other']),
+      }),
     ),
     dates: z.object({
       meliStart: isoDate,
       itamStart: isoDate,
       graduation: isoDate,
       dataLabStart: isoDate.optional(),
+      /** Drives the age clock in the personal universe. */
+      birthday: isoDate.optional(),
     }),
     languages: z.array(z.object({ name: z.string(), level: z.string() })),
   }),

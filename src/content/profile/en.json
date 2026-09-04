@@ -6,23 +6,49 @@
   "tagline": "I build the pipelines, models and data products that turn raw signals into decisions.",
   "summary": "Data Science student at ITAM with hands-on Data and Analytics Engineering experience in Mercado Libre's Mercado Pago ecosystem. I design ETL/ELT pipelines, BigQuery data models, internal data products and analytical workflows, and I build machine-learning and parallel-computing projects on the side. Strong in SQL, Python, TypeScript/JavaScript, data architecture and cross-functional execution.",
   "personalIntro": "Off the clock I'm Rubo: a music nerd, a gamer and someone who will happily lose an evening to a telescope. This universe is the informal one.",
-  "location": { "city": "Mexico City", "country": "Mexico", "lat": 19.4326, "lon": -99.1332 },
+  "location": {
+    "city": "Mexico City",
+    "country": "Mexico",
+    "lat": 19.4326,
+    "lon": -99.1332
+  },
   "email": "eruben.bernal@gmail.com",
   "links": [
-    { "label": "GitHub", "url": "https://github.com/rubo6", "kind": "github" },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/rubo6",
+      "kind": "github"
+    },
     {
       "label": "LinkedIn",
       "url": "https://www.linkedin.com/in/eruben-datascience",
       "kind": "linkedin"
+    },
+    {
+      "label": "Spotify",
+      "url": "https://open.spotify.com/user/d6hedn5s0vafnjx1co5uz8gdb",
+      "kind": "spotify"
+    },
+    {
+      "label": "Steam",
+      "url": "https://steamcommunity.com/profiles/76561198854019526",
+      "kind": "steam"
     }
   ],
   "dates": {
-    "meliStart": "2025-10-01",
-    "itamStart": "2023-08-01",
-    "graduation": "2027-12-01"
+    "meliStart": "2025-11-03",
+    "itamStart": "2023-01-09",
+    "graduation": "2027-05-10",
+    "birthday": "2003-06-15"
   },
   "languages": [
-    { "name": "Spanish", "level": "Native" },
-    { "name": "English", "level": "Professional working proficiency" }
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Professional working proficiency"
+    }
   ]
 }

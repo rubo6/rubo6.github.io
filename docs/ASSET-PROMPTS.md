@@ -74,15 +74,29 @@ Aspect ratio 16:9. Mismo universo, otra temperatura: más cálido y orgánico, p
 Ultra-wide deep-space background for a warm, personal mood. Deep indigo sky (#141B3D) with soft flowing clouds of amber and gold (#F2C46D) and gentle coral (#F07A6E), like a distant reflection nebula seen through thin dust, plus a faint pale cyan (#9AD9E8) glow on one side. No bright stars, no planets, no horizon, no text. Smooth, low-contrast gradients suitable as a website background. Subtle film grain. No watermark.
 ```
 
-## 4. Opcional: avatar ilustrado (si no quieres foto)
+## 4. Avatar ilustrado (elegido por Rubo, basado en la foto de LinkedIn)
 
-Aspect ratio 1:1, modelo **GPT Image 2**.
+Aspect ratio 1:1, 1024×1024 o más. Modelo **GPT Image 2** primero; alternativa **Nano Banana**. Genera 3 variantes y elige.
+
+Descripción base tomada de la foto de perfil: hombre joven de rasgos latinos, cabello oscuro corto y peinado hacia arriba, lentes de armazón oscuro, sonrisa ligera, saco oscuro y camisa blanca.
+
+### 4.1 Versión "carta celeste" (para el hero y el README)
 
 ```
-Minimal line-art portrait avatar of a young man with short dark hair and glasses, drawn as a single continuous gold (#F2C46D) line on deep indigo (#0B1026), in the style of a constellation chart: a few small star points at the vertices of the lines, connected like a constellation. Clean, elegant, no text, no background clutter, no watermark.
+Minimal constellation-style portrait of a young Latino man in his early twenties: short dark hair styled upward, dark-rimmed glasses, light smile, dark blazer over a white shirt, facing slightly left. The face and shoulders are drawn as thin gold (#F2C46D) lines connecting small bright star points at the key features (eyes, glasses corners, jaw, collar), like a constellation chart, with a very subtle soft coral (#F07A6E) glow around the head. Deep indigo background (#0B1026) with a few faint scattered stars. Elegant, precise, editorial. No text, no letters, no watermark, no photorealism.
 ```
 
-_(Ajusta la descripción física a la tuya antes de generar.)_
+### 4.2 Versión "retrato editorial" (para Open Graph y LinkedIn)
+
+```
+Editorial illustrated portrait of a young Latino man in his early twenties: short dark hair styled upward, dark-rimmed rectangular glasses, calm confident half-smile, dark navy blazer and white shirt, three-quarter view. Flat vector style with soft shading, limited palette: deep indigo (#0B1026) background, ivory (#F4EFE6) highlights, warm gold (#F2C46D) rim light on one side and a faint coral (#F07A6E) nebula glow behind the shoulders. Clean shapes, no outlines heavier than 2 px, no text, no watermark.
+```
+
+### 4.3 Versión "atlas" (tema claro)
+
+```
+Same portrait as above rendered as a 19th-century star-atlas engraving: fine cross-hatched night-blue ink (#1B2240) lines on ivory paper (#F6F1E7), small gold (#A67C2E) star marks at the facial landmarks connected by thin lines, subtle paper grain. No text, no watermark.
+```
 
 ## Qué NO vamos a generar
 

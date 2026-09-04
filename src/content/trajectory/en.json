@@ -8,7 +8,7 @@
       "orgUrl": "https://www.mercadopago.com.mx/point",
       "role": "Data Engineer / Analytics Engineer (Contractor)",
       "location": "Mexico City",
-      "start": "2025-10-01",
+      "start": "2025-11-03",
       "end": null,
       "summary": "Data and analytics engineering for the Point business line inside Mercado Pago.",
       "bullets": [
@@ -36,10 +36,11 @@
       "role": "Research Manager & Data Science Student Member",
       "location": "Mexico City",
       "start": "2025-01-15",
-      "end": null,
+      "end": "2025-12-15",
       "bullets": [
-        "Led the technical execution of ECOBOX AI, a computer-vision system for waste classification, coordinating research and implementation within a student data-science community.",
-        "Coordinate research planning, technical documentation and collaboration across student-led data-science initiatives."
+        "Led the technical execution of ECOBOX AI, a computer-vision system for waste classification, coordinating research and implementation within the student community.",
+        "Coordinated research planning, technical documentation and collaboration across student-led data-science initiatives.",
+        "Applied Python, SQL, machine learning and data analysis to projects with social and sustainability impact."
       ],
       "stack": ["Python", "Computer Vision", "Research coordination"],
       "orbit": 1
@@ -67,11 +68,29 @@
       "start": "2024-07-01",
       "end": "2024-12-31",
       "bullets": [
-        "Led a 3-member team across the attraction-to-realization pipeline, setting priorities and running recurring 1:1 follow-ups.",
-        "Coordinated attraction campaigns and communication with international stakeholders in English, supporting participants through the volunteer-program pipeline."
+        "Led a three-member team across the attraction-to-realization pipeline, setting priorities, tracking KPIs and running recurring 1:1 follow-ups.",
+        "Coordinated outreach campaigns and communication with international stakeholders in English.",
+        "Supported nine international volunteer realizations and improved follow-up across the participant pipeline."
       ],
       "stack": ["Leadership", "Stakeholder communication"],
       "orbit": 3
+    },
+    {
+      "id": "aiesec-igv",
+      "kind": "leadership",
+      "org": "AIESEC ITAM",
+      "orgUrl": "https://aiesec.org",
+      "role": "Team Member · Incoming Global Volunteer",
+      "location": "Mexico City",
+      "start": "2024-01-15",
+      "end": "2024-06-30",
+      "bullets": [
+        "Supported eight international volunteers from pre-arrival through local project execution and follow-up.",
+        "Coordinated with local NGOs to align projects with the Sustainable Development Goals, logistics and participant safety.",
+        "Strengthened intercultural communication, stakeholder coordination and problem-solving in dynamic environments."
+      ],
+      "stack": ["Intercultural communication", "NGO coordination"],
+      "orbit": 4
     },
     {
       "id": "itam-bs",
@@ -80,15 +99,15 @@
       "orgUrl": "https://www.itam.mx",
       "role": "B.S. in Data Science",
       "location": "Mexico City",
-      "start": "2023-08-01",
-      "end": "2027-12-01",
+      "start": "2023-01-09",
+      "end": "2027-05-10",
       "summary": "Expected graduation: December 2027.",
       "bullets": [
         "Relevant coursework: Machine Learning, Artificial Intelligence, Parallel Computing, Advanced Data Structures, NoSQL Databases, Statistics and Algorithms.",
         "Academic focus: data engineering, machine learning, computer vision and parallel computing."
       ],
       "stack": ["Statistics", "Algorithms", "Parallel Computing", "NoSQL"],
-      "orbit": 4
+      "orbit": 5
     }
   ]
 }

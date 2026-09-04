@@ -1,46 +1,73 @@
 {
   "locale": "es",
-  "intro": "Mismo cielo, otro lente. Esta es la parte del universo donde dejo de hablar de pipelines y empiezo a hablar de lo que me mantiene curioso.",
+  "intro": "Mismo cielo, otro lente. Esta es la parte del universo donde dejo de hablar de pipelines y hablo de lo que me mantiene curioso: el cielo nocturno, la música a todo volumen, los juegos competitivos, un piano y una alberca.",
   "clusters": [
     {
       "id": "astronomy",
       "title": "Astronomía",
-      "object": "Púlsar del Cangrejo · M1",
-      "blurb": "La razón por la que este sitio se ve así. Nebulosas, púlsares, agujeros negros: todo lo que haga sentir enorme al universo.",
+      "object": "Nebulosa de Carina · NGC 3372",
+      "blurb": "La razón por la que este sitio se ve así. Acabo de comprar mi primer telescopio y todavía estoy aprendiendo qué puede hacer. Mis favoritos allá afuera: agujeros negros, púlsares y nebulosas; todo lo que haga sentir enorme al universo.",
       "items": [
-        "Nebulosas y objetos de cielo profundo",
-        "Púlsares y agujeros negros",
-        "Seguir cada lanzamiento del JWST",
-        "Observar el cielo desde la Ciudad de México"
+        "Nebulosa favorita: Carina, un vivero entero de estrellas en un solo campo",
+        "Agujeros negros y púlsares: la física más extrema a la que puedes apuntar",
+        "Sigo cada lanzamiento del JWST en cuanto sale",
+        "Primer telescopio, recién desempacado; observo desde la Ciudad de México",
+        "Lecturas: filosofía clásica y divulgación científica de astronomía"
       ]
     },
     {
       "id": "music",
       "title": "Música",
       "object": "Nebulosa de la Mariposa · NGC 6302",
-      "blurb": "La música suena de fondo en casi todo lo que construyo.",
-      "items": ["Siempre hay una playlist mientras programo", "Géneros y artistas: próximamente"]
+      "blurb": "La música suena de fondo en todo lo que hago; es más un vicio que un hobby. Toco el piano desde los diez años.",
+      "items": [
+        "Michael Jackson es mi artista principal: Dangerous (1991) y Remember the Time en repeat",
+        "Led Zeppelin — The Song Remains the Same (1976)",
+        "Muse — Simulation Theory (2018)",
+        "Piano desde los 10 años",
+        "Perfil público de Spotify abajo"
+      ]
     },
     {
       "id": "gaming",
       "title": "Gaming",
       "object": "Nebulosa Ojo de Gato · NGC 6543",
-      "blurb": "Los videojuegos me enseñaron a pensar en sistemas antes que cualquier clase.",
-      "items": ["Juegos y sagas favoritas: próximamente"]
+      "blurb": "Los videojuegos me enseñaron a pensar en sistemas antes que cualquier clase. Competitivo cuando cuenta, completista el resto del tiempo.",
+      "items": [
+        "Rainbow Six Siege: llegué al rango máximo en temporadas de ranked; sigue siendo mi juego más jugado (PC)",
+        "Halo es mi saga favorita: todos los juegos terminados y todos los logros desbloqueados en consola",
+        "Minecraft, Call of Duty Black Ops I y II",
+        "Hollow Knight y Silksong",
+        "Clash of Clans en móvil"
+      ]
+    },
+    {
+      "id": "water",
+      "title": "Natación",
+      "object": "Nebulosa de la Hélice · NGC 7293",
+      "blurb": "Nado desde los ocho años. El único lugar donde nadie puede mandarte una notificación.",
+      "items": [
+        "Nadador desde los 8 años",
+        "Sigue siendo la mejor forma de pensar un problema difícil"
+      ]
     }
   ],
   "softSkills": [
     {
       "name": "Liderazgo de equipos",
-      "evidence": "Lideré un equipo de 3 personas en AIESEC y la ejecución técnica de ECOBOX AI en DataLab ITAM."
+      "evidence": "Lideré un equipo de 3 personas en AIESEC a lo largo de todo el pipeline de atracción a realización, y la ejecución técnica de ECOBOX AI en DataLab ITAM."
     },
     {
       "name": "Comunicación con stakeholders internacionales",
-      "evidence": "Coordiné campañas y comunicación con stakeholders en inglés."
+      "evidence": "Coordiné campañas de atracción y comunicación en inglés con stakeholders de un programa internacional de voluntariado."
     },
     {
       "name": "Documentación y transferencia de conocimiento",
-      "evidence": "Mantengo documentación de arquitectura, changelogs y handoffs de migración en Mercado Libre."
+      "evidence": "Mantengo documentación de arquitectura, changelogs y handoffs de migración para que el equipo pueda operar lo que construyo sin mí."
+    },
+    {
+      "name": "Ownership en la ambigüedad",
+      "evidence": "Contribuí a una migración de arquitectura de datos donde había que rediseñar flujos productor-consumidor sin romper a los consumidores."
     },
     {
       "name": "Coordinación de investigación",
@@ -48,11 +75,16 @@
     },
     {
       "name": "Ejecución transversal",
-      "evidence": "Trabajo con equipos de datos, producto y operaciones para entregar productos de datos internos."
+      "evidence": "Trabajo con equipos de datos, producto y operaciones para entregar productos de datos internos y reportería."
+    },
+    {
+      "name": "Disciplina y práctica a largo plazo",
+      "evidence": "Quince años nadando y más de una década tocando piano: cuando empiezo algo, sigo."
     }
   ],
   "funFacts": [
     "Las estrellas del inicio son reales: se calculan a partir de un catálogo de estrellas brillantes para el cielo sobre la Ciudad de México en el momento en que abres la página.",
-    "Este sitio no hace ni una sola petición a terceros. Fuentes, scripts e imágenes viven aquí."
+    "Este sitio no hace ni una sola petición a terceros. Fuentes, scripts e imágenes viven aquí.",
+    "Construí mi propia herramienta de dictado por voz offline (WhisperFlow) porque quería push-to-talk que nunca saliera de mi máquina. Con ella dicté las respuestas que dieron forma a esta página."
   ]
 }

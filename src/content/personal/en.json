@@ -1,46 +1,70 @@
 {
   "locale": "en",
-  "intro": "Same sky, different lens. This is the part of the universe where I stop talking about pipelines and start talking about the things that keep me curious.",
+  "intro": "Same sky, different lens. This is the part of the universe where I stop talking about pipelines and start talking about the things that keep me curious: the night sky, loud music, competitive games, a piano and a swimming pool.",
   "clusters": [
     {
       "id": "astronomy",
       "title": "Astronomy",
-      "object": "Crab Pulsar · M1",
-      "blurb": "The reason this whole site looks the way it does. Nebulae, pulsars, black holes: anything that makes the universe feel enormous.",
+      "object": "Carina Nebula · NGC 3372",
+      "blurb": "The reason this whole site looks the way it does. I just bought my first telescope and I am still learning what it can do. Favourite things out there: black holes, pulsars and nebulae — anything that makes the universe feel enormous.",
       "items": [
-        "Nebulae and deep-sky objects",
-        "Pulsars and black holes",
-        "Following JWST releases",
-        "Night-sky observing from Mexico City"
+        "Favourite nebula: Carina, a whole nursery of stars in one field",
+        "Black holes and pulsars: the most extreme physics you can point at",
+        "Following every JWST release as it drops",
+        "First telescope, freshly unboxed; observing from Mexico City",
+        "Reads: classical philosophy and astronomy popular science"
       ]
     },
     {
       "id": "music",
       "title": "Music",
       "object": "Butterfly Nebula · NGC 6302",
-      "blurb": "Music runs in the background of almost everything I build.",
-      "items": ["Always a playlist running while coding", "Genres and artists: coming soon"]
+      "blurb": "Music runs in the background of everything I do; it is closer to a habit than a hobby. I have played piano since I was ten.",
+      "items": [
+        "Michael Jackson is my main artist — Dangerous (1991), and Remember the Time on repeat",
+        "Led Zeppelin — The Song Remains the Same (1976)",
+        "Muse — Simulation Theory (2018)",
+        "Piano since age 10",
+        "Public Spotify profile linked below"
+      ]
     },
     {
       "id": "gaming",
       "title": "Gaming",
       "object": "Cat's Eye Nebula · NGC 6543",
-      "blurb": "Games taught me systems thinking before any class did.",
-      "items": ["Favourite games and sagas: coming soon"]
+      "blurb": "Games taught me systems thinking before any class did. Competitive when it counts, completionist the rest of the time.",
+      "items": [
+        "Rainbow Six Siege: reached the top rank in ranked seasons; still my most-played game (PC)",
+        "Halo is my favourite saga — every game finished, every achievement unlocked on console",
+        "Minecraft, Call of Duty Black Ops I and II",
+        "Hollow Knight and Silksong",
+        "Clash of Clans on mobile"
+      ]
+    },
+    {
+      "id": "water",
+      "title": "Swimming",
+      "object": "Helix Nebula · NGC 7293",
+      "blurb": "Swimming since I was eight. The one place where nobody can send a notification.",
+      "items": ["Swimmer since age 8", "Still the best way to think about a hard problem"]
     }
   ],
   "softSkills": [
     {
       "name": "Team leadership",
-      "evidence": "Led a 3-person team at AIESEC and the technical execution of ECOBOX AI at DataLab ITAM."
+      "evidence": "Led a 3-person team at AIESEC through the whole attraction-to-realization pipeline and the technical execution of ECOBOX AI at DataLab ITAM."
     },
     {
       "name": "Communication with international stakeholders",
-      "evidence": "Ran attraction campaigns and stakeholder communication in English."
+      "evidence": "Ran attraction campaigns and stakeholder communication in English for an international volunteer programme."
     },
     {
       "name": "Documentation and knowledge transfer",
-      "evidence": "Maintain architecture docs, changelogs and migration handoffs at Mercado Libre."
+      "evidence": "Maintain architecture docs, changelogs and migration handoffs so the team can operate what I build without me."
+    },
+    {
+      "name": "Ownership under ambiguity",
+      "evidence": "Contributed to a data-architecture migration where producer-consumer flows had to be redesigned while keeping downstream consumers working."
     },
     {
       "name": "Research coordination",
@@ -48,11 +72,16 @@
     },
     {
       "name": "Cross-functional execution",
-      "evidence": "Work across data, product and operations teams to ship internal data products."
+      "evidence": "Work across data, product and operations teams to ship internal data products and reporting."
+    },
+    {
+      "name": "Discipline and long-term practice",
+      "evidence": "Fifteen years of swimming and more than a decade of piano: I stick with things."
     }
   ],
   "funFacts": [
     "The stars in the hero are real: they are computed from a bright-star catalogue for the sky above Mexico City at the moment you open the page.",
-    "This site ships zero third-party requests. Fonts, scripts and images are all self-hosted."
+    "This site ships zero third-party requests. Fonts, scripts and images are all self-hosted.",
+    "I built my own offline voice-dictation tool (WhisperFlow) because I wanted push-to-talk that never leaves my machine. I dictated the answers that shaped this page with it."
   ]
 }

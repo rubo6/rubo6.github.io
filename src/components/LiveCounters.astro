@@ -24,6 +24,18 @@ const clocks = [
     end: null,
     hint: `${t('counters.since')} ${profile.dates.itamStart}`,
   },
+  ...(profile.dates.birthday
+    ? [
+        {
+          id: 'age',
+          label: t('counters.age'),
+          start: profile.dates.birthday,
+          end: null,
+          hint: `${t('counters.since')} ${profile.dates.birthday}`,
+          personalOnly: true,
+        },
+      ]
+    : []),
   {
     id: 'grad',
     label: t('counters.graduation'),
@@ -42,7 +54,10 @@ const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
   <ul class="clock-list">
     {
       clocks.map((c, i) => (
-        <li class="clock reveal" data-delay={String(i + 1)}>
+        <li
+          class:list={['clock reveal', 'personalOnly' in c && c.personalOnly && 'personal-only']}
+          data-delay={String(i + 1)}
+        >
           <p class="clock-label">{c.label}</p>
           <time
             class="clock-value"
@@ -88,6 +103,12 @@ const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
     background: color-mix(in oklab, var(--bg-1) 70%, transparent);
     backdrop-filter: blur(8px);
     contain: layout style paint;
+  }
+  .personal-only {
+    display: none;
+  }
+  :global([data-mode='personal']) .personal-only {
+    display: block;
   }
   .clock-label {
     font-size: var(--text-sm);

@@ -8,7 +8,7 @@
       "orgUrl": "https://www.mercadopago.com.mx/point",
       "role": "Data Engineer / Analytics Engineer (Contractor)",
       "location": "Cidade do México",
-      "start": "2025-10-01",
+      "start": "2025-11-03",
       "end": null,
       "summary": "Engenharia de dados e analytics para a linha de negócio Point dentro do Mercado Pago.",
       "bullets": [
@@ -36,10 +36,11 @@
       "role": "Research Manager e membro estudante de Ciência de Dados",
       "location": "Cidade do México",
       "start": "2025-01-15",
-      "end": null,
+      "end": "2025-12-15",
       "bullets": [
-        "Liderei a execução técnica do ECOBOX AI, um sistema de visão computacional para classificação de resíduos, coordenando pesquisa e implementação em uma comunidade estudantil de ciência de dados.",
-        "Coordeno o planejamento de pesquisa, a documentação técnica e a colaboração entre iniciativas estudantis de ciência de dados."
+        "Liderei a execução técnica do ECOBOX AI, um sistema de visão computacional para classificação de resíduos, coordenando pesquisa e implementação na comunidade estudantil.",
+        "Coordenei o planejamento de pesquisa, a documentação técnica e a colaboração entre iniciativas estudantis de ciência de dados.",
+        "Apliquei Python, SQL, machine learning e análise de dados a projetos com impacto social e de sustentabilidade."
       ],
       "stack": ["Python", "Visão computacional", "Coordenação de pesquisa"],
       "orbit": 1
@@ -67,11 +68,29 @@
       "start": "2024-07-01",
       "end": "2024-12-31",
       "bullets": [
-        "Liderei uma equipe de 3 pessoas ao longo do pipeline de atração à realização, definindo prioridades e conduzindo acompanhamentos 1:1 recorrentes.",
-        "Coordenei campanhas de atração e a comunicação em inglês com stakeholders internacionais, acompanhando os participantes no programa de voluntariado."
+        "Liderei uma equipe de três pessoas ao longo do pipeline de atração à realização, definindo prioridades, acompanhando KPIs e conduzindo 1:1 recorrentes.",
+        "Coordenei campanhas de divulgação e a comunicação em inglês com stakeholders internacionais.",
+        "Apoiei nove realizações de voluntariado internacional e melhorei o acompanhamento do pipeline de participantes."
       ],
       "stack": ["Liderança", "Comunicação com stakeholders"],
       "orbit": 3
+    },
+    {
+      "id": "aiesec-igv",
+      "kind": "leadership",
+      "org": "AIESEC ITAM",
+      "orgUrl": "https://aiesec.org",
+      "role": "Team Member · Incoming Global Volunteer",
+      "location": "Cidade do México",
+      "start": "2024-01-15",
+      "end": "2024-06-30",
+      "bullets": [
+        "Apoiei oito voluntários internacionais desde antes da chegada até a execução do projeto local e o acompanhamento.",
+        "Coordenei com ONGs locais para alinhar os projetos aos Objetivos de Desenvolvimento Sustentável, à logística e à segurança dos participantes.",
+        "Fortaleci a comunicação intercultural, a coordenação com stakeholders e a resolução de problemas em ambientes dinâmicos."
+      ],
+      "stack": ["Comunicação intercultural", "Coordenação com ONGs"],
+      "orbit": 4
     },
     {
       "id": "itam-bs",
@@ -80,15 +99,15 @@
       "orgUrl": "https://www.itam.mx",
       "role": "Bacharelado em Ciência de Dados",
       "location": "Cidade do México",
-      "start": "2023-08-01",
-      "end": "2027-12-01",
+      "start": "2023-01-09",
+      "end": "2027-05-10",
       "summary": "Formatura prevista: dezembro de 2027.",
       "bullets": [
         "Disciplinas relevantes: Machine Learning, Inteligência Artificial, Computação Paralela, Estruturas de Dados Avançadas, Bancos de Dados NoSQL, Estatística e Algoritmos.",
         "Foco acadêmico: engenharia de dados, machine learning, visão computacional e computação paralela."
       ],
       "stack": ["Estatística", "Algoritmos", "Computação paralela", "NoSQL"],
-      "orbit": 4
+      "orbit": 5
     }
   ]
 }

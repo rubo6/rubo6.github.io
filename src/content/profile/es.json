@@ -6,23 +6,49 @@
   "tagline": "Construyo los pipelines, modelos y productos de datos que convierten señales crudas en decisiones.",
   "summary": "Estudiante de Ciencia de Datos en el ITAM con experiencia práctica en Ingeniería de Datos y Analítica dentro del ecosistema de Mercado Pago en Mercado Libre. Diseño pipelines ETL/ELT, modelos de datos en BigQuery, productos de datos internos y flujos analíticos; en paralelo desarrollo proyectos de machine learning y cómputo paralelo. Sólido en SQL, Python, TypeScript/JavaScript, arquitectura de datos y ejecución transversal.",
   "personalIntro": "Fuera del trabajo soy Rubo: melómano, gamer y alguien capaz de perder una noche entera frente a un telescopio. Este universo es el informal.",
-  "location": { "city": "Ciudad de México", "country": "México", "lat": 19.4326, "lon": -99.1332 },
+  "location": {
+    "city": "Ciudad de México",
+    "country": "México",
+    "lat": 19.4326,
+    "lon": -99.1332
+  },
   "email": "eruben.bernal@gmail.com",
   "links": [
-    { "label": "GitHub", "url": "https://github.com/rubo6", "kind": "github" },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/rubo6",
+      "kind": "github"
+    },
     {
       "label": "LinkedIn",
       "url": "https://www.linkedin.com/in/eruben-datascience",
       "kind": "linkedin"
+    },
+    {
+      "label": "Spotify",
+      "url": "https://open.spotify.com/user/d6hedn5s0vafnjx1co5uz8gdb",
+      "kind": "spotify"
+    },
+    {
+      "label": "Steam",
+      "url": "https://steamcommunity.com/profiles/76561198854019526",
+      "kind": "steam"
     }
   ],
   "dates": {
-    "meliStart": "2025-10-01",
-    "itamStart": "2023-08-01",
-    "graduation": "2027-12-01"
+    "meliStart": "2025-11-03",
+    "itamStart": "2023-01-09",
+    "graduation": "2027-05-10",
+    "birthday": "2003-06-15"
   },
   "languages": [
-    { "name": "Español", "level": "Nativo" },
-    { "name": "Inglés", "level": "Competencia profesional" }
+    {
+      "name": "Español",
+      "level": "Nativo"
+    },
+    {
+      "name": "Inglés",
+      "level": "Competencia profesional"
+    }
   ]
 }
