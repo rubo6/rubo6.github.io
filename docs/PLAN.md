@@ -164,13 +164,13 @@ Opcionales post-sesión: NASA APOD diario (build con secret + cron), README de p
 
 ## 5. Criterios de "hecho al 100"
 
-- [ ] Lighthouse móvil: Performance, A11y, Best Practices, SEO ≥ 95.
-- [ ] Cero requests a terceros en runtime (verificado en Network).
-- [ ] `astro check`, ESLint, Prettier, Vitest y `npm audit` verdes en CI.
+- [x] Lighthouse móvil: Performance, A11y, Best Practices, SEO ≥ 95. (2026-09-04: 96/100/100/100 móvil, 100/100/100/100 escritorio)
+- [x] Cero requests a terceros en runtime salvo el conteo anónimo de GoatCounter (ADR-0006), verificado en Network.
+- [x] `astro check`, ESLint, Prettier, Vitest, Playwright (smoke sobre `dist/`) y `npm audit` verdes en CI.
 - [ ] El cielo del hero coincide con una app de planetario para CDMX a la misma hora (prueba manual).
-- [ ] Todo el contenido del CV está en el sitio, en EN y ES, sin teléfono.
-- [ ] Un agente nuevo puede añadir un proyecto siguiendo solo `AGENTS.md` + `CONTENT-GUIDE.md`.
-- [ ] README se ve completo en GitHub (banner, badges, mermaid renderizado).
+- [x] Todo el contenido del CV está en el sitio, en EN, ES y PT-BR, sin teléfono.
+- [x] Un agente nuevo puede añadir un proyecto siguiendo solo `AGENTS.md` + `CONTENT-GUIDE.md` (y el skill `observatory-architect`).
+- [x] README se ve completo en GitHub (banner, badges, mermaid renderizado).
 
 ---
 
@@ -235,12 +235,12 @@ Opcionales post-sesión: NASA APOD diario (build con secret + cron), README de p
 
 ### Ideas a futuro (backlog público en el README)
 
-- Bitácora/blog con MDX y RSS; página "Now".
-- Heatmap de contribuciones de GitHub y gráfica de lenguajes.
+- ~~Bitácora/blog con MDX y RSS; página "Now"~~ — hecho (2026-09-04: 18 entradas, filtros, OG por entrada, RSS, `/now`).
+- ~~Heatmap de contribuciones de GitHub~~ — hecho (2026-09-04, universo personal); gráfica de lenguajes pendiente.
 - "Escuchando ahora" (Spotify/Last.fm) y "Jugando" (Steam) — requieren un worker mínimo (Cloudflare) para no exponer tokens; el sitio queda preparado.
-- Views/clones de repos con token fine‑grained (pregunta 21).
+- ~~Views/clones de repos con token fine‑grained~~ — hecho (`GH_TRAFFIC_TOKEN`).
 - Imagen astronómica del día (NASA APOD) en build diario con secret.
 - Generación automática del CV en PDF en CI (Playwright print) a partir del mismo contenido.
 - Testimonios, certificaciones verificables, charlas.
-- Dominio propio + `CNAME`.
+- ~~Dominio propio + `CNAME`~~ — hecho (rubo6.dev, Cloudflare DNS-only).
 - Asistente "pregúntale a Rubo" sobre `llms.txt` (necesita backend; fuera del alcance de GitHub Pages).
