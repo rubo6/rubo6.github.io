@@ -75,7 +75,11 @@ export function mountSky(opts: SkyOptions): () => void {
   // stars. Glows come from one pre-rendered sprite instead of a radial gradient per star per frame.
   // Twinkle is capped at 30 fps on desktop. Touch devices do not twinkle at all: they redraw once a
   // second (the sky still rotates) and animate only during the warp, so the canvas costs ~nothing.
-  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  // "Low power" = touch device or narrow viewport (Lighthouse's mobile emulation may not report a
+  // coarse pointer, so the viewport width is the second signal).
+  const coarse =
+    window.matchMedia('(pointer: coarse)').matches ||
+    window.matchMedia('(max-width: 900px)').matches;
   const frameMs = coarse ? 1000 : 1000 / 30;
   let lastDraw = -Infinity;
   let positions = new Map<string, { x: number; y: number; alt: number }>();
