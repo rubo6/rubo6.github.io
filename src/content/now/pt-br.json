@@ -1,6 +1,6 @@
 {
   "locale": "pt-br",
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "sections": [
     {
       "id": "studying",
@@ -8,16 +8,18 @@
       "items": [
         "Oitavo de nove semestres do bacharelado em Ciência de Dados no ITAM: Arquitetura para Grandes Volumes de Dados, Mineração e Análise de Dados, Métodos Multivariados, Ciência de Dados Aplicada I, Políticas Públicas II.",
         "Diploma em Inteligência Artificial na Universidad Iberoamericana (previsto para dezembro de 2026).",
-        "Certificações em andamento: Anthropic, DataCamp, AWS Academy."
+        "Certificações em andamento: Anthropic, DataCamp, AWS Academy.",
+        "Escolhendo um mestrado cujas optativas contem para o bacharelado."
       ]
     },
     {
       "id": "working",
       "title": "Trabalhando em",
       "items": [
-        "Engenharia de dados e analytics para o Mercado Pago Point no Mercado Livre: pipelines, modelos no BigQuery e uma plataforma interna de dados.",
-        "WhisperFlow, minha ferramenta de ditado por voz offline para Windows, já pública com pacotes de modelos no GitHub Releases.",
-        "Este observatório: os próximos passos são as traduções pendentes e uma suíte de testes com Playwright."
+        "A parte de dados de um canal de aquisição com agentes em campo no Mercado Pago Point: pipelines no BigQuery, dashboards e a plataforma interna, já no México, Brasil e Argentina.",
+        "Mentoria a dois colegas nas ferramentas de dados da equipe.",
+        "WhisperFlow, minha ferramenta de ditado por voz offline para Windows, pública com pacotes de modelos no GitHub Releases.",
+        "Este observatório: respondendo o segundo questionário e depois as traduções pendentes."
       ]
     },
     {

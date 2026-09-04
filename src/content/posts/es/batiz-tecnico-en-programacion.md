@@ -57,9 +57,13 @@ La reputación del Bátiz no es folclore politécnico. El ingreso es por el exam
 
 En la comunidad la fama es la misma desde hace décadas: "la más matadita" en lo académico, la escuela donde "puedes sentir más presión que en la universidad". Yo lo viví como lo describen. Ocho o nueve materias por semestre, exámenes departamentales, laboratorios de proyecto que se entregan sí o sí. Lo que se aprende, más que cualquier lenguaje, es a sostener una carga de trabajo alta durante tres años sin soltarla.
 
+## Lo que construí
+
+En los laboratorios de proyectos hice aplicaciones de escritorio en Java (una calculadora, un gestor de inventario y cargas para una naviera), sitios en HTML5 escritos a mano, sin asistentes, y ejercicios de diseño de bases de datos en MySQL. El proyecto final fue un videojuego web en 2D hecho en PHP: un mundo abierto donde los niños tenían que resolver ejercicios de química para pasar de nivel. Mi primer lenguaje fue Java; después llegaron C y C++, PHP, JavaScript, Python y SQL. También gané el primer lugar de una feria escolar, aunque con un proyecto social de conciencia ambiental, no de programación.
+
 ## Terminar en pandemia
 
-La mitad de mi carrera técnica fue en línea: de marzo de 2020 al final, en julio de 2021. Los laboratorios de proyectos se volvieron repositorios compartidos y videollamadas, y la ceremonia de egreso fue virtual. No lo recomiendo, pero me enseñó a trabajar de forma remota y asíncrona antes de que fuera mi realidad laboral.
+La mitad de mi carrera técnica fue en línea: de marzo de 2020 al final, en julio de 2021. Los laboratorios de proyectos se volvieron repositorios compartidos y videollamadas, y la ceremonia de egreso fue virtual. No lo recomiendo, pero me enseñó a trabajar de forma remota y asíncrona antes de que fuera mi realidad laboral. Los exámenes remotos se hicieron deliberadamente difíciles: no había calculadora que los resolviera. Me costó adaptarme y el examen de titulación tuvo que esperar a 2022, cuando volvieron las sesiones presenciales; oficialmente egresé en julio de 2021. Llegué al Bátiz con 118 de 128 aciertos en el COMIPEMS, cuando el corte del plantel rondaba los 105.
 
 ## Lo que me llevo
 

@@ -110,6 +110,11 @@
         "name": "Neo4j · graph data",
         "level": 1,
         "via": "ITAM Bases de Datos No Relacionales"
+      },
+      {
+        "name": "Looker Studio",
+        "level": 3,
+        "via": "Mercado Libre · five production dashboards"
       }
     ]
   },
@@ -183,6 +188,16 @@
         "name": "Distributed systems · RPC",
         "level": 2,
         "via": "sockets TCP/UDP, marshalling, remote objects — Bátiz Introducción a los Sistemas Distribuidos · ITAM Cómputo Paralelo"
+      },
+      {
+        "name": "pytest",
+        "level": 3,
+        "via": "Mercado Libre · production Python jobs"
+      },
+      {
+        "name": "n8n automations",
+        "level": 2,
+        "via": "Ibero AI diploma final project"
       }
     ]
   },
@@ -211,7 +226,7 @@
         "via": "ITAM Cálculo de Probabilidades I–II · Estadística Matemática"
       },
       {
-        "name": "Power BI · Excel",
+        "name": "Sheets · Excel · Power BI",
         "level": 3
       },
       {
@@ -246,6 +261,16 @@
         "name": "Search & game-tree AI",
         "level": 2,
         "via": "A*, minimax/alpha-beta, agents — ITAM Inteligencia Artificial"
+      },
+      {
+        "name": "PyTorch · TensorFlow/Keras",
+        "level": 2,
+        "via": "ITAM Aprendizaje de Máquina · Ibero AI diploma"
+      },
+      {
+        "name": "XGBoost · statsmodels",
+        "level": 2,
+        "via": "ITAM · Ibero AI diploma"
       }
     ]
   },

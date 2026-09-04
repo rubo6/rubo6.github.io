@@ -122,6 +122,23 @@ Leyenda: 🟢 alto impacto para reclutadores · 🟡 mejora el detalle · 🔵 n
 
 ---
 
+## Estado de las respuestas (2026-09-05)
+
+Rubo respondió por dictado los bloques A–G el 2026-09-05. Lo aplicado en el sitio: título y área en MeLi (sin nombrar herramientas ni programas internos), semana típica, tres proyectos principales con ahorro de tiempo, escala (tablas, filas, dashboards), calidad de datos y alertas, reporte regulatorio de movilidad, mentoría, stack; graduación esperada corregida a mayo de 2028; materias favoritas y proyectos finales; DataLab/ECOBOX con redacción honesta (equipo, modelo + paper, sin prototipo); AIESEC (equipo de cuatro, países, congresos); Ibero (proyecto final: chatbot con n8n); Bátiz (proyectos de laboratorio, videojuego en PHP, lenguajes, COMIPEMS 118/128, feria escolar, pandemia); AWS Academy con nombres de cursos; personal (R6 Siege Champion/Diamante, Steam Rubén15, piano intermedio y auditorio Raúl Baillères, Aristóteles y Spinoza); diccionario de WhisperFlow ampliado; entrada de bitácora "Mi primera entrevista".
+
+No publicado, por decisión de Rubo o por confidencialidad: promedio del ITAM, promedio del Bátiz (7.65), cifras de suscripciones por agente, nombres de dashboards, herramientas internas, el proceso de despliegue del repositorio.
+
+### Preguntas de seguimiento
+
+1. 🟢 El nombre del programa/canal de agentes ("Rangers") y el nombre del área ("Long Tail"): ¿se pueden publicar tal cual o los dejo genéricos como ahora ("canal de adquisición con agentes en campo", "área Long Tail")? Hoy el sitio nombra Long Tail pero no Rangers.
+2. 🟢 Historial académico del ITAM: mándame el archivo cuando puedas para fijar semestre, materias restantes y la fecha exacta de graduación.
+3. 🟡 El proyecto final de Inteligencia Artificial (modelo de probabilidad de gol con interfaz tipo videojuego): ¿es el mismo proyecto "Keeper Save Probability" del CV o uno distinto? Si es distinto, dame nombre, semestre y repositorio para agregarlo como estrella.
+4. 🟡 Enlace al paper de ECOBOX AI (LinkedIn o PDF) para enlazarlo desde el proyecto.
+5. 🟡 URL exacta de tu perfil de Steam (el sitio muestra "Rubén15" sin enlace).
+6. 🟡 Nombres exactos de los cursos de AWS Academy en Canvas (puse "Cloud Foundations, Data Engineering, Intermediate") y del track de DataCamp con Git.
+7. 🔵 Título del puesto en LinkedIn: dejé "Analista de Datos Jr. · ingeniería de datos y analítica (contratista)"; dime si prefieres el texto literal de LinkedIn.
+8. 🔵 ¿Julia la usaste en el Bátiz o en el ITAM? Lo dejé fuera hasta confirmar.
+
 ## Cómo se usan tus respuestas
 
 - **A** alimenta la nebulosa Profesional, la entrada de trayectoria de MeLi y el CV.

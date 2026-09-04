@@ -47,6 +47,10 @@ The Bátiz's reputation is not Politécnico folklore. Admission is through the C
 
 In the community the reputation has been the same for decades: "the most demanding" academically, the school where "you can feel more pressure than at university". I lived it as described. Eight or nine courses per term, departmental exams, project labs that ship no matter what. What you learn, more than any language, is to sustain a heavy workload for three years without letting go.
 
+## What I built
+
+In the project labs I wrote Java desktop apps (a calculator, an inventory and cargo manager for a shipping company), hand-coded HTML5 sites with no assistants, and MySQL database-design exercises. The final project was a 2D web videogame in PHP: an open world where kids had to solve chemistry exercises to move up a level. My first language was Java; then came C and C++, PHP, JavaScript, Python and SQL. I also won first place at a school fair, though with an environmental-awareness project rather than a programming one.
+
 ## Finishing in a pandemic
 
 Half of my technical career was online: from March 2020 to the end, in July 2021. Project labs became shared repositories and video calls, and the graduation ceremony was virtual. I do not recommend it, but it taught me to work remotely and asynchronously before that was my working reality.

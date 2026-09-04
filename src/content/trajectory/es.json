@@ -6,26 +6,30 @@
       "kind": "work",
       "org": "Mercado Libre · Mercado Pago Point",
       "orgUrl": "https://www.mercadopago.com.mx/point",
-      "role": "Data Engineer / Analytics Engineer (Contractor)",
+      "role": "Analista de Datos Jr. · ingeniería de datos y analítica (contratista)",
       "location": "Ciudad de México",
       "start": "2025-11-03",
       "end": null,
-      "summary": "Ingeniería de datos y analítica para la línea de negocio Point dentro de Mercado Pago.",
+      "summary": "Área Long Tail de Mercado Pago Point (comercios pequeños y medianos), equipo de Adquisición. Llevo la parte de datos del canal de adquisición con agentes en campo: vivo en México y desplegado en Brasil y Argentina en 2026. Trabajo totalmente remoto con un equipo regional en español.",
       "bullets": [
-        "Diseño y mantengo pipelines ETL/ELT para Mercado Pago Point con SQL avanzado, BigQuery y una plataforma interna de orquestación, dando soporte a analítica y reportería operativa confiables.",
-        "Contribuyo a la migración de arquitectura de datos a un nuevo entorno de backend, rediseñando flujos productor-consumidor y capas de datos sin romper la compatibilidad ni la calidad hacia abajo.",
-        "Modelo y valido datasets en las capas de warehouse, reporting y operación, manteniendo consistencia entre BigQuery, dashboards de negocio y aplicaciones internas.",
-        "Desarrollo una plataforma interna de datos con Next.js 16, Firebase Functions, Firestore, BigQuery e integraciones con Google Sheets para centralizar flujos operativos y acceso a datos.",
-        "Mantengo documentación de arquitectura, changelogs y handoffs de migración para mejorar la transferencia de conocimiento, la reproducibilidad y la continuidad del equipo."
+        "Responsable de la capa de datos de un canal de adquisición con agentes en campo: ETL/ELT en BigQuery con un orquestador interno, unas 60 tablas (30 en el nuevo backend), millones de filas al día, cinco dashboards en producción en Looker Studio y Google Sheets y cinco más en cola.",
+        "Reconstruí el proceso de asignación de comercios a agentes: doce pasos manuales separados en varios entornos se convirtieron en un solo job parametrizado. Se edita una hoja, se ejecuta y el archivo está listo en menos de dos horas en lugar de una jornada completa; agentes, cuotas y activaciones cambian sin tocar código.",
+        "Construí la plataforma interna (Next.js, Firebase, BigQuery, Sheets) que da a los agentes una vista de su propia cartera, la única herramienta de su tipo en el área. La productividad por agente subió de forma notable tras su lanzamiento en junio de 2026 y el proyecto recibió reconocimiento formal del liderazgo.",
+        "Responsable de calidad de datos y pagos: defino los datos detrás de la compensación variable de los agentes, agrego pasos de auditoría que detienen un job antes de que un error se propague, atiendo las alertas por correo el mismo día y corro revisiones de anomalías que detectaron dos casos de comportamiento irregular (mayo y junio de 2026) para su investigación.",
+        "Automaticé el reporte mensual a la autoridad de movilidad de la Ciudad de México sobre recargas de tarjetas de transporte en terminales Point: consultas a mano convertidas en cinco dashboards que se actualizan solos.",
+        "Python en producción (pandas, pyarrow, google-cloud-bigquery) con pruebas en pytest; Git con revisión de código; optimización de consultas y dominio de las herramientas internas aprendidos en el puesto; planeación semanal, one-to-ones y syncs cortos con operaciones, facturación, pagos, cashback y medición.",
+        "Mentor de dos compañeros en las herramientas de datos del equipo y participante en las revisiones de negocio mensuales y trimestrales."
       ],
       "stack": [
         "BigQuery",
         "SQL",
         "Python",
-        "Next.js 16",
+        "Looker Studio",
+        "Google Sheets",
+        "Next.js",
         "Firebase",
-        "Firestore",
-        "Google Sheets"
+        "pytest",
+        "Git"
       ],
       "orbit": 0
     },
@@ -33,14 +37,14 @@
       "id": "datalab-itam",
       "kind": "leadership",
       "org": "DataLab ITAM",
-      "role": "Research Manager y miembro estudiante de Ciencia de Datos",
+      "role": "Research Manager · integrante del equipo ECOBOX AI",
       "location": "Ciudad de México",
       "start": "2025-01-15",
       "end": "2025-12-15",
       "bullets": [
-        "Lideré la ejecución técnica de ECOBOX AI, un sistema de visión por computadora para clasificación de residuos, coordinando investigación e implementación dentro de la comunidad estudiantil.",
-        "Coordiné la planeación de investigación, la documentación técnica y la colaboración entre iniciativas estudiantiles de ciencia de datos.",
-        "Apliqué Python, SQL, machine learning y análisis de datos a proyectos con impacto social y de sustentabilidad."
+        "Integrante del equipo de ECOBOX AI, un modelo de visión por computadora para clasificar residuos: el equipo entregó el modelo entrenado y un paper (enlazado desde mi LinkedIn); el proyecto no llegó a un prototipo instalado.",
+        "Planeación de investigación y documentación técnica para la comunidad estudiantil de ciencia de datos.",
+        "Python, aprendizaje de máquina y análisis de datos aplicados a un proyecto con impacto ambiental."
       ],
       "stack": ["Python", "Visión por computadora", "Coordinación de investigación"],
       "orbit": 1
@@ -56,10 +60,11 @@
       "end": "2026-07-31",
       "bullets": [
         "Programa de Educación Continua de 120 horas: fundamentos y paradigmas de la IA, algoritmos de aprendizaje automático, aprendizaje supervisado y no supervisado en Python, agentes inteligentes y chatbots, RPA, procesamiento de lenguaje natural y redes neuronales artificiales, incluida la ética de la IA.",
+        "Proyecto final: un chatbot con una automatización en n8n, construido con el stack de aprendizaje de máquina en Python del programa.",
         "Reputación: universidad jesuita fundada en 1943, integrante del Sistema Universitario Jesuita (SUJ) y de AUSJAL, con unos 12,000 estudiantes. Banda 851–900 mundial y 6.ª de México en el QS World University Rankings 2027; acreditación institucional CIEES 2025–2032; 1.ª en Diseño y 2.ª en Arquitectura y Contaduría en la encuesta a empleadores de Reforma 2025.",
         "Diploma y certificado previstos para diciembre de 2026."
       ],
-      "stack": ["Machine Learning", "Deep Learning"],
+      "stack": ["Machine Learning", "Deep Learning", "Chatbots", "n8n"],
       "orbit": 2,
       "sources": [
         {
@@ -90,9 +95,10 @@
       "start": "2024-07-01",
       "end": "2024-12-31",
       "bullets": [
-        "Lideré un equipo de tres personas a lo largo del pipeline de atracción a realización, definiendo prioridades, dando seguimiento a KPIs y con 1:1 recurrentes.",
-        "Coordiné campañas de difusión y la comunicación en inglés con stakeholders internacionales.",
-        "Acompañé nueve realizaciones de voluntariado internacional y mejoré el seguimiento del pipeline de participantes."
+        "Lideré un equipo de cuatro personas a lo largo del pipeline de atracción a realización: prioridades, seguimiento de KPIs y 1:1 recurrentes.",
+        "Coordiné intercambios con Italia, Colombia, Perú y otros estados de México; comunicación con stakeholders internacionales en inglés.",
+        "Apoyé nueve realizaciones de voluntariado internacional y mejoré el seguimiento del pipeline de participantes.",
+        "Asistí a congresos regionales y nacionales de AIESEC sobre la cultura de liderazgo de la organización."
       ],
       "stack": ["Liderazgo", "Comunicación con stakeholders"],
       "orbit": 3
@@ -122,14 +128,16 @@
       "role": "Licenciatura en Ciencia de Datos",
       "location": "Ciudad de México",
       "start": "2023-01-09",
-      "end": "2027-05-10",
-      "summary": "Graduación esperada: mayo de 2027.",
+      "end": "2028-05-10",
+      "summary": "Graduación esperada: mayo de 2028 (plan de nueve semestres; las optativas se tomarán dentro de una maestría para terminar ambos grados juntos).",
       "bullets": [
         "Materias del Plan B (temarios oficiales): Cálculo I–III, Geometría Vectorial, Álgebra Lineal, Pensamiento Matemático, Matemáticas Discretas; Probabilidad I–II, Estadística Matemática, Métodos Lineales (GLM), Métodos Multivariados, Estadística Bayesiana; Algoritmos y Programas, Estructuras de Datos (Avanzadas), Bases de Datos, Bases de Datos No Relacionales, Fuentes de Datos, Visualización de Información, Aprendizaje de Máquina, Inteligencia Artificial, Cómputo Paralelo y en la Nube, Arquitectura para Grandes Volúmenes de Datos, Minería y Análisis de Datos; Economía I–IV, Diseño de Mercados, Inferencia Causal; Legalidad y Ética en Ciencia de Datos; y el tronco humanístico del ITAM (Ideas e Instituciones Políticas I–III, Civilización Contemporánea, historia y realidad de México).",
         "Herramientas por materia: R en toda la secuencia de estadística; Java en la secuencia de estructuras de datos; Python, Bash, Linux, expresiones regulares y Git en Fuentes de Datos; MongoDB, Cassandra, Neo4j, Spark/Hadoop y Docker en NoSQL; C++ con OpenMP y MPI en Cómputo Paralelo; agentes y búsqueda en Python en IA.",
         "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo.",
         "Reputación: 4.ª universidad de México y banda 751–760 mundial en el QS World University Rankings 2027, y 1.ª de México / 30.ª del mundo en el indicador QS Employment Outcomes (95.5 % de egresados empleados entre 7 y 11 meses después de graduarse). 42.ª de América Latina en QS 2026. Economía está en el lugar =185 mundial (QS por materia 2025) y es primer lugar en la encuesta a empleadores de Reforma en 2024, 2025 y 2026; Ciencias de la Computación entró al QS por materia en 2025 (701–750).",
-        "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030."
+        "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030.",
+        "Materias favoritas hasta ahora: Estructuras de Datos, Inteligencia Artificial, Fuentes de Datos y, este semestre, Arquitectura para Grandes Volúmenes de Datos. Proyectos finales: un sitio web desde cero (Fuentes de Datos) y un modelo de aprendizaje de máquina de probabilidad de gol con interfaz tipo videojuego (Inteligencia Artificial).",
+        "Asesor de Cálculo de Probabilidades I; plan de titulación por proyecto terminal en lugar de tesis."
       ],
       "stack": ["Estadística", "Algoritmos", "Cómputo paralelo", "NoSQL"],
       "orbit": 5,
@@ -181,10 +189,12 @@
       "bullets": [
         "Formación profesional: Programación Orientada a Objetos, Programación y Servicios Web, Bases de Datos (diseño normalizado y lenguajes de manipulación de datos), Introducción a la Ingeniería de Pruebas y Automatización de Pruebas, Seguridad Web y Aplicaciones, Introducción a los Sistemas Distribuidos, Métodos Ágiles de Programación, Ingeniería de Software Básica y cuatro semestres de Laboratorio de Proyectos de TI.",
         "Estándares y herramientas nombrados en los programas oficiales del Plan 2008: UML (todos los diagramas), JUnit y diseño de pruebas de caja blanca y negra, XP, Scrum y Crystal, servicios web SOAP/WSDL/UDDI, sockets y RPC, criptografía simétrica y de clave pública, SSL/TLS, Kerberos e IPsec, PSP, CMMI y COCOMO, MoProSoft.",
+        "Proyectos de laboratorio: aplicaciones de escritorio en Java (una calculadora, un gestor de inventario y cargas para una naviera), sitios en HTML5 escritos a mano, diseño y ejercicios de bases de datos en MySQL. Proyecto final: un videojuego web en 2D hecho en PHP donde niños resuelven ejercicios de química para avanzar de nivel. Primer lenguaje: Java; después C/C++, PHP, JavaScript, Python y SQL.",
+        "Admitido con 118 de 128 aciertos en el COMIPEMS 2018 (el corte del plantel ese año rondaba los 105). Primer lugar en una feria escolar con un proyecto de conciencia ambiental.",
         "Tronco científico completo en paralelo: Álgebra, Geometría y Trigonometría, Geometría Analítica, Cálculo Diferencial e Integral, Probabilidad y Estadística, Física I–IV, Química I–IV, además de filosofía, historia y seis semestres de inglés.",
         "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar.",
         "Ranking: en el COMIPEMS 2024 el corte del CECyT 9 fue de 102 aciertos de 128, el más alto de todos los planteles del IPN (el siguiente pidió 94) y por encima del CCH Sur de la UNAM; el aspirante con el puntaje más alto de todo el concurso 2024 (126/128) eligió el Bátiz. Fue nombrado el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos hasta 2012 (92 % del alumnado en nivel excelente en Matemáticas) y en 2015 seguía siendo el único bachillerato público en el top 5 nacional tanto por demanda de ingreso como por admisión a la universidad.",
-        "Egresé en julio de 2021 tras año y medio de clases en línea por la pandemia; el título de Técnico en Programación se expidió en diciembre de 2022."
+        "Egresé en julio de 2021 tras año y medio de clases en línea por la pandemia (los exámenes remotos se hicieron deliberadamente difíciles); el título de Técnico en Programación se expidió en diciembre de 2022 porque el examen de titulación tuvo que esperar a las sesiones presenciales."
       ],
       "stack": ["C++", "Java", "JavaScript", "SQL", "Pruebas de software"],
       "orbit": 6,

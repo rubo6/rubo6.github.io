@@ -1,9 +1,9 @@
 ---
-title: 'ECOBOX AI: coordinar un proyecto de visión por computadora con estudiantes'
+title: 'ECOBOX AI: investigar en equipo con estudiantes que tienen exámenes'
 key: ecobox-ai-coordinar-investigacion
 locale: es
 date: '2025-12-10'
-summary: 'En DataLab ITAM lideré la ejecución técnica de ECOBOX AI, un sistema de visión por computadora para clasificar residuos. La parte técnica fue la esperada; la difícil fue coordinar investigación con gente que tiene exámenes.'
+summary: 'En DataLab ITAM fui parte del equipo de ECOBOX AI, un modelo de visión por computadora para clasificar residuos. Entregamos el modelo y un paper; lo difícil no fue lo técnico, sino hacer investigación con gente que tiene exámenes.'
 area: datascience
 semester: '2025'
 courses: ['DataLab ITAM · Research Manager']
@@ -20,7 +20,7 @@ tags:
 featured: true
 ---
 
-DataLab es la comunidad estudiantil de ciencia de datos del ITAM. Durante 2025 fui su Research Manager, y el proyecto principal a mi cargo fue **ECOBOX AI**: un sistema de visión por computadora que clasifica residuos en categorías de reciclaje a partir de una imagen, pensado para instalarse en un contenedor inteligente.
+DataLab es la comunidad estudiantil de ciencia de datos del ITAM. Durante 2025 fui su Research Manager y participé en su proyecto principal, **ECOBOX AI**: un modelo de visión por computadora que clasifica residuos en categorías de reciclaje a partir de una imagen, pensado para un contenedor inteligente. El entregable final fue el modelo entrenado y un paper; no llegamos a un prototipo instalado, y prefiero decirlo tal cual.
 
 ## El problema técnico
 
@@ -28,9 +28,9 @@ Clasificación de imágenes con clases desbalanceadas y fotos tomadas en condici
 
 Lo técnico fue lo esperado. Lo que no esperaba era todo lo demás.
 
-## Coordinar investigación con estudiantes
+## Investigar con estudiantes
 
-Un equipo estudiantil tiene una característica que ningún equipo profesional tiene: todos desaparecen en semana de exámenes, al mismo tiempo. Coordinar el proyecto significó aceptar esa realidad y diseñar alrededor de ella.
+Un equipo estudiantil tiene una característica que ningún equipo profesional tiene: todos desaparecen en semana de exámenes, al mismo tiempo. Trabajar el proyecto significó aceptar esa realidad y diseñar alrededor de ella.
 
 - **Planeación por hitos cortos**, alineados al calendario escolar, en lugar de un plan anual que se rompe en octubre.
 - **Documentación como producto**: cada decisión técnica, cada experimento y cada dataset con su ficha, en un lugar donde una persona nueva pudiera entrar y contribuir en su primera semana. En un equipo con rotación semestral, la documentación no es un extra: es lo único que sobrevive.
@@ -39,4 +39,4 @@ Un equipo estudiantil tiene una característica que ningún equipo profesional t
 
 ## Lo que me llevo
 
-Que coordinar investigación es una habilidad distinta a hacer investigación, y que las dos se necesitan. Que la documentación es la infraestructura de la continuidad. Y que trabajar en un problema con impacto ambiental, aunque sea a escala de un contenedor, le da al equipo una razón para volver después de los exámenes.
+Que sostener una investigación en equipo es una habilidad distinta a hacer investigación, y que las dos se necesitan. Que la documentación es la infraestructura de la continuidad. Y que trabajar en un problema con impacto ambiental, aunque sea a escala de un contenedor, le da al equipo una razón para volver después de los exámenes.

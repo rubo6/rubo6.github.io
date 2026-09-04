@@ -33,14 +33,14 @@
   {
     "id": "datacamp-track",
     "issuer": "DataCamp",
-    "name": "DataCamp certification track (in progress)",
+    "name": "DataCamp — Data Engineer track incl. Git (in progress)",
     "status": "in-progress",
     "skills": ["Python", "SQL", "Data Engineering"]
   },
   {
     "id": "aws-academy",
     "issuer": "AWS Academy",
-    "name": "AWS Academy program (in progress)",
+    "name": "AWS Academy — Cloud Foundations, Data Engineering, Intermediate (in progress)",
     "status": "in-progress",
     "skills": ["Cloud", "AWS", "Data on the cloud"]
   }

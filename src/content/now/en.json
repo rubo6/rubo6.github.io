@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "sections": [
     {
       "id": "studying",
@@ -8,16 +8,18 @@
       "items": [
         "Eighth of nine terms of the B.S. in Data Science at ITAM: Architecture for Large Data Volumes, Data Mining and Analysis, Multivariate Methods, Applied Data Science I, Public Policy II.",
         "Artificial Intelligence diploma at Universidad Iberoamericana (diploma expected December 2026).",
-        "Certifications in progress: Anthropic, DataCamp, AWS Academy."
+        "Certifications in progress: Anthropic, DataCamp, AWS Academy.",
+        "Choosing a master’s programme whose electives will count toward the bachelor’s."
       ]
     },
     {
       "id": "working",
       "title": "Working on",
       "items": [
-        "Data and analytics engineering for Mercado Pago Point at Mercado Libre: pipelines, BigQuery models and an internal data platform.",
-        "WhisperFlow, my offline voice-dictation tool for Windows, now public with model packs on GitHub Releases.",
-        "This observatory: next up are the remaining translations and a Playwright test suite."
+        "Data side of a field-agent acquisition channel at Mercado Pago Point: BigQuery pipelines, dashboards and the internal platform, now live in Mexico, Brazil and Argentina.",
+        "Mentoring two colleagues on the team’s data tooling.",
+        "WhisperFlow, my offline voice-dictation tool for Windows, public with model packs on GitHub Releases.",
+        "This observatory: answering the second questionnaire, then the remaining translations."
       ]
     },
     {
