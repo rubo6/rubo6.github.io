@@ -14,7 +14,8 @@ Después de activarlo, Windows Credential Manager seguirá funcionando para `git
 
 ## 2. Endurecer el repo (5 minutos)
 
-- https://github.com/rubo6/rubo6.github.io/settings/security_analysis → activa **Secret scanning** y **Push protection** (gratis en repos públicos).
+- **Secret scanning y push protection** no aparecen en la página del repo porque en repos públicos GitHub ya escanea secretos por default. La protección al hacer push se activa a nivel de cuenta: https://github.com/settings/security_analysis → "Push protection for yourself" → **Enable**. Con eso GitHub bloquea cualquier push tuyo que contenga un token, en todos tus repos.
+- ✅ Hecho el 2026-09-03: Dependabot alerts/security updates, Private vulnerability reporting, CodeQL.
 - Misma página: confirma **Dependabot alerts** y **Dependabot security updates** activados.
 - https://github.com/rubo6/rubo6.github.io/settings/branches → (opcional) regla para `main`: "Require status checks to pass" con `Validate` y `CodeQL`. Como haces push directo, puedes dejarlo para cuando haya colaboradores.
 
@@ -45,9 +46,35 @@ Lo que verás: visitas, páginas, país, referrer, dispositivo. Nada personal, s
 
 ## 5. Dominio propio
 
-Precios aproximados anuales (septiembre 2026): `.dev` 12–15 USD, `.com` 10–15 USD, `.mx` 25–35 USD, `.io` 35–50 USD. Registradores serios: **Cloudflare Registrar** (precio de costo, sin markup, el más barato), Porkbun, Namecheap. Evita GoDaddy (renovaciones caras).
+### ¿Qué cambia entre terminaciones?
 
-Sugerencias disponibles a verificar: `rubo.dev`, `rubobernal.dev`, `eduardobernal.dev`, `eruben.dev`.
+| TLD             | Precio/año aprox. (Cloudflare, sept. 2026) | Quién lo administra                                                  | Para quién es                         | Notas                                                                                                                                                                                                        |
+| --------------- | ------------------------------------------ | -------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`.dev`** ⭐   | 12–13 USD                                  | Google Registry                                                      | Desarrolladores, portafolios técnicos | Toda la zona está en la lista **HSTS preload**: los navegadores solo la abren por HTTPS. Señal clara de "persona técnica". Recomendado para ti.                                                              |
+| `.io`           | 35–45 USD                                  | Identity Digital (cesión del Territorio Británico del Océano Índico) | Startups, SaaS                        | De moda, pero 3× más caro y con incertidumbre a largo plazo: el territorio pasó a Mauricio en 2025 y la IANA podría retirar el ccTLD en unos años. No lo recomiendo para algo que quieres conservar décadas. |
+| `.com`          | 10–12 USD                                  | Verisign                                                             | Todo el mundo                         | El más universal y barato; casi ningún nombre corto queda libre. Buen segundo dominio para redirigir.                                                                                                        |
+| `.me`           | 15–20 USD                                  | Montenegro                                                           | Páginas personales                    | Se lee bien ("rubo.me") pero es un ccTLD extranjero.                                                                                                                                                         |
+| `.mx`           | 25–35 USD                                  | NIC México                                                           | Presencia en México                   | Caro para lo que ofrece; útil solo si tu público es local.                                                                                                                                                   |
+| `.ai` / `.tech` | 60+ / 40+ USD                              | Anguila / Radix                                                      | Marketing                             | Caros y con sabor a startup, no a persona.                                                                                                                                                                   |
+
+**Recomendación**: `rubo.dev` si está libre; si no, `rubobernal.dev` o `eduardobernal.dev`. Compra en **Cloudflare Registrar** (cobra el precio de costo del registro, sin recargo, renovación al mismo precio y DNS incluido).
+
+### Cómo comprarlo en Cloudflare, paso a paso (15 minutos)
+
+1. **Cuenta**: https://dash.cloudflare.com/sign-up → correo + contraseña (usa tu gestor de contraseñas) → verifica el correo. Plan **Free**.
+2. **Método de pago**: menú de la cuenta (arriba a la derecha) → _Billing_ → _Payment info_ → añade tarjeta.
+3. **Buscar**: menú izquierdo → _Domain Registration_ → _Register Domains_ → escribe `rubo` → verás disponibilidad y precio por terminación. Elige `.dev`.
+4. **Comprar**: _Purchase_ → selecciona 1 año (o varios, no hay descuento pero te olvidas de renovar) → activa **Auto-renew** → llena los datos de contacto WHOIS (Cloudflare los oculta gratis con redacción de WHOIS, así que no se publican) → paga.
+5. **DNS** (el dominio queda automáticamente en tu cuenta de Cloudflare): menú izquierdo → _Websites_ → tu dominio → _DNS_ → _Records_ → _Add record_ cuatro veces:
+   - Tipo `A`, nombre `@`, contenido `185.199.108.153`, proxy **desactivado** (nube gris)
+   - Tipo `A`, nombre `@`, `185.199.109.153`, proxy desactivado
+   - Tipo `A`, nombre `@`, `185.199.110.153`, proxy desactivado
+   - Tipo `A`, nombre `@`, `185.199.111.153`, proxy desactivado
+   - Tipo `CNAME`, nombre `www`, contenido `rubo6.github.io`, proxy desactivado
+     El proxy naranja de Cloudflare se deja apagado para que GitHub pueda emitir el certificado HTTPS.
+6. **GitHub**: https://github.com/rubo6/rubo6.github.io/settings/pages → _Custom domain_ → escribe `rubo.dev` → _Save_ → espera el check de DNS (minutos) → activa **Enforce HTTPS** cuando aparezca disponible (puede tardar hasta una hora).
+7. **Avísame**: yo añado `public/CNAME`, cambio `site` en `astro.config.ts`, actualizo sitemap, `security.txt`, README y las URLs canónicas, y verifico redirecciones `www` → raíz y `rubo6.github.io` → dominio nuevo.
+8. Opcional después: verifica el dominio en https://github.com/settings/pages (_Add a domain_) para que nadie más pueda apuntar Pages a él.
 
 Cuando lo compres: 1) en el registrador crea registros DNS `A` a `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` y `CNAME www → rubo6.github.io`; 2) en https://github.com/rubo6/rubo6.github.io/settings/pages pon el dominio en "Custom domain" y activa **Enforce HTTPS**; 3) avísame y yo añado `public/CNAME`, actualizo `site` en la config, el sitemap, `security.txt` y el README. Guía oficial: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
 

@@ -81,7 +81,7 @@
   ],
   "funFacts": [
     "The stars in the hero are real: they are computed from a bright-star catalogue for the sky above Mexico City at the moment you open the page.",
-    "This site ships zero third-party requests. Fonts, scripts and images are all self-hosted.",
+    "Fonts, scripts and images are all self-hosted. The only outside request is an anonymous, cookieless page count.",
     "I built my own offline voice-dictation tool (WhisperFlow) because I wanted push-to-talk that never leaves my machine. I dictated the answers that shaped this page with it."
   ]
 }

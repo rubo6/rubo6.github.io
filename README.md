@@ -10,7 +10,7 @@
   <img alt="Astro 7" src="https://img.shields.io/badge/Astro-7-BC52EE?style=flat-square&logo=astro&logoColor=white&labelColor=0b1026">
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white&labelColor=0b1026">
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=0b1026">
-  <img alt="Third-party requests: 0" src="https://img.shields.io/badge/third--party_requests-0-9ad9e8?style=flat-square&labelColor=0b1026">
+  <img alt="Cookies: 0" src="https://img.shields.io/badge/cookies-0-9ad9e8?style=flat-square&labelColor=0b1026">
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 My personal site is an **observatory**. The hero renders the _real_ sky above Mexico City at the moment you open it, computed from a bright-star catalogue with sidereal-time math written in TypeScript and covered by unit tests. Projects live inside **nebulae**, each highlight is a **star**, my trajectory is drawn as **orbits**, and skills as **constellations**. A switch flips the whole universe from _professional_ to _personal_.
 
-It is also a small engineering project: static output, content separated from presentation, security rules enforced by lint, zero third-party requests at runtime, and a repository designed so both humans and AI coding agents can extend it safely.
+It is also a small engineering project: static output, content separated from presentation, security rules enforced by lint, no cookies or trackers (only a cookieless page count), and a repository designed so both humans and AI coding agents can extend it safely.
 
 ## What you will find on the site
 
@@ -90,10 +90,10 @@ Start with [AGENTS.md](AGENTS.md). It defines the invariants (content vs. presen
 
 ## Security
 
-- Strict Content-Security-Policy via `<meta>` (`script-src 'self'`, no inline scripts anywhere, no third-party origins).
+- Strict Content-Security-Policy via `<meta>`: no inline scripts; the only external origin is GoatCounter, a cookieless analytics service (ADR-0006).
 - ESLint bans `eval`, `innerHTML`, `document.write`, `Math.random`.
 - CI: format, lint, types, tests, build, `npm audit`, dependency review, CodeQL; Dependabot weekly; all actions pinned to commit SHAs with least-privilege permissions.
-- No forms, no analytics, no cookies, no phone number. Contact is a professional e-mail only.
+- No forms, no cookies, no phone number. Analytics are anonymous and cookieless. Contact is a professional e-mail only.
 - Report an issue: see [SECURITY.md](SECURITY.md) or `/.well-known/security.txt`.
 
 ## Roadmap

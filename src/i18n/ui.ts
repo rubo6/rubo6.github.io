@@ -120,7 +120,8 @@ const en = {
   'contact.copied': 'Copied',
   'contact.languages': 'Languages',
 
-  'footer.built': 'Built with Astro, TypeScript and real astronomy. Zero third-party requests.',
+  'footer.built':
+    'Built with Astro, TypeScript and real astronomy. No cookies, no trackers: only a cookieless page count.',
   'footer.source': 'Source on GitHub',
   'footer.moon': 'Moon tonight',
   'footer.updated': 'Last observation',
@@ -255,7 +256,8 @@ const es: Record<UIKey, string> = {
   'contact.copied': 'Copiado',
   'contact.languages': 'Idiomas',
 
-  'footer.built': 'Hecho con Astro, TypeScript y astronomía de verdad. Cero peticiones a terceros.',
+  'footer.built':
+    'Hecho con Astro, TypeScript y astronomía de verdad. Sin cookies ni rastreadores: solo un conteo de visitas anónimo.',
   'footer.source': 'Código en GitHub',
   'footer.moon': 'La Luna esta noche',
   'footer.updated': 'Última observación',
@@ -389,7 +391,7 @@ const ptBr: Record<UIKey, string> = {
   'contact.languages': 'Idiomas',
 
   'footer.built':
-    'Feito com Astro, TypeScript e astronomia de verdade. Zero requisições a terceiros.',
+    'Feito com Astro, TypeScript e astronomia de verdade. Sem cookies nem rastreadores: só uma contagem de visitas anônima.',
   'footer.source': 'Código no GitHub',
   'footer.moon': 'A Lua hoje',
   'footer.updated': 'Última observação',

@@ -10,9 +10,9 @@ The old site had a fake form and listed a personal phone number in the CV. GitHu
 
 - Contact is a professional e-mail (`eruben.bernal@gmail.com`), LinkedIn and GitHub. A copy-to-clipboard button replaces the form.
 - No phone number on the site or in the generated CV.
-- No analytics, cookie banners, chat widgets or embedded third-party scripts. Zero third-party origins in the CSP.
+- No cookie banners, chat widgets or embedded third-party scripts other than the cookieless analytics accepted later in ADR-0006.
 
 ## Consequences
 
 - Nothing to secure server-side; the CSP can stay strict.
-- If analytics are ever wanted, they must be cookieless and documented in a new ADR.
+- Analytics were added in ADR-0006 under the cookieless constraint.

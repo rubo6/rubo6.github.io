@@ -25,7 +25,7 @@ CI runs exactly `npm run validate` plus `npm audit`. If it fails locally it will
 3. **Tone.** Professional surfaces (observatory, trajectory, CV, nav) use a formal register; personal surfaces (personal universe, footer quips) are warm and informal. Keep this split per locale.
 4. **Security rules are enforced by lint and must stay that way:** no `eval`/`Function`, no `innerHTML`/`outerHTML`/`insertAdjacentHTML`/`document.write`, no `Math.random`. Use DOM APIs, `textContent`, and deterministic hashes (`unitHash` in `src/scripts/sky.ts`) or `crypto.getRandomValues`.
 5. **No inline scripts.** The CSP is `script-src 'self'`. Use Astro `<script>` (bundled) and pass data through `<script type="application/json">` serialized with `safeJson()` from `src/lib/json.ts`. Never use `define:vars`, `is:inline` scripts, or `set:html` with untrusted data.
-6. **No third-party requests at runtime.** Fonts, icons, images and scripts are self-hosted. Adding an external `<script>`, `<link>`, `<img>` or `fetch` is a design decision that needs an ADR.
+6. **Self-host everything; one sanctioned third party.** Fonts, icons, images and scripts are self-hosted. The single exception is GoatCounter (cookieless analytics, ADR-0006) and its two origins in the CSP. Adding any other external `<script>`, `<link>`, `<img>` or `fetch` is a design decision that needs an ADR and a CSP change.
 7. **No secrets, no PII beyond the professional e-mail.** No phone numbers, no home address, no tokens. Anything needing a credential runs in GitHub Actions with a repository secret at build time.
 8. **Accessibility is not optional.** Semantic HTML, visible focus, keyboard paths for every interaction, `prefers-reduced-motion` honoured, 4.5:1 contrast for text, `aria-*` where semantics fall short. Check both themes and both modes.
 9. **Determinism.** Builds must be reproducible: no random layouts, no time-dependent markup except the footer build date and moon phase (which the client refreshes).
@@ -56,6 +56,17 @@ CI runs exactly `npm run validate` plus `npm audit`. If it fails locally it will
 - **Add a locale:** extend `locales` in `src/i18n/ui.ts` and `astro.config.ts`, add `src/pages/<locale>/…` mirroring `es/`, add content files. Consider tier-2 (UI + summaries only) before full translation.
 - **Change design tokens:** only in `src/styles/global.css`. Every colour must remain a registered `@property` so mode switches animate.
 - **Add a dependency:** justify it (an ADR if it is runtime code), run `npm install <pkg>` (never hand-edit the lockfile), keep `npm audit --audit-level=high` clean.
+
+## Recurring content tasks
+
+- **A certification is completed** (DataCamp, AWS Academy, Anthropic, the Ibero AI diploma in Dec 2026): edit `src/content/certifications.json` → set `status: "earned"`, `date: "YYYY-MM-DD"`, add `url` (Credly / badge / public PDF, https only) and refresh `skills`. If it is a new certification, add an entry with a unique `id`. Then run `npm run validate`, check the "In progress" nebula and the CV page in all three locales, commit as `content: certification <name> earned`. When _all_ current ones are earned, rename the `upcoming` nebula labels to "Certifications" in `src/content/nebulae.json` (labels/descriptions in EN/ES/PT-BR).
+- **A new job or role**: add an entry to `src/content/trajectory/<locale>.json` (all three), set `orbit: 0` for it and shift the others by one, update `dates.meliStart` (or add a new date key) in `profile/*.json` if a live clock should follow it, and add a `professional` project if there is public work to show.
+- **A repository goes public**: add `repo: owner/name` to the matching project (all locales) and, if it was `visibility: confidential`, decide with Rubo whether it can become `public`.
+- **A new personal interest**: add a cluster to `src/content/personal/<locale>.json` with a real astronomical object as its `object`.
+
+## Skills for agents
+
+- `.claude/skills/observatory-architect/` — the project skill: architecture map, recipes, design/security references and a per-session log. Claude Code loads it automatically; Codex and other agents should read its `SKILL.md` and `references/` at the start of a session. Update `references/session-log.md` at the end of every session.
 
 ## Definition of done
 

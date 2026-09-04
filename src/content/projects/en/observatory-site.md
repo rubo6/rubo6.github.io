@@ -9,7 +9,7 @@ period: { start: '2026-09-03', end: null }
 stack: [Astro 7, TypeScript, Tailwind CSS 4, GitHub Actions]
 highlights:
   - Real sky over Mexico City computed from a bright-star catalogue
-  - Zero third-party runtime requests; strict Content-Security-Policy
+  - Strict Content-Security-Policy; no cookies or trackers, only cookieless analytics
   - Content collections validated with zod so AI agents can edit safely
   - Trilingual (EN / ES / PT-BR) with formal and informal registers
 repo: rubo6/rubo6.github.io

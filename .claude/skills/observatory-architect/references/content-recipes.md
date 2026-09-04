@@ -1,0 +1,53 @@
+# Content recipes
+
+Every recipe ends with `npm run validate`, a browser check in both modes, and a `content:` commit. Content goes in English first; Spanish and Portuguese follow the same structure. Quote any frontmatter string that contains a colon (`summary: "…: …"`), otherwise YAML turns it into a mapping and the build fails.
+
+## Add a project (a star in a nebula)
+
+1. Create `src/content/projects/en/<key>.md` (copy an existing one). Required frontmatter: `title`, `key` (URL slug, `[a-z0-9-]`, identical in every locale), `locale`, `nebula` (`professional` · `academic` · `research` · `personal` · `community` · `upcoming`), `summary` (≤ 240 chars), `role`, `period: { start, end|null }`, `stack[]`, `highlights[]` (1–8 short facts — the stars), optional `repo` (`owner/name`), `links[]`, `featured`, `order`, `visibility` (`public` | `confidential`).
+2. Body: 1–3 short first-person paragraphs. No confidential employer details.
+3. Add `es/` and `pt-br/` versions (missing locales fall back to English).
+4. Featured + public projects appear in the CV page automatically.
+
+## Add or update a role / study (trajectory orbit)
+
+Edit `src/content/trajectory/{en,es,pt-br}.json`: `id`, `kind` (`work` | `leadership` | `education`), `org`, `orgUrl`, `role`, `location`, `start`, `end` (`null` = present), `summary?`, `bullets[]`, `stack[]`, `orbit` (0 = innermost = most recent; renumber the others). Bullets in the CV voice, results over duties.
+
+## Complete a certification
+
+`src/content/certifications.json`: set `status: "earned"`, `date`, `url` (https verification link), refresh `skills`. New ones need a unique `id`. Statuses: `earned` | `in-progress` | `expected`. They render in the Skills section box and in the CV. Once all are earned, rename the `upcoming` nebula in `nebulae.json` to "Certifications" in the three locales.
+
+## Change a live clock date
+
+`src/content/profile/{locale}.json → dates`: `meliStart`, `itamStart`, `graduation`, `birthday` (optional; drives the personal-mode age clock). Add a new clock in `src/components/LiveCounters.astro` (`clocks` array) plus a `counters.<id>` string in `ui.ts` for all locales.
+
+## Add a nebula (category)
+
+1. Append to `src/content/nebulae.json`: `id`, real `object` (`name`, `designation`, `constellation`, `distanceLy`), `labels`/`descriptions` in EN/ES/PT-BR, `scene` (`x`, `y` percent, `scale`), 2–4 colour `palette`, optional `image`/`credit`.
+2. Extend the `nebula` enum in `src/content.config.ts` in **both** places (`nebulae.id` and `projects.nebula`).
+3. Check label overlap on desktop and mobile (mobile clamps positions to 22–78 % / 14–80 %).
+
+## Add a personal cluster
+
+`src/content/personal/{locale}.json → clusters[]`: `id`, `title`, `object` (a real deep-sky object), `blurb` (informal), `items[]`. The scene positions the first five clusters automatically; more than five needs a new entry in `personalScene` inside `Observatory.astro`.
+
+## Add a UI string
+
+Add the key to `en`, `es` and `pt-br` in `src/i18n/ui.ts`. The `UIKey` type makes the build fail until all three exist. If a client script needs it, expose it through `clientStrings()`.
+
+## Add a locale
+
+- Tier 1 (full): add the code to `locales` in `src/i18n/ui.ts` and `astro.config.ts` (i18n + sitemap map), add `localeMeta`, add a full `ui` table, create `src/pages/<locale>/{index,cv}.astro` and `projects/[key].astro` mirroring `es/`, add content files for every collection. Update `hreflang` automatically via `locales`.
+- Tier 2 (UI + summaries only): same wiring but only `ui.ts` and `profile`/`nebulae` labels; long-form content falls back to English by design. Consider a subagent for translation and have a human check tone.
+
+## Add imagery to a nebula
+
+Official JWST / Hubble / ESO releases only (public domain or CC BY 4.0; credit required). Convert to AVIF/WebP ≤ ~150 KB, place in `src/assets/nebulae/`, set `image` and `credit` in `nebulae.json`, render with `<Image>` behind the procedural gas layers (keep the procedural renderer as fallback). Never AI-generated imagery presented as real photography.
+
+## Publish a repository stat
+
+Public data (stars, forks, language, last commit) can be fetched at build time with a custom Astro content loader (planned). Traffic (views/clones) needs the `GH_TRAFFIC_TOKEN` secret (fine-grained, Administration read-only) read only inside GitHub Actions.
+
+## Regenerate icons / OG image
+
+Edit `public/favicon.svg`, run `node scripts/generate-icons.mjs`, commit the PNGs.

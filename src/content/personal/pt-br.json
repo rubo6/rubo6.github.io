@@ -84,7 +84,7 @@
   ],
   "funFacts": [
     "As estrelas do início são reais: são calculadas a partir de um catálogo de estrelas brilhantes para o céu sobre a Cidade do México no momento em que você abre a página.",
-    "Este site não faz nenhuma requisição a terceiros. Fontes, scripts e imagens vivem aqui.",
+    "Fontes, scripts e imagens vivem aqui. A única requisição externa é uma contagem de visitas anônima e sem cookies.",
     "Construí minha própria ferramenta de ditado por voz offline (WhisperFlow) porque queria push-to-talk que nunca saísse da minha máquina. Foi com ela que ditei as respostas que deram forma a esta página."
   ]
 }

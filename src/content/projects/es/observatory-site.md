@@ -9,7 +9,7 @@ period: { start: '2026-09-03', end: null }
 stack: [Astro 7, TypeScript, Tailwind CSS 4, GitHub Actions]
 highlights:
   - Cielo real sobre la Ciudad de México calculado desde un catálogo de estrellas brillantes
-  - Cero peticiones a terceros en tiempo de ejecución; Content-Security-Policy estricta
+  - Content-Security-Policy estricta; sin cookies ni rastreadores, solo analítica anónima
   - Colecciones de contenido validadas con zod para que agentes de IA editen sin romper nada
   - Trilingüe (EN / ES / PT-BR) con registro formal e informal
 repo: rubo6/rubo6.github.io
