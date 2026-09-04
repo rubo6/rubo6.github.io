@@ -1,49 +1,54 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-04T23:04:45.052Z",
-  "runner": "github-actions#33927963989",
+  "measuredAt": "2026-09-04T23:08:54.274Z",
+  "runner": "github-actions#33928233676",
   "mobile": {
-    "performance": 88,
+    "performance": 86,
     "accessibility": 100,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 2716,
-    "fcpMs": 1396,
-    "speedIndexMs": 1957,
-    "tbtMs": 328,
+    "lcpMs": 3683,
+    "fcpMs": 1527,
+    "speedIndexMs": 3178,
+    "tbtMs": 154,
     "cls": 0,
-    "benchmarkIndex": 2030,
+    "benchmarkIndex": 2123,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T23:04:17.787Z",
+    "fetchTime": "2026-09-04T23:08:27.109Z",
     "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 56,
-      "resourceLoadDelay": 78,
-      "resourceLoadDuration": 53,
-      "elementRenderDelay": 259
-    }
+      "timeToFirstByte": 50,
+      "resourceLoadDelay": 96,
+      "resourceLoadDuration": 70,
+      "elementRenderDelay": 1167
+    },
+    "runs": [
+      70,
+      86,
+      95
+    ]
   },
   "desktop": {
     "performance": 100,
     "accessibility": 100,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 649,
-    "fcpMs": 398,
-    "speedIndexMs": 695,
-    "tbtMs": 30,
+    "lcpMs": 683,
+    "fcpMs": 383,
+    "speedIndexMs": 672,
+    "tbtMs": 7,
     "cls": 0,
-    "benchmarkIndex": 2107,
+    "benchmarkIndex": 2284,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T23:04:33.503Z",
+    "fetchTime": "2026-09-04T23:08:42.821Z",
     "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 16,
-      "resourceLoadDelay": 70,
-      "resourceLoadDuration": 39,
-      "elementRenderDelay": 388
+      "timeToFirstByte": 12,
+      "resourceLoadDelay": 66,
+      "resourceLoadDuration": 20,
+      "elementRenderDelay": 357
     }
   }
 }
