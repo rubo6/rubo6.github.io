@@ -1,0 +1,81 @@
+# Machine-independent Lighthouse: runs on a GitHub runner against the live site after every successful
+# deploy (and weekly / on demand), writes docs/lighthouse/latest.json + history.jsonl back to main and
+# posts a table in the job summary. Deploy and CI ignore docs/lighthouse/** so this never loops.
+name: Lighthouse
+
+on:
+  workflow_run:
+    workflows: ['Deploy to GitHub Pages']
+    types: [completed]
+  schedule:
+    - cron: '47 12 * * 1' # Mondays 06:47 America/Mexico_City
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: lighthouse
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Audit rubo6.dev
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Harden runner (egress audit)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+
+      - name: Wait for the CDN to serve the new deploy
+        run: sleep 45
+
+      - name: Lighthouse mobile
+        run: >
+          npx -y lighthouse@13 https://rubo6.dev/ --quiet
+          --chrome-flags="--headless=new --no-sandbox"
+          --output=json --output-path=./lh-mobile.json
+          --only-categories=performance,accessibility,best-practices,seo
+
+      - name: Lighthouse desktop
+        run: >
+          npx -y lighthouse@13 https://rubo6.dev/ --quiet --preset=desktop
+          --chrome-flags="--headless=new --no-sandbox"
+          --output=json --output-path=./lh-desktop.json
+          --only-categories=performance,accessibility,best-practices,seo
+
+      - name: Summarise
+        run: node scripts/lighthouse-summary.mjs ./lh-mobile.json ./lh-desktop.json
+
+      - name: Upload raw reports
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: lighthouse-reports
+          path: |
+            lh-mobile.json
+            lh-desktop.json
+          retention-days: 30
+
+      - name: Commit scores to main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/lighthouse/latest.json docs/lighthouse/history.jsonl
+          if git diff --cached --quiet; then echo 'no changes'; exit 0; fi
+          git commit -m 'chore(lighthouse): record scores for the latest deploy [skip ci]'
+          git pull --rebase origin main
+          git push origin main

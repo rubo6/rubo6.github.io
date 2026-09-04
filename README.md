@@ -10,6 +10,8 @@
   <img alt="Astro 7" src="https://img.shields.io/badge/Astro-7-BC52EE?style=flat-square&logo=astro&logoColor=white&labelColor=0b1026">
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white&labelColor=0b1026">
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=0b1026">
+  <a href="https://github.com/rubo6/rubo6.github.io/actions/workflows/lighthouse.yml"><img alt="Lighthouse mobile performance" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/rubo6/rubo6.github.io/main/docs/lighthouse/latest.json&query=%24.mobile.performance&label=Lighthouse%20mobile&color=f2c46d&style=flat-square&labelColor=0b1026"></a>
+  <a href="https://github.com/rubo6/rubo6.github.io/actions/workflows/lighthouse.yml"><img alt="Lighthouse desktop performance" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/rubo6/rubo6.github.io/main/docs/lighthouse/latest.json&query=%24.desktop.performance&label=Lighthouse%20desktop&color=f2c46d&style=flat-square&labelColor=0b1026"></a>
   <img alt="Cookies: 0" src="https://img.shields.io/badge/cookies-0-9ad9e8?style=flat-square&labelColor=0b1026">
 </p>
 

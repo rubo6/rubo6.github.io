@@ -62,6 +62,10 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 
 > Gotcha: after changing a collection schema, the dev server's incremental glob loader may keep stale parsed entries (new fields come back `undefined`). Stop the server, delete `.astro/data-store.json`, restart. `astro build` is not affected.
 
+## Lighthouse in CI
+
+`lighthouse.yml` (workflow_run after Deploy, weekly cron, manual): `npx lighthouse@13` mobile + desktop against the live URL on ubuntu-latest, `scripts/lighthouse-summary.mjs` → `docs/lighthouse/{latest.json,history.jsonl}` + job summary, committed by github-actions[bot] with `[skip ci]`; `ci.yml`/`deploy.yml` have `paths-ignore: docs/lighthouse/**`. Locally Lighthouse needs the installed Google Chrome via `CHROME_PATH` and an idle machine (WhisperFlow's `pythonw` alone eats ~0.8 cores).
+
 ## Large files (Git LFS)
 
 `src/assets/nebulae/raw/*.{jpg,jpeg,png}` are LFS-tracked originals (11 files, ~91 MB). CI checkouts do not fetch LFS (`actions/checkout` default), so builds never depend on them; the derived AVIF/WebP are normal files. To regenerate derived images: `git lfs pull`, then `node scripts/optimize-nebulae.mjs` / `optimize-scenes.mjs`. History was rewritten with `git filter-repo` on 2026-09-05 (pack went from ~28 MB to ~10 MB); Rubo approved the force-push.

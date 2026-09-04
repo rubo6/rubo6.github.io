@@ -11,6 +11,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/lighthouse/**'
   schedule:
     - cron: '17 11 * * *' # 05:17 America/Mexico_City, daily data refresh
   workflow_dispatch:
