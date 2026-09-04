@@ -60,6 +60,11 @@ Two attributes on `<html>`: `data-theme` (`night` | `atlas`) and `data-mode` (`p
 
 Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA hours, Dec degrees, V mag) + 29 constellation figures as name pairs. Adding a star requires exact J2000 coordinates.
 
+## Study log (`posts`) and Now page
+
+- `posts` collection (`src/content/posts/<locale>/*.md`), accessors `getPosts/getPost/readingMinutes/formatLongDate` in `lib/content.ts`, routes `/log`, `/log/[key]`, `/log/rss.xml` per locale (`lib/rss.ts`), `LogLatest` on home, `LogFilters` (client-side search + area chips + term select, URL-synced), per-entry OG PNGs from `scripts/generate-og.mjs` (prebuild step in `npm run build`, output `public/og/log/`).
+- `now` collection (`src/content/now/<locale>.json`) → `/now` per locale via `NowPage.astro`.
+
 ## GitHub loader (`src/loaders/github.ts`)
 
 Astro Content Layer loader registered as the `repoStats` collection. At build it discovers every `repo:` in `src/content/projects/en/*.md`, calls `https://api.github.com/repos/<owner>/<name>` (stars, forks, language, last push) and, when `GH_TRAFFIC_TOKEN` is in the environment (Actions secret, fine-grained PAT with Administration read-only), `/traffic/views` and `/traffic/clones` (14-day windows). Fail-soft: errors are logged as warnings and the collection stays empty, so offline builds pass and the UI simply omits the stats row. Consumed by `Observatory.astro` (star cards) and `ProjectPage.astro`. The daily cron in `deploy.yml` keeps numbers fresh.

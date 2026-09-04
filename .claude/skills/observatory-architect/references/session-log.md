@@ -14,8 +14,12 @@ Append one entry per working session: what changed, decisions, what is pending. 
 
 - Later in session 2: portrait video (Veo, 720×1280, 8 s) live in the eyepiece; CECyT 9 "Juan de Dios Bátiz" (IPN, Técnico en Programación, 2018-08-13 → 2021-07-23, Plan 2008) added to trajectory, CV and certifications with sourced selectivity data (COMIPEMS cut-off 102–106/128, highest IPN campus); log entries for AIESEC (iGV member + oGV team leader, 2024) and the Bátiz, EN/ES; `leadership` area added to posts. Research sources are in the two subagent briefings (AIESEC official pages, IPN/CECyT 9 Plan 2008 PDF, Gaceta Politécnica, El Universal 2012, Infobae 2024, COMIPEMS press tables). WhisperFlow release downloader tested end-to-end (denoise-vad pack).
 
+- Even later in session 2: ffmpeg installed via winget (user scope) at `%LOCALAPPDATA%/Microsoft/WinGet/Packages/Gyan.FFmpeg_…/bin`; portrait video re-encoded to 4:5 MP4 (431 KB) + WebM (364 KB). Seven new log entries EN/ES (MPI BoW, Keeper, ECOBOX, WhisperFlow, Carina, pulsars, Helix JWST 2026). Log filters/search with URL state, `updated` field, per-entry OG images, `/now` page. Total 18 entries, 94 pages.
+
 **Pending / next**
 
+- ITAM / Ibero / Bátiz rankings research (subagent running) → trajectory bullets with sources.
+- GitHub contributions heatmap (public events API at build), Playwright smoke tests.
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).
 - Tier-2 locales + translation pass at the very end (Rubo's decision).
 - Mobile LCP (Fraunces) still the perf lever; consider `font-display: optional` or smaller subset.

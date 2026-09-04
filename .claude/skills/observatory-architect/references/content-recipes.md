@@ -2,6 +2,17 @@
 
 Every recipe ends with `npm run validate`, a browser check in both modes, and a `content:` commit. Content goes in English first; Spanish and Portuguese follow the same structure. Quote any frontmatter string that contains a colon (`summary: "…: …"`), otherwise YAML turns it into a mapping and the build fails.
 
+## Add a log entry (bitácora)
+
+1. Create `src/content/posts/en/<key>.md` and `src/content/posts/es/<key>.md` (PT-BR falls back to EN). Frontmatter: `title`, `key`, `locale`, `date` (never in the future), optional `updated`, `summary` (≤ 280 chars), `area` (`math` · `stats` · `computing` · `datascience` · `economics` · `humanities` · `astronomy` · `work` · `leadership`), optional `semester`, `courses[]`, `tags[]`, `featured`, `draft`. Quote any string containing a colon.
+2. Body: first person, 350–600 words, `##` sections, end with a "What I take with me / Lo que me llevo" section. No invented grades, names or anecdotes; facts about institutions need a source in the research briefing or the entry text.
+3. The Open Graph image is generated automatically from the English title by `scripts/generate-og.mjs` (runs in `npm run build`). Filters/search on `/log` pick up the new area and term automatically.
+4. Run `npm run validate`; commit as `content(log): …`.
+
+## Update the "Now" page
+
+Edit `src/content/now/{en,es,pt-br}.json`: bump `updated` and edit the `sections[].items`. It is meant to be refreshed every few weeks by hand.
+
 ## Add a project (a star in a nebula)
 
 1. Create `src/content/projects/en/<key>.md` (copy an existing one). Required frontmatter: `title`, `key` (URL slug, `[a-z0-9-]`, identical in every locale), `locale`, `nebula` (`professional` · `academic` · `research` · `personal` · `community` · `upcoming`), `summary` (≤ 240 chars), `role`, `period: { start, end|null }`, `stack[]`, `highlights[]` (1–8 short facts — the stars), optional `repo` (`owner/name`), `links[]`, `featured`, `order`, `visibility` (`public` | `confidential`).
