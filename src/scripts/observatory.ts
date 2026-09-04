@@ -87,7 +87,11 @@ export function mountObservatory(scene: HTMLElement): () => void {
   const hash = decodeURIComponent(window.location.hash.slice(1));
   if (hash.startsWith(`${prefix}:`)) {
     const id = hash.slice(prefix.length + 1);
-    if (nebulae.some((n) => n.dataset.nebula === id)) focus(id, { updateHash: false });
+    if (nebulae.some((n) => n.dataset.nebula === id)) {
+      focus(id, { updateHash: false });
+      // The hash is not an element id, so the browser will not scroll on its own.
+      scene.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
   }
 
   return () => {
