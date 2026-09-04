@@ -200,6 +200,7 @@ const posts = defineCollection({
       'humanities',
       'astronomy',
       'work',
+      'leadership',
     ]),
     /** Academic term label, e.g. "Otoño 2025". */
     semester: z.string().optional(),
