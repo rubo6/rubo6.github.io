@@ -19,6 +19,8 @@ import {
 } from '@/lib/content';
 import { unitHash } from '@/scripts/sky';
 import SectionHeading from './SectionHeading.astro';
+import { Picture } from 'astro:assets';
+import personalBg from '@/assets/generated/personal-bg.avif';
 
 interface Props {
   locale: Locale;
@@ -261,6 +263,15 @@ const personalScene = personal.clusters.map((c, i) => ({
       role="group"
       aria-label={t('personal.title')}
     >
+      <Picture
+        src={personalBg}
+        formats={['avif', 'webp']}
+        widths={[700, 1400]}
+        sizes="(max-width: 900px) 100vw, 72rem"
+        alt=""
+        class="scene-bg"
+        loading="lazy"
+      />
       <div class="deep-field" aria-hidden="true">
         {
           Array.from({ length: 56 }, (_, i) => (
@@ -397,6 +408,21 @@ const personalScene = personal.clusters.map((c, i) => ({
       color-mix(in oklab, var(--bg-0) 70%, transparent)
     );
     pointer-events: none;
+  }
+  .scene-bg,
+  .scene-bg :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  :global([data-theme='atlas']) .scene-bg :global(img) {
+    opacity: 0.1;
+    mix-blend-mode: multiply;
   }
   .deep-field {
     position: absolute;

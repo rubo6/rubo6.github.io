@@ -31,3 +31,6 @@ test-results/
 
 # generated data snapshots (rebuilt in CI)
 src/data/generated/
+
+# Owner-generated artwork sources (PNG, several MB each); optimized AVIF/WebP are committed
+src/assets/generated/raw/

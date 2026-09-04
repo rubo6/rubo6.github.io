@@ -44,6 +44,19 @@ const en = {
   'lang.switch': 'Language',
 
   'hero.kicker': 'Personal observatory · Mexico City',
+  'portrait.illustration': 'Illustration',
+  'portrait.video': 'Video',
+  'portrait.photo': 'Photo',
+  'portrait.switch': 'Portrait medium',
+  'portrait.play': 'Play portrait video',
+  'portrait.caption': 'Illustrated portraits · generated from a photo of the author',
+  'portrait.alt.editorial':
+    'Illustrated portrait of Eduardo Rubén Bernal Puente in a navy blazer against a nebula',
+  'portrait.alt.constellation':
+    'Portrait of Eduardo Rubén drawn as a golden constellation on a night sky',
+  'portrait.alt.atlas':
+    'Portrait of Eduardo Rubén engraved in the style of a 19th-century star atlas',
+  'portrait.alt.photo': 'Photograph of Eduardo Rubén Bernal Puente',
   'hero.cta.observatory': 'Enter the observatory',
   'hero.cta.cv': 'View CV',
   'hero.sky.caption': 'Live sky over Mexico City',
@@ -183,6 +196,19 @@ const es: Record<UIKey, string> = {
   'lang.switch': 'Idioma',
 
   'hero.kicker': 'Observatorio personal · Ciudad de México',
+  'portrait.illustration': 'Ilustración',
+  'portrait.video': 'Video',
+  'portrait.photo': 'Foto',
+  'portrait.switch': 'Medio del retrato',
+  'portrait.play': 'Reproducir video del retrato',
+  'portrait.caption': 'Retratos ilustrados · generados a partir de una foto del autor',
+  'portrait.alt.editorial':
+    'Retrato ilustrado de Eduardo Rubén Bernal Puente con saco azul marino frente a una nebulosa',
+  'portrait.alt.constellation':
+    'Retrato de Eduardo Rubén dibujado como una constelación dorada sobre el cielo nocturno',
+  'portrait.alt.atlas':
+    'Retrato de Eduardo Rubén grabado al estilo de un atlas estelar del siglo XIX',
+  'portrait.alt.photo': 'Fotografía de Eduardo Rubén Bernal Puente',
   'hero.cta.observatory': 'Entrar al observatorio',
   'hero.cta.cv': 'Ver CV',
   'hero.sky.caption': 'Cielo en vivo sobre la Ciudad de México',
@@ -322,6 +348,19 @@ const ptBr: Record<UIKey, string> = {
   'lang.switch': 'Idioma',
 
   'hero.kicker': 'Observatório pessoal · Cidade do México',
+  'portrait.illustration': 'Ilustração',
+  'portrait.video': 'Vídeo',
+  'portrait.photo': 'Foto',
+  'portrait.switch': 'Mídia do retrato',
+  'portrait.play': 'Reproduzir vídeo do retrato',
+  'portrait.caption': 'Retratos ilustrados · gerados a partir de uma foto do autor',
+  'portrait.alt.editorial':
+    'Retrato ilustrado de Eduardo Rubén Bernal Puente com blazer azul-marinho diante de uma nebulosa',
+  'portrait.alt.constellation':
+    'Retrato de Eduardo Rubén desenhado como uma constelação dourada no céu noturno',
+  'portrait.alt.atlas':
+    'Retrato de Eduardo Rubén gravado no estilo de um atlas estelar do século XIX',
+  'portrait.alt.photo': 'Fotografia de Eduardo Rubén Bernal Puente',
   'hero.cta.observatory': 'Entrar no observatório',
   'hero.cta.cv': 'Ver CV',
   'hero.sky.caption': 'Céu ao vivo sobre a Cidade do México',

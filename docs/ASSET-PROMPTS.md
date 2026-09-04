@@ -98,6 +98,28 @@ Editorial illustrated portrait of a young Latino man in his early twenties: shor
 Same portrait as above rendered as a 19th-century star-atlas engraving: fine cross-hatched night-blue ink (#1B2240) lines on ivory paper (#F6F1E7), small gold (#A67C2E) star marks at the facial landmarks connected by thin lines, subtle paper grain. No text, no watermark.
 ```
 
+## 5. Video del retrato (opcional, Veo 3.1 Generate)
+
+Se muestra como pestaña del "ocular" del hero solo si existe `public/media/portrait.mp4` (y opcionalmente `portrait.webm`). Nunca autoplay: el visitante lo reproduce; con `prefers-reduced-motion` no hace loop. Objetivo: 6–8 s, vertical 4:5, sin audio, menos de 3 MB. Usa como imagen de entrada `rubo6-avatar-editorial.png` para que sea la misma persona.
+
+```
+Cinematic 6-second seamless loop of an illustrated portrait of a young Latino man in his early twenties with short dark curly hair, dark-rimmed glasses, navy blazer and white shirt, looking calmly at the camera with a slight smile. Flat-vector editorial illustration style with soft shading. Behind him a deep indigo (#0B1026) night sky with a faint coral (#F07A6E) nebula drifting very slowly and tiny gold (#F2C46D) stars gently twinkling; a warm rim light on his right side breathes slowly. Only a subtle head movement and one blink; static camera. No text, no logos, no fast motion.
+```
+
+Al recibirlo lo recorto a 4:5, genero `.mp4` (H.264) y `.webm` (VP9) con póster del retrato editorial y documento el crédito.
+
+## 6. Estado de los assets generados (2026-09-04)
+
+| Prompt                          | Archivo en Descargas (renombrado)                       | Uso en el sitio                                                                     |
+| ------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| 1.1–1.5 nebulosas               | `rubo6-nebula-{orion,carina,eagle,helix,lagoon}-ai.png` | Sustituidas por imágenes oficiales JWST/Hubble; quedan como respaldo fuera del repo |
+| 2 fondo hero                    | `rubo6-hero-milkyway-bg-wide.png`                       | `src/assets/generated/hero-bg.*` detrás del canvas del cielo                        |
+| 3 universo personal             | `rubo6-universe-personal-bg-square.png`                 | `src/assets/generated/personal-bg.*` fondo de la escena personal                    |
+| 4.1 carta celeste (Nano Banana) | `rubo6-avatar-constellation.png`                        | Retrato en modo personal                                                            |
+| 4.2 editorial (GPT Image 2)     | `rubo6-avatar-editorial.png`                            | Retrato por default, póster del video, Open Graph                                   |
+| 4.3 atlas                       | `rubo6-avatar-atlas-engraving.png`                      | Retrato en tema atlas (claro)                                                       |
+| Foto real de LinkedIn           | `rubo6-linkedin-photo-PRIVATE-do-not-publish.png`       | **Privada**: solo referencia para los prompts; no se sube al repo                   |
+
 ## Qué NO vamos a generar
 
 - Video de fondo en loop: pesa mucho y baja Lighthouse; se reserva para una fase futura con Veo 3.1 si el sitio ya vuela.

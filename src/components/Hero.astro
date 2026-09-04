@@ -4,6 +4,9 @@ import type { Profile } from '@/lib/content';
 import { safeJson } from '@/lib/json';
 import catalog from '@/data/bright-stars.json';
 import LiveCounters from './LiveCounters.astro';
+import Portrait from './Portrait.astro';
+import heroBg from '@/assets/generated/hero-bg.avif';
+import { Picture } from 'astro:assets';
 
 interface Props {
   locale: Locale;
@@ -20,6 +23,16 @@ const skyData = {
 
 <section id="sky" class="hero" aria-labelledby="hero-title">
   <div class="sky-wrap" aria-hidden="false">
+    <Picture
+      src={heroBg}
+      formats={['avif', 'webp']}
+      widths={[960, 1920]}
+      sizes="100vw"
+      alt=""
+      class="sky-bg"
+      loading="eager"
+      fetchpriority="low"
+    />
     <canvas class="sky" data-sky role="img" aria-label={t('hero.sky.aria')}></canvas>
     <div class="sky-veil" aria-hidden="true"></div>
   </div>
@@ -42,16 +55,21 @@ const skyData = {
       </div>
     </div>
 
-    <aside class="sky-meta reveal" data-delay="4" aria-label={t('hero.sky.caption')}>
-      <p class="mono text-xs uppercase tracking-[0.2em] text-accent-3">{t('hero.sky.caption')}</p>
-      <p class="mono lst">
-        <span class="text-ink-muted">{t('hero.sky.lst')}</span>
-        <span class="lst-value" data-sky-clock>--h --m --s</span>
-      </p>
-      <p class="mono text-xs text-ink-muted coords">
-        {profile.location.lat.toFixed(4)}° N · {Math.abs(profile.location.lon).toFixed(4)}° W
-      </p>
-    </aside>
+    <div class="hero-side">
+      <div class="reveal" data-delay="2">
+        <Portrait locale={locale} name={profile.name} />
+      </div>
+      <aside class="sky-meta reveal" data-delay="4" aria-label={t('hero.sky.caption')}>
+        <p class="mono text-xs uppercase tracking-[0.2em] text-accent-3">{t('hero.sky.caption')}</p>
+        <p class="mono lst">
+          <span class="text-ink-muted">{t('hero.sky.lst')}</span>
+          <span class="lst-value" data-sky-clock>--h --m --s</span>
+        </p>
+        <p class="mono text-xs text-ink-muted coords">
+          {profile.location.lat.toFixed(4)}° N · {Math.abs(profile.location.lon).toFixed(4)}° W
+        </p>
+      </aside>
+    </div>
   </div>
 
   <div class="container-content">
@@ -78,8 +96,24 @@ const skyData = {
     z-index: -1;
   }
   .sky {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+  }
+  .sky-bg,
+  .sky-bg :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+  :global([data-theme='atlas']) .sky-bg :global(img) {
+    opacity: 0.12;
+    mix-blend-mode: multiply;
   }
   .sky-veil {
     position: absolute;
@@ -95,9 +129,14 @@ const skyData = {
   }
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.7fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr);
     gap: 3rem;
     align-items: end;
+  }
+  .hero-side {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: end;
   }
   .kicker {
     font-size: var(--text-xs);
@@ -170,6 +209,9 @@ const skyData = {
     }
     .sky-meta {
       justify-self: start;
+    }
+    .hero-side {
+      justify-items: start;
     }
     .sky-veil {
       background: linear-gradient(
