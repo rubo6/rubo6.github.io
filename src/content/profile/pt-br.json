@@ -1,0 +1,28 @@
+{
+  "locale": "pt-br",
+  "name": "Eduardo Rubén Bernal Puente",
+  "nickname": "Rubo",
+  "headline": "Data & Analytics Engineer · Estudante de Ciência de Dados no ITAM",
+  "tagline": "Construo os pipelines, modelos e produtos de dados que transformam sinais brutos em decisões.",
+  "summary": "Estudante de Ciência de Dados no ITAM com experiência prática em Engenharia de Dados e Analytics no ecossistema do Mercado Pago, no Mercado Livre. Projeto pipelines ETL/ELT, modelos de dados em BigQuery, produtos de dados internos e fluxos analíticos; em paralelo, desenvolvo projetos de machine learning e computação paralela. Sólido em SQL, Python, TypeScript/JavaScript, arquitetura de dados e execução multifuncional.",
+  "personalIntro": "Fora do trabalho eu sou o Rubo: apaixonado por música, gamer e alguém capaz de perder uma noite inteira diante de um telescópio. Este universo é o informal.",
+  "location": { "city": "Cidade do México", "country": "México", "lat": 19.4326, "lon": -99.1332 },
+  "email": "eruben.bernal@gmail.com",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/rubo6", "kind": "github" },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/eruben-datascience",
+      "kind": "linkedin"
+    }
+  ],
+  "dates": {
+    "meliStart": "2025-10-01",
+    "itamStart": "2023-08-01",
+    "graduation": "2027-12-01"
+  },
+  "languages": [
+    { "name": "Espanhol", "level": "Nativo" },
+    { "name": "Inglês", "level": "Proficiência profissional" }
+  ]
+}

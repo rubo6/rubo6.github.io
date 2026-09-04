@@ -1,0 +1,55 @@
+[
+  {
+    "id": "languages",
+    "labels": { "en": "Languages", "es": "Lenguajes", "pt-br": "Linguagens" },
+    "constellation": "Orion",
+    "items": [
+      { "name": "Python", "level": 4, "since": 2022 },
+      { "name": "SQL", "level": 4, "since": 2023 },
+      { "name": "TypeScript / JavaScript", "level": 3, "since": 2024 },
+      { "name": "C++17", "level": 2, "since": 2024 }
+    ]
+  },
+  {
+    "id": "data-cloud",
+    "labels": { "en": "Data & Cloud", "es": "Datos y nube", "pt-br": "Dados e nuvem" },
+    "constellation": "Ursa Major",
+    "items": [
+      { "name": "BigQuery", "level": 4 },
+      { "name": "ETL / ELT design", "level": 4 },
+      { "name": "Pandas · NumPy", "level": 4 },
+      { "name": "scikit-learn", "level": 3 },
+      { "name": "PostgreSQL", "level": 3 },
+      { "name": "MongoDB · Cassandra", "level": 2 },
+      { "name": "Firebase / Firestore", "level": 3 },
+      { "name": "Google Sheets integrations", "level": 3 }
+    ]
+  },
+  {
+    "id": "engineering",
+    "labels": { "en": "Engineering", "es": "Ingeniería", "pt-br": "Engenharia" },
+    "constellation": "Cygnus",
+    "items": [
+      { "name": "Next.js 16", "level": 3 },
+      { "name": "Git · GitHub · CI", "level": 4 },
+      { "name": "Docker", "level": 3 },
+      { "name": "Linux", "level": 3 },
+      { "name": "MPI", "level": 2 },
+      { "name": "REST APIs", "level": 3 },
+      { "name": "Astro · Tailwind", "level": 3 }
+    ]
+  },
+  {
+    "id": "analytics-ml",
+    "labels": { "en": "Analytics & ML", "es": "Analítica y ML", "pt-br": "Analytics e ML" },
+    "constellation": "Scorpius",
+    "items": [
+      { "name": "Machine Learning", "level": 3 },
+      { "name": "Computer Vision", "level": 2 },
+      { "name": "Statistics · Monte Carlo", "level": 3 },
+      { "name": "Power BI · Excel", "level": 3 },
+      { "name": "Data architecture", "level": 3 },
+      { "name": "Documentation & handoffs", "level": 4 }
+    ]
+  }
+]

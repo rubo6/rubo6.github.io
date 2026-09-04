@@ -1,0 +1,31 @@
+[
+  {
+    "id": "ibero-ai-diploma",
+    "issuer": "Universidad Iberoamericana",
+    "name": "Artificial Intelligence Diploma Program",
+    "status": "expected",
+    "date": "2026-12-01",
+    "skills": ["Machine Learning", "Deep Learning", "AI Ethics"]
+  },
+  {
+    "id": "anthropic-certification",
+    "issuer": "Anthropic",
+    "name": "Anthropic certification (in progress)",
+    "status": "in-progress",
+    "skills": ["Claude", "Agentic workflows", "Prompt engineering"]
+  },
+  {
+    "id": "datacamp-track",
+    "issuer": "DataCamp",
+    "name": "DataCamp certification track (in progress)",
+    "status": "in-progress",
+    "skills": ["Python", "SQL", "Data Engineering"]
+  },
+  {
+    "id": "aws-academy",
+    "issuer": "AWS Academy",
+    "name": "AWS Academy program (in progress)",
+    "status": "in-progress",
+    "skills": ["Cloud", "AWS", "Data on the cloud"]
+  }
+]

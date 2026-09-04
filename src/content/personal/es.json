@@ -1,0 +1,58 @@
+{
+  "locale": "es",
+  "intro": "Mismo cielo, otro lente. Esta es la parte del universo donde dejo de hablar de pipelines y empiezo a hablar de lo que me mantiene curioso.",
+  "clusters": [
+    {
+      "id": "astronomy",
+      "title": "Astronomía",
+      "object": "Púlsar del Cangrejo · M1",
+      "blurb": "La razón por la que este sitio se ve así. Nebulosas, púlsares, agujeros negros: todo lo que haga sentir enorme al universo.",
+      "items": [
+        "Nebulosas y objetos de cielo profundo",
+        "Púlsares y agujeros negros",
+        "Seguir cada lanzamiento del JWST",
+        "Observar el cielo desde la Ciudad de México"
+      ]
+    },
+    {
+      "id": "music",
+      "title": "Música",
+      "object": "Nebulosa de la Mariposa · NGC 6302",
+      "blurb": "La música suena de fondo en casi todo lo que construyo.",
+      "items": ["Siempre hay una playlist mientras programo", "Géneros y artistas: próximamente"]
+    },
+    {
+      "id": "gaming",
+      "title": "Gaming",
+      "object": "Nebulosa Ojo de Gato · NGC 6543",
+      "blurb": "Los videojuegos me enseñaron a pensar en sistemas antes que cualquier clase.",
+      "items": ["Juegos y sagas favoritas: próximamente"]
+    }
+  ],
+  "softSkills": [
+    {
+      "name": "Liderazgo de equipos",
+      "evidence": "Lideré un equipo de 3 personas en AIESEC y la ejecución técnica de ECOBOX AI en DataLab ITAM."
+    },
+    {
+      "name": "Comunicación con stakeholders internacionales",
+      "evidence": "Coordiné campañas y comunicación con stakeholders en inglés."
+    },
+    {
+      "name": "Documentación y transferencia de conocimiento",
+      "evidence": "Mantengo documentación de arquitectura, changelogs y handoffs de migración en Mercado Libre."
+    },
+    {
+      "name": "Coordinación de investigación",
+      "evidence": "Coordino la planeación de investigación en iniciativas estudiantiles de ciencia de datos."
+    },
+    {
+      "name": "Ejecución transversal",
+      "evidence": "Trabajo con equipos de datos, producto y operaciones para entregar productos de datos internos."
+    }
+  ],
+  "funFacts": [
+    "Las estrellas del inicio son reales: se calculan a partir de un catálogo de estrellas brillantes para el cielo sobre la Ciudad de México en el momento en que abres la página.",
+    "Este sitio no hace ni una sola petición a terceros. Fuentes, scripts e imágenes viven aquí."
+  ]
+}

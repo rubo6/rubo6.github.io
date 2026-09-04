@@ -1,0 +1,94 @@
+{
+  "locale": "es",
+  "entries": [
+    {
+      "id": "meli-point",
+      "kind": "work",
+      "org": "Mercado Libre · Mercado Pago Point",
+      "orgUrl": "https://www.mercadopago.com.mx/point",
+      "role": "Data Engineer / Analytics Engineer (Contractor)",
+      "location": "Ciudad de México",
+      "start": "2025-10-01",
+      "end": null,
+      "summary": "Ingeniería de datos y analítica para la línea de negocio Point dentro de Mercado Pago.",
+      "bullets": [
+        "Diseño y mantengo pipelines ETL/ELT para Mercado Pago Point con SQL avanzado, BigQuery y una plataforma interna de orquestación, dando soporte a analítica y reportería operativa confiables.",
+        "Contribuyo a la migración de arquitectura de datos a un nuevo entorno de backend, rediseñando flujos productor-consumidor y capas de datos sin romper la compatibilidad ni la calidad hacia abajo.",
+        "Modelo y valido datasets en las capas de warehouse, reporting y operación, manteniendo consistencia entre BigQuery, dashboards de negocio y aplicaciones internas.",
+        "Desarrollo una plataforma interna de datos con Next.js 16, Firebase Functions, Firestore, BigQuery e integraciones con Google Sheets para centralizar flujos operativos y acceso a datos.",
+        "Mantengo documentación de arquitectura, changelogs y handoffs de migración para mejorar la transferencia de conocimiento, la reproducibilidad y la continuidad del equipo."
+      ],
+      "stack": [
+        "BigQuery",
+        "SQL",
+        "Python",
+        "Next.js 16",
+        "Firebase",
+        "Firestore",
+        "Google Sheets"
+      ],
+      "orbit": 0
+    },
+    {
+      "id": "datalab-itam",
+      "kind": "leadership",
+      "org": "DataLab ITAM",
+      "role": "Research Manager y miembro estudiante de Ciencia de Datos",
+      "location": "Ciudad de México",
+      "start": "2025-01-15",
+      "end": null,
+      "bullets": [
+        "Lideré la ejecución técnica de ECOBOX AI, un sistema de visión por computadora para clasificación de residuos, coordinando investigación e implementación dentro de una comunidad estudiantil de ciencia de datos.",
+        "Coordino la planeación de investigación, la documentación técnica y la colaboración entre iniciativas estudiantiles de ciencia de datos."
+      ],
+      "stack": ["Python", "Visión por computadora", "Coordinación de investigación"],
+      "orbit": 1
+    },
+    {
+      "id": "ibero-ai",
+      "kind": "education",
+      "org": "Universidad Iberoamericana",
+      "orgUrl": "https://ibero.mx",
+      "role": "Diplomado en Inteligencia Artificial",
+      "location": "Ciudad de México",
+      "start": "2025-11-01",
+      "end": "2026-07-31",
+      "bullets": ["Diploma y certificado previstos para diciembre de 2026."],
+      "stack": ["Machine Learning", "Deep Learning"],
+      "orbit": 2
+    },
+    {
+      "id": "aiesec-itam",
+      "kind": "leadership",
+      "org": "AIESEC ITAM",
+      "orgUrl": "https://aiesec.org",
+      "role": "Team Leader · Outgoing Global Volunteer",
+      "location": "Ciudad de México",
+      "start": "2024-07-01",
+      "end": "2024-12-31",
+      "bullets": [
+        "Lideré un equipo de 3 personas a lo largo del pipeline de atracción a realización, definiendo prioridades y con seguimientos 1:1 recurrentes.",
+        "Coordiné campañas de atracción y la comunicación en inglés con stakeholders internacionales, acompañando a los participantes en el programa de voluntariado."
+      ],
+      "stack": ["Liderazgo", "Comunicación con stakeholders"],
+      "orbit": 3
+    },
+    {
+      "id": "itam-bs",
+      "kind": "education",
+      "org": "Instituto Tecnológico Autónomo de México (ITAM)",
+      "orgUrl": "https://www.itam.mx",
+      "role": "Licenciatura en Ciencia de Datos",
+      "location": "Ciudad de México",
+      "start": "2023-08-01",
+      "end": "2027-12-01",
+      "summary": "Graduación esperada: diciembre de 2027.",
+      "bullets": [
+        "Cursos relevantes: Machine Learning, Inteligencia Artificial, Cómputo Paralelo, Estructuras de Datos Avanzadas, Bases de Datos NoSQL, Estadística y Algoritmos.",
+        "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo."
+      ],
+      "stack": ["Estadística", "Algoritmos", "Cómputo paralelo", "NoSQL"],
+      "orbit": 4
+    }
+  ]
+}

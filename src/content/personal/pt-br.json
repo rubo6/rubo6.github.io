@@ -1,0 +1,58 @@
+{
+  "locale": "pt-br",
+  "intro": "Mesmo céu, outra lente. Esta é a parte do universo em que paro de falar de pipelines e começo a falar do que me mantém curioso.",
+  "clusters": [
+    {
+      "id": "astronomy",
+      "title": "Astronomia",
+      "object": "Pulsar do Caranguejo · M1",
+      "blurb": "O motivo de este site ter essa cara. Nebulosas, pulsares, buracos negros: tudo o que faz o universo parecer enorme.",
+      "items": [
+        "Nebulosas e objetos de céu profundo",
+        "Pulsares e buracos negros",
+        "Acompanhar cada lançamento do JWST",
+        "Observar o céu a partir da Cidade do México"
+      ]
+    },
+    {
+      "id": "music",
+      "title": "Música",
+      "object": "Nebulosa da Borboleta · NGC 6302",
+      "blurb": "A música toca ao fundo de quase tudo o que eu construo.",
+      "items": ["Sempre tem uma playlist rodando enquanto programo", "Gêneros e artistas: em breve"]
+    },
+    {
+      "id": "gaming",
+      "title": "Games",
+      "object": "Nebulosa Olho de Gato · NGC 6543",
+      "blurb": "Os jogos me ensinaram a pensar em sistemas antes de qualquer aula.",
+      "items": ["Jogos e sagas favoritos: em breve"]
+    }
+  ],
+  "softSkills": [
+    {
+      "name": "Liderança de equipes",
+      "evidence": "Liderei uma equipe de 3 pessoas na AIESEC e a execução técnica do ECOBOX AI no DataLab ITAM."
+    },
+    {
+      "name": "Comunicação com stakeholders internacionais",
+      "evidence": "Coordenei campanhas e comunicação com stakeholders em inglês."
+    },
+    {
+      "name": "Documentação e transferência de conhecimento",
+      "evidence": "Mantenho documentação de arquitetura, changelogs e handoffs de migração no Mercado Livre."
+    },
+    {
+      "name": "Coordenação de pesquisa",
+      "evidence": "Coordeno o planejamento de pesquisa em iniciativas estudantis de ciência de dados."
+    },
+    {
+      "name": "Execução multifuncional",
+      "evidence": "Trabalho com equipes de dados, produto e operações para entregar produtos de dados internos."
+    }
+  ],
+  "funFacts": [
+    "As estrelas do início são reais: são calculadas a partir de um catálogo de estrelas brilhantes para o céu sobre a Cidade do México no momento em que você abre a página.",
+    "Este site não faz nenhuma requisição a terceiros. Fontes, scripts e imagens vivem aqui."
+  ]
+}

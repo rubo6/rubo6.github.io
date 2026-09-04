@@ -1,0 +1,94 @@
+{
+  "locale": "en",
+  "entries": [
+    {
+      "id": "meli-point",
+      "kind": "work",
+      "org": "Mercado Libre · Mercado Pago Point",
+      "orgUrl": "https://www.mercadopago.com.mx/point",
+      "role": "Data Engineer / Analytics Engineer (Contractor)",
+      "location": "Mexico City",
+      "start": "2025-10-01",
+      "end": null,
+      "summary": "Data and analytics engineering for the Point business line inside Mercado Pago.",
+      "bullets": [
+        "Design and maintain ETL/ELT pipelines for Mercado Pago Point using advanced SQL, BigQuery and an internal orchestration platform, supporting reliable downstream analytics and operational reporting.",
+        "Contribute to a data-architecture migration to a new backend environment, redesigning producer-consumer flows and data layers while preserving downstream compatibility and data quality.",
+        "Model and validate datasets across warehouse, reporting and operational layers, keeping BigQuery, business dashboards and internal applications consistent.",
+        "Develop an internal data platform with Next.js 16, Firebase Functions, Firestore, BigQuery and Google Sheets integrations to centralize operational workflows and data access.",
+        "Maintain architecture documentation, changelogs and migration handoffs to improve knowledge transfer, reproducibility and continuity across the team."
+      ],
+      "stack": [
+        "BigQuery",
+        "SQL",
+        "Python",
+        "Next.js 16",
+        "Firebase",
+        "Firestore",
+        "Google Sheets"
+      ],
+      "orbit": 0
+    },
+    {
+      "id": "datalab-itam",
+      "kind": "leadership",
+      "org": "DataLab ITAM",
+      "role": "Research Manager & Data Science Student Member",
+      "location": "Mexico City",
+      "start": "2025-01-15",
+      "end": null,
+      "bullets": [
+        "Led the technical execution of ECOBOX AI, a computer-vision system for waste classification, coordinating research and implementation within a student data-science community.",
+        "Coordinate research planning, technical documentation and collaboration across student-led data-science initiatives."
+      ],
+      "stack": ["Python", "Computer Vision", "Research coordination"],
+      "orbit": 1
+    },
+    {
+      "id": "ibero-ai",
+      "kind": "education",
+      "org": "Universidad Iberoamericana",
+      "orgUrl": "https://ibero.mx",
+      "role": "Artificial Intelligence Diploma Program",
+      "location": "Mexico City",
+      "start": "2025-11-01",
+      "end": "2026-07-31",
+      "bullets": ["Diploma and certificate expected in December 2026."],
+      "stack": ["Machine Learning", "Deep Learning"],
+      "orbit": 2
+    },
+    {
+      "id": "aiesec-itam",
+      "kind": "leadership",
+      "org": "AIESEC ITAM",
+      "orgUrl": "https://aiesec.org",
+      "role": "Team Leader · Outgoing Global Volunteer",
+      "location": "Mexico City",
+      "start": "2024-07-01",
+      "end": "2024-12-31",
+      "bullets": [
+        "Led a 3-member team across the attraction-to-realization pipeline, setting priorities and running recurring 1:1 follow-ups.",
+        "Coordinated attraction campaigns and communication with international stakeholders in English, supporting participants through the volunteer-program pipeline."
+      ],
+      "stack": ["Leadership", "Stakeholder communication"],
+      "orbit": 3
+    },
+    {
+      "id": "itam-bs",
+      "kind": "education",
+      "org": "Instituto Tecnológico Autónomo de México (ITAM)",
+      "orgUrl": "https://www.itam.mx",
+      "role": "B.S. in Data Science",
+      "location": "Mexico City",
+      "start": "2023-08-01",
+      "end": "2027-12-01",
+      "summary": "Expected graduation: December 2027.",
+      "bullets": [
+        "Relevant coursework: Machine Learning, Artificial Intelligence, Parallel Computing, Advanced Data Structures, NoSQL Databases, Statistics and Algorithms.",
+        "Academic focus: data engineering, machine learning, computer vision and parallel computing."
+      ],
+      "stack": ["Statistics", "Algorithms", "Parallel Computing", "NoSQL"],
+      "orbit": 4
+    }
+  ]
+}
