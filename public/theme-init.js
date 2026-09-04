@@ -26,6 +26,7 @@
 
   root.setAttribute('data-theme', theme);
   root.setAttribute('data-mode', mode);
+  root.classList.add('js');
 
   var meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {

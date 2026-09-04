@@ -652,6 +652,17 @@ const personalScene = personal.clusters.map((c, i) => ({
     }
     .nebula {
       width: calc(var(--ns) * clamp(7rem, 34vw, 11rem));
+      left: clamp(22%, var(--nx), 78%);
+      top: clamp(14%, var(--ny), 80%);
+    }
+    .nebula-name {
+      font-size: var(--text-base);
+    }
+    .nebula-meta {
+      font-size: 0.6rem;
+      max-width: 40vw;
+      white-space: normal;
+      text-align: center;
     }
     .personal-extra {
       grid-template-columns: 1fr;

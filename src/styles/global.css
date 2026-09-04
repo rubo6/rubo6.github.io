@@ -412,7 +412,7 @@
   }
 }
 
-.reveal {
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
 }

@@ -1,6 +1,6 @@
 # Plan de ejecución — Rediseño de rubo6.github.io
 
-> Fecha: 2026-09-03 · Autor del plan: Claude (Fable 5.1) con Rubo · Estado: **propuesto, pendiente de aprobación**
+> Fecha: 2026-09-03 · Autor del plan: Claude (Fable 5.1) con Rubo · Estado: **aprobado y en ejecución** (fases 0–5 y 7 completas; 6, 8b y 9 en curso). Ver Addendum v2 al final.
 > Este documento es la fuente de verdad del rediseño. Cualquier agente (Claude, Codex, humano) debe leerlo antes de tocar el repo.
 
 ---

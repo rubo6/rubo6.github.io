@@ -175,6 +175,8 @@ function bindReveal(): void {
     { threshold: 0.12, rootMargin: '0px 0px -5% 0px' },
   );
   items.forEach((el) => io.observe(el));
+  // Safety net: whatever the observer missed becomes visible anyway.
+  window.setTimeout(() => items.forEach((el) => el.classList.add('is-visible')), 2500);
 }
 
 export function initUniverseControls(): void {
