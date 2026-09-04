@@ -1,11 +1,14 @@
 // Summarises Lighthouse JSON reports (mobile + desktop) into docs/lighthouse/latest.json, appends a
 // line to docs/lighthouse/history.jsonl and prints a Markdown table (used as the GitHub job summary).
-// Usage: node scripts/lighthouse-summary.mjs <mobile.json> <desktop.json>
 import { readFileSync, writeFileSync, mkdirSync, appendFileSync } from 'node:fs';
 
-const [mobilePath, desktopPath] = process.argv.slice(2);
-if (!mobilePath || !desktopPath) {
-  console.error('usage: node scripts/lighthouse-summary.mjs <mobile.json> <desktop.json>');
+// Usage: node scripts/lighthouse-summary.mjs <desktop.json> <mobile-1.json> [mobile-2.json ...]
+// Several mobile reports → the one with the median performance score is kept (Lighthouse's own advice).
+const [desktopPath, ...mobilePaths] = process.argv.slice(2);
+if (!desktopPath || mobilePaths.length === 0) {
+  console.error(
+    'usage: node scripts/lighthouse-summary.mjs <desktop.json> <mobile.json> [more mobile.json]',
+  );
   process.exit(1);
 }
 
@@ -51,11 +54,15 @@ function lcpBreakdown(a) {
   return { element: node?.selector ?? null, ...phases };
 }
 
+const mobileRuns = mobilePaths.map(pick).sort((x, y) => x.performance - y.performance);
+const mobile = mobileRuns[Math.floor(mobileRuns.length / 2)];
+mobile.runs = mobileRuns.map((r) => r.performance);
+
 const latest = {
   url: 'https://rubo6.dev/',
   measuredAt: new Date().toISOString(),
   runner: process.env.GITHUB_RUN_ID ? `github-actions#${process.env.GITHUB_RUN_ID}` : 'local',
-  mobile: pick(mobilePath),
+  mobile,
   desktop: pick(desktopPath),
 };
 
@@ -92,7 +99,7 @@ const md = [
   row('Mobile', latest.mobile),
   row('Desktop', latest.desktop),
   '',
-  `Runner benchmark index: mobile ${latest.mobile.benchmarkIndex}, desktop ${latest.desktop.benchmarkIndex} (higher = faster machine; scores are comparable only at similar values).`,
+  `Mobile runs: ${latest.mobile.runs.join(' / ')} (median kept). Runner benchmark index: mobile ${latest.mobile.benchmarkIndex}, desktop ${latest.desktop.benchmarkIndex} (higher = faster machine; scores are comparable only at similar values).`,
 ].join('\n');
 console.log(md);
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + '\n');

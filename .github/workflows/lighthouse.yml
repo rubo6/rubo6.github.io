@@ -44,12 +44,11 @@ jobs:
       - name: Wait for the CDN to serve the new deploy
         run: sleep 45
 
-      - name: Lighthouse mobile
-        run: >
-          npx -y lighthouse@13 https://rubo6.dev/ --quiet
-          --chrome-flags="--headless=new --no-sandbox"
-          --output=json --output-path=./lh-mobile.json
-          --only-categories=performance,accessibility,best-practices,seo
+      - name: Lighthouse mobile (3 runs, the summary keeps the median)
+        run: |
+          for i in 1 2 3; do
+            npx -y lighthouse@13 https://rubo6.dev/ --quiet               --chrome-flags="--headless=new --no-sandbox"               --output=json --output-path=./lh-mobile-$i.json               --only-categories=performance,accessibility,best-practices,seo
+          done
 
       - name: Lighthouse desktop
         run: >
@@ -59,14 +58,14 @@ jobs:
           --only-categories=performance,accessibility,best-practices,seo
 
       - name: Summarise
-        run: node scripts/lighthouse-summary.mjs ./lh-mobile.json ./lh-desktop.json
+        run: node scripts/lighthouse-summary.mjs ./lh-desktop.json ./lh-mobile-1.json ./lh-mobile-2.json ./lh-mobile-3.json
 
       - name: Upload raw reports
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: lighthouse-reports
           path: |
-            lh-mobile.json
+            lh-mobile-*.json
             lh-desktop.json
           retention-days: 30
 
