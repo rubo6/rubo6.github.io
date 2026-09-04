@@ -7,7 +7,7 @@ content (JSON/MD, zod) ──► lib/content.ts (locale fallback) ──► Astr
                                                      ▲                    │
 lib/astro (pure math, tested) ───────────────────────┘                    ├─► scripts/*.ts (client islands)
                                                                           └─► styles/global.css (tokens)
-GitHub Actions: push to main ─► withastro/action (build) ─► deploy-pages ─► rubo6.github.io
+GitHub Actions: push to main ─► withastro/action (build) ─► deploy-pages ─► rubo6.dev
                 daily cron  ─► same pipeline (keeps build-time data fresh)
 ```
 

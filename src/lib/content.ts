@@ -13,6 +13,7 @@ export type Nebula = CollectionEntry<'nebulae'>['data'];
 export type SkillGroup = CollectionEntry<'skills'>['data'];
 export type Certification = CollectionEntry<'certifications'>['data'];
 export type Personal = CollectionEntry<'personal'>['data'];
+export type RepoStats = CollectionEntry<'repoStats'>['data'];
 
 async function pickLocale<T extends { data: { locale: Locale } }>(
   entries: T[],
@@ -76,4 +77,16 @@ export function formatMonth(iso: string | null, locale: Locale, present: string)
   return new Intl.DateTimeFormat(tag, { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(
     new Date(Date.UTC(y, m - 1, 1)),
   );
+}
+
+/** Repository facts keyed by owner/name. Empty map when the build had no network. */
+export async function getRepoStats(): Promise<Map<string, RepoStats>> {
+  const entries = await getCollection('repoStats');
+  return new Map(entries.map((e) => [e.data.repo, e.data]));
+}
+
+/** Compact number formatting per locale (1.2k, 3 mil…). */
+export function formatCount(n: number, locale: Locale): string {
+  const tag = locale === 'pt-br' ? 'pt-BR' : locale === 'es' ? 'es-MX' : 'en-US';
+  return new Intl.NumberFormat(tag, { notation: 'compact', maximumFractionDigits: 1 }).format(n);
 }

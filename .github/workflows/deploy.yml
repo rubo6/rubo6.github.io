@@ -40,6 +40,10 @@ jobs:
 
       - name: Build with Astro
         uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6.1.2
+        env:
+          # Fine-grained PAT (Administration: read-only on selected repos). Used only at build time
+          # by src/loaders/github.ts to read repository traffic; never reaches the browser.
+          GH_TRAFFIC_TOKEN: ${{ secrets.GH_TRAFFIC_TOKEN }}
         with:
           node-version: 24
           package-manager: npm@latest

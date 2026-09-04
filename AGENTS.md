@@ -4,7 +4,7 @@ This file is the canonical instruction set for AI coding agents (Claude Code, Co
 
 ## What this is
 
-The personal site of Eduardo Rubén "Rubo" Bernal Puente, deployed to GitHub Pages at https://rubo6.github.io. Astro 7 (static), TypeScript strict, Tailwind CSS 4, zero UI framework, zero third-party runtime requests. Concept: an astronomical **observatory** (see [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)).
+The personal site of Eduardo Rubén "Rubo" Bernal Puente, deployed to GitHub Pages at https://rubo6.dev. Astro 7 (static), TypeScript strict, Tailwind CSS 4, zero UI framework, zero third-party runtime requests. Concept: an astronomical **observatory** (see [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)).
 
 ## Commands
 

@@ -3,7 +3,14 @@ import Base from '@/layouts/Base.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import { localePath, useTranslations, type Locale } from '@/i18n/ui';
-import { formatMonth, pick, type Nebula, type Project } from '@/lib/content';
+import {
+  formatCount,
+  formatMonth,
+  getRepoStats,
+  pick,
+  type Nebula,
+  type Project,
+} from '@/lib/content';
 import { render } from 'astro:content';
 
 interface Props {
@@ -14,6 +21,7 @@ interface Props {
 const { locale, project, nebula } = Astro.props;
 const t = useTranslations(locale);
 const { Content } = await render(project);
+const stats = project.data.repo ? (await getRepoStats()).get(project.data.repo) : undefined;
 const path = `/projects/${project.data.key}`;
 ---
 
@@ -63,6 +71,18 @@ const path = `/projects/${project.data.key}`;
           )
         }
       </dl>
+      {
+        project.data.visibility === 'public' && stats && (
+          <p class="mono text-xs text-ink-muted mt-4">
+            ★ {formatCount(stats.stars, locale)} {t('repo.stars')} · ⑂{' '}
+            {formatCount(stats.forks, locale)} {t('repo.forks')}
+            {stats.traffic &&
+              ` · ◉ ${formatCount(stats.traffic.views, locale)} ${t('repo.views')} · ${formatCount(stats.traffic.clones, locale)} ${t('repo.clones')}`}
+            {stats.language && ` · ${stats.language}`} · {t('repo.updated')}{' '}
+            {formatMonth(stats.pushedAt.slice(0, 10), locale, '')}
+          </p>
+        )
+      }
       {
         project.data.visibility === 'confidential' && (
           <p class="mono text-xs text-ink-muted mt-4">{t('observatory.confidential')}</p>

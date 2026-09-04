@@ -6,7 +6,7 @@ This is a static personal website. It has no backend, no database, no authentica
 
 Please e-mail **eruben.bernal@gmail.com** with the subject `[security] rubo6.github.io`. Include the affected URL or file, steps to reproduce and, if possible, a suggested fix. You should get an acknowledgement within 72 hours. Please do not open a public issue for security reports.
 
-Machine-readable version: [`/.well-known/security.txt`](https://rubo6.github.io/.well-known/security.txt).
+Machine-readable version: [`/.well-known/security.txt`](https://rubo6.dev/.well-known/security.txt).
 
 ## Scope
 

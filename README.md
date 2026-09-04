@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://rubo6.github.io"><img alt="Live site" src="https://img.shields.io/badge/live-rubo6.github.io-f2c46d?style=flat-square&labelColor=0b1026"></a>
+  <a href="https://rubo6.dev"><img alt="Live site" src="https://img.shields.io/badge/live-rubo6.dev-f2c46d?style=flat-square&labelColor=0b1026"></a>
   <a href="https://github.com/rubo6/rubo6.github.io/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/rubo6/rubo6.github.io/actions/workflows/deploy.yml/badge.svg"></a>
   <a href="https://github.com/rubo6/rubo6.github.io/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/rubo6/rubo6.github.io/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://github.com/rubo6/rubo6.github.io/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/rubo6/rubo6.github.io/actions/workflows/codeql.yml/badge.svg"></a>
@@ -14,12 +14,14 @@
 </p>
 
 <p align="center">
-  <b>English</b> · <a href="https://rubo6.github.io/es/">Español</a> · <a href="https://rubo6.github.io/pt-br/">Português</a>
+  <b>English</b> · <a href="https://rubo6.dev/es/">Español</a> · <a href="https://rubo6.dev/pt-br/">Português</a>
 </p>
 
 ---
 
 # Rubo · Observatory
+
+**Live at [rubo6.dev](https://rubo6.dev)** (`rubo6.github.io` redirects there).
 
 My personal site is an **observatory**. The hero renders the _real_ sky above Mexico City at the moment you open it, computed from a bright-star catalogue with sidereal-time math written in TypeScript and covered by unit tests. Projects live inside **nebulae**, each highlight is a **star**, my trajectory is drawn as **orbits**, and skills as **constellations**. A switch flips the whole universe from _professional_ to _personal_.
 

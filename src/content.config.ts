@@ -10,6 +10,7 @@
  */
 import { defineCollection, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
+import { githubLoader } from './loaders/github';
 
 const locale = z.enum(['en', 'es', 'pt-br']);
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD');
@@ -180,6 +181,29 @@ const personal = defineCollection({
   }),
 });
 
+/** Live repository facts fetched at build time (see src/loaders/github.ts). Empty when offline. */
+const repoStats = defineCollection({
+  loader: githubLoader(),
+  schema: z.object({
+    repo: z.string(),
+    stars: z.number().int(),
+    forks: z.number().int(),
+    openIssues: z.number().int(),
+    language: z.string().nullable(),
+    pushedAt: z.string(),
+    htmlUrl: httpsUrl,
+    description: z.string().nullable(),
+    traffic: z
+      .object({
+        views: z.number().int(),
+        uniques: z.number().int(),
+        clones: z.number().int(),
+        days: z.number().int(),
+      })
+      .optional(),
+  }),
+});
+
 export const collections = {
   profile,
   trajectory,
@@ -188,4 +212,5 @@ export const collections = {
   projects,
   skills,
   personal,
+  repoStats,
 };

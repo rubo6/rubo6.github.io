@@ -8,7 +8,15 @@
  * site works with zero images; an official JWST/Hubble image can be dropped in per nebula later.
  */
 import { localePath, useTranslations, type Locale } from '@/i18n/ui';
-import { formatMonth, pick, type Nebula, type Personal, type Project } from '@/lib/content';
+import {
+  formatCount,
+  formatMonth,
+  getRepoStats,
+  pick,
+  type Nebula,
+  type Personal,
+  type Project,
+} from '@/lib/content';
 import { unitHash } from '@/scripts/sky';
 import SectionHeading from './SectionHeading.astro';
 
@@ -21,6 +29,7 @@ interface Props {
 const { locale, nebulae, projects, personal } = Astro.props;
 const t = useTranslations(locale);
 
+const repoStats = await getRepoStats();
 const byNebula = new Map<string, Project[]>();
 for (const p of projects) byNebula.set(p.data.nebula, [...(byNebula.get(p.data.nebula) ?? []), p]);
 
@@ -189,6 +198,29 @@ const personalScene = personal.clusters.map((c, i) => ({
                       </li>
                     ))}
                   </ul>
+                  {p.data.visibility === 'public' && p.data.repo && repoStats.get(p.data.repo) && (
+                    <ul class="repo-stats mono" aria-label={t('observatory.repo')}>
+                      <li>
+                        ★ {formatCount(repoStats.get(p.data.repo)!.stars, locale)} {t('repo.stars')}
+                      </li>
+                      <li>
+                        ⑂ {formatCount(repoStats.get(p.data.repo)!.forks, locale)} {t('repo.forks')}
+                      </li>
+                      {repoStats.get(p.data.repo)!.traffic && (
+                        <li>
+                          ◉ {formatCount(repoStats.get(p.data.repo)!.traffic!.views, locale)}{' '}
+                          {t('repo.views')}
+                        </li>
+                      )}
+                      {repoStats.get(p.data.repo)!.language && (
+                        <li>{repoStats.get(p.data.repo)!.language}</li>
+                      )}
+                      <li>
+                        {t('repo.updated')}{' '}
+                        {formatMonth(repoStats.get(p.data.repo)!.pushedAt.slice(0, 10), locale, '')}
+                      </li>
+                    </ul>
+                  )}
                   <div class="star-card-foot">
                     {p.data.visibility === 'confidential' ? (
                       <p class="mono text-xs text-ink-muted">{t('observatory.confidential')}</p>
@@ -597,6 +629,17 @@ const personalScene = personal.clusters.map((c, i) => ({
     background: var(--accent);
     box-shadow: 0 0 8px color-mix(in oklab, var(--accent) 70%, transparent);
     justify-self: center;
+  }
+  .repo-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0.6rem 0 0;
+    border-top: 1px dashed var(--line);
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
   }
   .star-card-foot {
     margin-top: auto;

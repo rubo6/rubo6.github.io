@@ -46,6 +46,8 @@ Lo que verás: visitas, páginas, país, referrer, dispositivo. Nada personal, s
 
 ## 5. Dominio propio
 
+> ✅ **Hecho el 2026-09-03**: `rubo6.dev` comprado en Cloudflare, 4 registros A + CNAME `www`, dominio configurado en GitHub Pages (apex, `www` redirige solo). Pendiente: marcar **Enforce HTTPS** cuando GitHub emita el certificado (minutos a una hora) y, opcional, añadir los 4 registros `AAAA` (IPv6) `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`, tipo AAAA, nombre `@`, proxy desactivado.
+
 ### ¿Qué cambia entre terminaciones?
 
 | TLD             | Precio/año aprox. (Cloudflare, sept. 2026) | Quién lo administra                                                  | Para quién es                         | Notas                                                                                                                                                                                                        |

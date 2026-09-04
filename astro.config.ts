@@ -4,14 +4,14 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 /**
- * Site configuration for https://rubo6.github.io
+ * Site configuration for https://rubo6.dev (GitHub Pages, custom domain; rubo6.github.io redirects here)
  *
  * - Static output (GitHub Pages). No server, no runtime secrets.
  * - i18n: English is the root locale; other locales live under /<locale>/.
  * - Tailwind CSS v4 runs as a Vite plugin (no @astrojs/tailwind integration).
  */
 export default defineConfig({
-  site: 'https://rubo6.github.io',
+  site: 'https://rubo6.dev',
   output: 'static',
   trailingSlash: 'ignore',
 

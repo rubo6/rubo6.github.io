@@ -20,6 +20,13 @@ Append one entry per working session: what changed, decisions, what is pending. 
 
 **Incidents**: Astro inlined small scripts → CSP blocked them in production (fixed with `assetsInlineLimit: 0`). YAML colon in WhisperFlow summary broke one build (quoted).
 
+**Late additions (same day)**
+
+- Custom domain `rubo6.dev` (Cloudflare Registrar, DNS-only A + CNAME www; Pages custom domain apex). `site` switched, `public/CNAME`, security.txt canonical, README links.
+- Build-time GitHub loader (`src/loaders/github.ts`, collection `repoStats`) → stars/forks/language/last push on project cards and pages; traffic (views/clones, 14 d) when `GH_TRAFFIC_TOKEN` is present in the deploy build.
+- Companion skills copied into `.claude/skills/` (ui-ux-master, web-design-guidelines, web-accessibility, pwa-native-feel — adapted, internal references removed) plus a new `web-security-static`; referenced from this skill.
+- Rubo completed: 2FA, push protection, Dependabot/CodeQL/private reporting, `GH_TRAFFIC_TOKEN` secret, GoatCounter account, WhisperFlow repo created and pushed (2 commits).
+
 **Pending / next**
 
 - Official JWST/Hubble imagery per nebula (Carina first, Rubo's favourite).

@@ -60,6 +60,10 @@ Two attributes on `<html>`: `data-theme` (`night` | `atlas`) and `data-mode` (`p
 
 Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA hours, Dec degrees, V mag) + 29 constellation figures as name pairs. Adding a star requires exact J2000 coordinates.
 
+## GitHub loader (`src/loaders/github.ts`)
+
+Astro Content Layer loader registered as the `repoStats` collection. At build it discovers every `repo:` in `src/content/projects/en/*.md`, calls `https://api.github.com/repos/<owner>/<name>` (stars, forks, language, last push) and, when `GH_TRAFFIC_TOKEN` is in the environment (Actions secret, fine-grained PAT with Administration read-only), `/traffic/views` and `/traffic/clones` (14-day windows). Fail-soft: errors are logged as warnings and the collection stays empty, so offline builds pass and the UI simply omits the stats row. Consumed by `Observatory.astro` (star cards) and `ProjectPage.astro`. The daily cron in `deploy.yml` keeps numbers fresh.
+
 ## Analytics
 
 GoatCounter tag in `Base.astro` (`is:inline` external script with `data-goatcounter`), origins whitelisted in the CSP. Dashboard: https://rubo6.goatcounter.com. ADR-0006.

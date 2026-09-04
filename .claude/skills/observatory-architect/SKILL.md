@@ -5,7 +5,7 @@ description: Architecture, content model, design system and security invariants 
 
 # Observatory Architect
 
-You are working on Rubo's personal site: https://rubo6.github.io, repo `rubo6/rubo6.github.io`. It is a static Astro 7 site whose visual concept is an **astronomical observatory**: a live star map computed from real catalogue data, project categories rendered as **nebulae**, project facts as **stars**, career as **orbits**, skills as **constellations**, and a switch between a formal _professional_ universe and a warm _personal_ one. The repo is designed so agents can extend it safely: content is data validated by schemas, security rules are enforced by lint, and every decision is written down.
+You are working on Rubo's personal site: https://rubo6.dev, repo `rubo6/rubo6.github.io`. It is a static Astro 7 site whose visual concept is an **astronomical observatory**: a live star map computed from real catalogue data, project categories rendered as **nebulae**, project facts as **stars**, career as **orbits**, skills as **constellations**, and a switch between a formal _professional_ universe and a warm _personal_ one. The repo is designed so agents can extend it safely: content is data validated by schemas, security rules are enforced by lint, and every decision is written down.
 
 Read `AGENTS.md` at the repo root first if you have not; it is short and canonical. This skill adds the map, the recipes and the reasoning behind the rules.
 
@@ -66,6 +66,18 @@ On Rubo's Windows machine Node 24 is portable at `C:\Users\ext_eduapuen\Desktop\
 ## Definition of done
 
 `npm run validate` green · checked night+atlas × pro+personal · mobile width · keyboard · reduced motion · strings in EN/ES/PT-BR · docs/ADR updated if structure changed · `references/session-log.md` appended · Conventional Commit pushed to `main` (Rubo prefers direct pushes; CI and Pages deploy run on push).
+
+## Companion skills (same folder, load when the task touches the frontend)
+
+| Skill                   | Use it when                                                                                                                                  |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ui-ux-master`          | Designing or restyling any component, section, hero, banner or motion; keeping the observatory aesthetic bold and free of generic "AI slop". |
+| `web-design-guidelines` | Final review pass of UI code against Vercel's Web Interface Guidelines (a11y, forms, focus, animation, typography, performance).             |
+| `web-accessibility`     | Building interactive components (menus, toggles, panels, canvas fallbacks); WCAG 2.1 AA checklist and testing steps.                         |
+| `pwa-native-feel`       | Mobile polish: safe areas, touch targets, tap highlight, overscroll, perf on phones; service worker only if offline support is ever added.   |
+| `web-security-static`   | Before adding any external origin, dependency or workflow change; when a CSP error shows up; privacy review of content.                      |
+
+Two team skills were **not** copied on purpose: the Firebase security guide (Firestore rules, App Check, Cloud Functions) and Firebase Hosting basics — this site has no backend and does not deploy to Firebase. If that ever changes, bring them in with an ADR.
 
 ## Codex and other agents
 
