@@ -172,6 +172,20 @@ const media = [
     border-style: dashed;
     z-index: 2;
   }
+  .frame::after {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--accent) 22%, transparent),
+      transparent 60%
+    );
+    animation: breathe 7s ease-in-out infinite;
+    pointer-events: none;
+  }
   .ring-2 {
     inset: -14%;
     border-color: color-mix(in oklab, var(--accent-3) 30%, transparent);

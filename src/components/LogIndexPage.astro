@@ -6,6 +6,7 @@ import LogCard from './LogCard.astro';
 import LogFilters from './LogFilters.astro';
 import { localePath, useTranslations, type Locale } from '@/i18n/ui';
 import { getPosts } from '@/lib/content';
+import SceneBackdrop from './SceneBackdrop.astro';
 
 interface Props {
   locale: Locale;
@@ -26,6 +27,7 @@ const posts = await getPosts(locale);
   <Nav locale={locale} path="/log" minimal />
   <main id="main" class="container-content log">
     <header class="head">
+      <SceneBackdrop id="tarantula" locale={locale} />
       <p class="mono text-accent-3 text-xs uppercase tracking-[0.22em]">
         {t('log.all')} · {posts.length}
       </p>
@@ -46,6 +48,12 @@ const posts = await getPosts(locale);
     padding-block: 3rem 5rem;
   }
   .head {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 2rem);
+    margin-inline: calc(-1 * clamp(1rem, 3vw, 2rem));
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     max-width: 60rem;
   }
   h1 {

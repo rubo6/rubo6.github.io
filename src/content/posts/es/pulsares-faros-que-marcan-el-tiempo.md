@@ -5,6 +5,7 @@ locale: es
 date: '2026-09-04'
 summary: 'Un púlsar es una estrella de neutrones que gira decenas de veces por segundo y barre el cielo con un haz de radiación. Cómo se descubrieron por accidente, por qué son los relojes más precisos del universo y qué tienen que ver con una carrera de datos.'
 area: astronomy
+scene: crab
 tags:
   [
     'astronomía',

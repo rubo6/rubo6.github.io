@@ -1,0 +1,67 @@
+[
+  {
+    "id": "crab",
+    "release": "weic2326a",
+    "object": "Crab Nebula (M1) — pulsar wind nebula",
+    "source": "https://esawebb.org/images/weic2326a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam + MIRI",
+    "released": "2023-10-30",
+    "credit": "NASA, ESA, CSA, STScI, T. Temim (Princeton University)",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "centre",
+    "uses": ["log post: pulsares-faros-que-marcan-el-tiempo"]
+  },
+  {
+    "id": "cartwheel",
+    "release": "weic2211a",
+    "object": "Cartwheel Galaxy (ESO 350-40)",
+    "source": "https://esawebb.org/images/weic2211a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam + MIRI",
+    "released": "2022-08-02",
+    "credit": "NASA, ESA, CSA, STScI",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "attention",
+    "uses": ["404 page"]
+  },
+  {
+    "id": "tarantula",
+    "release": "weic2212a",
+    "object": "Tarantula Nebula (30 Doradus)",
+    "source": "https://esawebb.org/images/weic2212a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2022-09-06",
+    "credit": "NASA, ESA, CSA, STScI, Webb ERO Production Team",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "centre",
+    "uses": ["log index header"]
+  },
+  {
+    "id": "wr124",
+    "release": "weic2307a",
+    "object": "Wolf-Rayet 124 (WR 124)",
+    "source": "https://esawebb.org/images/weic2307a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam + MIRI",
+    "released": "2023-03-14",
+    "credit": "NASA, ESA, CSA, STScI, Webb ERO Production Team",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "centre",
+    "uses": ["Now page header"]
+  },
+  {
+    "id": "stephans-quintet",
+    "release": "weic2208a",
+    "object": "Stephan's Quintet",
+    "source": "https://esawebb.org/images/weic2208a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam + MIRI",
+    "released": "2022-07-12",
+    "credit": "NASA, ESA, CSA, STScI",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "attention",
+    "uses": ["contact section backdrop"]
+  }
+]

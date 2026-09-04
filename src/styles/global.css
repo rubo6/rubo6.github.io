@@ -378,15 +378,173 @@
   }
 }
 
+/* ---------- Alive layer: glass, spotlight, lift ---------- */
+@utility glass {
+  background: color-mix(in oklab, var(--bg-1) 55%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--line);
+}
+
+/* Pointer spotlight: src/scripts/alive.ts writes --mx/--my on the hovered .glow element. */
+.glow {
+  position: relative;
+  isolation: isolate;
+}
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--accent) 16%, transparent),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  z-index: 0;
+}
+.glow:hover::before,
+.glow:focus-within::before {
+  opacity: 1;
+}
+.glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+.lift {
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+.lift:hover,
+.lift:focus-within {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+  box-shadow:
+    0 24px 50px -28px color-mix(in oklab, var(--accent) 35%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+/* Symmetric idle loops */
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 7px color-mix(in oklab, var(--accent) 0%, transparent);
+  }
+}
+@keyframes sweep {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+.spin-slow {
+  animation: orbit 40s linear infinite;
+}
+.spin-slower {
+  animation: orbit 90s linear infinite reverse;
+}
+
+/* Dome shutter: two panels that close over the page during client-side navigation. */
+.dome-shutter {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.dome-shutter span {
+  display: block;
+  background:
+    radial-gradient(
+      120% 100% at 50% 100%,
+      color-mix(in oklab, var(--accent) 12%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  transform: translateY(-101%);
+  transition: transform 420ms var(--ease-out);
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+}
+.dome-shutter span:last-child {
+  transform: translateY(101%);
+  border-bottom: 0;
+  border-top: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  background:
+    radial-gradient(
+      120% 100% at 50% 0%,
+      color-mix(in oklab, var(--accent) 12%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(0deg, var(--bg-1), var(--bg-0));
+}
+.dome-shutter.is-closing span {
+  transform: translateY(0);
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+.dome-shutter.is-open span {
+  transform: translateY(-101%);
+}
+.dome-shutter.is-open span:last-child {
+  transform: translateY(101%);
+}
+
+/* View transitions (Astro ClientRouter): big, soft cross-dissolve with depth. */
+::view-transition-old(root) {
+  animation: vt-out 520ms var(--ease-out) both;
+}
+::view-transition-new(root) {
+  animation: vt-in 680ms var(--ease-out) both;
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: scale(1.02);
+    filter: blur(8px);
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(10px);
+    filter: blur(10px);
+  }
+}
+
 /* ---------- Motion ---------- */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(26px) scale(0.985);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
+    filter: blur(0);
   }
 }
 @keyframes twinkle {
@@ -414,10 +572,33 @@
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(26px) scale(0.985);
+  filter: blur(8px);
 }
 .reveal.is-visible {
-  animation: rise var(--dur-slow) var(--ease-out) forwards;
+  animation: rise 1100ms var(--ease-out) forwards;
+}
+/* Stagger direct children of a revealed group via --i (set by nth-child rules). */
+.reveal-stagger > * {
+  animation-delay: calc(var(--i, 0) * 70ms) !important;
+}
+.reveal-stagger > *:nth-child(2) {
+  --i: 1;
+}
+.reveal-stagger > *:nth-child(3) {
+  --i: 2;
+}
+.reveal-stagger > *:nth-child(4) {
+  --i: 3;
+}
+.reveal-stagger > *:nth-child(5) {
+  --i: 4;
+}
+.reveal-stagger > *:nth-child(6) {
+  --i: 5;
+}
+.reveal-stagger > *:nth-child(n + 7) {
+  --i: 6;
 }
 .reveal[data-delay='1'].is-visible {
   animation-delay: 90ms;
@@ -447,6 +628,14 @@
   .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
+  }
+  .dome-shutter {
+    display: none;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }
 

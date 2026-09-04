@@ -2,6 +2,7 @@
 import { useTranslations, type Locale } from '@/i18n/ui';
 import type { Profile } from '@/lib/content';
 import SectionHeading from './SectionHeading.astro';
+import SceneBackdrop from './SceneBackdrop.astro';
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,7 @@ const t = useTranslations(locale);
 ---
 
 <section id="contact" class="contact container-content" aria-labelledby="contact-title">
+  <SceneBackdrop id="stephans-quintet" locale={locale} variant="section" />
   <SectionHeading
     id="contact-title"
     kicker="04"
@@ -20,7 +22,7 @@ const t = useTranslations(locale);
   />
 
   <div class="cards">
-    <div class="card reveal" data-delay="1">
+    <div class="card glow lift reveal" data-delay="1">
       <p class="mono label">{t('contact.email')}</p>
       <a class="value" href={`mailto:${profile.email}`}>{profile.email}</a>
       <button
@@ -34,7 +36,7 @@ const t = useTranslations(locale);
     </div>
     {
       profile.links.map((l, i) => (
-        <div class="card reveal" data-delay={String(i + 2)}>
+        <div class="card glow lift reveal" data-delay={String(i + 2)}>
           <p class="mono label">{l.label}</p>
           <a class="value" href={l.url} rel="noopener noreferrer me" target="_blank">
             {l.url.replace('https://www.', '').replace('https://', '')} ↗
@@ -42,7 +44,7 @@ const t = useTranslations(locale);
         </div>
       ))
     }
-    <div class="card reveal" data-delay="4">
+    <div class="card glow lift reveal" data-delay="4">
       <p class="mono label">{t('contact.languages')}</p>
       <ul class="langs">
         {
@@ -59,6 +61,10 @@ const t = useTranslations(locale);
 
 <style>
   .contact {
+    position: relative;
+    isolation: isolate;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     padding-block: 5rem 6rem;
     scroll-margin-top: var(--nav-h);
   }

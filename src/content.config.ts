@@ -194,6 +194,8 @@ const posts = defineCollection({
     date: isoDate,
     /** Optional last-revision date shown on the entry page. */
     updated: isoDate.optional(),
+    /** Optional official-imagery backdrop for the entry header (ids in src/assets/scenes/credits.json). */
+    scene: z.enum(['crab', 'cartwheel', 'tarantula', 'wr124', 'stephans-quintet']).optional(),
     summary: z.string().max(280),
     /** Knowledge area; drives the colour and the "instrument" label. */
     area: z.enum([

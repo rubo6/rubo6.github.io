@@ -58,7 +58,10 @@ const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
           class:list={['clock reveal', 'personalOnly' in c && c.personalOnly && 'personal-only']}
           data-delay={String(i + 1)}
         >
-          <p class="clock-label">{c.label}</p>
+          <p class="clock-label">
+            <i class="live-dot" aria-hidden="true" />
+            {c.label}
+          </p>
           <time
             class="clock-value"
             data-counter
@@ -85,6 +88,25 @@ const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
 </section>
 
 <style>
+  .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+    animation: pulse-dot 2.4s ease-out infinite;
+  }
+  .clock {
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+  }
+  .clock:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+  }
   .clocks {
     margin-top: 3rem;
   }

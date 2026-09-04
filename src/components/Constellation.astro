@@ -76,7 +76,7 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
       groups.map((g, gi) => {
         const { nodes, lines, height } = layout(g);
         return (
-          <article class="group reveal" data-delay={String((gi % 4) + 1)}>
+          <article class="group glow lift reveal" data-delay={String((gi % 4) + 1)}>
             <header>
               <h3 class="text-lg">{pick(g.labels, locale)}</h3>
               <p class="mono text-xs text-ink-muted">{g.constellation}</p>

@@ -81,7 +81,7 @@ const step = (c - 40) / orbits;
         entries.map((e, i) => (
           <li class:list={['entry reveal', `kind-${e.kind}`]} data-delay={String((i % 4) + 1)}>
             <div class="marker" aria-hidden="true" />
-            <div class="entry-body">
+            <div class="entry-body glow lift">
               <p class="mono meta">
                 <span class="kind">{t(`trajectory.kind.${e.kind}` as 'trajectory.kind.work')}</span>
                 <span>

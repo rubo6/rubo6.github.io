@@ -5,6 +5,7 @@ locale: en
 date: '2026-09-04'
 summary: 'A pulsar is a neutron star spinning tens of times per second, sweeping the sky with a beam of radiation. How they were discovered by accident, why they are the most precise clocks in the universe, and what they have to do with a data degree.'
 area: astronomy
+scene: crab
 tags: ['astronomy', 'pulsars', 'neutron stars', 'Crab', 'time series', 'outreach']
 featured: true
 ---

@@ -8,7 +8,8 @@ import Constellation from './Constellation.astro';
 import Contact from './Contact.astro';
 import LogLatest from './LogLatest.astro';
 import Footer from './Footer.astro';
-import { clientStrings, type Locale } from '@/i18n/ui';
+import Ticker from './Ticker.astro';
+import { clientStrings, type Locale, useTranslations } from '@/i18n/ui';
 import { safeJson } from '@/lib/json';
 import {
   getCertifications,
@@ -35,6 +36,16 @@ const [profile, trajectory, projects, nebulae, skills, certifications, personal]
     getCertifications(),
     getPersonal(locale),
   ]);
+
+const t = useTranslations(locale);
+const fmt = new Intl.NumberFormat(
+  locale === 'pt-br' ? 'pt-BR' : locale === 'es' ? 'es-MX' : 'en-US',
+);
+const tickerSky = nebulae.map(
+  (n) =>
+    `${n.object.designation} · ${n.object.name} · ${n.object.constellation} · ${fmt.format(n.object.distanceLy)} ${t('ticker.ly')}`,
+);
+const tickerStack = skills.flatMap((g) => g.items.map((i) => i.name));
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -80,11 +91,13 @@ const jsonLd = {
   <Nav locale={locale} path="/" />
   <main id="main">
     <Hero locale={locale} profile={profile} />
+    <Ticker items={tickerSky} label={t('ticker.sky')} direction="left" />
     <Observatory locale={locale} nebulae={nebulae} projects={projects} personal={personal} />
     <Trajectory locale={locale} entries={trajectory} />
     <Constellation locale={locale} groups={skills} certifications={certifications} />
     <LogLatest locale={locale} />
     <Contact locale={locale} profile={profile} />
   </main>
+  <Ticker items={tickerStack} label={t('ticker.stack')} direction="right" pace={3.5} />
   <Footer locale={locale} />
 </Base>

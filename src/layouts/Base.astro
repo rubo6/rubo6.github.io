@@ -123,5 +123,10 @@ const csp = [
   <body class="min-h-dvh antialiased">
     <a href="#main" class="sr-only-focusable">{t('nav.skip')}</a>
     <slot />
+    <div class="dome-shutter" data-dome aria-hidden="true"><span></span><span></span></div>
+    <script>
+      import { initAlive } from '@/scripts/alive';
+      initAlive();
+    </script>
   </body>
 </html>

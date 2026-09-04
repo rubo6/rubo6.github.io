@@ -1,0 +1,119 @@
+---
+/**
+ * Slow, symmetric marquee — a strip of real facts (deep-sky objects from the observatory,
+ * the working stack) that never stops drifting. Pure CSS animation; the list is duplicated once so
+ * the loop is seamless. Pauses on hover/focus. With prefers-reduced-motion it becomes a static,
+ * horizontally scrollable strip.
+ */
+interface Props {
+  items: string[];
+  /** Direction of travel. Use opposite directions on two tickers for symmetry. */
+  direction?: 'left' | 'right';
+  /** Accessible label for the strip. */
+  label: string;
+  /** Seconds per item; lower is faster. */
+  pace?: number;
+  class?: string;
+}
+const { items, direction = 'left', label, pace = 4.5, class: className } = Astro.props;
+const duration = Math.max(24, Math.round(items.length * pace));
+---
+
+<div
+  class:list={['ticker', className]}
+  data-direction={direction}
+  style={`--ticker-dur:${duration}s`}
+  aria-label={label}
+  role="group"
+>
+  <div class="ticker-track">
+    <ul class="ticker-list">
+      {items.map((it) => <li>{it}</li>)}
+    </ul>
+    <ul class="ticker-list" aria-hidden="true">
+      {items.map((it) => <li>{it}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .ticker {
+    --gap: 3rem;
+    position: relative;
+    overflow: hidden;
+    border-block: 1px solid var(--line);
+    background: color-mix(in oklab, var(--bg-1) 55%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll var(--ticker-dur) linear infinite;
+    will-change: transform;
+  }
+  .ticker[data-direction='right'] .ticker-track {
+    animation-direction: reverse;
+  }
+  .ticker:hover .ticker-track,
+  .ticker:focus-within .ticker-track {
+    animation-play-state: paused;
+  }
+  .ticker-list {
+    display: flex;
+    gap: var(--gap);
+    margin: 0;
+    padding: 0.7rem var(--gap) 0.7rem 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .ticker-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .ticker-list li::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  .ticker-list li:nth-child(2n)::after {
+    animation-delay: 1.5s;
+    background: var(--accent-3);
+    box-shadow: 0 0 10px var(--accent-3);
+  }
+  .ticker-list li:hover {
+    color: var(--ink);
+  }
+  @keyframes ticker-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker {
+      mask-image: none;
+      -webkit-mask-image: none;
+      overflow-x: auto;
+    }
+    .ticker-track {
+      animation: none;
+    }
+    .ticker-list[aria-hidden='true'] {
+      display: none;
+    }
+  }
+</style>

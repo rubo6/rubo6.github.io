@@ -214,7 +214,7 @@ const personalScene = personal.clusters.map((c, i) => ({
 
             <ul class="stars-list">
               {list.map((p) => (
-                <li class="star-card">
+                <li class="star-card glow lift">
                   <div class="star-card-head">
                     <h4>{p.data.title}</h4>
                     <p class="mono text-xs text-ink-muted">
@@ -388,7 +388,7 @@ const personalScene = personal.clusters.map((c, i) => ({
     }
 
     <div class="personal-extra">
-      <div class="soft">
+      <div class="soft glow lift">
         <h3 class="text-lg">{t('personal.soft')}</h3>
         <ul class="soft-list">
           {
@@ -401,7 +401,7 @@ const personalScene = personal.clusters.map((c, i) => ({
           }
         </ul>
       </div>
-      <div class="facts-box">
+      <div class="facts-box glow lift">
         <h3 class="text-lg">{t('personal.facts')}</h3>
         <ul class="fun">
           {personal.funFacts.map((f) => <li>{f}</li>)}
