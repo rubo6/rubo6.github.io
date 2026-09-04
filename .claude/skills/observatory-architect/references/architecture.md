@@ -62,6 +62,12 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 
 > Gotcha: after changing a collection schema, the dev server's incremental glob loader may keep stale parsed entries (new fields come back `undefined`). Stop the server, delete `.astro/data-store.json`, restart. `astro build` is not affected.
 
+## Performance budget for motion
+
+- The sky canvas is the most expensive thing on the site. `sky.ts` recomputes star positions and the static layer (horizon, constellation lines, labels) once per second into an offscreen canvas; per frame it only blits that layer and draws twinkling stars with a pre-rendered glow sprite. Twinkle is capped at 30 fps (15 fps on coarse pointers); the loop stops when the hero is off-screen or the tab is hidden. Before this, a 4× throttled phone spent ~100 % of its main thread on the canvas at idle.
+- `filter: blur()` entrance animations run only on `(hover: hover) and (pointer: fine) and (min-width: 900px)`; phones get the opacity/transform version.
+- Measure with `node scripts/vitals.mjs` against `astro preview` (desktop + 4× throttled Pixel 7; LCP/CLS/long tasks/weight per page). Lighthouse CLI cannot launch Chrome on Rubo's machine (chrome-launcher `spawn UNKNOWN`) and PageSpeed Insights' anonymous quota is shared, so vitals.mjs is the local sanity check; run real Lighthouse from Chrome DevTools on the live site when needed.
+
 ## Alive layer (session 3)
 
 - `src/scripts/alive.ts` (loaded from `Base.astro`): pointer spotlight for `.glow` elements (writes `--mx/--my`), dome-shutter overlay (`[data-dome]`) closed/opened around ClientRouter navigations via `astro:before-preparation` (`loader` override) and `astro:after-swap`; both skipped under reduced motion.

@@ -824,6 +824,14 @@ const personalScene = personal.clusters.map((c, i) => ({
       grid-template-columns: 1fr;
     }
   }
+  /* Touch devices: blurred gas layers stay still (36 animated blurred layers are too costly on phones). */
+  @media (pointer: coarse) {
+    .gas-a,
+    .gas-b,
+    .gas-c {
+      animation: none;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     .gas,
     .deep-field i {

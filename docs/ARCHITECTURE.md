@@ -70,6 +70,10 @@ Tests in `tests/unit/astro.test.ts` check against Meeus worked examples (12.a, 1
 - `codeql.yml`: weekly + on push/PR, `security-extended` queries.
 - All actions pinned to commit SHAs; `permissions: {}` at workflow level, granted per job.
 
+## Performance checks
+
+`node scripts/vitals.mjs` (after `npm run build`, with `astro preview` on :4173) prints LCP, FCP, CLS, blocking time, long tasks, request count and transfer weight per key page for desktop and a 4× CPU-throttled Pixel 7 profile. The sky canvas is frame-capped and layer-cached; blur-based entrances are desktop-only. See the observatory-architect skill for the reasoning.
+
 ## Local development
 
 `npm run dev` (Node ≥ 22.12). The Browser pane launch config `.claude/launch.json` starts Astro with an explicit Node binary. The dev toolbar is disabled because it injects inline scripts blocked by the CSP.

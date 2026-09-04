@@ -13,6 +13,7 @@ npm install                # Node >= 22.12 (see .node-version)
 npm run dev                # dev server on :4321
 npm run validate           # format:check + lint + check (types) + test + build — run before every commit
 npm run format             # prettier --write
+node scripts/vitals.mjs    # web vitals on dist/ via astro preview :4173 (desktop + throttled mobile)
 npm run test:e2e           # Playwright smoke tests against dist/ (run `npm run build` first; needs `npx playwright install chromium` once)
 node scripts/generate-icons.mjs   # regenerate public/icons and public/og from public/favicon.svg
 ```

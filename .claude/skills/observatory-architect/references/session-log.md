@@ -26,6 +26,7 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Alive layer: tickers, spotlight, lift, dome shutter, view-transition cross-dissolve, reticles, pulsar, breathing portrait, pulse dots; five official JWST scene backdrops (Crab, Cartwheel, Tarantula, WR 124, Stephan's Quintet).
 - Research: official syllabi of Bátiz Plan 2008 and ITAM LCD Plan B saved in `docs/research/`; derived hard skills (`via` provenance on every skill star, new `foundations` group), trajectory bullets and sources updated.
 - `docs/QUESTIONNAIRE-2.md` (60 questions on MeLi + school) for Rubo to answer.
+- Perf pass after measuring with `scripts/vitals.mjs`: sky canvas cached static layer + glow sprite + 30/15 fps cap; blur reveals desktop-only. New log entry `de-los-temarios-a-las-estrellas` (EN/ES). Report for Rubo in `docs/REPORT-2026-09-05.md`.
 
 **Pending / next**
 

@@ -539,12 +539,10 @@
   from {
     opacity: 0;
     transform: translateY(26px) scale(0.985);
-    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: blur(0);
   }
 }
 @keyframes twinkle {
@@ -573,10 +571,31 @@
 .js .reveal {
   opacity: 0;
   transform: translateY(26px) scale(0.985);
-  filter: blur(8px);
 }
 .reveal.is-visible {
-  animation: rise 1100ms var(--ease-out) forwards;
+  animation: rise 900ms var(--ease-out) forwards;
+}
+/* The blurred entrance is expensive to rasterise; reserve it for desktop-class devices. */
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .js .reveal {
+    filter: blur(8px);
+  }
+  .reveal.is-visible {
+    animation-name: rise-blur;
+    animation-duration: 1100ms;
+  }
+}
+@keyframes rise-blur {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
 }
 /* Stagger direct children of a revealed group via --i (set by nth-child rules). */
 .reveal-stagger > * {

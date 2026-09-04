@@ -139,7 +139,7 @@ const meta = credits.find((c) => c.id === id);
       transform: scale(1.1) translate3d(-1%, -1%, 0);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce), (pointer: coarse) {
     .scene-img :global(img) {
       animation: none;
     }

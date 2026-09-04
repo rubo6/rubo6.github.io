@@ -69,6 +69,37 @@ export function mountSky(opts: SkyOptions): () => void {
   let warpDir = 1;
   let lastClock = '';
 
+  // Performance: star positions move ~15″ per second, invisibly slow, so they (and every layer that
+  // depends only on them — horizon, constellation lines, labels) are recomputed once per second into
+  // an offscreen canvas. Each animation frame only clears, blits that layer and draws the twinkling
+  // stars. Glows come from one pre-rendered sprite instead of a radial gradient per star per frame.
+  // Twinkle is capped at 30 fps on desktop. Touch devices do not twinkle at all: they redraw once a
+  // second (the sky still rotates) and animate only during the warp, so the canvas costs ~nothing.
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  const frameMs = coarse ? 1000 : 1000 / 30;
+  let lastDraw = -Infinity;
+  let positions = new Map<string, { x: number; y: number; alt: number }>();
+  let positionsAt = -Infinity;
+  let positionsKey = '';
+  const staticLayer = document.createElement('canvas');
+  const staticCtx = staticLayer.getContext('2d');
+  const glow = document.createElement('canvas');
+  let glowAccent = '';
+  function buildGlow(accent: string): void {
+    const size = 64;
+    glow.width = size;
+    glow.height = size;
+    const g = glow.getContext('2d');
+    if (!g) return;
+    const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, accent);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    g.clearRect(0, 0, size, size);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, size, size);
+    glowAccent = accent;
+  }
+
   // Theme colours are read once and refreshed on theme/mode events: reading computed styles
   // inside the animation loop forces a style recalculation on every frame.
   let palette = readPalette();
@@ -93,12 +124,83 @@ export function mountSky(opts: SkyOptions): () => void {
 
   function resize(): void {
     const rect = canvas.getBoundingClientRect();
-    dpr = Math.min(2, window.devicePixelRatio || 1);
+    dpr = Math.min(coarse ? 1.5 : 2, window.devicePixelRatio || 1);
     width = Math.max(1, Math.round(rect.width));
     height = Math.max(1, Math.round(rect.height));
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    staticLayer.width = canvas.width;
+    staticLayer.height = canvas.height;
+    staticCtx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    positionsAt = -Infinity;
+  }
+
+  function drawStaticLayer(sc: CanvasRenderingContext2D, cx: number, cy: number, R: number): void {
+    const { ink, line, mono, isAtlas } = palette;
+    sc.clearRect(0, 0, width, height);
+
+    // Horizon ring + cardinal marks
+    sc.save();
+    sc.globalAlpha = isAtlas ? 0.35 : 0.22;
+    sc.strokeStyle = ink;
+    sc.lineWidth = 1;
+    sc.setLineDash([2, 6]);
+    sc.beginPath();
+    sc.arc(cx, cy, R, 0, Math.PI * 2);
+    sc.stroke();
+    sc.setLineDash([]);
+    sc.font = `500 11px ${mono}`;
+    sc.fillStyle = ink;
+    sc.textAlign = 'center';
+    sc.textBaseline = 'middle';
+    const cardinals: [string, number, number][] = [
+      ['N', 0, -1],
+      ['S', 0, 1],
+      ['E', -1, 0],
+      ['W', 1, 0],
+    ];
+    for (const [label, dx, dy] of cardinals) {
+      sc.fillText(label, cx + dx * (R + 14), cy + dy * (R + 14));
+    }
+    sc.restore();
+
+    // Constellation figures
+    sc.save();
+    sc.strokeStyle = line;
+    sc.globalAlpha = isAtlas ? 0.45 : 0.28;
+    sc.lineWidth = 0.8;
+    sc.beginPath();
+    for (const c of catalog.constellations) {
+      for (const [a, b] of c.lines) {
+        const pa = positions.get(a);
+        const pb = positions.get(b);
+        if (!pa || !pb) continue;
+        sc.moveTo(pa.x, pa.y);
+        sc.lineTo(pb.x, pb.y);
+      }
+    }
+    sc.stroke();
+    sc.restore();
+
+    // Labels for the brightest visible stars
+    if (opts.labels !== false) {
+      sc.save();
+      sc.font = `400 10.5px ${mono}`;
+      sc.fillStyle = ink;
+      sc.globalAlpha = isAtlas ? 0.75 : 0.55;
+      sc.textAlign = 'left';
+      sc.textBaseline = 'middle';
+      let labelled = 0;
+      for (const s of catalog.stars) {
+        if (labelled >= 14) break;
+        const p = positions.get(s.n);
+        if (!p || p.alt < 8) continue;
+        sc.fillText(s.n, p.x + magnitudeToRadius(s.m) + 5, p.y);
+        labelled += 1;
+      }
+      sc.restore();
+    }
   }
 
   function draw(now: number): void {
@@ -106,7 +208,7 @@ export function mountSky(opts: SkyOptions): () => void {
     const jd = julianDate(date);
     const lst = lstHours(jd, lon);
 
-    const { accent, ink, line, mono, isAtlas } = palette;
+    const { accent, ink, line, isAtlas } = palette;
 
     ctx!.clearRect(0, 0, width, height);
 
@@ -116,61 +218,29 @@ export function mountSky(opts: SkyOptions): () => void {
     const R = Math.max(width, height) * 0.62; // horizon radius in px
     const warp = now < warpUntil ? (warpUntil - now) / 900 : 0; // 1 → 0 during the warp
 
-    const positions = new Map<string, { x: number; y: number; alt: number }>();
-    for (const s of catalog.stars) {
-      const h = equatorialToHorizontal(s.ra, s.dec, lst, lat);
-      if (h.alt < -2) continue;
-      const p = horizontalToScreen(h);
-      const stretch = 1 + warp * warp * 0.9 * warpDir;
-      positions.set(s.n, { x: cx + p.x * R * stretch, y: cy + p.y * R * stretch, alt: h.alt });
-    }
-
-    // Horizon ring + cardinal marks
-    ctx!.save();
-    ctx!.globalAlpha = isAtlas ? 0.35 : 0.22;
-    ctx!.strokeStyle = ink;
-    ctx!.lineWidth = 1;
-    ctx!.setLineDash([2, 6]);
-    ctx!.beginPath();
-    ctx!.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx!.stroke();
-    ctx!.setLineDash([]);
-    ctx!.font = `500 11px ${mono}`;
-    ctx!.fillStyle = ink;
-    ctx!.textAlign = 'center';
-    ctx!.textBaseline = 'middle';
-    const cardinals: [string, number, number][] = [
-      ['N', 0, -1],
-      ['S', 0, 1],
-      ['E', -1, 0],
-      ['W', 1, 0],
-    ];
-    for (const [label, dx, dy] of cardinals) {
-      ctx!.fillText(label, cx + dx * (R + 14), cy + dy * (R + 14));
-    }
-    ctx!.restore();
-
-    // Constellation figures
-    ctx!.save();
-    ctx!.strokeStyle = line;
-    ctx!.globalAlpha = isAtlas ? 0.45 : 0.28;
-    ctx!.lineWidth = 0.8;
-    ctx!.beginPath();
-    for (const c of catalog.constellations) {
-      for (const [a, b] of c.lines) {
-        const pa = positions.get(a);
-        const pb = positions.get(b);
-        if (!pa || !pb) continue;
-        ctx!.moveTo(pa.x, pa.y);
-        ctx!.lineTo(pb.x, pb.y);
+    const paletteKey = `${accent}|${ink}|${line}|${isAtlas}`;
+    const stale =
+      warp > 0 || now - positionsAt > 1000 || positionsKey !== paletteKey || positions.size === 0;
+    if (stale) {
+      positions = new Map();
+      for (const s of catalog.stars) {
+        const h = equatorialToHorizontal(s.ra, s.dec, lst, lat);
+        if (h.alt < -2) continue;
+        const p = horizontalToScreen(h);
+        const stretch = 1 + warp * warp * 0.9 * warpDir;
+        positions.set(s.n, { x: cx + p.x * R * stretch, y: cy + p.y * R * stretch, alt: h.alt });
       }
+      positionsAt = now;
+      positionsKey = paletteKey;
+      if (staticCtx) drawStaticLayer(staticCtx, cx, cy, R);
     }
-    ctx!.stroke();
-    ctx!.restore();
+    if (glowAccent !== accent) buildGlow(accent);
+
+    ctx!.drawImage(staticLayer, 0, 0, width, height);
 
     // Stars
     const t = now / 1000;
-    const twinkleOn = !reduced.matches;
+    const twinkleOn = !reduced.matches && !coarse;
     for (const s of catalog.stars) {
       const p = positions.get(s.n);
       if (!p) continue;
@@ -197,44 +267,18 @@ export function mountSky(opts: SkyOptions): () => void {
         ctx!.restore();
       }
 
-      ctx!.save();
-      ctx!.globalAlpha = alpha;
       if (!isAtlas && r > 1.8) {
-        const g = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 3.2);
-        g.addColorStop(0, accent);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx!.fillStyle = g;
+        const gr = r * 3.2;
         ctx!.globalAlpha = alpha * 0.35;
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, r * 3.2, 0, Math.PI * 2);
-        ctx!.fill();
-        ctx!.globalAlpha = alpha;
+        ctx!.drawImage(glow, p.x - gr, p.y - gr, gr * 2, gr * 2);
       }
+      ctx!.globalAlpha = alpha;
       ctx!.fillStyle = s.m < 1 ? accent : isAtlas ? ink : '#fff7e6';
       ctx!.beginPath();
       ctx!.arc(p.x, p.y, r, 0, Math.PI * 2);
       ctx!.fill();
-      ctx!.restore();
     }
-
-    // Labels for the brightest visible stars
-    if (opts.labels !== false) {
-      ctx!.save();
-      ctx!.font = `400 10.5px ${mono}`;
-      ctx!.fillStyle = ink;
-      ctx!.globalAlpha = isAtlas ? 0.75 : 0.55;
-      ctx!.textAlign = 'left';
-      ctx!.textBaseline = 'middle';
-      let labelled = 0;
-      for (const s of catalog.stars) {
-        if (labelled >= 14) break;
-        const p = positions.get(s.n);
-        if (!p || p.alt < 8) continue;
-        ctx!.fillText(s.n, p.x + magnitudeToRadius(s.m) + 5, p.y);
-        labelled += 1;
-      }
-      ctx!.restore();
-    }
+    ctx!.globalAlpha = 1;
 
     // Sidereal clock (only touch the DOM when the second changes)
     if (clock) {
@@ -248,7 +292,10 @@ export function mountSky(opts: SkyOptions): () => void {
 
   function loop(now: number): void {
     if (!visible) return;
-    draw(now);
+    if (now < warpUntil || now - lastDraw >= frameMs) {
+      draw(now);
+      lastDraw = now;
+    }
     if (reduced.matches && now >= warpUntil) {
       // Reduced motion: no twinkle; refresh once a minute so the sky still moves.
       raf = window.setTimeout(() => requestAnimationFrame(loop), 60_000) as unknown as number;
