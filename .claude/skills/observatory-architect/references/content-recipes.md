@@ -4,7 +4,7 @@ Every recipe ends with `npm run validate`, a browser check in both modes, and a 
 
 ## Add a log entry (bitácora)
 
-1. Create `src/content/posts/en/<key>.md` and `src/content/posts/es/<key>.md` (PT-BR falls back to EN). Frontmatter: `title`, `key`, `locale`, `date` (never in the future), optional `updated`, `summary` (≤ 280 chars), `area` (`math` · `stats` · `computing` · `datascience` · `economics` · `humanities` · `astronomy` · `work` · `leadership`), optional `semester`, `courses[]`, `tags[]`, `featured`, `draft`. Quote any string containing a colon.
+1. Create `src/content/posts/en/<key>.md` and `src/content/posts/es/<key>.md` (PT-BR falls back to EN). Frontmatter: `title`, `key`, `locale`, `date` (never in the future), optional `updated`, `summary` (≤ 280 chars), `area` (`math` · `stats` · `computing` · `datascience` · `economics` · `humanities` · `astronomy` · `work` · `leadership`), optional `semester`, `courses[]`, `tags[]`, `featured`, `draft`, optional `scene` (official-imagery backdrop id from `src/assets/scenes/credits.json`: `crab` · `cartwheel` · `tarantula` · `wr124` · `stephans-quintet`). Quote any string containing a colon.
 2. Body: first person, 350–600 words, `##` sections, end with a "What I take with me / Lo que me llevo" section. No invented grades, names or anecdotes; facts about institutions need a source in the research briefing or the entry text.
 3. The Open Graph image is generated automatically from the English title by `scripts/generate-og.mjs` (runs in `npm run build`). Filters/search on `/log` pick up the new area and term automatically.
 4. Run `npm run validate`; commit as `content(log): …`.
@@ -12,6 +12,10 @@ Every recipe ends with `npm run validate`, a browser check in both modes, and a 
 ## Update the "Now" page
 
 Edit `src/content/now/{en,es,pt-br}.json`: bump `updated` and edit the `sections[].items`. It is meant to be refreshed every few weeks by hand.
+
+## Add or adjust a skill (a star in a constellation)
+
+`src/content/skills.json`: group `id`, localized `labels`, real `constellation`, `items[]` with `name` (short; ≤ ~28 chars so labels do not collide), `level` 1–4, optional `since`, optional `via` (provenance shown as tooltip: "detail — course · institution"). Academic skills must map to a syllabus in `docs/research/batiz-plan-2008-temarios.md` or `docs/research/itam-lcd-plan-b-temarios.md`; work skills to the trajectory. Keep ≤ 13 items per group (3-column layout).
 
 ## Add a project (a star in a nebula)
 
@@ -22,7 +26,7 @@ Edit `src/content/now/{en,es,pt-br}.json`: bump `updated` and edit the `sections
 
 ## Add or update a role / study (trajectory orbit)
 
-Edit `src/content/trajectory/{en,es,pt-br}.json`: `id`, `kind` (`work` | `leadership` | `education`), `org`, `orgUrl`, `role`, `location`, `start`, `end` (`null` = present), `summary?`, `bullets[]`, `stack[]`, `orbit` (0 = innermost = most recent; renumber the others). Bullets in the CV voice, results over duties.
+Edit `src/content/trajectory/{en,es,pt-br}.json`: `id`, `kind` (`work` | `leadership` | `education`), `org`, `orgUrl`, `role`, `location`, `start`, `end` (`null` = present), `summary?`, `bullets[]`, `stack[]`, `orbit` (0 = innermost = most recent; renumber the others). Bullets in the CV voice, results over duties. Optional `sources[]` (`{ label, url }`, https only) renders a small "Sources" line under the entry — use it for reputation/ranking claims and for official syllabi (see `docs/research/`).
 
 ## Complete a certification
 
@@ -50,6 +54,13 @@ Add the key to `en`, `es` and `pt-br` in `src/i18n/ui.ts`. The `UIKey` type make
 
 - Tier 1 (full): add the code to `locales` in `src/i18n/ui.ts` and `astro.config.ts` (i18n + sitemap map), add `localeMeta`, add a full `ui` table, create `src/pages/<locale>/{index,cv}.astro` and `projects/[key].astro` mirroring `es/`, add content files for every collection. Update `hreflang` automatically via `locales`.
 - Tier 2 (UI + summaries only): same wiring but only `ui.ts` and `profile`/`nebulae` labels; long-form content falls back to English by design. Consider a subagent for translation and have a human check tone.
+
+## Add a scene backdrop (page/section header image)
+
+1. Download the official release (ESA/Webb `https://cdn.esawebb.org/archives/images/large/<id>.jpg`, ESA/Hubble equivalent) into `src/assets/nebulae/raw/` (git-ignored).
+2. Add an entry to `src/assets/scenes/credits.json` (`id`, `release`, `object`, `source`, `telescope`, `instrument`, `released`, `credit`, `license`, `crop`, `uses`).
+3. Run `node scripts/optimize-scenes.mjs` → `src/assets/scenes/<id>.{avif,webp}` (1600×900, ≤ ~200 KB each). Commit the outputs.
+4. Extend the `SceneId` type in `SceneBackdrop.astro` and the `scene` enum in `content.config.ts`; render with `<SceneBackdrop id="…" locale={locale} variant="header|section" />` inside a `position: relative; isolation: isolate` container.
 
 ## Add imagery to a nebula
 

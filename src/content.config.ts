@@ -159,6 +159,8 @@ const skills = defineCollection({
         /** 1 = familiar, 2 = productive, 3 = strong, 4 = expert. Drives star magnitude. */
         level: z.number().int().min(1).max(4),
         since: z.number().int().optional(),
+        /** Where the skill comes from (course · institution, or work). Shown as the star's tooltip. */
+        via: z.string().optional(),
       }),
     ),
   }),

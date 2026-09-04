@@ -62,6 +62,14 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 
 > Gotcha: after changing a collection schema, the dev server's incremental glob loader may keep stale parsed entries (new fields come back `undefined`). Stop the server, delete `.astro/data-store.json`, restart. `astro build` is not affected.
 
+## Alive layer (session 3)
+
+- `src/scripts/alive.ts` (loaded from `Base.astro`): pointer spotlight for `.glow` elements (writes `--mx/--my`), dome-shutter overlay (`[data-dome]`) closed/opened around ClientRouter navigations via `astro:before-preparation` (`loader` override) and `astro:after-swap`; both skipped under reduced motion.
+- `global.css`: `.glow`, `.lift`, `@utility glass`, keyframes `breathe`, `pulse-dot`, `sweep`, `.spin-slow/.spin-slower`, `.dome-shutter`, `::view-transition-old/new(root)` (blur + scale cross-dissolve), stronger `.reveal` (blur + scale) and `.reveal-stagger`.
+- `Ticker.astro`: CSS-only marquee (duplicated list, `translate3d(-50%)`, pause on hover, static under reduced motion). Home has two: deep-sky objects (left) after the hero, stack (right) before the footer.
+- `SceneBackdrop.astro` + `src/assets/scenes/` (`scripts/optimize-scenes.mjs`): official JWST backdrops behind page heads (log index: Tarantula; Now: WR 124; 404: Cartwheel; contact section: Stephan's Quintet; log entries with `scene:` frontmatter, e.g. pulsars → Crab).
+- Idle loops: SectionHeading reticle (`spin-slow`), footer pulsar beam, nav brand orbit, portrait breathing glow, live-counter pulse dots; hover: constellation stars scale + tooltip with `via`.
+
 ## Study log (`posts`) and Now page
 
 - `posts` collection (`src/content/posts/<locale>/*.md`), accessors `getPosts/getPost/readingMinutes/formatLongDate` in `lib/content.ts`, routes `/log`, `/log/[key]`, `/log/rss.xml` per locale (`lib/rss.ts`), `LogLatest` on home, `LogFilters` (client-side search + area chips + term select, URL-synced), per-entry OG PNGs from `scripts/generate-og.mjs` (prebuild step in `npm run build`, output `public/og/log/`).

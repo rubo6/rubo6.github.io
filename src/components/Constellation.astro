@@ -18,8 +18,8 @@ const { locale, groups, certifications } = Astro.props;
 const t = useTranslations(locale);
 
 const W = 360;
-const PAD_X = 64;
-const ROW_H = 78;
+const PAD_X = 54;
+const ROW_H = 92;
 
 function layout(group: SkillGroup) {
   const nodes = group.items.map((item, i) => {
@@ -29,15 +29,16 @@ function layout(group: SkillGroup) {
     const H = 60 + rows * ROW_H;
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const jx = (unitHash(`${group.id}:${item.name}:x`) - 0.5) * 16;
-    const jy = (unitHash(`${group.id}:${item.name}:y`) - 0.5) * 18;
+    const jx = (unitHash(`${group.id}:${item.name}:x`) - 0.5) * 12;
+    const jy = (unitHash(`${group.id}:${item.name}:y`) - 0.5) * 12;
     const x = PAD_X + col * ((W - PAD_X * 2) / Math.max(1, cols - 1)) + jx;
     const y = 46 + row * ROW_H + jy;
     const cx = Math.min(W - PAD_X, Math.max(PAD_X, x));
     const anchor: 'start' | 'middle' | 'end' =
       cx < W * 0.28 ? 'start' : cx > W * 0.72 ? 'end' : 'middle';
     const labelDx = anchor === 'start' ? -6 : anchor === 'end' ? 6 : 0;
-    const labelBelow = col % 2 === 0;
+    // Checkerboard: neighbours in the same row and column put labels on opposite sides.
+    const labelBelow = (row + col) % 2 === 0;
     return { ...item, x: cx, y: Math.min(H - 30, Math.max(30, y)), anchor, labelDx, labelBelow, H };
   });
   const lines: [number, number][] = [];
@@ -70,6 +71,7 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
     title={t('constellation.title')}
     lead={t('constellation.lead')}
   />
+  <p class="hint mono text-xs text-ink-muted">{t('constellation.hint')}</p>
 
   <div class="groups">
     {
@@ -90,8 +92,11 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
               {nodes.map((n) => (
                 <g
                   role="listitem"
-                  aria-label={`${n.name}: ${t(`constellation.level.${n.level}` as 'constellation.level.1')}`}
+                  class="star"
+                  tabindex="0"
+                  aria-label={`${n.name}: ${t(`constellation.level.${n.level}` as 'constellation.level.1')}${n.via ? ` · ${n.via}` : ''}`}
                 >
+                  {n.via && <title>{`${n.name} — ${n.via}`}</title>}
                   <circle
                     cx={n.x}
                     cy={n.y}
@@ -109,7 +114,7 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
                     x={n.x + n.labelDx}
                     y={n.labelBelow ? n.y + radius(n.level) + 12 : n.y - radius(n.level) - 6}
                     text-anchor={n.anchor}
-                    font-size="9.5"
+                    font-size="9"
                     fill="var(--ink)"
                     font-family="var(--font-mono)"
                   >
@@ -168,6 +173,36 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
 </section>
 
 <style>
+  .hint {
+    margin-top: 0.75rem;
+  }
+  .star circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform var(--dur-base) var(--ease-spring),
+      opacity var(--dur-base) var(--ease-out);
+  }
+  .star:hover circle:first-of-type,
+  .star:focus-visible circle:first-of-type {
+    transform: scale(1.9);
+    opacity: 0.35;
+  }
+  .star:hover circle:last-of-type,
+  .star:focus-visible circle:last-of-type {
+    transform: scale(1.35);
+  }
+  .star:hover text,
+  .star:focus-visible text {
+    fill: var(--accent);
+  }
+  .star {
+    cursor: help;
+    outline: none;
+  }
+  .star text {
+    transition: fill var(--dur-fast) var(--ease-out);
+  }
   .constellation {
     padding-block: 5rem;
     scroll-margin-top: var(--nav-h);

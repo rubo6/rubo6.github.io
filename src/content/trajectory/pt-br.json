@@ -125,7 +125,8 @@
       "end": "2027-05-10",
       "summary": "Formatura prevista: maio de 2027.",
       "bullets": [
-        "Disciplinas relevantes: Machine Learning, Inteligência Artificial, Computação Paralela, Estruturas de Dados Avançadas, Bancos de Dados NoSQL, Estatística e Algoritmos.",
+        "Disciplinas do Plano B (ementas oficiais): Cálculo I–III, Geometria Vetorial, Álgebra Linear, Pensamento Matemático, Matemática Discreta; Probabilidade I–II, Estatística Matemática, Métodos Lineares (GLM), Métodos Multivariados, Estatística Bayesiana; Algoritmos e Programas, Estruturas de Dados (Avançadas), Bancos de Dados, Bancos de Dados Não Relacionais, Fontes de Dados, Visualização de Informação, Aprendizado de Máquina, Inteligência Artificial, Computação Paralela e em Nuvem, Arquitetura para Grandes Volumes de Dados, Mineração e Análise de Dados; Economia I–IV, Desenho de Mercados, Inferência Causal; Legalidade e Ética em Ciência de Dados; e o núcleo de humanidades do ITAM.",
+        "Ferramentas por disciplina: R em toda a sequência de estatística; Java na sequência de estruturas de dados; Python, Bash, Linux, expressões regulares e Git em Fontes de Dados; MongoDB, Cassandra, Neo4j, Spark/Hadoop e Docker em NoSQL; C++ com OpenMP e MPI em Computação Paralela; agentes e busca em Python em IA.",
         "Foco acadêmico: engenharia de dados, machine learning, visão computacional e computação paralela.",
         "Reputação: 4.ª universidade do México e faixa 751–760 mundial no QS World University Rankings 2027, e 1.ª do México / 30.ª do mundo no indicador QS Employment Outcomes (95,5 % dos formados empregados entre 7 e 11 meses após a formatura). 42.ª da América Latina no QS 2026. Economia está em =185 mundial (QS por área 2025) e é primeiro lugar na pesquisa com empregadores do Reforma em 2024, 2025 e 2026; Ciência da Computação entrou no QS por área em 2025 (701–750).",
         "O bacharelado em Ciência de Dados (8 semestres; Departamento de Estatística fundado em 1997) informa que 100 % dos formados de 2020–2022 trabalham ou cursam pós-graduação, com média de seis ofertas de emprego durante o curso. Acreditação FIMPES plena 2023–2030."
@@ -152,6 +153,18 @@
         {
           "label": "ITAM · bacharelado em Ciência de Dados",
           "url": "https://licenciaturas.itam.mx/licenciatura-en-ciencia-de-datos-2/"
+        },
+        {
+          "label": "ITAM · boletim do Plano B (CDA-B)",
+          "url": "https://escolar.itam.mx/licenciaturas/boletines/CDA-B.pdf"
+        },
+        {
+          "label": "ITAM · ementas de Estatística",
+          "url": "https://estadistica.itam.mx/es/cursos-de-licenciatura"
+        },
+        {
+          "label": "ITAM · ementa de Aprendizado de Máquina",
+          "url": "https://dac.itam.mx/sites/default/files/u438/com-23701_aprendizaje_de_maquina.pdf"
         }
       ]
     },
@@ -167,6 +180,7 @@
       "summary": "Ensino médio bivalente do IPN (diploma de ensino médio + título técnico), Plano 2008. Título emitido em dezembro de 2022. O Bátiz é o campus do IPN com a maior nota de corte do exame COMIPEMS no país, cerca de dez acertos acima do seguinte.",
       "bullets": [
         "Formação profissional: Programação Orientada a Objetos, Programação e Serviços Web, Bancos de Dados (projeto normalizado e linguagens de manipulação de dados), Introdução à Engenharia de Testes e Automação de Testes, Segurança Web e de Aplicações, Introdução a Sistemas Distribuídos, Métodos Ágeis de Programação, Engenharia de Software Básica e quatro semestres de Laboratório de Projetos de TI.",
+        "Padrões e ferramentas citados nos programas oficiais do Plano 2008: UML (todos os diagramas), JUnit e projeto de testes caixa-branca e caixa-preta, XP, Scrum e Crystal, serviços web SOAP/WSDL/UDDI, sockets e RPC, criptografia simétrica e de chave pública, SSL/TLS, Kerberos e IPsec, PSP, CMMI e COCOMO, MoProSoft.",
         "Tronco científico completo em paralelo: Álgebra, Geometria e Trigonometria, Geometria Analítica, Cálculo Diferencial e Integral, Probabilidade e Estatística, Física I–IV, Química I–IV, além de filosofia, história e seis semestres de inglês.",
         "Seletividade: a nota de corte do CECyT 9 no exame COMIPEMS ficou entre 102 e 106 acertos de 128 todos os anos entre 2019 e 2023, a mais alta de todos os campi do IPN e cerca de dez acima do segundo; a imprensa o chama de campus do IPN mais difícil de entrar.",
         "Ranking: no COMIPEMS 2024 a nota de corte do CECyT 9 foi de 102 acertos em 128, a mais alta de todos os campi do IPN (o seguinte pediu 94) e acima do CCH Sur da UNAM; o candidato com a maior pontuação de todo o concurso de 2024 (126/128) escolheu o Bátiz. Foi apontado como o melhor ensino médio do país na prova ENLACE por cinco anos consecutivos até 2012 (92 % dos alunos em nível excelente em Matemática) e em 2015 ainda era a única escola pública no top 5 nacional tanto por demanda de ingresso quanto por admissão à universidade.",
@@ -175,6 +189,14 @@
       "stack": ["C++", "Java", "JavaScript", "SQL", "Testes de software"],
       "orbit": 6,
       "sources": [
+        {
+          "label": "CECyT 9 · programa Plano 2008 (PDF oficial)",
+          "url": "https://coatl.cecyt9.ipn.mx/ofertaEducativa/planes/programacion/planProgramacion.pdf"
+        },
+        {
+          "label": "CECyT 9 · índice de programas",
+          "url": "https://coatl.cecyt9.ipn.mx/ofertaEducativa/"
+        },
         {
           "label": "El Universal 2012 · ENLACE",
           "url": "https://archivo.eluniversal.com.mx/nacion/199873.html"

@@ -1,55 +1,298 @@
 [
   {
     "id": "languages",
-    "labels": { "en": "Languages", "es": "Lenguajes", "pt-br": "Linguagens" },
+    "labels": {
+      "en": "Languages",
+      "es": "Lenguajes",
+      "pt-br": "Linguagens"
+    },
     "constellation": "Orion",
     "items": [
-      { "name": "Python", "level": 4, "since": 2022 },
-      { "name": "SQL", "level": 4, "since": 2023 },
-      { "name": "TypeScript / JavaScript", "level": 3, "since": 2024 },
-      { "name": "C++17", "level": 2, "since": 2024 }
+      {
+        "name": "Python",
+        "level": 4,
+        "since": 2022,
+        "via": "Mercado Libre · ITAM (Fuentes de Datos, IA, Minería)"
+      },
+      {
+        "name": "SQL",
+        "level": 4,
+        "since": 2023,
+        "via": "Mercado Libre · ITAM Bases de Datos · Bátiz Bases de Datos"
+      },
+      {
+        "name": "TypeScript / JavaScript",
+        "level": 3,
+        "since": 2024,
+        "via": "Personal projects · Bátiz Programación y Servicios Web"
+      },
+      {
+        "name": "C++17",
+        "level": 2,
+        "since": 2024,
+        "via": "ITAM Cómputo Paralelo y en la Nube"
+      },
+      {
+        "name": "R",
+        "level": 3,
+        "via": "ITAM Probabilidad I–II · Estadística Matemática · Métodos Lineales"
+      },
+      {
+        "name": "Java",
+        "level": 2,
+        "via": "ITAM Algoritmos y Programas · Estructuras de Datos · Bátiz POO"
+      },
+      {
+        "name": "Bash · regex",
+        "level": 3,
+        "via": "ITAM Fuentes de Datos · daily tooling"
+      }
     ]
   },
   {
     "id": "data-cloud",
-    "labels": { "en": "Data & Cloud", "es": "Datos y nube", "pt-br": "Dados e nuvem" },
+    "labels": {
+      "en": "Data & Cloud",
+      "es": "Datos y nube",
+      "pt-br": "Dados e nuvem"
+    },
     "constellation": "Ursa Major",
     "items": [
-      { "name": "BigQuery", "level": 4 },
-      { "name": "ETL / ELT design", "level": 4 },
-      { "name": "Pandas · NumPy", "level": 4 },
-      { "name": "scikit-learn", "level": 3 },
-      { "name": "PostgreSQL", "level": 3 },
-      { "name": "MongoDB · Cassandra", "level": 2 },
-      { "name": "Firebase / Firestore", "level": 3 },
-      { "name": "Google Sheets integrations", "level": 3 }
+      {
+        "name": "BigQuery",
+        "level": 4,
+        "via": "Mercado Libre"
+      },
+      {
+        "name": "ETL / ELT design",
+        "level": 4,
+        "via": "Mercado Libre · ITAM Fuentes de Datos"
+      },
+      {
+        "name": "Pandas · NumPy",
+        "level": 4,
+        "via": "ITAM · projects"
+      },
+      {
+        "name": "scikit-learn",
+        "level": 3,
+        "via": "ITAM Aprendizaje de Máquina · Keeper project"
+      },
+      {
+        "name": "PostgreSQL",
+        "level": 3,
+        "via": "ITAM Bases de Datos"
+      },
+      {
+        "name": "MongoDB · Cassandra",
+        "level": 2,
+        "via": "ITAM Bases de Datos No Relacionales"
+      },
+      {
+        "name": "Firebase / Firestore",
+        "level": 3
+      },
+      {
+        "name": "Google Sheets APIs",
+        "level": 3
+      },
+      {
+        "name": "Data modeling · OLAP",
+        "level": 3,
+        "via": "normalization, ER, transactions, warehouses — ITAM Bases de Datos · Bátiz Bases de Datos · Mercado Libre"
+      },
+      {
+        "name": "Spark · Hadoop",
+        "level": 2,
+        "via": "HDFS, MapReduce, data lakes — ITAM Bases de Datos No Relacionales"
+      },
+      {
+        "name": "Neo4j · graph data",
+        "level": 1,
+        "via": "ITAM Bases de Datos No Relacionales"
+      }
     ]
   },
   {
     "id": "engineering",
-    "labels": { "en": "Engineering", "es": "Ingeniería", "pt-br": "Engenharia" },
+    "labels": {
+      "en": "Engineering",
+      "es": "Ingeniería",
+      "pt-br": "Engenharia"
+    },
     "constellation": "Cygnus",
     "items": [
-      { "name": "Next.js 16", "level": 3 },
-      { "name": "Git · GitHub · CI", "level": 4 },
-      { "name": "Docker", "level": 3 },
-      { "name": "Linux", "level": 3 },
-      { "name": "MPI", "level": 2 },
-      { "name": "REST APIs", "level": 3 },
-      { "name": "Astro · Tailwind", "level": 3 }
+      {
+        "name": "Next.js 16",
+        "level": 3
+      },
+      {
+        "name": "Git · GitHub · CI",
+        "level": 4,
+        "via": "Mercado Libre · ITAM Fuentes de Datos · this site"
+      },
+      {
+        "name": "Docker",
+        "level": 3,
+        "via": "ITAM NoSQL · Fuentes de Datos · Cómputo Paralelo"
+      },
+      {
+        "name": "Linux",
+        "level": 3,
+        "via": "ITAM Fuentes de Datos (Linux, Bash, regex)"
+      },
+      {
+        "name": "MPI",
+        "level": 2,
+        "via": "ITAM Cómputo Paralelo · Bag-of-Words project"
+      },
+      {
+        "name": "REST APIs",
+        "level": 3
+      },
+      {
+        "name": "Astro · Tailwind",
+        "level": 3
+      },
+      {
+        "name": "OpenMP",
+        "level": 2,
+        "via": "shared-memory parallelism, speed-up measurement — ITAM Cómputo Paralelo y en la Nube"
+      },
+      {
+        "name": "Testing · JUnit",
+        "level": 2,
+        "via": "white/black-box design, unit/integration/regression — Bátiz Ingeniería de Pruebas · Automatización de Pruebas"
+      },
+      {
+        "name": "UML · software design",
+        "level": 2,
+        "via": "Bátiz POO · Administración de Proyectos de TI · Labs I–IV"
+      },
+      {
+        "name": "Scrum · XP",
+        "level": 2,
+        "via": "Bátiz Métodos Ágiles · DataLab ITAM coordination"
+      },
+      {
+        "name": "Web security basics",
+        "level": 2,
+        "via": "TLS, hashing, authentication, CSP — Bátiz Seguridad Web y Aplicaciones · this site (CSP, CI hardening)"
+      },
+      {
+        "name": "Distributed systems · RPC",
+        "level": 2,
+        "via": "sockets TCP/UDP, marshalling, remote objects — Bátiz Introducción a los Sistemas Distribuidos · ITAM Cómputo Paralelo"
+      }
     ]
   },
   {
     "id": "analytics-ml",
-    "labels": { "en": "Analytics & ML", "es": "Analítica y ML", "pt-br": "Analytics e ML" },
+    "labels": {
+      "en": "Analytics & ML",
+      "es": "Analítica y ML",
+      "pt-br": "Analytics e ML"
+    },
     "constellation": "Scorpius",
     "items": [
-      { "name": "Machine Learning", "level": 3 },
-      { "name": "Computer Vision", "level": 2 },
-      { "name": "Statistics · Monte Carlo", "level": 3 },
-      { "name": "Power BI · Excel", "level": 3 },
-      { "name": "Data architecture", "level": 3 },
-      { "name": "Documentation & handoffs", "level": 4 }
+      {
+        "name": "Machine Learning",
+        "level": 3,
+        "via": "ITAM Aprendizaje de Máquina (SVM, redes, CART, EM, PCA)"
+      },
+      {
+        "name": "Computer Vision",
+        "level": 2,
+        "via": "DataLab ITAM · ECOBOX AI"
+      },
+      {
+        "name": "Statistics · Monte Carlo",
+        "level": 3,
+        "via": "ITAM Cálculo de Probabilidades I–II · Estadística Matemática"
+      },
+      {
+        "name": "Power BI · Excel",
+        "level": 3
+      },
+      {
+        "name": "Data architecture",
+        "level": 3
+      },
+      {
+        "name": "Documentation",
+        "level": 4
+      },
+      {
+        "name": "Regression · GLMs",
+        "level": 3,
+        "via": "linear, logistic, Poisson; diagnostics — ITAM Métodos Lineales · Keeper project"
+      },
+      {
+        "name": "Hypothesis testing · MLE",
+        "level": 3,
+        "via": "ITAM Estadística Matemática"
+      },
+      {
+        "name": "Causal inference",
+        "level": 2,
+        "via": "potential outcomes, DiD, IV/2SLS, RD, matching — ITAM Inferencia Causal"
+      },
+      {
+        "name": "PCA · factor analysis",
+        "level": 2,
+        "via": "ITAM Aprendizaje de Máquina · Métodos Multivariados (in progress)"
+      },
+      {
+        "name": "Search & game-tree AI",
+        "level": 2,
+        "via": "A*, minimax/alpha-beta, agents — ITAM Inteligencia Artificial"
+      }
+    ]
+  },
+  {
+    "id": "foundations",
+    "labels": {
+      "en": "Mathematical foundations",
+      "es": "Fundamentos matemáticos",
+      "pt-br": "Fundamentos matemáticos"
+    },
+    "constellation": "Lyra",
+    "items": [
+      {
+        "name": "Linear algebra",
+        "level": 3,
+        "via": "ITAM Álgebra Lineal I · Geometría Vectorial"
+      },
+      {
+        "name": "Multivariable calculus",
+        "level": 3,
+        "via": "Lagrange, Hessian, multiple integrals, Taylor — ITAM Cálculo I–III (Lagrange, Hessian)"
+      },
+      {
+        "name": "Probability theory",
+        "level": 3,
+        "via": "ITAM Cálculo de Probabilidades I–II · Bátiz Probabilidad y Estadística"
+      },
+      {
+        "name": "Discrete math · graph theory",
+        "level": 2,
+        "via": "ITAM Matemáticas Discretas"
+      },
+      {
+        "name": "Proofs · logic",
+        "level": 2,
+        "via": "induction, sets, modular arithmetic — ITAM Pensamiento Matemático"
+      },
+      {
+        "name": "Algorithms & data structures",
+        "level": 3,
+        "via": "AVL, B-trees, hashing, Dijkstra/Floyd, big-O — ITAM Estructuras de Datos · Estructuras de Datos Avanzadas"
+      },
+      {
+        "name": "Microeconomics · market design",
+        "level": 2,
+        "via": "ITAM Economía I–IV · Diseño de Mercados"
+      }
     ]
   }
 ]

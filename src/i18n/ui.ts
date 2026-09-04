@@ -178,6 +178,7 @@ const en = {
   'constellation.level.2': 'Productive',
   'constellation.level.3': 'Strong',
   'constellation.level.4': 'Expert',
+  'constellation.hint': 'Hover or focus a star to see the course or job behind it.',
 
   'contact.title': 'Contact',
   'contact.lead':
@@ -381,6 +382,8 @@ const es: Record<UIKey, string> = {
   'constellation.level.2': 'Productivo',
   'constellation.level.3': 'Sólido',
   'constellation.level.4': 'Experto',
+  'constellation.hint':
+    'Pasa el cursor o enfoca una estrella para ver la materia o el trabajo que la respalda.',
 
   'contact.title': 'Contacto',
   'contact.lead':
@@ -582,6 +585,8 @@ const ptBr: Record<UIKey, string> = {
   'constellation.level.2': 'Produtivo',
   'constellation.level.3': 'Sólido',
   'constellation.level.4': 'Especialista',
+  'constellation.hint':
+    'Passe o cursor ou foque uma estrela para ver a matéria ou o trabalho por trás dela.',
 
   'contact.title': 'Contato',
   'contact.lead':

@@ -125,7 +125,8 @@
       "end": "2027-05-10",
       "summary": "Graduación esperada: mayo de 2027.",
       "bullets": [
-        "Cursos relevantes: Machine Learning, Inteligencia Artificial, Cómputo Paralelo, Estructuras de Datos Avanzadas, Bases de Datos NoSQL, Estadística y Algoritmos.",
+        "Materias del Plan B (temarios oficiales): Cálculo I–III, Geometría Vectorial, Álgebra Lineal, Pensamiento Matemático, Matemáticas Discretas; Probabilidad I–II, Estadística Matemática, Métodos Lineales (GLM), Métodos Multivariados, Estadística Bayesiana; Algoritmos y Programas, Estructuras de Datos (Avanzadas), Bases de Datos, Bases de Datos No Relacionales, Fuentes de Datos, Visualización de Información, Aprendizaje de Máquina, Inteligencia Artificial, Cómputo Paralelo y en la Nube, Arquitectura para Grandes Volúmenes de Datos, Minería y Análisis de Datos; Economía I–IV, Diseño de Mercados, Inferencia Causal; Legalidad y Ética en Ciencia de Datos; y el tronco humanístico del ITAM (Ideas e Instituciones Políticas I–III, Civilización Contemporánea, historia y realidad de México).",
+        "Herramientas por materia: R en toda la secuencia de estadística; Java en la secuencia de estructuras de datos; Python, Bash, Linux, expresiones regulares y Git en Fuentes de Datos; MongoDB, Cassandra, Neo4j, Spark/Hadoop y Docker en NoSQL; C++ con OpenMP y MPI en Cómputo Paralelo; agentes y búsqueda en Python en IA.",
         "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo.",
         "Reputación: 4.ª universidad de México y banda 751–760 mundial en el QS World University Rankings 2027, y 1.ª de México / 30.ª del mundo en el indicador QS Employment Outcomes (95.5 % de egresados empleados entre 7 y 11 meses después de graduarse). 42.ª de América Latina en QS 2026. Economía está en el lugar =185 mundial (QS por materia 2025) y es primer lugar en la encuesta a empleadores de Reforma en 2024, 2025 y 2026; Ciencias de la Computación entró al QS por materia en 2025 (701–750).",
         "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030."
@@ -152,6 +153,18 @@
         {
           "label": "ITAM · Licenciatura en Ciencia de Datos",
           "url": "https://licenciaturas.itam.mx/licenciatura-en-ciencia-de-datos-2/"
+        },
+        {
+          "label": "ITAM · boletín del Plan B (CDA-B)",
+          "url": "https://escolar.itam.mx/licenciaturas/boletines/CDA-B.pdf"
+        },
+        {
+          "label": "ITAM · temarios de Estadística",
+          "url": "https://estadistica.itam.mx/es/cursos-de-licenciatura"
+        },
+        {
+          "label": "ITAM · temario de Aprendizaje de Máquina",
+          "url": "https://dac.itam.mx/sites/default/files/u438/com-23701_aprendizaje_de_maquina.pdf"
         }
       ]
     },
@@ -167,6 +180,7 @@
       "summary": "Bachillerato bivalente del IPN (certificado de nivel medio superior + título técnico), Plan 2008. Título expedido en diciembre de 2022. El Bátiz es el plantel del IPN con el puntaje de corte más alto del examen COMIPEMS en el país, unos diez aciertos por encima del siguiente.",
       "bullets": [
         "Formación profesional: Programación Orientada a Objetos, Programación y Servicios Web, Bases de Datos (diseño normalizado y lenguajes de manipulación de datos), Introducción a la Ingeniería de Pruebas y Automatización de Pruebas, Seguridad Web y Aplicaciones, Introducción a los Sistemas Distribuidos, Métodos Ágiles de Programación, Ingeniería de Software Básica y cuatro semestres de Laboratorio de Proyectos de TI.",
+        "Estándares y herramientas nombrados en los programas oficiales del Plan 2008: UML (todos los diagramas), JUnit y diseño de pruebas de caja blanca y negra, XP, Scrum y Crystal, servicios web SOAP/WSDL/UDDI, sockets y RPC, criptografía simétrica y de clave pública, SSL/TLS, Kerberos e IPsec, PSP, CMMI y COCOMO, MoProSoft.",
         "Tronco científico completo en paralelo: Álgebra, Geometría y Trigonometría, Geometría Analítica, Cálculo Diferencial e Integral, Probabilidad y Estadística, Física I–IV, Química I–IV, además de filosofía, historia y seis semestres de inglés.",
         "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar.",
         "Ranking: en el COMIPEMS 2024 el corte del CECyT 9 fue de 102 aciertos de 128, el más alto de todos los planteles del IPN (el siguiente pidió 94) y por encima del CCH Sur de la UNAM; el aspirante con el puntaje más alto de todo el concurso 2024 (126/128) eligió el Bátiz. Fue nombrado el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos hasta 2012 (92 % del alumnado en nivel excelente en Matemáticas) y en 2015 seguía siendo el único bachillerato público en el top 5 nacional tanto por demanda de ingreso como por admisión a la universidad.",
@@ -175,6 +189,14 @@
       "stack": ["C++", "Java", "JavaScript", "SQL", "Pruebas de software"],
       "orbit": 6,
       "sources": [
+        {
+          "label": "CECyT 9 · programa Plan 2008 (PDF oficial)",
+          "url": "https://coatl.cecyt9.ipn.mx/ofertaEducativa/planes/programacion/planProgramacion.pdf"
+        },
+        {
+          "label": "CECyT 9 · índice de programas",
+          "url": "https://coatl.cecyt9.ipn.mx/ofertaEducativa/"
+        },
         {
           "label": "El Universal 2012 · ENLACE",
           "url": "https://archivo.eluniversal.com.mx/nacion/199873.html"

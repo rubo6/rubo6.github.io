@@ -50,7 +50,7 @@ One entry per category: real object (`name`, `designation`, `constellation`, `di
 
 ### `skills.json`
 
-Groups with localized labels, a real constellation name, and items with `level` 1–4 (familiar → expert). Level drives star size.
+Groups with localized labels, a real constellation name, and items with `level` 1–4 (familiar → expert) and an optional `via` (provenance: course · institution, job or project; shown as the star's tooltip and read by screen readers). Level drives star size. Every academic skill must be backed by a syllabus in `docs/research/` — never invent proficiency.
 
 ### `certifications.json`
 

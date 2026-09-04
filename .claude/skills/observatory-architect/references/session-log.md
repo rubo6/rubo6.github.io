@@ -20,6 +20,13 @@ Append one entry per working session: what changed, decisions, what is pending. 
 
 - GitHub contributions heatmap (`contributions` collection + `Contributions.astro`, personal universe). Playwright smoke suite added (`tests/e2e/smoke.spec.ts`, 2 device projects) and wired into CI after the build; traces uploaded on failure.
 
+## Session 3 — 2026-09-05 (overnight autonomous run)
+
+- Rankings for ITAM/Ibero/Bátiz with `sources[]`; contributions heatmap; Playwright suite in CI.
+- Alive layer: tickers, spotlight, lift, dome shutter, view-transition cross-dissolve, reticles, pulsar, breathing portrait, pulse dots; five official JWST scene backdrops (Crab, Cartwheel, Tarantula, WR 124, Stephan's Quintet).
+- Research: official syllabi of Bátiz Plan 2008 and ITAM LCD Plan B saved in `docs/research/`; derived hard skills (`via` provenance on every skill star, new `foundations` group), trajectory bullets and sources updated.
+- `docs/QUESTIONNAIRE-2.md` (60 questions on MeLi + school) for Rubo to answer.
+
 **Pending / next**
 
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).
