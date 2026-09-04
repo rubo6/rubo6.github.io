@@ -1,20 +1,20 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-04T22:34:52.770Z",
-  "runner": "github-actions#33925978087",
+  "measuredAt": "2026-09-04T22:48:05.237Z",
+  "runner": "github-actions#33926883277",
   "mobile": {
-    "performance": 65,
+    "performance": 61,
     "accessibility": 97,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 4087,
-    "fcpMs": 1836,
-    "speedIndexMs": 4716,
-    "tbtMs": 722,
+    "lcpMs": 3915,
+    "fcpMs": 1986,
+    "speedIndexMs": 4829,
+    "tbtMs": 1001,
     "cls": 0,
-    "benchmarkIndex": 1957,
+    "benchmarkIndex": 2150,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T22:34:23.393Z",
+    "fetchTime": "2026-09-04T22:47:35.065Z",
     "failedAudits": [
       {
         "id": "color-contrast",
@@ -23,10 +23,10 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 114,
-      "resourceLoadDelay": 169,
-      "resourceLoadDuration": 46,
-      "elementRenderDelay": 1985
+      "timeToFirstByte": 73,
+      "resourceLoadDelay": 228,
+      "resourceLoadDuration": 32,
+      "elementRenderDelay": 1961
     }
   },
   "desktop": {
@@ -34,14 +34,14 @@
     "accessibility": 97,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 683,
-    "fcpMs": 373,
-    "speedIndexMs": 700,
+    "lcpMs": 731,
+    "fcpMs": 400,
+    "speedIndexMs": 744,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 2217,
+    "benchmarkIndex": 2358,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T22:34:40.972Z",
+    "fetchTime": "2026-09-04T22:47:53.101Z",
     "failedAudits": [
       {
         "id": "color-contrast",
@@ -50,10 +50,10 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 39,
-      "resourceLoadDelay": 62,
-      "resourceLoadDuration": 78,
-      "elementRenderDelay": 362
+      "timeToFirstByte": 14,
+      "resourceLoadDelay": 78,
+      "resourceLoadDuration": 87,
+      "elementRenderDelay": 319
     }
   }
 }
