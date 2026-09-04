@@ -112,7 +112,7 @@ const anchors = [
           class="icon-btn lang-btn"
           aria-haspopup="listbox"
           aria-expanded="false"
-          aria-label={t('lang.switch')}
+          aria-label={`${localeMeta[locale].short} · ${t('lang.switch')}`}
         >
           <span class="mono text-xs">{localeMeta[locale].short}</span>
         </button>
