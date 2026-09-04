@@ -11,6 +11,7 @@
 import { defineCollection, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { githubLoader } from './loaders/github';
+import { contributionsLoader } from './loaders/contributions';
 
 const locale = z.enum(['en', 'es', 'pt-br']);
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD');
@@ -250,6 +251,19 @@ const repoStats = defineCollection({
   }),
 });
 
+/** GitHub contribution calendar fetched at build time (see src/loaders/contributions.ts). */
+const contributions = defineCollection({
+  loader: contributionsLoader(),
+  schema: z.object({
+    login: z.string(),
+    source: z.enum(['graphql', 'events']),
+    total: z.number().int(),
+    from: z.string(),
+    to: z.string(),
+    days: z.array(z.object({ date: z.string(), count: z.number().int() })),
+  }),
+});
+
 export const collections = {
   profile,
   trajectory,
@@ -259,6 +273,7 @@ export const collections = {
   skills,
   personal,
   repoStats,
+  contributions,
   posts,
   now,
 };

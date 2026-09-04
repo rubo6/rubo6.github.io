@@ -82,6 +82,7 @@ Full guide: [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md).
 npm install
 npm run dev        # http://localhost:4321
 npm run validate   # format · lint · types · tests · build (what CI runs)
+npm run test:e2e   # Playwright smoke tests against the built site (desktop + mobile)
 ```
 
 Requires Node ≥ 22.12 (see `.node-version`). Pushing to `main` deploys via GitHub Actions; a daily cron rebuilds so build-time data stays fresh.

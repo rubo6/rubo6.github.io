@@ -18,9 +18,10 @@ Append one entry per working session: what changed, decisions, what is pending. 
 
 - Rankings research applied: ITAM (QS 2027 751–760, Employment Outcomes 1st MX/30th world, Economics =185, Reforma 1st 2024–26), Ibero (QS 851–900, CIEES 2025–2032, Reforma 2025) and Bátiz (COMIPEMS 2024 cut-off 102 vs 94, ENLACE 5× to 2012). New optional `sources[]` on trajectory entries rendered as small links (`trajectory.sources` i18n key). ITAM graduation text fixed to May 2027.
 
+- GitHub contributions heatmap (`contributions` collection + `Contributions.astro`, personal universe). Playwright smoke suite added (`tests/e2e/smoke.spec.ts`, 2 device projects) and wired into CI after the build; traces uploaded on failure.
+
 **Pending / next**
 
-- GitHub contributions heatmap (public events API at build), Playwright smoke tests.
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).
 - Tier-2 locales + translation pass at the very end (Rubo's decision).
 - Mobile LCP (Fraunces) still the perf lever; consider `font-display: optional` or smaller subset.

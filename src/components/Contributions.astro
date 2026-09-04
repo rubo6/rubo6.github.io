@@ -1,0 +1,185 @@
+---
+/**
+ * GitHub contribution heatmap (personal universe). Pure SVG rendered at build time from the
+ * `contributions` collection; no client script, no external requests from the browser.
+ */
+import { useTranslations, type Locale } from '@/i18n/ui';
+import { formatCount, type Contributions } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+  data: Contributions;
+}
+const { locale, data } = Astro.props;
+const t = useTranslations(locale);
+
+const CELL = 11;
+const GAP = 3;
+const STEP = CELL + GAP;
+
+// Lay the days out in columns of weeks starting on Sunday, like the GitHub profile.
+const first = new Date(`${data.from}T00:00:00Z`);
+const offset = first.getUTCDay();
+const weeks = Math.ceil((data.days.length + offset) / 7);
+const max = Math.max(1, ...data.days.map((d) => d.count));
+const level = (n: number): number => (n === 0 ? 0 : Math.min(4, Math.ceil((n / max) * 4)));
+
+const cells = data.days.map((d, i) => {
+  const idx = i + offset;
+  return { ...d, col: Math.floor(idx / 7), row: idx % 7, level: level(d.count) };
+});
+
+const monthTag = locale === 'pt-br' ? 'pt-BR' : locale === 'es' ? 'es-MX' : 'en-US';
+const monthFmt = new Intl.DateTimeFormat(monthTag, { month: 'short', timeZone: 'UTC' });
+const dayFmt = new Intl.DateTimeFormat(monthTag, {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const months: { col: number; label: string }[] = [];
+let lastMonth = -1;
+for (const c of cells) {
+  const m = new Date(`${c.date}T00:00:00Z`).getUTCMonth();
+  if (m !== lastMonth && c.row === 0) {
+    months.push({ col: c.col, label: monthFmt.format(new Date(`${c.date}T00:00:00Z`)) });
+    lastMonth = m;
+  }
+}
+
+const width = weeks * STEP + 30;
+const height = 7 * STEP + 18;
+const period = t(data.source === 'graphql' ? 'contrib.year' : 'contrib.recent');
+const summary = `${formatCount(data.total, locale)} ${t('contrib.total')} · ${period}`;
+---
+
+<div class="contrib">
+  <div class="contrib-head">
+    <h3 class="text-lg">{t('contrib.title')}</h3>
+    <a
+      class="mono text-xs"
+      href={`https://github.com/${data.login}`}
+      rel="noopener noreferrer me"
+      target="_blank">@{data.login} ↗</a
+    >
+  </div>
+  <p class="text-ink-muted mono text-xs mt-1">{summary}</p>
+  <div class="contrib-scroll">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      role="img"
+      aria-label={summary}
+      class="contrib-svg"
+    >
+      {
+        months.map((m) => (
+          <text x={30 + m.col * STEP} y={10} class="contrib-month">
+            {m.label}
+          </text>
+        ))
+      }
+      {
+        ['contrib.mon', 'contrib.wed', 'contrib.fri'].map((k, i) => (
+          <text x={0} y={18 + (1 + i * 2) * STEP + CELL - 2} class="contrib-month">
+            {t(k as 'contrib.mon')}
+          </text>
+        ))
+      }
+      {
+        cells.map((c) => (
+          <rect
+            x={30 + c.col * STEP}
+            y={18 + c.row * STEP}
+            width={CELL}
+            height={CELL}
+            rx={2.5}
+            data-level={c.level}
+          >
+            <title>{`${dayFmt.format(new Date(`${c.date}T00:00:00Z`))}: ${c.count}`}</title>
+          </rect>
+        ))
+      }
+    </svg>
+  </div>
+  <p class="contrib-legend mono text-xs" aria-hidden="true">
+    <span>{t('contrib.less')}</span>
+    {[0, 1, 2, 3, 4].map((l) => <i data-level={l} />)}
+    <span>{t('contrib.more')}</span>
+  </p>
+</div>
+
+<style>
+  .contrib {
+    grid-column: 1 / -1;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+  }
+  .contrib-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .contrib-head a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+  .contrib-head a:hover {
+    color: var(--accent);
+  }
+  .contrib-scroll {
+    margin-top: 1rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .contrib-svg {
+    /* Intrinsic size; the wrapper scrolls horizontally on narrow screens instead of shrinking cells. */
+    display: block;
+  }
+  .contrib-month {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--ink-muted);
+  }
+  rect,
+  .contrib-legend i {
+    fill: color-mix(in oklab, var(--ink) 8%, transparent);
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+    transition: fill var(--dur-slow) var(--ease-out);
+  }
+  [data-level='1'] {
+    fill: color-mix(in oklab, var(--accent) 30%, transparent);
+    background: color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+  [data-level='2'] {
+    fill: color-mix(in oklab, var(--accent) 55%, transparent);
+    background: color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+  [data-level='3'] {
+    fill: color-mix(in oklab, var(--accent) 80%, transparent);
+    background: color-mix(in oklab, var(--accent) 80%, transparent);
+  }
+  [data-level='4'] {
+    fill: var(--accent);
+    background: var(--accent);
+  }
+  .contrib-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0.75rem 0 0;
+    color: var(--ink-muted);
+  }
+  .contrib-legend i {
+    width: 11px;
+    height: 11px;
+    border-radius: 2.5px;
+  }
+  .contrib-legend span + i {
+    margin-left: 0.25rem;
+  }
+</style>

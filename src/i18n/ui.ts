@@ -145,6 +145,15 @@ const en = {
   'personal.title': 'Personal universe',
   'personal.soft': 'Soft skills, with evidence',
   'personal.facts': 'Fun facts',
+  'contrib.title': 'GitHub activity',
+  'contrib.total': 'contributions',
+  'contrib.year': 'last 12 months',
+  'contrib.recent': 'last 90 days, public events',
+  'contrib.less': 'less',
+  'contrib.more': 'more',
+  'contrib.mon': 'Mon',
+  'contrib.wed': 'Wed',
+  'contrib.fri': 'Fri',
 
   'trajectory.title': 'Trajectory',
   'trajectory.lead':
@@ -335,6 +344,15 @@ const es: Record<UIKey, string> = {
   'personal.title': 'Universo personal',
   'personal.soft': 'Soft skills, con evidencia',
   'personal.facts': 'Datos curiosos',
+  'contrib.title': 'Actividad en GitHub',
+  'contrib.total': 'contribuciones',
+  'contrib.year': 'últimos 12 meses',
+  'contrib.recent': 'últimos 90 días, eventos públicos',
+  'contrib.less': 'menos',
+  'contrib.more': 'más',
+  'contrib.mon': 'Lun',
+  'contrib.wed': 'Mié',
+  'contrib.fri': 'Vie',
 
   'trajectory.title': 'Trayectoria',
   'trajectory.lead':
@@ -524,6 +542,15 @@ const ptBr: Record<UIKey, string> = {
   'personal.title': 'Universo pessoal',
   'personal.soft': 'Soft skills, com evidências',
   'personal.facts': 'Curiosidades',
+  'contrib.title': 'Atividade no GitHub',
+  'contrib.total': 'contribuições',
+  'contrib.year': 'últimos 12 meses',
+  'contrib.recent': 'últimos 90 dias, eventos públicos',
+  'contrib.less': 'menos',
+  'contrib.more': 'mais',
+  'contrib.mon': 'Seg',
+  'contrib.wed': 'Qua',
+  'contrib.fri': 'Sex',
 
   'trajectory.title': 'Trajetória',
   'trajectory.lead':

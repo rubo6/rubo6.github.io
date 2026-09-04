@@ -13,10 +13,11 @@ npm install                # Node >= 22.12 (see .node-version)
 npm run dev                # dev server on :4321
 npm run validate           # format:check + lint + check (types) + test + build — run before every commit
 npm run format             # prettier --write
+npm run test:e2e           # Playwright smoke tests against dist/ (run `npm run build` first; needs `npx playwright install chromium` once)
 node scripts/generate-icons.mjs   # regenerate public/icons and public/og from public/favicon.svg
 ```
 
-CI runs exactly `npm run validate` plus `npm audit`. If it fails locally it will fail in CI.
+CI runs exactly `npm run validate`, then the Playwright smoke suite against the production build, then `npm audit`. If it fails locally it will fail in CI.
 
 ## Invariants (do not break)
 

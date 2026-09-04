@@ -58,9 +58,14 @@ Two orthogonal axes on `<html>`: `data-theme="night|atlas"` and `data-mode="pro|
 
 Tests in `tests/unit/astro.test.ts` check against Meeus worked examples (12.a, 13.b) and known lunar phases.
 
+## Build-time GitHub data
+
+- `src/loaders/github.ts` → `repoStats` collection (stars, forks, language, last push; traffic with `GH_TRAFFIC_TOKEN`).
+- `src/loaders/contributions.ts` → `contributions` collection: the 12-month contribution calendar via GraphQL when a token is present, otherwise a 90-day window from the anonymous public-events API. Rendered as an SVG heatmap by `Contributions.astro` in the personal universe; hidden when the anonymous fallback has fewer than 10 contributions.
+
 ## CI/CD
 
-- `ci.yml`: `npm ci --ignore-scripts`, format check, lint, `astro check`, tests, build, `npm audit --audit-level=high`; dependency review on PRs.
+- `ci.yml`: `npm ci --ignore-scripts`, format check, lint, `astro check`, unit tests, build, Playwright smoke tests against `dist/` (Chromium, desktop + Pixel 7 profiles: locales, universe switch, theme, CSP/no inline JS, log filters, OG images, key routes), `npm audit --audit-level=high`; dependency review on PRs.
 - `deploy.yml`: build with `withastro/action` and publish with `actions/deploy-pages`; runs on push to `main`, manual dispatch and a daily cron.
 - `codeql.yml`: weekly + on push/PR, `security-extended` queries.
 - All actions pinned to commit SHAs; `permissions: {}` at workflow level, granted per job.

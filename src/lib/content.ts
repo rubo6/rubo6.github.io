@@ -14,6 +14,7 @@ export type SkillGroup = CollectionEntry<'skills'>['data'];
 export type Certification = CollectionEntry<'certifications'>['data'];
 export type Personal = CollectionEntry<'personal'>['data'];
 export type RepoStats = CollectionEntry<'repoStats'>['data'];
+export type Contributions = CollectionEntry<'contributions'>['data'];
 export type Post = CollectionEntry<'posts'>;
 export type Now = CollectionEntry<'now'>['data'];
 
@@ -85,6 +86,10 @@ export function formatMonth(iso: string | null, locale: Locale, present: string)
 export async function getRepoStats(): Promise<Map<string, RepoStats>> {
   const entries = await getCollection('repoStats');
   return new Map(entries.map((e) => [e.data.repo, e.data]));
+}
+
+export async function getContributions(): Promise<Contributions | undefined> {
+  return (await getCollection('contributions'))[0]?.data;
 }
 
 /** Compact number formatting per locale (1.2k, 3 mil…). */

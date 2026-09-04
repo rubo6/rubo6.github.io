@@ -6,7 +6,7 @@
 - `vite.build.assetsInlineLimit: 0` — every JS chunk and font stays an external file (CSP). `inlineStylesheets: 'auto'` is fine because `style-src` allows inline styles.
 - `devToolbar` disabled (it injects inline scripts the CSP blocks).
 - Output: 34 static pages (3 locales × home, ~8 project pages, CV) + 404, sitemap, robots, icons, OG image. Deployed by `.github/workflows/deploy.yml` (`withastro/action` → `actions/deploy-pages`) on push to `main`, manual dispatch and a daily cron at 05:17 America/Mexico_City.
-- CI (`ci.yml`): `npm ci --ignore-scripts` → format check → lint → `astro check` → vitest → build → `npm audit --omit=dev --audit-level=high`; dependency review on PRs. `codeql.yml` weekly + on push. All actions pinned to commit SHAs; Dependabot updates them (TypeScript majors ignored because typescript-eslint lags).
+- CI (`ci.yml`): `npm ci --ignore-scripts` → format check → lint → `astro check` → vitest → build → Playwright smoke tests (`tests/e2e/smoke.spec.ts`, Chromium desktop + Pixel 7, served by `astro preview` with `ASTRO_PREVIEW_BACKGROUND=1` so Astro 7 does not daemonise it in agent shells) → `npm audit --omit=dev --audit-level=high`; dependency review on PRs. `codeql.yml` weekly + on push. All actions pinned to commit SHAs; Dependabot updates them (TypeScript majors ignored because typescript-eslint lags).
 
 ## Routing and locales
 
@@ -70,6 +70,10 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 ## GitHub loader (`src/loaders/github.ts`)
 
 Astro Content Layer loader registered as the `repoStats` collection. At build it discovers every `repo:` in `src/content/projects/en/*.md`, calls `https://api.github.com/repos/<owner>/<name>` (stars, forks, language, last push) and, when `GH_TRAFFIC_TOKEN` is in the environment (Actions secret, fine-grained PAT with Administration read-only), `/traffic/views` and `/traffic/clones` (14-day windows). Fail-soft: errors are logged as warnings and the collection stays empty, so offline builds pass and the UI simply omits the stats row. Consumed by `Observatory.astro` (star cards) and `ProjectPage.astro`. The daily cron in `deploy.yml` keeps numbers fresh.
+
+## Contributions loader (`src/loaders/contributions.ts`)
+
+`contributions` collection, one entry (id = GitHub login discovered from the profile's GitHub link). With `GH_TRAFFIC_TOKEN` it queries GraphQL `contributionsCollection.contributionCalendar` (12 months, same as the profile page); without a token, or if GraphQL rejects the token, it falls back to `GET /users/{login}/events/public` (≤ 90 days / 300 events, PushEvent weighted by `distinct_size`). `Contributions.astro` renders a pure-SVG heatmap (53×7 max, `data-level` 0–4 coloured from `--accent`) inside `.personal-extra`; `Observatory.astro` hides it when the fallback has < 10 contributions. No client JS, no browser requests.
 
 ## Analytics
 

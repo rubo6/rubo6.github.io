@@ -38,6 +38,7 @@ npm install                 # Node >= 22.12 (see .node-version)
 npm run dev                 # dev server on http://localhost:4321
 npm run validate            # format:check + lint + astro check + vitest + build  ← run before every commit
 npm run format              # prettier --write
+npm run test:e2e            # Playwright smoke suite against dist/ (build first; `npx playwright install chromium` once)
 node scripts/generate-icons.mjs   # regenerate public/icons and public/og from public/favicon.svg
 ```
 
