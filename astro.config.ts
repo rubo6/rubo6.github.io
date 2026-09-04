@@ -33,7 +33,8 @@ export default defineConfig({
   },
 
   build: {
-    inlineStylesheets: 'auto',
+    // 'always': one HTML request instead of ~12 render-blocking CSS files (CSP allows inline styles).
+    inlineStylesheets: 'always',
   },
 
   integrations: [

@@ -260,6 +260,11 @@ const skyData = {
     background: color-mix(in oklab, var(--accent) 85%, white);
     color: var(--bg-0);
   }
+  /* Paper theme: the gold is darker, so ivory text would fail 4.5:1; use the ink instead. */
+  :global([data-theme='atlas']) .btn-primary,
+  :global([data-theme='atlas']) .btn-primary:hover {
+    color: var(--ink);
+  }
   .btn-ghost {
     border-color: var(--line);
     color: var(--ink);

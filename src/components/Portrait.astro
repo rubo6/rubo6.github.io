@@ -271,6 +271,9 @@ const media = [
     background: var(--accent);
     color: var(--bg-0);
   }
+  :global([data-theme='atlas']) .tab[aria-pressed='true'] {
+    color: var(--ink);
+  }
   .caption {
     font-size: 0.68rem;
     color: var(--ink-muted);
