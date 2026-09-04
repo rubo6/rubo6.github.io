@@ -1,1 +1,2 @@
 {"measuredAt":"2026-09-04T22:14:32.361Z","runner":"local","mobile":[93,100,100,100],"desktop":[96,100,100,100],"lcpMs":{"mobile":2997,"desktop":730}}
+{"measuredAt":"2026-09-04T22:18:48.017Z","runner":"github-actions#33924844518","mobile":[81,97,100,100],"desktop":[100,97,100,100],"lcpMs":{"mobile":3972,"desktop":728}}

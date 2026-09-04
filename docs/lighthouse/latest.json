@@ -1,33 +1,33 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-04T22:14:32.361Z",
-  "runner": "local",
+  "measuredAt": "2026-09-04T22:18:48.017Z",
+  "runner": "github-actions#33924844518",
   "mobile": {
-    "performance": 93,
-    "accessibility": 100,
+    "performance": 81,
+    "accessibility": 97,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 2997,
-    "fcpMs": 1456,
-    "speedIndexMs": 3194,
-    "tbtMs": 98,
+    "lcpMs": 3972,
+    "fcpMs": 1633,
+    "speedIndexMs": 4691,
+    "tbtMs": 193,
     "cls": 0,
-    "benchmarkIndex": 2688,
+    "benchmarkIndex": 2682,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T21:42:25.586Z"
+    "fetchTime": "2026-09-04T22:18:20.462Z"
   },
   "desktop": {
-    "performance": 96,
-    "accessibility": 100,
+    "performance": 100,
+    "accessibility": 97,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 730,
-    "fcpMs": 600,
-    "speedIndexMs": 1996,
+    "lcpMs": 728,
+    "fcpMs": 388,
+    "speedIndexMs": 686,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 1493,
+    "benchmarkIndex": 2730,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T21:42:49.878Z"
+    "fetchTime": "2026-09-04T22:18:36.879Z"
   }
 }
