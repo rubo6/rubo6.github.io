@@ -597,6 +597,38 @@
     filter: blur(0);
   }
 }
+/* Above-the-fold text and buttons: slide (and blur on desktop) but never fade, so contrast audits
+   and readers never meet half-transparent text. */
+.js .reveal-solid {
+  opacity: 1;
+}
+.reveal-solid.is-visible {
+  animation-name: rise-solid;
+}
+@keyframes rise-solid {
+  from {
+    transform: translateY(26px) scale(0.985);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rise-blur-solid {
+  from {
+    transform: translateY(26px) scale(0.985);
+    filter: blur(8px);
+  }
+  to {
+    transform: none;
+    filter: blur(0);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .reveal-solid.is-visible {
+    animation-name: rise-blur-solid;
+  }
+}
+
 /* Stagger direct children of a revealed group via --i (set by nth-child rules). */
 .reveal-stagger > * {
   animation-delay: calc(var(--i, 0) * 70ms) !important;

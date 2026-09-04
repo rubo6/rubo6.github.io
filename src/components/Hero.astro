@@ -28,7 +28,7 @@ const skyData = {
       src={heroBg}
       formats={['avif', 'webp']}
       widths={[640, 960, 1280, 1672]}
-      sizes="(max-width: 900px) 55vw, 100vw"
+      sizes="(max-width: 900px) 45vw, 100vw"
       alt=""
       class="sky-bg"
       loading="eager"
@@ -40,17 +40,19 @@ const skyData = {
 
   <div class="container-content hero-grid">
     <div class="hero-copy">
-      <p class="kicker mono reveal" data-delay="0">{t('hero.kicker')}</p>
-      <h1 id="hero-title" class="reveal" data-delay="1">
+      <p class="kicker mono reveal reveal-solid" data-delay="0">{t('hero.kicker')}</p>
+      <h1 id="hero-title" class="reveal reveal-solid" data-delay="1">
         <span class="name-pro">{profile.name}</span>
         <span class="name-personal" aria-hidden="true">{profile.nickname}</span>
       </h1>
-      <p class="headline reveal" data-delay="2">{profile.headline}</p>
-      <p class="tagline tagline-pro reveal text-ink-muted" data-delay="3">{profile.tagline}</p>
-      <p class="tagline tagline-personal reveal text-ink-muted" data-delay="3">
+      <p class="headline reveal reveal-solid" data-delay="2">{profile.headline}</p>
+      <p class="tagline tagline-pro reveal reveal-solid text-ink-muted" data-delay="3">
+        {profile.tagline}
+      </p>
+      <p class="tagline tagline-personal reveal reveal-solid text-ink-muted" data-delay="3">
         {profile.personalIntro}
       </p>
-      <div class="actions reveal" data-delay="4">
+      <div class="actions reveal reveal-solid" data-delay="4">
         <a class="btn btn-primary" href="#observatory">{t('hero.cta.observatory')}</a>
         <a class="btn btn-ghost" href={localePath(locale, '/cv')}>{t('hero.cta.cv')}</a>
       </div>
