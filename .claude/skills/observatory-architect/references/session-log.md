@@ -27,6 +27,8 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Companion skills copied into `.claude/skills/` (ui-ux-master, web-design-guidelines, web-accessibility, pwa-native-feel — adapted, internal references removed) plus a new `web-security-static`; referenced from this skill.
 - Rubo completed: 2FA, push protection, Dependabot/CodeQL/private reporting, `GH_TRAFFIC_TOKEN` secret, GoatCounter account, WhisperFlow repo created and pushed (2 commits).
 
+**Lighthouse pass (same day)**: desktop 95/98/100/100, mobile 79/98/100/100 before fixes. Fixes: sky palette cached instead of `getComputedStyle` per frame (forced reflow), sky mounted on `requestIdleCallback`, two above-the-fold fonts preloaded via `?url` imports, deep-field nodes 90→56 per scene, clocks heading h3→h2 (heading order), mode switch accessible name includes visible labels. Added JSON-LD `Person` on the home page and Xbox gamertag (Steam link removed while the profile is private). WhisperFlow release `v0.1.0` published by Rubo (5 assets); Enforce HTTPS and AAAA records done.
+
 **Pending / next**
 
 - Official JWST/Hubble imagery per nebula (Carina first, Rubo's favourite).

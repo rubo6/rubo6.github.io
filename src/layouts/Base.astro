@@ -7,6 +7,8 @@
 import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import { localeMeta, localePath, locales, useTranslations, type Locale } from '@/i18n/ui';
+import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2?url';
+import instrumentUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   locale: Locale;
@@ -70,6 +72,8 @@ const csp = [
     <meta name="theme-color" content="#0b1026" />
     <meta name="generator" content={Astro.generator} />
 
+    <link rel="preload" as="font" type="font/woff2" href={frauncesUrl} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={instrumentUrl} crossorigin />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical.href} />

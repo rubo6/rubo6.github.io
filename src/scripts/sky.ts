@@ -69,6 +69,28 @@ export function mountSky(opts: SkyOptions): () => void {
   let warpDir = 1;
   let lastClock = '';
 
+  // Theme colours are read once and refreshed on theme/mode events: reading computed styles
+  // inside the animation loop forces a style recalculation on every frame.
+  let palette = readPalette();
+  function readPalette() {
+    return {
+      accent: cssVar('--accent', '#f2c46d'),
+      ink: cssVar('--ink', '#f4efe6'),
+      line: cssVar('--accent-3', '#9ad9e8'),
+      mono: cssVar('--font-mono', 'monospace'),
+      isAtlas: document.documentElement.getAttribute('data-theme') === 'atlas',
+    };
+  }
+  /** Re-read tokens now and again once the --dur-universe transition has settled. */
+  function refreshPalette(redraw = false) {
+    palette = readPalette();
+    if (redraw) draw(performance.now());
+    window.setTimeout(() => {
+      palette = readPalette();
+      if (redraw) draw(performance.now());
+    }, 1500);
+  }
+
   function resize(): void {
     const rect = canvas.getBoundingClientRect();
     dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -84,10 +106,7 @@ export function mountSky(opts: SkyOptions): () => void {
     const jd = julianDate(date);
     const lst = lstHours(jd, lon);
 
-    const accent = cssVar('--accent', '#f2c46d');
-    const ink = cssVar('--ink', '#f4efe6');
-    const line = cssVar('--accent-3', '#9ad9e8');
-    const isAtlas = document.documentElement.getAttribute('data-theme') === 'atlas';
+    const { accent, ink, line, mono, isAtlas } = palette;
 
     ctx!.clearRect(0, 0, width, height);
 
@@ -116,7 +135,7 @@ export function mountSky(opts: SkyOptions): () => void {
     ctx!.arc(cx, cy, R, 0, Math.PI * 2);
     ctx!.stroke();
     ctx!.setLineDash([]);
-    ctx!.font = `500 11px ${cssVar('--font-mono', 'monospace')}`;
+    ctx!.font = `500 11px ${mono}`;
     ctx!.fillStyle = ink;
     ctx!.textAlign = 'center';
     ctx!.textBaseline = 'middle';
@@ -201,7 +220,7 @@ export function mountSky(opts: SkyOptions): () => void {
     // Labels for the brightest visible stars
     if (opts.labels !== false) {
       ctx!.save();
-      ctx!.font = `400 10.5px ${cssVar('--font-mono', 'monospace')}`;
+      ctx!.font = `400 10.5px ${mono}`;
       ctx!.fillStyle = ink;
       ctx!.globalAlpha = isAtlas ? 0.75 : 0.55;
       ctx!.textAlign = 'left';
@@ -271,11 +290,13 @@ export function mountSky(opts: SkyOptions): () => void {
     const detail = (e as CustomEvent<{ mode: string }>).detail;
     warpDir = detail?.mode === 'personal' ? 1 : -1;
     warpUntil = performance.now() + 900;
+    refreshPalette();
     if (reduced.matches) draw(performance.now());
     else start();
   };
   document.addEventListener('universe:mode', onMode);
-  document.addEventListener('universe:theme', () => draw(performance.now()));
+  const onTheme = () => refreshPalette(true);
+  document.addEventListener('universe:theme', onTheme);
 
   return () => {
     stop();
@@ -283,6 +304,7 @@ export function mountSky(opts: SkyOptions): () => void {
     io.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);
     document.removeEventListener('universe:mode', onMode);
+    document.removeEventListener('universe:theme', onTheme);
   };
 }
 

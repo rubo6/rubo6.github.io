@@ -34,7 +34,7 @@ const profile = defineCollection({
       z.object({
         label: z.string(),
         url: httpsUrl,
-        kind: z.enum(['github', 'linkedin', 'spotify', 'steam', 'other']),
+        kind: z.enum(['github', 'linkedin', 'spotify', 'steam', 'xbox', 'other']),
       }),
     ),
     dates: z.object({

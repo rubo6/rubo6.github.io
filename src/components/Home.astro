@@ -34,9 +34,42 @@ const [profile, trajectory, projects, nebulae, skills, certifications, personal]
     getCertifications(),
     getPersonal(locale),
   ]);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  alternateName: profile.nickname,
+  url: 'https://rubo6.dev/',
+  image: 'https://rubo6.dev/og/default.png',
+  jobTitle: 'Data Engineer / Analytics Engineer',
+  worksFor: { '@type': 'Organization', name: 'Mercado Libre · Mercado Pago Point' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Instituto Tecnológico Autónomo de México (ITAM)' },
+    { '@type': 'CollegeOrUniversity', name: 'Universidad Iberoamericana' },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: profile.location.city,
+    addressCountry: 'MX',
+  },
+  email: `mailto:${profile.email}`,
+  sameAs: profile.links.map((l) => l.url),
+  knowsAbout: [
+    'Data Engineering',
+    'BigQuery',
+    'SQL',
+    'Python',
+    'TypeScript',
+    'Machine Learning',
+    'Astronomy',
+  ],
+  knowsLanguage: ['es', 'en'],
+};
 ---
 
 <Base locale={locale} path="/">
+  <script type="application/ld+json" set:html={safeJson(jsonLd)} slot="head" />
   <script
     type="application/json"
     id="client-strings"

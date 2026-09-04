@@ -239,6 +239,14 @@ const skyData = {
       clock: document.querySelector<HTMLElement>('[data-sky-clock]'),
     });
   }
-  boot();
-  document.addEventListener('astro:after-swap', boot);
+  type IdleWindow = Window & {
+    requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+  };
+  const idle = (fn: () => void) => {
+    const w = window as IdleWindow;
+    if (w.requestIdleCallback) w.requestIdleCallback(fn, { timeout: 1200 });
+    else window.setTimeout(fn, 200);
+  };
+  idle(boot);
+  document.addEventListener('astro:after-swap', () => idle(boot));
 </script>
