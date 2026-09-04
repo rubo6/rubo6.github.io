@@ -20,6 +20,10 @@ node scripts/generate-icons.mjs   # regenerate public/icons and public/og from p
 
 CI runs exactly `npm run validate`, then the Playwright smoke suite against the production build, then `npm audit`. If it fails locally it will fail in CI.
 
+## Large files
+
+Official telescope originals live in `src/assets/nebulae/raw/` and are tracked with **Git LFS** (`.gitattributes`). `git clone` gets pointers only; run `git lfs pull` when you need the originals to regenerate `src/assets/nebulae/*.{avif,webp}` or `src/assets/scenes/*`. Never add multi-megabyte binaries outside LFS. History was rewritten on 2026-09-05 to drop the old raw blobs (~18 MB); clones made before that date must be re-cloned.
+
 ## Invariants (do not break)
 
 1. **Content is data.** All texts, dates, links and lists live in `src/content/` and are validated by `src/content.config.ts`. Never hardcode CV facts in components. To change what the site _says_, edit content; to change how it _looks_, edit components/styles.

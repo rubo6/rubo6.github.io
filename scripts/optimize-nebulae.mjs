@@ -1,6 +1,6 @@
 // Turns the official nebula releases in src/assets/nebulae/raw/<id>.{jpg,png} into the
 // square 1200×1200 AVIF/WebP pairs (+ 240×240 WebP thumb) consumed by the observatory UI.
-// Run: node scripts/optimize-nebulae.mjs   (raw/ is git-ignored; outputs are committed)
+// Run: node scripts/optimize-nebulae.mjs   (raw/ is stored in Git LFS; outputs are committed as normal files)
 // Sources and credit lines live in src/assets/nebulae/credits.json.
 import { readdir, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';

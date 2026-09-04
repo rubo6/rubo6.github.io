@@ -2,6 +2,10 @@
 
 Todo lo de esta guía requiere tu cuenta o tu tarjeta; no lo puede hacer un agente. Cada punto trae el enlace exacto.
 
+## Archivos grandes (Git LFS)
+
+Los JPEG originales de ESA/Webb y ESA/Hubble están en `src/assets/nebulae/raw/` con Git LFS. Al clonar el repo solo bajan punteros; para tener los originales ejecuta `git lfs pull` (Git para Windows ya incluye LFS). El sitio no los necesita para construirse. La cuota gratuita de GitHub es 1 GB de almacenamiento y 1 GB de ancho de banda al mes; hoy usamos ~91 MB.
+
 ## 1. Activar 2FA en GitHub (10 minutos)
 
 1. Entra a https://github.com/settings/security → "Two-factor authentication" → **Enable two-factor authentication**.

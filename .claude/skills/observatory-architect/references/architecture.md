@@ -62,6 +62,10 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 
 > Gotcha: after changing a collection schema, the dev server's incremental glob loader may keep stale parsed entries (new fields come back `undefined`). Stop the server, delete `.astro/data-store.json`, restart. `astro build` is not affected.
 
+## Large files (Git LFS)
+
+`src/assets/nebulae/raw/*.{jpg,jpeg,png}` are LFS-tracked originals (11 files, ~91 MB). CI checkouts do not fetch LFS (`actions/checkout` default), so builds never depend on them; the derived AVIF/WebP are normal files. To regenerate derived images: `git lfs pull`, then `node scripts/optimize-nebulae.mjs` / `optimize-scenes.mjs`. History was rewritten with `git filter-repo` on 2026-09-05 (pack went from ~28 MB to ~10 MB); Rubo approved the force-push.
+
 ## Performance budget for motion
 
 - The sky canvas is the most expensive thing on the site. `sky.ts` recomputes star positions and the static layer (horizon, constellation lines, labels) once per second into an offscreen canvas; per frame it only blits that layer and draws twinkling stars with a pre-rendered glow sprite. Twinkle is capped at 30 fps (15 fps on coarse pointers); the loop stops when the hero is off-screen or the tab is hidden. Before this, a 4× throttled phone spent ~100 % of its main thread on the canvas at idle.

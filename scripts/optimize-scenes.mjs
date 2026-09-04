@@ -1,7 +1,7 @@
 // Turns official ESA/Webb / ESA/Hubble releases in src/assets/nebulae/raw/<release-id>.jpg into the
 // wide 1600×900 AVIF/WebP "scene" backdrops used by section and page headers (log entries, 404,
 // Now, log index, contact). Mapping, crop hints and credit lines live in src/assets/scenes/credits.json.
-// Run: node scripts/optimize-scenes.mjs   (raw/ is git-ignored; outputs are committed)
+// Run: node scripts/optimize-scenes.mjs   (raw/ is stored in Git LFS; outputs are committed as normal files)
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';

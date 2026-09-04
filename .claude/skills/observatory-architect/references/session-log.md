@@ -28,6 +28,13 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - `docs/QUESTIONNAIRE-2.md` (60 questions on MeLi + school) for Rubo to answer.
 - Perf pass after measuring with `scripts/vitals.mjs`: sky canvas cached static layer + glow sprite + 30/15 fps cap; blur reveals desktop-only. New log entry `de-los-temarios-a-las-estrellas` (EN/ES). Report for Rubo in `docs/REPORT-2026-09-05.md`.
 
+## Session 3b — 2026-09-05 (after Rubo's questionnaire)
+
+- Questionnaire 2 answered by dictation and applied (MeLi role/area/impact without internal tool names, graduation May 2028, ECOBOX honest framing, AIESEC/Ibero/Bátiz details, personal facts, AWS Academy names, new entry `mi-primera-entrevista`). Follow-up questions appended to `docs/QUESTIONNAIRE-2.md`.
+- Raw telescope JPEGs purged from history with git-filter-repo and re-added via Git LFS; force-pushed main.
+- Lighthouse works with the installed Google Chrome (`CHROME_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe`); live 2026-09-05 before perf polish: mobile 93/100/100/100 (LCP 3.0 s), desktop 96/100/100/100 (Speed Index 2.0 s).
+- WhisperFlow personal dictionary extended with ~100 terms from the dictation.
+
 **Pending / next**
 
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).
