@@ -51,5 +51,10 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // Never inline JS or fonts as inline <script> / data: URLs: the strict CSP
+      // (script-src 'self', font-src 'self') would block them in production.
+      assetsInlineLimit: 0,
+    },
   },
 });
