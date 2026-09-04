@@ -1,0 +1,55 @@
+---
+import Base from '@/layouts/Base.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Observatory from './Observatory.astro';
+import Trajectory from './Trajectory.astro';
+import Constellation from './Constellation.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import { clientStrings, type Locale } from '@/i18n/ui';
+import { safeJson } from '@/lib/json';
+import {
+  getCertifications,
+  getNebulae,
+  getPersonal,
+  getProfile,
+  getProjects,
+  getSkills,
+  getTrajectory,
+} from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const [profile, trajectory, projects, nebulae, skills, certifications, personal] =
+  await Promise.all([
+    getProfile(locale),
+    getTrajectory(locale),
+    getProjects(locale),
+    getNebulae(),
+    getSkills(),
+    getCertifications(),
+    getPersonal(locale),
+  ]);
+---
+
+<Base locale={locale} path="/">
+  <script
+    type="application/json"
+    id="client-strings"
+    set:html={safeJson(clientStrings(locale))}
+    slot="head"
+  />
+  <Nav locale={locale} path="/" />
+  <main id="main">
+    <Hero locale={locale} profile={profile} />
+    <Observatory locale={locale} nebulae={nebulae} projects={projects} personal={personal} />
+    <Trajectory locale={locale} entries={trajectory} />
+    <Constellation locale={locale} groups={skills} certifications={certifications} />
+    <Contact locale={locale} profile={profile} />
+  </main>
+  <Footer locale={locale} />
+</Base>

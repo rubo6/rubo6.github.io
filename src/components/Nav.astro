@@ -1,0 +1,389 @@
+---
+import { localeMeta, localePath, locales, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** Path without locale prefix, used to build language-switch links. */
+  path?: string;
+  /** Hide in-page anchors (project pages, CV). */
+  minimal?: boolean;
+}
+const { locale, path = '/', minimal = false } = Astro.props;
+const t = useTranslations(locale);
+const home = localePath(locale, '/');
+const anchors = [
+  { href: `${home}#sky`, label: t('nav.sky') },
+  { href: `${home}#observatory`, label: t('nav.observatory') },
+  { href: `${home}#trajectory`, label: t('nav.trajectory') },
+  { href: `${home}#constellation`, label: t('nav.constellation') },
+  { href: `${home}#contact`, label: t('nav.contact') },
+];
+---
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="container-content nav-inner">
+    <a href={home} class="brand" aria-label="Rubo · home" translate="no">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" class="brand-mark">
+        <circle
+          cx="14"
+          cy="14"
+          r="12.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.2"
+          opacity=".55"></circle>
+        <circle cx="14" cy="14" r="2.6" fill="currentColor"></circle>
+        <circle cx="22" cy="8" r="1.3" fill="currentColor"></circle>
+        <circle cx="6.5" cy="18.5" r="1" fill="currentColor"></circle>
+        <path d="M14 14 L22 8 M14 14 L6.5 18.5" stroke="currentColor" stroke-width=".8" opacity=".7"
+        ></path>
+      </svg>
+      <span class="brand-text">Rubo</span>
+    </a>
+
+    {
+      !minimal && (
+        <ul class="anchors" id="nav-anchors">
+          {anchors.map((a) => (
+            <li>
+              <a href={a.href}>{a.label}</a>
+            </li>
+          ))}
+          <li>
+            <a href={localePath(locale, '/cv')}>{t('nav.cv')}</a>
+          </li>
+        </ul>
+      )
+    }
+
+    <div class="controls">
+      <!-- Universe switch: pro ⇄ personal -->
+      <button
+        type="button"
+        class="mode-switch"
+        data-mode-toggle
+        role="switch"
+        aria-checked="false"
+        aria-label={t('toggle.mode.hint')}
+        title={t('toggle.mode.hint')}
+      >
+        <span class="mode-label mode-label-pro">{t('toggle.mode.pro')}</span>
+        <span class="mode-track" aria-hidden="true"><span class="mode-thumb"></span></span>
+        <span class="mode-label mode-label-personal">{t('toggle.mode.personal')}</span>
+      </button>
+
+      <!-- Theme switch: night ⇄ atlas -->
+      <button
+        type="button"
+        class="icon-btn"
+        data-theme-toggle
+        aria-label={t('toggle.theme.night')}
+        data-label-night={t('toggle.theme.night')}
+        data-label-atlas={t('toggle.theme.atlas')}
+      >
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"></path>
+        </svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"
+          ></circle>
+          <path
+            d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"
+            stroke="currentColor"
+            stroke-width="1.6"></path>
+        </svg>
+      </button>
+
+      <!-- Language -->
+      <div class="lang" data-lang>
+        <button
+          type="button"
+          class="icon-btn lang-btn"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label={t('lang.switch')}
+        >
+          <span class="mono text-xs">{localeMeta[locale].short}</span>
+        </button>
+        <ul class="lang-menu" role="listbox" aria-label={t('lang.switch')} hidden>
+          {
+            locales.map((l) => (
+              <li role="option" aria-selected={l === locale}>
+                <a
+                  href={localePath(l, path)}
+                  hreflang={localeMeta[l].htmlLang}
+                  lang={localeMeta[l].htmlLang}
+                >
+                  <span class="mono text-xs">{localeMeta[l].short}</span> {localeMeta[l].label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        !minimal && (
+          <button
+            type="button"
+            class="icon-btn menu-btn"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="nav-anchors"
+            aria-label={t('nav.menu')}
+          >
+            <span />
+            <span />
+          </button>
+        )
+      }
+    </div>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-h);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    background: color-mix(in oklab, var(--bg-0) 72%, transparent);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top);
+  }
+  .nav-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    user-select: none;
+  }
+  .brand-mark {
+    color: var(--accent);
+  }
+  .anchors {
+    display: flex;
+    gap: 1.4rem;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+  }
+  .anchors a {
+    text-decoration: none;
+    color: var(--ink-muted);
+    padding: 0.35rem 0;
+    position: relative;
+  }
+  .anchors a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .anchors a:hover,
+  .anchors a[aria-current='true'] {
+    color: var(--ink);
+  }
+  .anchors a:hover::after,
+  .anchors a[aria-current='true']::after {
+    transform: scaleX(1);
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+  .icon-btn:hover {
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+    border-color: var(--accent);
+  }
+  .icon-sun {
+    display: none;
+  }
+  :global([data-theme='atlas']) .icon-sun {
+    display: block;
+  }
+  :global([data-theme='atlas']) .icon-moon {
+    display: none;
+  }
+
+  .mode-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.3rem 0.6rem 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    user-select: none;
+  }
+  .mode-switch:hover {
+    border-color: var(--accent);
+  }
+  .mode-label-pro {
+    color: var(--ink);
+  }
+  :global([data-mode='personal']) .mode-label-pro {
+    color: var(--ink-muted);
+  }
+  :global([data-mode='personal']) .mode-label-personal {
+    color: var(--ink);
+  }
+  .mode-track {
+    position: relative;
+    width: 2.2rem;
+    height: 1.15rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in oklab, var(--ink) 14%, transparent);
+  }
+  .mode-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(1.15rem - 4px);
+    height: calc(1.15rem - 4px);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 60%, transparent);
+    transition: transform var(--dur-base) var(--ease-spring);
+  }
+  :global([data-mode='personal']) .mode-thumb {
+    transform: translateX(calc(2.2rem - 1.15rem));
+  }
+
+  .lang {
+    position: relative;
+  }
+  .lang-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6);
+  }
+  .lang-menu a {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.5rem 0.7rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .lang-menu a:hover,
+  .lang-menu [aria-selected='true'] a {
+    background: color-mix(in oklab, var(--accent) 16%, transparent);
+  }
+
+  .menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .menu-btn span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .menu-btn[aria-expanded='true'] span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+  .menu-btn[aria-expanded='true'] span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  @media (max-width: 900px) {
+    .anchors {
+      position: absolute;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      margin: 0;
+      padding: 0.5rem 1.25rem 1rem;
+      background: color-mix(in oklab, var(--bg-0) 94%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity var(--dur-base) var(--ease-out),
+        transform var(--dur-base) var(--ease-out);
+    }
+    .anchors.is-open {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+    .anchors a {
+      display: block;
+      padding: 0.8rem 0;
+      font-size: var(--text-base);
+    }
+    .menu-btn {
+      display: inline-flex;
+    }
+    .mode-label {
+      display: none;
+    }
+    .mode-switch {
+      padding: 0.3rem 0.45rem;
+    }
+  }
+</style>
+
+<script>
+  import { initUniverseControls } from '@/scripts/universe';
+  initUniverseControls();
+  document.addEventListener('astro:after-swap', initUniverseControls);
+</script>

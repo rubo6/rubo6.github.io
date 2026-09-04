@@ -1,0 +1,9 @@
+---
+import ProjectPage from '@/components/ProjectPage.astro';
+import { projectPaths, type ProjectRouteProps } from '@/lib/routes';
+
+export const getStaticPaths = () => projectPaths('pt-br');
+const { project, nebula } = Astro.props as ProjectRouteProps;
+---
+
+<ProjectPage locale="pt-br" project={project} nebula={nebula} />

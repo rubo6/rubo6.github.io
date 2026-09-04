@@ -1,0 +1,30 @@
+---
+import Base from '@/layouts/Base.astro';
+import Nav from '@/components/Nav.astro';
+import { useTranslations } from '@/i18n/ui';
+
+const t = useTranslations('en');
+---
+
+<Base locale="en" path="/404" title="404" noIndex>
+  <Nav locale="en" minimal />
+  <main id="main" class="container-content lost">
+    <p class="mono text-accent-3 text-xs uppercase tracking-[0.22em]">
+      404 · RA --h --m · Dec --° --'
+    </p>
+    <h1 class="mt-4">{t('notfound.title')}</h1>
+    <p class="text-ink-muted mt-4 text-lg">{t('notfound.lead')}</p>
+    <a class="btn btn-primary mt-8" href="/">{t('notfound.cta')}</a>
+  </main>
+</Base>
+
+<style>
+  .lost {
+    min-height: calc(100dvh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-block: 4rem;
+  }
+</style>

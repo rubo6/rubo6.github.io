@@ -1,0 +1,138 @@
+---
+import { useTranslations, type Locale } from '@/i18n/ui';
+import { moonPhase } from '@/lib/astro';
+import { safeJson } from '@/lib/json';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const buildDate = new Date();
+const moon = moonPhase(buildDate);
+const moonNames = {
+  new: t('moon.new'),
+  'waxing-crescent': t('moon.waxing-crescent'),
+  'first-quarter': t('moon.first-quarter'),
+  'waxing-gibbous': t('moon.waxing-gibbous'),
+  full: t('moon.full'),
+  'waning-gibbous': t('moon.waning-gibbous'),
+  'last-quarter': t('moon.last-quarter'),
+  'waning-crescent': t('moon.waning-crescent'),
+};
+const intl = locale === 'en' ? 'en-US' : locale === 'es' ? 'es-MX' : 'pt-BR';
+const updated = new Intl.DateTimeFormat(intl, {
+  dateStyle: 'medium',
+  timeZone: 'America/Mexico_City',
+}).format(buildDate);
+---
+
+<footer class="footer">
+  <div class="container-content footer-grid">
+    <div class="moon" data-moon>
+      <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="var(--bg-2)" stroke="var(--line)"></circle>
+        <path data-moon-path d="" fill="var(--accent)"></path>
+      </svg>
+      <div>
+        <p class="mono label">{t('footer.moon')}</p>
+        <p class="text-sm">
+          <span data-moon-name>{moonNames[moon.name]}</span> · <span data-moon-pct
+            >{Math.round(moon.illumination * 100)}%</span
+          >
+          {t('moon.illuminated')}
+        </p>
+      </div>
+    </div>
+
+    <p class="text-ink-muted text-sm built">{t('footer.built')}</p>
+
+    <div class="meta">
+      <a
+        class="text-sm"
+        href="https://github.com/rubo6/rubo6.github.io"
+        rel="noopener noreferrer"
+        target="_blank">{t('footer.source')} ↗</a
+      >
+      <p class="mono text-xs text-ink-muted">
+        {t('footer.updated')}: <time datetime={buildDate.toISOString()}>{updated}</time>
+      </p>
+      <p class="mono text-xs text-ink-muted">
+        © {buildDate.getFullYear()} Eduardo Rubén Bernal Puente
+      </p>
+    </div>
+  </div>
+  <script type="application/json" id="moon-names" set:html={safeJson(moonNames)} />
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 2.5rem 0 calc(2.5rem + env(safe-area-inset-bottom));
+    background: color-mix(in oklab, var(--bg-0) 60%, transparent);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+  .moon {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+  }
+  .label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-3);
+  }
+  .meta {
+    display: grid;
+    gap: 0.3rem;
+    text-align: right;
+  }
+  .meta a {
+    text-decoration: none;
+  }
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .meta {
+      text-align: left;
+    }
+  }
+</style>
+
+<script>
+  import { moonPhase } from '@/lib/astro';
+  import { readJson } from '@/scripts/sky';
+
+  /** SVG path of the lit part of a moon disc of radius r centred at (c, c). */
+  function moonPath(phase: number, r: number, c: number): string {
+    // phase ∈ [0,1): 0 new, 0.25 first quarter, 0.5 full, 0.75 last quarter.
+    const k = Math.cos(phase * Math.PI * 2); // 1 new … -1 full
+    const waxing = phase < 0.5;
+    const rx = Math.abs(k) * r;
+    const outerSweep = waxing ? 1 : 0;
+    const innerSweep = k > 0 ? (waxing ? 0 : 1) : waxing ? 1 : 0;
+    return `M ${c} ${c - r} A ${r} ${r} 0 0 ${outerSweep} ${c} ${c + r} A ${rx} ${r} 0 0 ${innerSweep} ${c} ${c - r} Z`;
+  }
+
+  function paint() {
+    const el = document.querySelector<HTMLElement>('[data-moon]');
+    if (!el) return;
+    const names = readJson<Record<string, string>>('moon-names') ?? {};
+    const m = moonPhase(new Date());
+    el.querySelector('[data-moon-path]')?.setAttribute('d', moonPath(m.phase, 18, 20));
+    const name = el.querySelector('[data-moon-name]');
+    const pct = el.querySelector('[data-moon-pct]');
+    if (name && names[m.name]) name.textContent = names[m.name] ?? '';
+    if (pct) pct.textContent = `${Math.round(m.illumination * 100)}%`;
+  }
+  paint();
+  document.addEventListener('astro:after-swap', paint);
+</script>

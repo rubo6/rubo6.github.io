@@ -1,0 +1,133 @@
+---
+import { useTranslations, type Locale } from '@/i18n/ui';
+import type { Profile } from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+  profile: Profile;
+}
+const { locale, profile } = Astro.props;
+const t = useTranslations(locale);
+
+const clocks = [
+  {
+    id: 'meli',
+    label: t('counters.meli'),
+    start: profile.dates.meliStart,
+    end: null,
+    hint: `${t('counters.since')} ${profile.dates.meliStart}`,
+  },
+  {
+    id: 'itam',
+    label: t('counters.itam'),
+    start: profile.dates.itamStart,
+    end: null,
+    hint: `${t('counters.since')} ${profile.dates.itamStart}`,
+  },
+  {
+    id: 'grad',
+    label: t('counters.graduation'),
+    start: profile.dates.itamStart,
+    end: profile.dates.graduation,
+    hint: `${t('counters.until')} ${profile.dates.graduation}`,
+  },
+];
+const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
+---
+
+<section class="clocks" aria-labelledby="clocks-title">
+  <h3 id="clocks-title" class="mono text-accent-3 text-xs tracking-[0.22em] uppercase font-normal">
+    {t('counters.title')}
+  </h3>
+  <ul class="clock-list">
+    {
+      clocks.map((c, i) => (
+        <li class="clock reveal" data-delay={String(i + 1)}>
+          <p class="clock-label">{c.label}</p>
+          <time
+            class="clock-value"
+            data-counter
+            data-start={c.start}
+            data-end={c.end ?? undefined}
+            datetime={c.start}
+            role="timer"
+            aria-live="off"
+          >
+            {parts.map((p) => (
+              <span class="part" data-part={p}>
+                <span class="num" data-num>
+                  --
+                </span>
+                <span class="unit" data-unit />
+              </span>
+            ))}
+          </time>
+          <p class="clock-hint mono">{c.hint}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .clocks {
+    margin-top: 3rem;
+  }
+  .clock-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+  .clock {
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 70%, transparent);
+    backdrop-filter: blur(8px);
+    contain: layout style paint;
+  }
+  .clock-label {
+    font-size: var(--text-sm);
+    color: var(--ink-muted);
+  }
+  .clock-value {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-variation-settings:
+      'opsz' 48,
+      'SOFT' 20;
+    font-size: var(--text-lg);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .part {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15rem;
+  }
+  .unit {
+    font-family: var(--font-mono);
+    font-size: 0.55em;
+    color: var(--accent);
+  }
+  .clock-hint {
+    margin-top: 0.6rem;
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+</style>
+
+<script>
+  import { mountCounters } from '@/scripts/counters';
+  let dispose = mountCounters();
+  document.addEventListener('astro:after-swap', () => {
+    dispose();
+    dispose = mountCounters();
+  });
+</script>

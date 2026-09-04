@@ -15,6 +15,9 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
 
+  // The dev toolbar injects inline scripts that the strict CSP (script-src 'self') blocks.
+  devToolbar: { enabled: false },
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'pt-br'],

@@ -7,13 +7,21 @@
       "constellation": "Orion",
       "distanceLy": 1344
     },
-    "labels": { "en": "Professional", "es": "Profesional", "pt-br": "Profissional" },
+    "labels": {
+      "en": "Professional",
+      "es": "Profesional",
+      "pt-br": "Profissional"
+    },
     "descriptions": {
       "en": "Production work at Mercado Libre / Mercado Pago Point: pipelines, data models and internal data products.",
       "es": "Trabajo en producción en Mercado Libre / Mercado Pago Point: pipelines, modelos de datos y productos de datos internos.",
       "pt-br": "Trabalho em produção no Mercado Livre / Mercado Pago Point: pipelines, modelos de dados e produtos de dados internos."
     },
-    "scene": { "x": 28, "y": 38, "scale": 1.25 },
+    "scene": {
+      "x": 26,
+      "y": 34,
+      "scale": 1.25
+    },
     "palette": ["#f2c46d", "#f07a6e", "#9ad9e8"]
   },
   {
@@ -24,13 +32,21 @@
       "constellation": "Carina",
       "distanceLy": 8500
     },
-    "labels": { "en": "Academic", "es": "Académico", "pt-br": "Acadêmico" },
+    "labels": {
+      "en": "Academic",
+      "es": "Académico",
+      "pt-br": "Acadêmico"
+    },
     "descriptions": {
       "en": "Coursework and class repositories from ITAM: AI, data sources, parallel computing, NoSQL.",
       "es": "Cursos y repositorios de clase del ITAM: IA, fuentes de datos, cómputo paralelo, NoSQL.",
       "pt-br": "Disciplinas e repositórios de aula do ITAM: IA, fontes de dados, computação paralela, NoSQL."
     },
-    "scene": { "x": 68, "y": 30, "scale": 1.1 },
+    "scene": {
+      "x": 62,
+      "y": 24,
+      "scale": 1.05
+    },
     "palette": ["#d9a45b", "#9ad9e8", "#f4efe6"]
   },
   {
@@ -41,13 +57,21 @@
       "constellation": "Serpens",
       "distanceLy": 5700
     },
-    "labels": { "en": "Research", "es": "Investigación", "pt-br": "Pesquisa" },
+    "labels": {
+      "en": "Research",
+      "es": "Investigación",
+      "pt-br": "Pesquisa"
+    },
     "descriptions": {
       "en": "Applied research: computer vision for waste classification, interpretable sports analytics.",
       "es": "Investigación aplicada: visión por computadora para clasificación de residuos, analítica deportiva interpretable.",
       "pt-br": "Pesquisa aplicada: visão computacional para classificação de resíduos, analytics esportivo interpretável."
     },
-    "scene": { "x": 50, "y": 62, "scale": 1.0 },
+    "scene": {
+      "x": 46,
+      "y": 60,
+      "scale": 0.95
+    },
     "palette": ["#f07a6e", "#f2c46d", "#1a2350"]
   },
   {
@@ -58,13 +82,21 @@
       "constellation": "Aquarius",
       "distanceLy": 655
     },
-    "labels": { "en": "Personal", "es": "Personal", "pt-br": "Pessoal" },
+    "labels": {
+      "en": "Personal",
+      "es": "Personal",
+      "pt-br": "Pessoal"
+    },
     "descriptions": {
       "en": "Side projects built for the joy of it, including this observatory.",
       "es": "Proyectos personales hechos por gusto, incluido este observatorio.",
       "pt-br": "Projetos pessoais feitos por prazer, incluindo este observatório."
     },
-    "scene": { "x": 82, "y": 66, "scale": 0.85 },
+    "scene": {
+      "x": 84,
+      "y": 58,
+      "scale": 0.85
+    },
     "palette": ["#9ad9e8", "#f2c46d", "#f4efe6"]
   },
   {
@@ -85,7 +117,11 @@
       "es": "DataLab ITAM y AIESEC: liderar equipos, coordinar investigación y voluntarios internacionales.",
       "pt-br": "DataLab ITAM e AIESEC: liderar equipes, coordenar pesquisa e voluntários internacionais."
     },
-    "scene": { "x": 16, "y": 72, "scale": 0.9 },
+    "scene": {
+      "x": 18,
+      "y": 70,
+      "scale": 0.85
+    },
     "palette": ["#f07a6e", "#f2c46d", "#9ad9e8"]
   },
   {
@@ -96,13 +132,21 @@
       "constellation": "Orion",
       "distanceLy": 1375
     },
-    "labels": { "en": "In progress", "es": "En curso", "pt-br": "Em andamento" },
+    "labels": {
+      "en": "In progress",
+      "es": "En curso",
+      "pt-br": "Em andamento"
+    },
     "descriptions": {
       "en": "Certifications and programs currently underway: Anthropic, DataCamp, AWS Academy, Ibero AI diploma.",
       "es": "Certificaciones y programas en curso: Anthropic, DataCamp, AWS Academy, diplomado en IA de la Ibero.",
       "pt-br": "Certificações e programas em andamento: Anthropic, DataCamp, AWS Academy, diploma em IA da Ibero."
     },
-    "scene": { "x": 86, "y": 22, "scale": 0.75 },
+    "scene": {
+      "x": 88,
+      "y": 20,
+      "scale": 0.7
+    },
     "palette": ["#1a2350", "#f07a6e", "#f2c46d"]
   }
 ]

@@ -1,0 +1,321 @@
+---
+/**
+ * Print-ready CV generated from the same content collections as the site.
+ * Deliberately restrained: paper-friendly, no decorative backgrounds, no phone number.
+ */
+import Base from '@/layouts/Base.astro';
+import Nav from './Nav.astro';
+import { useTranslations, type Locale } from '@/i18n/ui';
+import {
+  formatMonth,
+  getCertifications,
+  getProfile,
+  getProjects,
+  getSkills,
+  getTrajectory,
+  pick,
+} from '@/lib/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const [profile, trajectory, projects, skills, certifications] = await Promise.all([
+  getProfile(locale),
+  getTrajectory(locale),
+  getProjects(locale),
+  getSkills(),
+  getCertifications(),
+]);
+const work = trajectory.filter((e) => e.kind === 'work');
+const education = trajectory.filter((e) => e.kind === 'education');
+const leadership = trajectory.filter((e) => e.kind === 'leadership');
+const featured = projects.filter((p) => p.data.featured && p.data.visibility === 'public');
+---
+
+<Base locale={locale} path="/cv" title={t('cv.title')} description={profile.summary}>
+  <Nav locale={locale} path="/cv" minimal />
+  <main id="main" class="cv container-content">
+    <div class="toolbar no-print">
+      <h1 class="text-2xl">{t('cv.title')}</h1>
+      <button type="button" class="btn btn-primary" data-print>{t('cv.print')}</button>
+    </div>
+
+    <article class="sheet">
+      <header class="sheet-head">
+        <h2 class="name">{profile.name}</h2>
+        <p class="role">{profile.headline}</p>
+        <p class="mono contact-line">
+          {profile.location.city}, {profile.location.country} · <a href={`mailto:${profile.email}`}
+            >{profile.email}</a
+          >
+          {
+            profile.links.map((l) => (
+              <>
+                {' · '}
+                <a href={l.url} rel="noopener noreferrer">
+                  {l.url.replace('https://www.', '').replace('https://', '')}
+                </a>
+              </>
+            ))
+          }
+        </p>
+      </header>
+
+      <section>
+        <h3>{t('cv.summary')}</h3>
+        <p>{profile.summary}</p>
+      </section>
+
+      <section>
+        <h3>{t('cv.experience')}</h3>
+        {
+          work.map((e) => (
+            <div class="item">
+              <div class="item-head">
+                <strong>{e.role}</strong>
+                <span class="mono">
+                  {formatMonth(e.start, locale, '')} –{' '}
+                  {formatMonth(e.end, locale, t('trajectory.present'))}
+                </span>
+              </div>
+              <p class="muted">
+                {e.org} · {e.location}
+              </p>
+              <ul>
+                {e.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </section>
+
+      <section>
+        <h3>{t('cv.education')}</h3>
+        {
+          education.map((e) => (
+            <div class="item">
+              <div class="item-head">
+                <strong>{e.role}</strong>
+                <span class="mono">
+                  {formatMonth(e.start, locale, '')} –{' '}
+                  {formatMonth(e.end, locale, t('trajectory.present'))}
+                </span>
+              </div>
+              <p class="muted">
+                {e.org} · {e.location}
+              </p>
+              <ul>
+                {e.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </section>
+
+      <section>
+        <h3>{t('cv.leadership')}</h3>
+        {
+          leadership.map((e) => (
+            <div class="item">
+              <div class="item-head">
+                <strong>{e.role}</strong>
+                <span class="mono">
+                  {formatMonth(e.start, locale, '')} –{' '}
+                  {formatMonth(e.end, locale, t('trajectory.present'))}
+                </span>
+              </div>
+              <p class="muted">
+                {e.org} · {e.location}
+              </p>
+              <ul>
+                {e.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </section>
+
+      <section>
+        <h3>{t('cv.projects')}</h3>
+        {
+          featured.map((p) => (
+            <div class="item">
+              <div class="item-head">
+                <strong>{p.data.title}</strong>
+                <span class="mono">{p.data.stack.slice(0, 4).join(' · ')}</span>
+              </div>
+              <p>{p.data.summary}</p>
+            </div>
+          ))
+        }
+      </section>
+
+      <section class="two">
+        <div>
+          <h3>{t('cv.skills')}</h3>
+          <ul class="plain">
+            {
+              skills.map((g) => (
+                <li>
+                  <strong>{pick(g.labels, locale)}:</strong> {g.items.map((i) => i.name).join(', ')}
+                  .
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h3>{t('cv.certs')}</h3>
+          <ul class="plain">
+            {
+              certifications.map((c) => (
+                <li>
+                  {c.name} — {c.issuer} ({t(`certs.status.${c.status}` as 'certs.status.earned')})
+                </li>
+              ))
+            }
+          </ul>
+          <h3>{t('cv.languages')}</h3>
+          <ul class="plain">
+            {
+              profile.languages.map((l) => (
+                <li>
+                  {l.name} — {l.level}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    </article>
+  </main>
+</Base>
+
+<style>
+  .cv {
+    padding-block: 2.5rem 5rem;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .sheet {
+    background: #fff;
+    color: #111;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 3rem 3.2rem;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px -40px rgb(0 0 0 / 0.7);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .sheet a {
+    color: #1b2240;
+  }
+  .sheet-head {
+    border-bottom: 2px solid #1b2240;
+    padding-bottom: 0.9rem;
+  }
+  .name {
+    font-size: 1.9rem;
+    color: #111;
+    font-variation-settings: 'opsz' 72;
+  }
+  .role {
+    margin-top: 0.25rem;
+    font-weight: 500;
+    color: #1b2240;
+  }
+  .contact-line {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    color: #444;
+  }
+  section {
+    margin-top: 1.3rem;
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #1b2240;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+  .item + .item {
+    margin-top: 0.8rem;
+  }
+  .item-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .item-head .mono {
+    font-size: 0.75rem;
+    color: #444;
+  }
+  .muted {
+    color: #555;
+    font-size: 0.85rem;
+  }
+  ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+  }
+  li + li {
+    margin-top: 0.2rem;
+  }
+  .plain {
+    list-style: none;
+    padding: 0;
+  }
+  .two {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 700px) {
+    .sheet {
+      padding: 1.6rem 1.2rem;
+    }
+    .two {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media print {
+    .cv {
+      padding: 0;
+    }
+    .sheet {
+      box-shadow: none;
+      border-radius: 0;
+      max-width: none;
+      padding: 0;
+    }
+    @page {
+      margin: 16mm;
+    }
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-print]')
+    .forEach((b) => b.addEventListener('click', () => window.print()));
+</script>

@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "astro-dev",
+      "runtimeExecutable": "C:\\Users\\ext_eduapuen\\Desktop\\dev\\tools\\node24\\node.exe",
+      "runtimeArgs": [
+        "node_modules/astro/bin/astro.mjs",
+        "dev",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+---
+interface Props {
+  id?: string;
+  kicker?: string;
+  title: string;
+  lead?: string;
+  /** Alternate lead shown in personal mode (swapped by CSS, both are in the DOM). */
+  leadPersonal?: string;
+  align?: 'left' | 'center';
+}
+const { id, kicker, title, lead, leadPersonal, align = 'left' } = Astro.props;
+---
+
+<header
+  class:list={['section-heading reveal', align === 'center' && 'text-center mx-auto']}
+  data-delay="0"
+>
+  {kicker && <p class="mono text-accent-3 text-xs tracking-[0.22em] uppercase">{kicker}</p>}
+  <h2 id={id} class="mt-3">{title}</h2>
+  {
+    lead && (
+      <p class:list={['lead text-ink-muted mt-5 max-w-2xl text-lg', leadPersonal && 'lead-pro']}>
+        {lead}
+      </p>
+    )
+  }
+  {
+    leadPersonal && (
+      <p class="lead lead-personal text-ink-muted mt-5 max-w-2xl text-lg">{leadPersonal}</p>
+    )
+  }
+</header>
+
+<style>
+  .section-heading {
+    max-width: 60rem;
+  }
+  .lead-personal {
+    display: none;
+  }
+  :global([data-mode='personal']) .lead-pro {
+    display: none;
+  }
+  :global([data-mode='personal']) .lead-personal {
+    display: block;
+  }
+</style>

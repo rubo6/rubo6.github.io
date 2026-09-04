@@ -1,0 +1,245 @@
+---
+/**
+ * Skills as constellations. Node positions are deterministic (hash of the skill name),
+ * lines connect each star to its nearest already-placed neighbour, so the figure is stable
+ * across builds and needs no JavaScript.
+ */
+import { useTranslations, type Locale } from '@/i18n/ui';
+import { pick, type Certification, type SkillGroup } from '@/lib/content';
+import { unitHash } from '@/scripts/sky';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  locale: Locale;
+  groups: SkillGroup[];
+  certifications: Certification[];
+}
+const { locale, groups, certifications } = Astro.props;
+const t = useTranslations(locale);
+
+const W = 320;
+const H = 200;
+
+function layout(group: SkillGroup) {
+  const nodes = group.items.map((item, i) => {
+    // Spread on a loose grid then jitter deterministically so labels rarely collide.
+    const cols = 4;
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const jx = (unitHash(`${group.id}:${item.name}:x`) - 0.5) * 40;
+    const jy = (unitHash(`${group.id}:${item.name}:y`) - 0.5) * 34;
+    const x = 36 + col * ((W - 72) / (cols - 1)) + jx;
+    const y = 40 + row * 62 + jy;
+    return { ...item, x: Math.min(W - 24, Math.max(24, x)), y: Math.min(H - 22, Math.max(22, y)) };
+  });
+  const lines: [number, number][] = [];
+  for (let i = 1; i < nodes.length; i++) {
+    let best = 0;
+    let bestD = Infinity;
+    for (let j = 0; j < i; j++) {
+      const d = (nodes[i]!.x - nodes[j]!.x) ** 2 + (nodes[i]!.y - nodes[j]!.y) ** 2;
+      if (d < bestD) {
+        bestD = d;
+        best = j;
+      }
+    }
+    lines.push([i, best]);
+  }
+  return { nodes, lines };
+}
+const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
+---
+
+<section
+  id="constellation"
+  class="constellation container-content"
+  aria-labelledby="constellation-title"
+>
+  <SectionHeading
+    id="constellation-title"
+    kicker="03"
+    title={t('constellation.title')}
+    lead={t('constellation.lead')}
+  />
+
+  <div class="groups">
+    {
+      groups.map((g, gi) => {
+        const { nodes, lines } = layout(g);
+        return (
+          <article class="group reveal" data-delay={String((gi % 4) + 1)}>
+            <header>
+              <h3 class="text-lg">{pick(g.labels, locale)}</h3>
+              <p class="mono text-xs text-ink-muted">{g.constellation}</p>
+            </header>
+            <svg viewBox={`0 0 ${W} ${H}`} role="list" aria-label={pick(g.labels, locale)}>
+              <g stroke="var(--accent-3)" stroke-width="0.7" opacity="0.5">
+                {lines.map(([a, b]) => (
+                  <line x1={nodes[a]!.x} y1={nodes[a]!.y} x2={nodes[b]!.x} y2={nodes[b]!.y} />
+                ))}
+              </g>
+              {nodes.map((n) => (
+                <g
+                  role="listitem"
+                  aria-label={`${n.name}: ${t(`constellation.level.${n.level}` as 'constellation.level.1')}`}
+                >
+                  <circle
+                    cx={n.x}
+                    cy={n.y}
+                    r={radius(n.level) * 2.4}
+                    fill="var(--accent)"
+                    opacity="0.12"
+                  />
+                  <circle
+                    cx={n.x}
+                    cy={n.y}
+                    r={radius(n.level)}
+                    fill={n.level >= 4 ? 'var(--accent)' : 'var(--ink)'}
+                  />
+                  <text
+                    x={n.x}
+                    y={n.y + radius(n.level) + 11}
+                    text-anchor="middle"
+                    font-size="9.5"
+                    fill="var(--ink)"
+                    font-family="var(--font-mono)"
+                  >
+                    {n.name}
+                  </text>
+                </g>
+              ))}
+            </svg>
+            <ul class="legend mono" aria-hidden="true">
+              <li>
+                <i style="--r:5px" /> {t('constellation.level.4')}
+              </li>
+              <li>
+                <i style="--r:3.9px" /> {t('constellation.level.3')}
+              </li>
+              <li>
+                <i style="--r:3px" /> {t('constellation.level.2')}
+              </li>
+              <li>
+                <i style="--r:2.2px" /> {t('constellation.level.1')}
+              </li>
+            </ul>
+          </article>
+        );
+      })
+    }
+  </div>
+
+  <div class="certs reveal" data-delay="2">
+    <h3 class="text-lg">{t('certs.title')}</h3>
+    <ul class="cert-list">
+      {
+        certifications.map((c) => (
+          <li class={`cert status-${c.status}`}>
+            <span class="cert-status mono">
+              {t(`certs.status.${c.status}` as 'certs.status.earned')}
+            </span>
+            <span class="cert-name">
+              {c.url ? (
+                <a href={c.url} rel="noopener noreferrer" target="_blank">
+                  {c.name} ↗
+                </a>
+              ) : (
+                c.name
+              )}
+            </span>
+            <span class="cert-issuer text-ink-muted">
+              {c.issuer}
+              {c.date ? ` · ${c.date.slice(0, 7)}` : ''}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .constellation {
+    padding-block: 5rem;
+    scroll-margin-top: var(--nav-h);
+  }
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .group {
+    padding: 1.25rem 1.25rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+    contain: layout style paint;
+  }
+  .group header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    margin-top: 0.75rem;
+  }
+  .legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    font-size: 0.68rem;
+    color: var(--ink-muted);
+  }
+  .legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .legend i {
+    width: calc(var(--r) * 2);
+    height: calc(var(--r) * 2);
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  .certs {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .cert-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+  }
+  .cert {
+    display: grid;
+    gap: 0.2rem;
+    font-size: var(--text-sm);
+  }
+  .cert-status {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-3);
+  }
+  .status-earned .cert-status {
+    color: var(--accent);
+  }
+  .status-expected .cert-status {
+    color: var(--accent-2);
+  }
+  .cert-name {
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,126 @@
+---
+import { useTranslations, type Locale } from '@/i18n/ui';
+import type { Profile } from '@/lib/content';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  locale: Locale;
+  profile: Profile;
+}
+const { locale, profile } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section id="contact" class="contact container-content" aria-labelledby="contact-title">
+  <SectionHeading
+    id="contact-title"
+    kicker="04"
+    title={t('contact.title')}
+    lead={t('contact.lead')}
+  />
+
+  <div class="cards">
+    <div class="card reveal" data-delay="1">
+      <p class="mono label">{t('contact.email')}</p>
+      <a class="value" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <button
+        type="button"
+        class="btn btn-ghost btn-sm"
+        data-copy={profile.email}
+        data-copied-label={t('contact.copied')}
+      >
+        {t('contact.copy')}
+      </button>
+    </div>
+    {
+      profile.links.map((l, i) => (
+        <div class="card reveal" data-delay={String(i + 2)}>
+          <p class="mono label">{l.label}</p>
+          <a class="value" href={l.url} rel="noopener noreferrer me" target="_blank">
+            {l.url.replace('https://www.', '').replace('https://', '')} ↗
+          </a>
+        </div>
+      ))
+    }
+    <div class="card reveal" data-delay="4">
+      <p class="mono label">{t('contact.languages')}</p>
+      <ul class="langs">
+        {
+          profile.languages.map((l) => (
+            <li>
+              <strong>{l.name}</strong> <span class="text-ink-muted">· {l.level}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-block: 5rem 6rem;
+    scroll-margin-top: var(--nav-h);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .card {
+    padding: 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+  }
+  .label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-3);
+  }
+  .value {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .btn-sm {
+    justify-self: start;
+    min-height: 2.25rem;
+    padding: 0.4rem 0.9rem;
+    font-size: var(--text-sm);
+  }
+  .langs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+    font-size: var(--text-sm);
+  }
+</style>
+
+<script>
+  function bindCopy() {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy]:not([data-bound])').forEach((btn) => {
+      btn.dataset.bound = '1';
+      const original = btn.textContent ?? '';
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+          btn.textContent = btn.dataset.copiedLabel ?? original;
+          setTimeout(() => (btn.textContent = original), 1600);
+        } catch {
+          /* clipboard blocked: the mailto link above still works */
+        }
+      });
+    });
+  }
+  bindCopy();
+  document.addEventListener('astro:after-swap', bindCopy);
+</script>
