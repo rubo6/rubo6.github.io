@@ -153,6 +153,7 @@ const en = {
   'trajectory.kind.leadership': 'Leadership',
   'trajectory.kind.education': 'Education',
   'trajectory.present': 'present',
+  'trajectory.sources': 'Sources',
 
   'certs.title': 'Certifications in progress',
   'certs.status.earned': 'Earned',
@@ -342,6 +343,7 @@ const es: Record<UIKey, string> = {
   'trajectory.kind.leadership': 'Liderazgo',
   'trajectory.kind.education': 'Formación',
   'trajectory.present': 'actual',
+  'trajectory.sources': 'Fuentes',
 
   'certs.title': 'Certificaciones en curso',
   'certs.status.earned': 'Obtenida',
@@ -530,6 +532,7 @@ const ptBr: Record<UIKey, string> = {
   'trajectory.kind.leadership': 'Liderança',
   'trajectory.kind.education': 'Formação',
   'trajectory.present': 'atual',
+  'trajectory.sources': 'Fontes',
 
   'certs.title': 'Certificações em andamento',
   'certs.status.earned': 'Obtida',

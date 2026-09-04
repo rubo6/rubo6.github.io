@@ -54,9 +54,31 @@
       "location": "Ciudad de México",
       "start": "2025-11-01",
       "end": "2026-07-31",
-      "bullets": ["Diploma y certificado previstos para diciembre de 2026."],
+      "bullets": [
+        "Programa de Educación Continua de 120 horas: fundamentos y paradigmas de la IA, algoritmos de aprendizaje automático, aprendizaje supervisado y no supervisado en Python, agentes inteligentes y chatbots, RPA, procesamiento de lenguaje natural y redes neuronales artificiales, incluida la ética de la IA.",
+        "Reputación: universidad jesuita fundada en 1943, integrante del Sistema Universitario Jesuita (SUJ) y de AUSJAL, con unos 12,000 estudiantes. Banda 851–900 mundial y 6.ª de México en el QS World University Rankings 2027; acreditación institucional CIEES 2025–2032; 1.ª en Diseño y 2.ª en Arquitectura y Contaduría en la encuesta a empleadores de Reforma 2025.",
+        "Diploma y certificado previstos para diciembre de 2026."
+      ],
       "stack": ["Machine Learning", "Deep Learning"],
-      "orbit": 2
+      "orbit": 2,
+      "sources": [
+        {
+          "label": "QS 2027, México (Vanguardia)",
+          "url": "https://vanguardia.com.mx/noticias/mexico/descienden-unam-y-tec-de-monterrey-en-ranking-mundial-de-universidades-IO21493038"
+        },
+        {
+          "label": "IBERO · Reforma 2025",
+          "url": "https://prensa.ibero.mx/es-MX/nota/ibero-la-mejor-universidad-para-estudiar-diseno-reforma-destacan-otras-11-licenciaturas"
+        },
+        {
+          "label": "IBERO · acreditaciones",
+          "url": "https://ibero.mx/es-MX/sobre-la-ibero/acreditaciones-nacionales-e-internacionales"
+        },
+        {
+          "label": "IBERO · Diplomado en IA",
+          "url": "https://www.diplomados.ibero.mx/Programas/Detalle-de-programa.aspx?id=40&idArea=2&tipo=Diplomado&a%C3%B1o=2026&version=1&idPropuesta=1053"
+        }
+      ]
     },
     {
       "id": "aiesec-itam",
@@ -101,13 +123,37 @@
       "location": "Ciudad de México",
       "start": "2023-01-09",
       "end": "2027-05-10",
-      "summary": "Graduación esperada: diciembre de 2027.",
+      "summary": "Graduación esperada: mayo de 2027.",
       "bullets": [
         "Cursos relevantes: Machine Learning, Inteligencia Artificial, Cómputo Paralelo, Estructuras de Datos Avanzadas, Bases de Datos NoSQL, Estadística y Algoritmos.",
-        "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo."
+        "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo.",
+        "Reputación: 4.ª universidad de México y banda 751–760 mundial en el QS World University Rankings 2027, y 1.ª de México / 30.ª del mundo en el indicador QS Employment Outcomes (95.5 % de egresados empleados entre 7 y 11 meses después de graduarse). 42.ª de América Latina en QS 2026. Economía está en el lugar =185 mundial (QS por materia 2025) y es primer lugar en la encuesta a empleadores de Reforma en 2024, 2025 y 2026; Ciencias de la Computación entró al QS por materia en 2025 (701–750).",
+        "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030."
       ],
       "stack": ["Estadística", "Algoritmos", "Cómputo paralelo", "NoSQL"],
-      "orbit": 5
+      "orbit": 5,
+      "sources": [
+        {
+          "label": "QS 2027, México (Vanguardia)",
+          "url": "https://vanguardia.com.mx/noticias/mexico/descienden-unam-y-tec-de-monterrey-en-ranking-mundial-de-universidades-IO21493038"
+        },
+        {
+          "label": "ITAM · QS Employment Outcomes 2027",
+          "url": "https://www.itam.mx/es/noticia/itam-numero-1-en-mexico-en-resultados-de-empleabilidad-en-el-qs-world-university-rankings"
+        },
+        {
+          "label": "ITAM · QS por materia 2025",
+          "url": "https://www.itam.mx/es/noticia/el-itam-se-consolida-entre-las-mejores-universidades-del-mundo-en-6-disciplinas-segun-el-qs"
+        },
+        {
+          "label": "ITAM · Reforma 2026",
+          "url": "https://www.itam.mx/es/noticia/el-itam-destaca-en-las-mejores-universidades-2026-de-reforma-con-4-carreras-en-el-primer"
+        },
+        {
+          "label": "ITAM · Licenciatura en Ciencia de Datos",
+          "url": "https://licenciaturas.itam.mx/licenciatura-en-ciencia-de-datos-2/"
+        }
+      ]
     },
     {
       "id": "cecyt9-ipn",
@@ -122,11 +168,30 @@
       "bullets": [
         "Formación profesional: Programación Orientada a Objetos, Programación y Servicios Web, Bases de Datos (diseño normalizado y lenguajes de manipulación de datos), Introducción a la Ingeniería de Pruebas y Automatización de Pruebas, Seguridad Web y Aplicaciones, Introducción a los Sistemas Distribuidos, Métodos Ágiles de Programación, Ingeniería de Software Básica y cuatro semestres de Laboratorio de Proyectos de TI.",
         "Tronco científico completo en paralelo: Álgebra, Geometría y Trigonometría, Geometría Analítica, Cálculo Diferencial e Integral, Probabilidad y Estadística, Física I–IV, Química I–IV, además de filosofía, historia y seis semestres de inglés.",
-        "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar, y fue el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos.",
+        "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar.",
+        "Ranking: en el COMIPEMS 2024 el corte del CECyT 9 fue de 102 aciertos de 128, el más alto de todos los planteles del IPN (el siguiente pidió 94) y por encima del CCH Sur de la UNAM; el aspirante con el puntaje más alto de todo el concurso 2024 (126/128) eligió el Bátiz. Fue nombrado el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos hasta 2012 (92 % del alumnado en nivel excelente en Matemáticas) y en 2015 seguía siendo el único bachillerato público en el top 5 nacional tanto por demanda de ingreso como por admisión a la universidad.",
         "Egresé en julio de 2021 tras año y medio de clases en línea por la pandemia; el título de Técnico en Programación se expidió en diciembre de 2022."
       ],
       "stack": ["C++", "Java", "JavaScript", "SQL", "Pruebas de software"],
-      "orbit": 6
+      "orbit": 6,
+      "sources": [
+        {
+          "label": "El Universal 2012 · ENLACE",
+          "url": "https://archivo.eluniversal.com.mx/nacion/199873.html"
+        },
+        {
+          "label": "Excélsior 2015",
+          "url": "https://www.excelsior.com.mx/de-la-red/2015/08/06/1038824"
+        },
+        {
+          "label": "Cortes COMIPEMS 2024",
+          "url": "https://la-lista.com/mexico/puntaje-comipems-2024-ipn-cuantos-aciertos-pide-el-cecyt-voca"
+        },
+        {
+          "label": "Milenio · puntaje máximo 2024",
+          "url": "https://www.milenio.com/politica/comunidad/examen-comipems-2024-quienes-fueron-aspirantes-con-puntaje-mas-alto"
+        }
+      ]
     }
   ]
 }

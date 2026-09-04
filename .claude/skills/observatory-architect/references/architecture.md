@@ -60,6 +60,8 @@ Two attributes on `<html>`: `data-theme` (`night` | `atlas`) and `data-mode` (`p
 
 Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA hours, Dec degrees, V mag) + 29 constellation figures as name pairs. Adding a star requires exact J2000 coordinates.
 
+> Gotcha: after changing a collection schema, the dev server's incremental glob loader may keep stale parsed entries (new fields come back `undefined`). Stop the server, delete `.astro/data-store.json`, restart. `astro build` is not affected.
+
 ## Study log (`posts`) and Now page
 
 - `posts` collection (`src/content/posts/<locale>/*.md`), accessors `getPosts/getPost/readingMinutes/formatLongDate` in `lib/content.ts`, routes `/log`, `/log/[key]`, `/log/rss.xml` per locale (`lib/rss.ts`), `LogLatest` on home, `LogFilters` (client-side search + area chips + term select, URL-synced), per-entry OG PNGs from `scripts/generate-og.mjs` (prebuild step in `npm run build`, output `public/og/log/`).

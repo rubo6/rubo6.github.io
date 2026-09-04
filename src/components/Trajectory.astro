@@ -113,6 +113,16 @@ const step = (c - 40) / orbits;
                   ))}
                 </ul>
               )}
+              {e.sources.length > 0 && (
+                <p class="sources">
+                  <span>{t('trajectory.sources')}:</span>
+                  {e.sources.map((src) => (
+                    <a href={src.url} rel="noopener noreferrer" target="_blank">
+                      {src.label} ↗
+                    </a>
+                  ))}
+                </p>
+              )}
             </div>
           </li>
         ))
@@ -227,6 +237,22 @@ const step = (c - 40) / orbits;
     color: var(--ink);
   }
   .bullets li::marker {
+    color: var(--accent);
+  }
+  .sources {
+    margin: 0.9rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+  .sources a {
+    color: var(--ink-muted);
+    text-decoration-color: color-mix(in oklch, var(--accent) 50%, transparent);
+  }
+  .sources a:hover {
     color: var(--accent);
   }
   .chips {

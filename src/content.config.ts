@@ -67,6 +67,8 @@ const trajectory = defineCollection({
         summary: z.string().optional(),
         bullets: z.array(z.string()),
         stack: z.array(z.string()).default([]),
+        /** Public references backing reputation / ranking claims (rendered as small links). */
+        sources: z.array(z.object({ label: z.string(), url: httpsUrl })).default([]),
         /** Orbit radius index in the trajectory scene (0 = innermost / most recent). */
         orbit: z.number().int().min(0),
       }),
