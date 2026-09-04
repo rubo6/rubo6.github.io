@@ -28,5 +28,5 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Illustrated avatar (prompts in docs/ASSET-PROMPTS.md §4) once generated.
 - Custom domain (Rubo leaning `.dev`; guide in docs/OWNER-GUIDE.md §5).
 - Lighthouse run; Playwright smoke tests; automated CV PDF.
-- WhisperFlow: models as GitHub Release assets; README polish; dictionary default.
+- WhisperFlow: Rubo uploads the four model zips + SHA256SUMS.txt from `Desktop/WhisperFlow-dist/release-assets/` as a GitHub Release (tag `v0.1.0`); then test `scripts/fetch_release_models.py` end to end.
 - Rubo's account tasks: 2FA, push protection (account level), Steam public, certifications when earned.
