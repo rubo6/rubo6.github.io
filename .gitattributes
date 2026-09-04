@@ -5,3 +5,6 @@
 *.avif binary
 *.woff2 binary
 *.ico binary
+src/assets/nebulae/raw/*.jpg filter=lfs diff=lfs merge=lfs -text
+src/assets/nebulae/raw/*.jpeg filter=lfs diff=lfs merge=lfs -text
+src/assets/nebulae/raw/*.png filter=lfs diff=lfs merge=lfs -text

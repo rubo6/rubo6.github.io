@@ -36,4 +36,3 @@ src/data/generated/
 src/assets/generated/raw/
 
 # official nebula source images (re-download via scripts/optimize-nebulae.mjs comments / credits.json)
-src/assets/nebulae/raw/
