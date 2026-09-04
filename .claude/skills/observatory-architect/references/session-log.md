@@ -12,6 +12,8 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Lighthouse on rubo6.dev after imagery + portrait + log: **mobile 96/100/100/100, desktop 100/100/100/100** (LCP mobile 2.8 s, TBT 40 ms, CLS 0). JSON-LD Person; Xbox gamertag.
 - WhisperFlow: release v0.1.0 published by Rubo; README Mermaid fixed by subagent (5726c4f).
 
+- Later in session 2: portrait video (Veo, 720×1280, 8 s) live in the eyepiece; CECyT 9 "Juan de Dios Bátiz" (IPN, Técnico en Programación, 2018-08-13 → 2021-07-23, Plan 2008) added to trajectory, CV and certifications with sourced selectivity data (COMIPEMS cut-off 102–106/128, highest IPN campus); log entries for AIESEC (iGV member + oGV team leader, 2024) and the Bátiz, EN/ES; `leadership` area added to posts. Research sources are in the two subagent briefings (AIESEC official pages, IPN/CECyT 9 Plan 2008 PDF, Gaceta Politécnica, El Universal 2012, Infobae 2024, COMIPEMS press tables). WhisperFlow release downloader tested end-to-end (denoise-vad pack).
+
 **Pending / next**
 
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).

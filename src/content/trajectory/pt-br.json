@@ -113,17 +113,19 @@
       "id": "cecyt9-ipn",
       "kind": "education",
       "org": "CECyT No. 9 \"Juan de Dios Bátiz\" · Instituto Politécnico Nacional",
-      "orgUrl": "https://www.cecyt9.ipn.mx",
+      "orgUrl": "https://www.cecyt9.ipn.mx/oferta-educativa/ver-carrera.html?lg=es&id=14&nombre=T%C3%A9cnico-en-Programaci%C3%B3n",
       "role": "Técnico em Programação",
       "location": "Cidade do México",
       "start": "2018-08-13",
       "end": "2021-07-23",
-      "summary": "Ensino médio bivalente do IPN: diploma de ensino médio mais título técnico. Título emitido em dezembro de 2022.",
+      "summary": "Ensino médio bivalente do IPN (diploma de ensino médio + título técnico), Plano 2008. Título emitido em dezembro de 2022. O Bátiz é o campus do IPN com a maior nota de corte do exame COMIPEMS no país, cerca de dez acertos acima do seguinte.",
       "bullets": [
-        "Fundamentos de programação, programação orientada a objetos, algoritmos e estruturas de dados, bancos de dados relacionais, desenvolvimento web e testes de software.",
-        "Egresso do campus de ensino médio mais disputado e seletivo do IPN, historicamente a maior nota de corte do exame COMIPEMS no país."
+        "Formação profissional: Programação Orientada a Objetos, Programação e Serviços Web, Bancos de Dados (projeto normalizado e linguagens de manipulação de dados), Introdução à Engenharia de Testes e Automação de Testes, Segurança Web e de Aplicações, Introdução a Sistemas Distribuídos, Métodos Ágeis de Programação, Engenharia de Software Básica e quatro semestres de Laboratório de Projetos de TI.",
+        "Tronco científico completo em paralelo: Álgebra, Geometria e Trigonometria, Geometria Analítica, Cálculo Diferencial e Integral, Probabilidade e Estatística, Física I–IV, Química I–IV, além de filosofia, história e seis semestres de inglês.",
+        "Seletividade: a nota de corte do CECyT 9 no exame COMIPEMS ficou entre 102 e 106 acertos de 128 todos os anos entre 2019 e 2023, a mais alta de todos os campi do IPN e cerca de dez acima do segundo; a imprensa o chama de campus do IPN mais difícil de entrar, e foi o melhor ensino médio do país na prova ENLACE por cinco anos consecutivos.",
+        "Formei-me em julho de 2021 após um ano e meio de aulas online na pandemia; o título de Técnico em Programação foi emitido em dezembro de 2022."
       ],
-      "stack": ["C++", "JavaScript", "SQL", "Testes de software"],
+      "stack": ["C++", "Java", "JavaScript", "SQL", "Testes de software"],
       "orbit": 6
     }
   ]

@@ -113,17 +113,19 @@
       "id": "cecyt9-ipn",
       "kind": "education",
       "org": "CECyT No. 9 \"Juan de Dios Bátiz\" · Instituto Politécnico Nacional",
-      "orgUrl": "https://www.cecyt9.ipn.mx",
+      "orgUrl": "https://www.cecyt9.ipn.mx/oferta-educativa/ver-carrera.html?lg=es&id=14&nombre=T%C3%A9cnico-en-Programaci%C3%B3n",
       "role": "Technical Degree in Programming (Técnico en Programación)",
       "location": "Mexico City",
       "start": "2018-08-13",
       "end": "2021-07-23",
-      "summary": "Bivalent upper-secondary programme of the IPN: high-school diploma plus a technical degree. Title issued December 2022.",
+      "summary": "IPN bivalent upper-secondary programme (high-school diploma + technical degree), Plan 2008. Title issued December 2022. The Bátiz is the IPN campus with the highest COMIPEMS cut-off score in the country, roughly ten points above the next one.",
       "bullets": [
-        "Programming fundamentals, object-oriented programming, algorithms and data structures, relational databases, web development and software testing.",
-        "Graduated from the IPN's most demanded and selective upper-secondary campus, historically the highest COMIPEMS cut-off score in the country."
+        "Programming track: Object-Oriented Programming, Web Programming and Services, Databases (normalized design and data manipulation languages), Introduction to Test Engineering and Test Automation, Web and Application Security, Introduction to Distributed Systems, Agile Programming Methods, Basic Software Engineering, and four semesters of IT Project Labs.",
+        "Full scientific core alongside the technical track: Algebra, Geometry and Trigonometry, Analytic Geometry, Differential and Integral Calculus, Probability and Statistics, Physics I–IV, Chemistry I–IV, plus philosophy, history and six semesters of English.",
+        "Selectivity: the CECyT 9 cut-off in the COMIPEMS entrance exam was 102–106 of 128 questions every year between 2019 and 2023, the highest of any IPN campus and about ten points above the second; the press calls it the hardest IPN campus to get into, and it was ranked Mexico's best high school in the ENLACE test five years in a row.",
+        "Graduated in July 2021 after a year and a half of online classes during the pandemic; the technical title (Técnico en Programación) was issued in December 2022."
       ],
-      "stack": ["C++", "JavaScript", "SQL", "Software testing"],
+      "stack": ["C++", "Java", "JavaScript", "SQL", "Software testing"],
       "orbit": 6
     }
   ]

@@ -6,13 +6,14 @@
     "status": "earned",
     "date": "2022-12-01",
     "skills": [
-      "Programming fundamentals",
-      "OOP",
-      "Data structures",
-      "Relational databases",
-      "Web development",
-      "Software testing"
-    ]
+      "Object-oriented programming",
+      "Web programming & services",
+      "Databases",
+      "Test engineering & automation",
+      "Web security",
+      "Software engineering"
+    ],
+    "url": "https://www.ipn.mx/oferta-educativa/educaci%C3%B3n-medio-superior/ver-carrera.html?lg=es&id=14&nombre=T%C3%A9cnico-en-Programaci%C3%B3n"
   },
   {
     "id": "ibero-ai-diploma",
