@@ -28,7 +28,22 @@ function pick(path) {
     benchmarkIndex: Math.round(d.environment?.benchmarkIndex ?? 0),
     lighthouseVersion: d.lighthouseVersion,
     fetchTime: d.fetchTime,
+    // Diagnostics so a run can be understood without downloading the artifact.
+    failedAudits: Object.entries(a)
+      .filter(([, v]) => v.scoreDisplayMode === 'binary' && v.score === 0)
+      .map(([k, v]) => ({ id: k, sample: v.details?.items?.[0]?.node?.selector ?? null })),
+    lcp: lcpBreakdown(a),
   };
+}
+
+function lcpBreakdown(a) {
+  const items = a['lcp-breakdown-insight']?.details?.items ?? [];
+  const table = items.find((i) => i.type === 'table');
+  const node = items.find((i) => i.type === 'node');
+  const phases = Object.fromEntries(
+    (table?.items ?? []).map((r) => [r.subpart, Math.round(r.duration)]),
+  );
+  return { element: node?.selector ?? null, ...phases };
 }
 
 const latest = {
