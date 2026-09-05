@@ -1,54 +1,54 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-04T23:13:41.901Z",
-  "runner": "github-actions#33928538949",
+  "measuredAt": "2026-09-05T03:18:26.448Z",
+  "runner": "github-actions#33941383002",
   "mobile": {
-    "performance": 94,
+    "performance": 88,
     "accessibility": 100,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 3001,
-    "fcpMs": 1426,
-    "speedIndexMs": 1714,
-    "tbtMs": 94,
+    "lcpMs": 3761,
+    "fcpMs": 1456,
+    "speedIndexMs": 3053,
+    "tbtMs": 57,
     "cls": 0,
-    "benchmarkIndex": 3176,
+    "benchmarkIndex": 2493,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T23:13:02.604Z",
+    "fetchTime": "2026-09-05T03:17:42.339Z",
     "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 16,
-      "resourceLoadDelay": 48,
-      "resourceLoadDuration": 33,
-      "elementRenderDelay": 225
+      "timeToFirstByte": 58,
+      "resourceLoadDelay": 62,
+      "resourceLoadDuration": 36,
+      "elementRenderDelay": 1193
     },
     "runs": [
-      74,
-      94,
-      94
+      60,
+      88,
+      90
     ]
   },
   "desktop": {
-    "performance": 99,
+    "performance": 100,
     "accessibility": 100,
     "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 754,
-    "fcpMs": 454,
-    "speedIndexMs": 755,
+    "lcpMs": 729,
+    "fcpMs": 369,
+    "speedIndexMs": 650,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 3127,
+    "benchmarkIndex": 2454,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-04T23:13:30.603Z",
+    "fetchTime": "2026-09-05T03:18:14.533Z",
     "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 76,
-      "resourceLoadDelay": 119,
-      "resourceLoadDuration": 87,
-      "elementRenderDelay": 277
+      "timeToFirstByte": 55,
+      "resourceLoadDelay": 86,
+      "resourceLoadDuration": 64,
+      "elementRenderDelay": 243
     }
   }
 }
