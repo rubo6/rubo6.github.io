@@ -14,3 +14,4 @@
 {"measuredAt":"2026-09-05T03:18:26.448Z","runner":"github-actions#33941383002","mobile":[88,100,100,100],"desktop":[100,100,100,100],"lcpMs":{"mobile":3761,"desktop":729}}
 {"measuredAt":"2026-09-05T03:27:08.100Z","runner":"github-actions#33941777049","mobile":[87,100,96,100],"desktop":[100,100,96,100],"lcpMs":{"mobile":3935,"desktop":646}}
 {"measuredAt":"2026-09-05T03:37:13.205Z","runner":"github-actions#33942244064","mobile":[81,100,100,100],"desktop":[100,100,100,100],"lcpMs":{"mobile":4124,"desktop":683}}
+{"measuredAt":"2026-09-05T05:17:57.148Z","runner":"github-actions#33946730678","mobile":[93,100,100,100],"desktop":[99,100,100,100],"lcpMs":{"mobile":2888,"desktop":644}}
