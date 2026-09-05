@@ -76,6 +76,18 @@ Catalogue: `src/data/bright-stars.json` — 150 stars (name, constellation, RA h
 - `filter: blur()` entrance animations run only on `(hover: hover) and (pointer: fine) and (min-width: 900px)`; phones get the opacity/transform version.
 - Measure with `node scripts/vitals.mjs` against `astro preview` (desktop + 4× throttled Pixel 7; LCP/CLS/long tasks/weight per page). Lighthouse CLI cannot launch Chrome on Rubo's machine (chrome-launcher `spawn UNKNOWN`) and PageSpeed Insights' anonymous quota is shared, so vitals.mjs is the local sanity check; run real Lighthouse from Chrome DevTools on the live site when needed.
 
+## Trajectory camera (`src/scripts/orbits.ts`)
+
+Planets are positioned by JS (rotate transform, ≤ 30 fps while the section is on screen); an IntersectionObserver band around the viewport centre marks the entry being read (`[data-entry-index]` ↔ `.planet[data-index]`), the SVG `viewBox` lerps to that planet (zoom 1.5–2.6, inner orbits closer) and the planet gets a halo (`.is-active`). No active entry → whole system. Reduced motion → static planets, camera jumps.
+
+## Visit counter
+
+`Footer.astro` fetches `https://rubo6.goatcounter.com/counter/TOTAL.json` once per page session and shows the total (`[data-visits]`, hidden until it arrives). GoatCounter only serves that endpoint with CORS when **Settings → Site → "Allow adding visitor counts on your website"** is enabled; until Rubo enables it the footer simply omits the line. `connect-src` already allows the origin.
+
+## Personal universe imagery
+
+Personal clusters map to official images by id in `Observatory.astro` (`astronomy → academic` Carina, `music → music` Butterfly NGC 6302 heic2011b, `gaming → gaming` Cat's Eye NGC 6543 heic0414a, `water → personal` Helix). Credits render inside each panel. `scripts/optimize-nebulae.mjs` only processes raw files whose id is registered in `src/assets/nebulae/credits.json` (raw/ also holds scene originals). Section backdrops: Trajectory → `rho-ophiuchi` (weic2316a), Skills → `ngc604` (weic2407a), Contact → `stephans-quintet`.
+
 ## Alive layer (session 3)
 
 - `src/scripts/alive.ts` (loaded from `Base.astro`): pointer spotlight for `.glow` elements (writes `--mx/--my`), dome-shutter overlay (`[data-dome]`) closed/opened around ClientRouter navigations via `astro:before-preparation` (`loader` override) and `astro:after-swap`; both skipped under reduced motion.

@@ -72,6 +72,10 @@ const updated = new Intl.DateTimeFormat(intl, {
       <p class="mono text-xs text-ink-muted">
         {t('footer.updated')}: <time datetime={buildDate.toISOString()}>{updated}</time>
       </p>
+      <p class="mono text-xs text-ink-muted" data-visits hidden>
+        <span data-visits-count>–</span>
+        {t('footer.visits')}
+      </p>
       <p class="mono text-xs text-ink-muted">
         © {buildDate.getFullYear()} Eduardo Rubén Bernal Puente
       </p>
@@ -173,4 +177,31 @@ const updated = new Intl.DateTimeFormat(intl, {
   }
   paint();
   document.addEventListener('astro:after-swap', paint);
+</script>
+
+<script>
+  // Total page views from GoatCounter's public counter endpoint (cookieless, same service as the
+  // beacon). Hidden until the number arrives; stays hidden if the counter is not enabled.
+  let attempted = false;
+  async function showVisits() {
+    const box = document.querySelector<HTMLElement>('[data-visits]');
+    const out = document.querySelector<HTMLElement>('[data-visits-count]');
+    // One request per page session: a disabled counter must not produce a stream of failed fetches.
+    if (!box || !out || attempted) return;
+    attempted = true;
+    try {
+      const res = await fetch('https://rubo6.goatcounter.com/counter/TOTAL.json', {
+        signal: AbortSignal.timeout(6000),
+      });
+      if (!res.ok) return;
+      const data = (await res.json()) as { count?: string };
+      if (!data.count) return;
+      out.textContent = data.count.replace(/\s+/g, '\u2009');
+      box.hidden = false;
+    } catch {
+      /* offline or counter disabled: stay hidden */
+    }
+  }
+  showVisits();
+  document.addEventListener('astro:after-swap', showVisits);
 </script>

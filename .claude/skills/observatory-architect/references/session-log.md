@@ -35,6 +35,12 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Lighthouse works with the installed Google Chrome (`CHROME_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe`); live 2026-09-05 before perf polish: mobile 93/100/100/100 (LCP 3.0 s), desktop 96/100/100/100 (Speed Index 2.0 s).
 - WhisperFlow personal dictionary extended with ~100 terms from the dictation.
 
+## Session 3c — 2026-09-05 (Rubo's visual feedback)
+
+- Fixed: overlapping labels in the personal universe (new positions), cramped trajectory cards (padding + frame), Longtail wording, MeLi dates (Rangers in Mexico since Sep 2025, Rubo on it since Jan 2026; BR/AR not his), heatmap legend removed and heatmap only with the 12-month calendar, CV without Spotify/Xbox and with a back link, footer without the source link, sidereal-time hint, contact/trajectory/skills sections padded with backdrops, light-theme visibility of orbits and backdrops.
+- New: real nebulae in the personal universe, Rho Ophiuchi + NGC 604 backdrops, magnified skill labels on hover (SVG text scale + bring-to-front), near-black palette (`--bg-0 #060814`, personal `#0a0616`), trajectory camera following the active entry (`orbits.ts`), GoatCounter visit counter (needs the public counter setting).
+- Rubo confirmed "Rangers" can be named; the IA course project is a different project from Keeper (repos pending).
+
 **Pending / next**
 
 - Rubo to supply: portrait video (Veo prompt in ASSET-PROMPTS §5) → `public/media/portrait.mp4|webm`; real photo later → `src/assets/generated/photo.*`; PT-BR versions of the log (currently EN fallback).

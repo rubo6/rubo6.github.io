@@ -27,8 +27,8 @@ const step = (c - 40) / orbits;
   />
 
   <div class="grid">
-    <figure class="orbits reveal" aria-hidden="true">
-      <svg viewBox={`0 0 ${size} ${size}`} width="100%" height="100%">
+    <figure class="orbits reveal" aria-hidden="true" data-orbits data-size={size}>
+      <svg viewBox={`0 0 ${size} ${size}`} width="100%" height="100%" data-orbits-svg>
         <defs>
           <radialGradient id="sun">
             <stop offset="0" stop-color="var(--accent)" stop-opacity="1"></stop>
@@ -39,7 +39,7 @@ const step = (c - 40) / orbits;
         <circle cx={c} cy={c} r="34" fill="url(#sun)"></circle>
         <circle cx={c} cy={c} r="9" fill="var(--accent)"></circle>
         {
-          entries.map((e) => {
+          entries.map((e, i) => {
             const r = 40 + step * (e.orbit + 1) - step * 0.35;
             const dur = 40 + e.orbit * 22;
             const angle = (e.orbit * 67) % 360;
@@ -56,8 +56,20 @@ const step = (c - 40) / orbits;
                 />
                 <g
                   class="planet"
-                  style={`--dur:${dur}s;--a:${angle}deg;transform-origin:${c}px ${c}px`}
+                  data-index={i}
+                  data-r={r.toFixed(2)}
+                  data-a={angle}
+                  data-dur={dur}
+                  style={`--a:${angle}deg;transform-origin:${c}px ${c}px`}
                 >
+                  <circle
+                    class="halo"
+                    cx={c + r}
+                    cy={c}
+                    r={e.kind === 'work' ? 16 : 12}
+                    fill="var(--accent)"
+                    opacity="0"
+                  />
                   <circle
                     cx={c + r}
                     cy={c}
@@ -81,7 +93,11 @@ const step = (c - 40) / orbits;
     <ol class="entries">
       {
         entries.map((e, i) => (
-          <li class:list={['entry reveal', `kind-${e.kind}`]} data-delay={String((i % 4) + 1)}>
+          <li
+            class:list={['entry reveal', `kind-${e.kind}`]}
+            data-delay={String((i % 4) + 1)}
+            data-entry-index={i}
+          >
             <div class="marker" aria-hidden="true" />
             <div class="entry-body glow lift">
               <p class="mono meta">
@@ -156,17 +172,27 @@ const step = (c - 40) / orbits;
     margin: 0;
     aspect-ratio: 1;
   }
+  /* Planets are positioned by src/scripts/orbits.ts (rotate transform); the camera follows the
+     active entry by animating the SVG viewBox. */
   .planet {
-    animation: orbit var(--dur) linear infinite;
     transform: rotate(var(--a));
   }
-  @keyframes orbit {
-    from {
-      transform: rotate(var(--a));
-    }
-    to {
-      transform: rotate(calc(var(--a) + 360deg));
-    }
+  .planet circle {
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      r var(--dur-slow) var(--ease-out);
+  }
+  .planet .halo {
+    opacity: 0;
+  }
+  .planet.is-active .halo {
+    opacity: 0.22;
+  }
+  .orbits[data-active]:not([data-active='']) .planet:not(.is-active) circle:not(.halo) {
+    opacity: 0.45;
+  }
+  .entry.is-active .entry-body {
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
   }
   .entries {
     list-style: none;
@@ -302,8 +328,14 @@ const step = (c - 40) / orbits;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .planet {
-      animation: none;
+    .planet circle {
+      transition: none;
     }
   }
 </style>
+
+<script>
+  import { initOrbits } from '@/scripts/orbits';
+  initOrbits();
+  document.addEventListener('astro:after-swap', initOrbits);
+</script>

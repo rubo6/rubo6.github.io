@@ -2,6 +2,10 @@
 
 Todo lo de esta guía requiere tu cuenta o tu tarjeta; no lo puede hacer un agente. Cada punto trae el enlace exacto.
 
+## Contador de visitas
+
+El pie de página muestra el total de visitas leyendo el contador público de GoatCounter. Para activarlo: https://rubo6.goatcounter.com/settings/main → sección "Visitor counter" → marca "Allow adding visitor counts on your website" y guarda. Mientras no esté activo, la línea simplemente no aparece (no hay error visible).
+
 ## Archivos grandes (Git LFS)
 
 Los JPEG originales de ESA/Webb y ESA/Hubble están en `src/assets/nebulae/raw/` con Git LFS. Al clonar el repo solo bajan punteros; para tener los originales ejecuta `git lfs pull` (Git para Windows ya incluye LFS). El sitio no los necesita para construirse. La cuota gratuita de GitHub es 1 GB de almacenamiento y 1 GB de ancho de banda al mes; hoy usamos ~91 MB.
