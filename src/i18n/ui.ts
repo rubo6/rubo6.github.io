@@ -96,6 +96,7 @@ const en = {
   'hero.cta.cv': 'View CV',
   'hero.sky.caption': 'Live sky over Mexico City',
   'hero.sky.lst': 'Local sidereal time',
+  'hero.sky.lstHint': 'Not the clock time: the right ascension crossing the meridian right now.',
   'hero.sky.reduced': 'Static rendering (reduced motion)',
   'hero.sky.aria':
     'Star map of the current sky above Mexico City, computed from a bright-star catalogue',
@@ -211,6 +212,7 @@ const en = {
 
   'cv.title': 'Curriculum vitae',
   'cv.print': 'Print / save as PDF',
+  'cv.back': 'Back to the observatory',
   'cv.summary': 'Summary',
   'cv.experience': 'Experience',
   'cv.education': 'Education',
@@ -298,6 +300,8 @@ const es: Record<UIKey, string> = {
   'hero.cta.cv': 'Ver CV',
   'hero.sky.caption': 'Cielo en vivo sobre la Ciudad de México',
   'hero.sky.lst': 'Tiempo sidéreo local',
+  'hero.sky.lstHint':
+    'No es la hora del reloj: es la ascensión recta que cruza el meridiano en este instante.',
   'hero.sky.reduced': 'Render estático (movimiento reducido)',
   'hero.sky.aria':
     'Mapa estelar del cielo actual sobre la Ciudad de México, calculado a partir de un catálogo de estrellas brillantes',
@@ -416,6 +420,7 @@ const es: Record<UIKey, string> = {
 
   'cv.title': 'Currículum',
   'cv.print': 'Imprimir / guardar como PDF',
+  'cv.back': 'Volver al observatorio',
   'cv.summary': 'Resumen',
   'cv.experience': 'Experiencia',
   'cv.education': 'Formación',
@@ -501,6 +506,8 @@ const ptBr: Record<UIKey, string> = {
   'hero.cta.cv': 'Ver CV',
   'hero.sky.caption': 'Céu ao vivo sobre a Cidade do México',
   'hero.sky.lst': 'Tempo sideral local',
+  'hero.sky.lstHint':
+    'Não é a hora do relógio: é a ascensão reta que cruza o meridiano neste instante.',
   'hero.sky.reduced': 'Renderização estática (movimento reduzido)',
   'hero.sky.aria':
     'Mapa estelar do céu atual sobre a Cidade do México, calculado a partir de um catálogo de estrelas brilhantes',
@@ -619,6 +626,7 @@ const ptBr: Record<UIKey, string> = {
 
   'cv.title': 'Currículo',
   'cv.print': 'Imprimir / salvar como PDF',
+  'cv.back': 'Voltar ao observatório',
   'cv.summary': 'Resumo',
   'cv.experience': 'Experiência',
   'cv.education': 'Formação',

@@ -16,7 +16,7 @@ await sharp(svg).resize(180, 180).png().toFile(out('icons/apple-touch-icon.png')
 
 // Maskable: icon centred in a safe zone on the brand background.
 const bg = Buffer.from(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" fill="#0b1026"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" fill="#060814"/></svg>`,
 );
 const inner = await sharp(svg).resize(400, 400).png().toBuffer();
 await sharp(bg)
@@ -28,7 +28,7 @@ await sharp(bg)
 const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#141b3d"/><stop offset="1" stop-color="#0b1026"/>
+      <stop offset="0" stop-color="#141b3d"/><stop offset="1" stop-color="#060814"/>
     </linearGradient>
     <radialGradient id="n" cx="0.8" cy="0.3" r="0.6">
       <stop offset="0" stop-color="#f07a6e" stop-opacity="0.35"/><stop offset="1" stop-color="#f07a6e" stop-opacity="0"/>

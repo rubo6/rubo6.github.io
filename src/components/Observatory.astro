@@ -76,13 +76,21 @@ const personalScene = personal.clusters.map((c, i) => ({
   object: c.object,
   blurb: c.blurb,
   items: c.items,
+  // Spread so labels (which hang below each nebula) never collide: two up, two down, alternating.
   scene: [
-    { x: 30, y: 40, scale: 1.2 },
-    { x: 66, y: 34, scale: 1.05 },
-    { x: 52, y: 68, scale: 0.95 },
-    { x: 80, y: 66, scale: 0.85 },
-    { x: 18, y: 72, scale: 0.9 },
+    { x: 24, y: 34, scale: 1.15 },
+    { x: 72, y: 28, scale: 1 },
+    { x: 40, y: 72, scale: 0.95 },
+    { x: 82, y: 70, scale: 0.85 },
+    { x: 58, y: 48, scale: 0.8 },
   ][i % 5]!,
+  /** Official image behind the cluster (ids in src/assets/nebulae/credits.json). */
+  image: (
+    { astronomy: 'academic', music: 'music', gaming: 'gaming', water: 'personal' } as Record<
+      string,
+      string
+    >
+  )[c.id],
   palette: [
     ['#f07a6e', '#f2c46d', '#a8e6cf'],
     ['#a8e6cf', '#f07a6e', '#f4efe6'],
@@ -343,6 +351,17 @@ const personalScene = personal.clusters.map((c, i) => ({
             aria-pressed="false"
             style={`--nx:${c.scene.x}%;--ny:${c.scene.y}%;--ns:${c.scene.scale};--c1:${c.palette[0]};--c2:${c.palette[1]};--c3:${c.palette[2]}`}
           >
+            {c.image && nebulaImage(c.image) && (
+              <Picture
+                src={nebulaImage(c.image)!}
+                formats={['avif', 'webp']}
+                widths={[320, 640]}
+                sizes="(max-width: 900px) 40vw, 18rem"
+                alt=""
+                class="photo"
+                loading="lazy"
+              />
+            )}
             <span class="gas gas-a" aria-hidden="true" />
             <span class="gas gas-b" aria-hidden="true" />
             <span class="gas gas-c" aria-hidden="true" />
@@ -370,6 +389,22 @@ const personalScene = personal.clusters.map((c, i) => ({
               <p class="mono text-accent-3 text-xs uppercase tracking-[0.2em]">{c.object}</p>
               <h3 class="mt-2">{c.label}</h3>
               <p class="text-ink-muted mt-2 max-w-2xl">{c.blurb}</p>
+              {c.image && creditById.get(c.image) && (
+                <p class="mono credit">
+                  {t('observatory.imageCredit')}: {creditById.get(c.image)!.telescope}
+                  {creditById.get(c.image)!.instrument
+                    ? ` ${creditById.get(c.image)!.instrument}`
+                    : ''}{' '}
+                  ·{' '}
+                  <a
+                    href={creditById.get(c.image)!.source}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {creditById.get(c.image)!.credit}
+                  </a>
+                </p>
+              )}
             </div>
             <button type="button" class="btn btn-ghost" data-nebula-back>
               ← {t('observatory.back')}
@@ -409,7 +444,7 @@ const personalScene = personal.clusters.map((c, i) => ({
       </div>
       {
         /* Hide the heatmap when the anonymous 90-day fallback has too little data to be meaningful. */
-        contributions && (contributions.source === 'graphql' || contributions.total >= 10) && (
+        contributions && contributions.source === 'graphql' && (
           <Contributions locale={locale} data={contributions} />
         )
       }

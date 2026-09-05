@@ -16,7 +16,7 @@
       "id": "working",
       "title": "Working on",
       "items": [
-        "Data side of a field-agent acquisition channel at Mercado Pago Point: BigQuery pipelines, dashboards and the internal platform, now live in Mexico, Brazil and Argentina.",
+        "Data side of Rangers, the field-agent acquisition channel of Mercado Pago Point in Mexico: BigQuery pipelines, dashboards and the internal platform.",
         "Mentoring two colleagues on the team’s data tooling.",
         "WhisperFlow, my offline voice-dictation tool for Windows, public with model packs on GitHub Releases.",
         "This observatory: answering the second questionnaire, then the remaining translations."

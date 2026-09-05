@@ -10,9 +10,9 @@
       "location": "Cidade do México",
       "start": "2025-11-03",
       "end": null,
-      "summary": "Área Long Tail do Mercado Pago Point (pequenos e médios comerciantes), equipe de Aquisição. Cuido da parte de dados do canal de aquisição com agentes em campo: ativo no México e lançado no Brasil e na Argentina em 2026. Trabalho totalmente remoto com uma equipe regional em espanhol.",
+      "summary": "Área Longtail do Mercado Pago Point (pequenos e médios comerciantes), equipe de Aquisição. Desde janeiro de 2026 cuido da parte de dados do Rangers, o canal de aquisição com agentes em campo, para o México, onde foi lançado em setembro de 2025 (Brasil e Argentina têm equipes próprias). Trabalho totalmente remoto com uma equipe regional em espanhol.",
       "bullets": [
-        "Responsável pela camada de dados de um canal de aquisição com agentes em campo: ETL/ELT no BigQuery com um orquestrador interno, cerca de 60 tabelas (30 no novo backend), milhões de linhas por dia, cinco dashboards em produção no Looker Studio e Google Sheets e mais cinco na fila.",
+        "Responsável pela camada de dados do Rangers no México: ETL/ELT no BigQuery com um orquestrador interno, cerca de 60 tabelas (30 no novo backend), milhões de linhas por dia, cinco dashboards em produção no Looker Studio e Google Sheets e mais cinco na fila.",
         "Reconstruí o processo de atribuição de comerciantes a agentes: doze passos manuais separados em vários ambientes viraram um único job parametrizado. Edita-se uma planilha, executa-se e o arquivo fica pronto em menos de duas horas em vez de um dia inteiro; agentes, cotas e ativações mudam sem tocar em código.",
         "Construí a plataforma interna (Next.js, Firebase, BigQuery, Sheets) que dá aos agentes uma visão da própria carteira, a única ferramenta desse tipo na área. A produtividade por agente subiu de forma notável após o lançamento em junho de 2026 e o projeto recebeu reconhecimento formal da liderança.",
         "Responsável por qualidade de dados e pagamentos: defino os dados por trás da remuneração variável dos agentes, adiciono passos de auditoria que param um job antes que um erro se espalhe, respondo aos alertas por e-mail no mesmo dia e rodo verificações de anomalias que sinalizaram dois casos de comportamento irregular (maio e junho de 2026) para investigação.",

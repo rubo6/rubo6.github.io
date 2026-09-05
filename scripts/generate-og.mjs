@@ -73,7 +73,7 @@ for (const file of await readdir(dir)) {
   const startY = 250;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#141b3d"/><stop offset="1" stop-color="#0b1026"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#141b3d"/><stop offset="1" stop-color="#060814"/></linearGradient>
     <radialGradient id="n" cx="0.85" cy="0.2" r="0.6"><stop offset="0" stop-color="${color}" stop-opacity="0.28"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#g)"/>

@@ -32,7 +32,7 @@
   if (meta) {
     meta.setAttribute(
       'content',
-      theme === 'atlas' ? '#f6f1e7' : mode === 'personal' ? '#160f2e' : '#0b1026',
+      theme === 'atlas' ? '#f6f1e7' : mode === 'personal' ? '#0a0616' : '#060814',
     );
   }
 })();

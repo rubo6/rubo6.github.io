@@ -64,5 +64,27 @@
     "released": "2024-04-29",
     "credit": "ESA/Webb, NASA, CSA, K. Misselt (University of Arizona) and A. Abergel (IAS/University Paris-Saclay, CNRS)",
     "license": "CC BY 4.0 (ESA/Webb)"
+  },
+  {
+    "id": "music",
+    "object": "Butterfly Nebula (NGC 6302)",
+    "source": "https://esahubble.org/images/heic2011b/",
+    "download": "https://cdn.esahubble.org/archives/images/large/heic2011b.jpg",
+    "telescope": "Hubble",
+    "instrument": "WFC3",
+    "released": "2020-06-18",
+    "credit": "NASA, ESA and J. Kastner (RIT)",
+    "license": "CC BY 4.0 (ESA/Hubble)"
+  },
+  {
+    "id": "gaming",
+    "object": "Cat's Eye Nebula (NGC 6543)",
+    "source": "https://esahubble.org/images/heic0414a/",
+    "download": "https://cdn.esahubble.org/archives/images/large/heic0414a.jpg",
+    "telescope": "Hubble",
+    "instrument": "ACS",
+    "released": "2004-09-09",
+    "credit": "NASA, ESA, HEIC and The Hubble Heritage Team (STScI/AURA)",
+    "license": "CC BY 4.0 (ESA/Hubble)"
   }
 ]

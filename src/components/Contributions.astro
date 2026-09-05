@@ -103,11 +103,6 @@ const summary = `${formatCount(data.total, locale)} ${t('contrib.total')} · ${p
       }
     </svg>
   </div>
-  <p class="contrib-legend mono text-xs" aria-hidden="true">
-    <span>{t('contrib.less')}</span>
-    {[0, 1, 2, 3, 4].map((l) => <i data-level={l} />)}
-    <span>{t('contrib.more')}</span>
-  </p>
 </div>
 
 <style>

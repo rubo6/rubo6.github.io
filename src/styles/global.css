@@ -23,17 +23,17 @@
 @property --bg-0 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #0b1026;
+  initial-value: #060814;
 }
 @property --bg-1 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #111838;
+  initial-value: #0b0f22;
 }
 @property --bg-2 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #1a2350;
+  initial-value: #131a38;
 }
 @property --ink {
   syntax: '<color>';
@@ -91,9 +91,9 @@
   color-scheme: dark;
 
   /* Night · Pro (default) */
-  --bg-0: #0b1026;
-  --bg-1: #111838;
-  --bg-2: #1a2350;
+  --bg-0: #060814; /* the void: near-black with a trace of blue */
+  --bg-1: #0b0f22;
+  --bg-2: #131a38;
   --ink: #f4efe6;
   --ink-muted: #b9b6c9;
   --accent: #f2c46d; /* starlight gold */
@@ -127,9 +127,9 @@
 
 /* Night · Personal — warmer, plum‑amber universe */
 :root[data-mode='personal'] {
-  --bg-0: #160f2e;
-  --bg-1: #22183f;
-  --bg-2: #2f2255;
+  --bg-0: #0a0616;
+  --bg-1: #150e2b;
+  --bg-2: #22183f;
   --accent: #f07a6e;
   --accent-2: #f2c46d;
   --accent-3: #a8e6cf;

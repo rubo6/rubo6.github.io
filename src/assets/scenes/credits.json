@@ -63,5 +63,31 @@
     "license": "CC BY 4.0 (ESA/Webb)",
     "crop": "attention",
     "uses": ["contact section backdrop"]
+  },
+  {
+    "id": "rho-ophiuchi",
+    "release": "weic2316a",
+    "object": "Rho Ophiuchi cloud complex",
+    "source": "https://esawebb.org/images/weic2316a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2023-07-12",
+    "credit": "NASA, ESA, CSA, STScI, K. Pontoppidan (STScI)",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "attention",
+    "uses": ["trajectory section backdrop"]
+  },
+  {
+    "id": "ngc604",
+    "release": "weic2407a",
+    "object": "NGC 604 (Triangulum Galaxy)",
+    "source": "https://esawebb.org/images/weic2407a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam",
+    "released": "2024-03-09",
+    "credit": "NASA, ESA, CSA, STScI",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "attention",
+    "uses": ["skills section backdrop"]
   }
 ]

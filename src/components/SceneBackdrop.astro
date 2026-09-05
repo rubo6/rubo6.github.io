@@ -9,7 +9,8 @@ import type { ImageMetadata } from 'astro';
 import { useTranslations, type Locale } from '@/i18n/ui';
 import credits from '@/assets/scenes/credits.json';
 
-type SceneId = 'crab' | 'cartwheel' | 'tarantula' | 'wr124' | 'stephans-quintet';
+type SceneId =
+  'crab' | 'cartwheel' | 'tarantula' | 'wr124' | 'stephans-quintet' | 'rho-ophiuchi' | 'ngc604';
 
 interface Props {
   id: SceneId;
@@ -80,8 +81,8 @@ const meta = credits.find((c) => c.id === id);
     opacity: 0.28;
   }
   :global([data-theme='atlas']) .scene-img :global(img) {
-    opacity: 0.22;
-    filter: saturate(0.8);
+    opacity: 0.42;
+    filter: saturate(0.9);
   }
   .scene-veil {
     position: absolute;
@@ -103,14 +104,14 @@ const meta = credits.find((c) => c.id === id);
   /* Paper theme: the photo is darker than the page, so add a light wash for text contrast. */
   :global([data-theme='atlas']) .scene-veil {
     background:
-      linear-gradient(180deg, color-mix(in oklab, var(--bg-0) 70%, transparent), transparent 40%),
+      linear-gradient(180deg, color-mix(in oklab, var(--bg-0) 55%, transparent), transparent 45%),
       linear-gradient(
         0deg,
         var(--bg-0) 6%,
-        color-mix(in oklab, var(--bg-0) 70%, transparent) 50%,
+        color-mix(in oklab, var(--bg-0) 55%, transparent) 50%,
         transparent 95%
       ),
-      color-mix(in oklab, var(--bg-0) 35%, transparent);
+      color-mix(in oklab, var(--bg-0) 18%, transparent);
   }
   .scene-credit {
     position: absolute;

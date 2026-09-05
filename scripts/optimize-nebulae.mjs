@@ -2,7 +2,7 @@
 // square 1200×1200 AVIF/WebP pairs (+ 240×240 WebP thumb) consumed by the observatory UI.
 // Run: node scripts/optimize-nebulae.mjs   (raw/ is stored in Git LFS; outputs are committed as normal files)
 // Sources and credit lines live in src/assets/nebulae/credits.json.
-import { readdir, stat, writeFile } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
@@ -21,7 +21,9 @@ const CROP = {
   research: 'centre', // Pillars full view (weic2216b): portrait, pillars are centred
   personal: 'centre', // Helix (weic2601a): NIRCam close-up of the knots; detail is spread evenly
   community: 'centre', // Lagoon (heic1808a): portrait, Herschel 36 region is centred
-  upcoming: 'attention', // Horsehead (weic2411a): near-square source; mane along the bottom, bright star top
+  upcoming: 'attention',
+  music: 'centre', // Butterfly (heic2011b): the wings fill the frame
+  gaming: 'centre', // Cat's Eye (heic0414a): centred planetary nebula // Horsehead (weic2411a): near-square source; mane along the bottom, bright star top
 };
 
 async function encodeUnder(pipeline, format, max) {
@@ -34,7 +36,11 @@ async function encodeUnder(pipeline, format, max) {
   throw new Error(`could not fit ${format} under ${max} bytes`);
 }
 
-const files = (await readdir(dir('raw'))).filter((f) => /\.(jpe?g|png|tiff?)$/i.test(f));
+// Only ids registered in credits.json are processed: raw/ also holds originals for src/assets/scenes.
+const knownIds = new Set(JSON.parse(await readFile(dir('credits.json'), 'utf8')).map((c) => c.id));
+const files = (await readdir(dir('raw'))).filter(
+  (f) => /\.(jpe?g|png|tiff?)$/i.test(f) && knownIds.has(f.replace(/\.[^.]+$/, '')),
+);
 if (files.length === 0) throw new Error('no raw images found in src/assets/nebulae/raw');
 
 for (const file of files) {

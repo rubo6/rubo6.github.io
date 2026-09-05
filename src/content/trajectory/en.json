@@ -10,9 +10,9 @@
       "location": "Mexico City",
       "start": "2025-11-03",
       "end": null,
-      "summary": "Long Tail area of Mercado Pago Point (small and mid-size merchants), Acquisition team. I own the data side of the field-agent acquisition channel: live in Mexico, rolled out to Brazil and Argentina in 2026. Fully remote, Spanish-speaking regional team.",
+      "summary": "Longtail area of Mercado Pago Point (small and mid-size merchants), Acquisition team. Since January 2026 I own the data side of Rangers, the field-agent acquisition channel, for Mexico, where it launched in September 2025 (Brazil and Argentina have their own teams). Fully remote, Spanish-speaking regional team.",
       "bullets": [
-        "Own the data layer of a field-agent acquisition channel: ETL/ELT on BigQuery with an internal orchestrator, about 60 tables (30 in the new backend), millions of rows a day, five live dashboards in Looker Studio and Google Sheets and five more in the pipeline.",
+        "Own the data layer of Rangers in Mexico: ETL/ELT on BigQuery with an internal orchestrator, about 60 tables (30 in the new backend), millions of rows a day, five live dashboards in Looker Studio and Google Sheets and five more in the pipeline.",
         "Rebuilt the agent-to-merchant assignment process: twelve disconnected manual steps across several environments became one parameterised job. Edit a sheet, run, and the file is ready in under two hours instead of a full working day; agents, quotas and activations change without touching code.",
         "Built the internal platform (Next.js, Firebase, BigQuery, Sheets) that gives field agents a view of their own portfolio, the only tool of its kind in the area. Agent productivity rose markedly after its launch in June 2026 and the project earned formal recognition from leadership.",
         "Own data quality and payouts: define the data behind the agents’ variable compensation, add audit steps that stop a job before an error spreads, answer alert e-mails the same day, and run anomaly checks that flagged two cases of irregular behaviour (May and June 2026) for investigation.",

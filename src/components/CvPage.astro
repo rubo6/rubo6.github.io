@@ -5,7 +5,7 @@
  */
 import Base from '@/layouts/Base.astro';
 import Nav from './Nav.astro';
-import { useTranslations, type Locale } from '@/i18n/ui';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
 import {
   formatMonth,
   getCertifications,
@@ -37,6 +37,8 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
 <Base locale={locale} path="/cv" title={t('cv.title')} description={profile.summary}>
   <Nav locale={locale} path="/cv" minimal />
   <main id="main" class="cv container-content">
+    <a class="back mono text-sm no-print" href={localePath(locale, '/')}>← {t('cv.back')}</a>
+    <a class="back mono text-sm no-print" href={localePath(locale, '/')}>← {t('cv.back')}</a>
     <div class="toolbar no-print">
       <h1 class="text-2xl">{t('cv.title')}</h1>
       <button type="button" class="btn btn-primary" data-print>{t('cv.print')}</button>
@@ -51,14 +53,16 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
             >{profile.email}</a
           >
           {
-            profile.links.map((l) => (
-              <>
-                {' · '}
-                <a href={l.url} rel="noopener noreferrer">
-                  {l.url.replace('https://www.', '').replace('https://', '')}
-                </a>
-              </>
-            ))
+            profile.links
+              .filter((l) => l.kind === 'github' || l.kind === 'linkedin')
+              .map((l) => (
+                <>
+                  {' · '}
+                  <a href={l.url} rel="noopener noreferrer">
+                    {l.url.replace('https://www.', '').replace('https://', '')}
+                  </a>
+                </>
+              ))
           }
         </p>
       </header>
@@ -200,6 +204,15 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
 </Base>
 
 <style>
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+  .back:hover {
+    color: var(--accent);
+  }
   .cv {
     padding-block: 2.5rem 5rem;
   }
