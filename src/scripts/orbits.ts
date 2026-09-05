@@ -22,8 +22,9 @@ interface Planet {
 const FRAME_MS = 1000 / 30;
 
 function mount(fig: HTMLElement): void {
-  const svg = fig.querySelector<SVGSVGElement>('svg');
-  if (!svg) return;
+  const svgEl = fig.querySelector<SVGSVGElement>('svg');
+  if (!svgEl) return;
+  const svg: SVGSVGElement = svgEl;
   const size = Number(fig.dataset.size ?? 520);
   const c = size / 2;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

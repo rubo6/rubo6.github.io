@@ -3,3 +3,6 @@ dist/
 node_modules/
 package-lock.json
 src/data/*.json
+
+# Written by the Lighthouse workflow (JSON.stringify), not by hand
+docs/lighthouse/

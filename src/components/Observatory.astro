@@ -70,6 +70,14 @@ function dust(seed: string, count: number) {
   });
 }
 
+/** Official image behind each personal cluster (ids in src/assets/nebulae/credits.json). */
+const personalImage: Record<string, string> = {
+  astronomy: 'academic',
+  music: 'music',
+  gaming: 'gaming',
+  water: 'personal',
+};
+
 const personalScene = personal.clusters.map((c, i) => ({
   id: c.id,
   label: c.title,
@@ -84,13 +92,7 @@ const personalScene = personal.clusters.map((c, i) => ({
     { x: 82, y: 70, scale: 0.85 },
     { x: 58, y: 48, scale: 0.8 },
   ][i % 5]!,
-  /** Official image behind the cluster (ids in src/assets/nebulae/credits.json). */
-  image: (
-    { astronomy: 'academic', music: 'music', gaming: 'gaming', water: 'personal' } as Record<
-      string,
-      string
-    >
-  )[c.id],
+  image: personalImage[c.id],
   palette: [
     ['#f07a6e', '#f2c46d', '#a8e6cf'],
     ['#a8e6cf', '#f07a6e', '#f4efe6'],

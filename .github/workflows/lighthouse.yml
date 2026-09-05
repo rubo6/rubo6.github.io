@@ -76,5 +76,6 @@ jobs:
           git add docs/lighthouse/latest.json docs/lighthouse/history.jsonl
           if git diff --cached --quiet; then echo 'no changes'; exit 0; fi
           git commit -m 'chore(lighthouse): record scores for the latest deploy [skip ci]'
-          git pull --rebase origin main
+          # main may have moved while we measured; replay our commit on top, keeping our new data on conflict.
+          git pull --rebase -X theirs origin main || { git rebase --abort; git fetch origin main; git reset --soft origin/main; git commit -m 'chore(lighthouse): record scores for the latest deploy [skip ci]'; }
           git push origin main

@@ -10,6 +10,13 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 
 const buildDate = new Date();
+// The public visitor counter only answers (with CORS) once it is enabled in GoatCounter's settings.
+// Probe it at build time so a disabled counter never produces console errors in the browser.
+const visitsEnabled = await fetch('https://rubo6.goatcounter.com/counter/TOTAL.json', {
+  signal: AbortSignal.timeout(5000),
+})
+  .then((r) => r.ok)
+  .catch(() => false);
 const moon = moonPhase(buildDate);
 const moonNames = {
   new: t('moon.new'),
@@ -72,10 +79,13 @@ const updated = new Intl.DateTimeFormat(intl, {
       <p class="mono text-xs text-ink-muted">
         {t('footer.updated')}: <time datetime={buildDate.toISOString()}>{updated}</time>
       </p>
-      <p class="mono text-xs text-ink-muted" data-visits hidden>
-        <span data-visits-count>–</span>
-        {t('footer.visits')}
-      </p>
+      {
+        visitsEnabled && (
+          <p class="mono text-xs text-ink-muted" data-visits hidden>
+            <span data-visits-count>–</span> {t('footer.visits')}
+          </p>
+        )
+      }
       <p class="mono text-xs text-ink-muted">
         © {buildDate.getFullYear()} Eduardo Rubén Bernal Puente
       </p>
