@@ -1,68 +1,54 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-05T03:27:08.100Z",
-  "runner": "github-actions#33941777049",
+  "measuredAt": "2026-09-05T03:37:13.205Z",
+  "runner": "github-actions#33942244064",
   "mobile": {
-    "performance": 87,
+    "performance": 81,
     "accessibility": 100,
-    "bestPractices": 96,
+    "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 3935,
-    "fcpMs": 1444,
-    "speedIndexMs": 3152,
-    "tbtMs": 9,
+    "lcpMs": 4124,
+    "fcpMs": 1638,
+    "speedIndexMs": 4590,
+    "tbtMs": 167,
     "cls": 0,
-    "benchmarkIndex": 2597,
+    "benchmarkIndex": 2609,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-05T03:26:24.223Z",
-    "failedAudits": [
-      {
-        "id": "errors-in-console",
-        "sample": null,
-        "snippet": null,
-        "explanation": null
-      }
-    ],
+    "fetchTime": "2026-09-05T03:36:44.673Z",
+    "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 67,
-      "resourceLoadDelay": 67,
-      "resourceLoadDuration": 44,
-      "elementRenderDelay": 1122
+      "timeToFirstByte": 101,
+      "resourceLoadDelay": 121,
+      "resourceLoadDuration": 96,
+      "elementRenderDelay": 1955
     },
     "runs": [
-      67,
-      87,
-      91
+      72,
+      81,
+      85
     ]
   },
   "desktop": {
     "performance": 100,
     "accessibility": 100,
-    "bestPractices": 96,
+    "bestPractices": 100,
     "seo": 100,
-    "lcpMs": 646,
-    "fcpMs": 386,
-    "speedIndexMs": 716,
-    "tbtMs": 1,
+    "lcpMs": 683,
+    "fcpMs": 387,
+    "speedIndexMs": 700,
+    "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 2611,
+    "benchmarkIndex": 2707,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-05T03:26:55.843Z",
-    "failedAudits": [
-      {
-        "id": "errors-in-console",
-        "sample": null,
-        "snippet": null,
-        "explanation": null
-      }
-    ],
+    "fetchTime": "2026-09-05T03:37:01.415Z",
+    "failedAudits": [],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 64,
-      "resourceLoadDelay": 92,
-      "resourceLoadDuration": 96,
-      "elementRenderDelay": 203
+      "timeToFirstByte": 35,
+      "resourceLoadDelay": 60,
+      "resourceLoadDuration": 82,
+      "elementRenderDelay": 274
     }
   }
 }
