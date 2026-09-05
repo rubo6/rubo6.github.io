@@ -128,6 +128,12 @@ Rubo respondió por dictado los bloques A–G el 2026-09-05. Lo aplicado en el s
 
 No publicado, por decisión de Rubo o por confidencialidad: promedio del ITAM, promedio del Bátiz (7.65), cifras de suscripciones por agente, nombres de dashboards, herramientas internas, el proceso de despliegue del repositorio.
 
+### Respuestas del 2026-09-05 (tarde)
+
+- 1 → Sí: "Rangers" se publica. Aplicado. "Long Tail" se escribe "Longtail".
+- 3 → El proyecto de IA con interfaz de videojuego es **otro** proyecto, distinto de Keeper; Rubo pasará los repos después.
+- Corrección de fechas: Rangers se lanzó en México en septiembre de 2025; Rubo entró al proyecto en enero de 2026; Brasil y Argentina no son suyos. Aplicado.
+
 ### Preguntas de seguimiento
 
 1. 🟢 El nombre del programa/canal de agentes ("Rangers") y el nombre del área ("Long Tail"): ¿se pueden publicar tal cual o los dejo genéricos como ahora ("canal de adquisición con agentes en campo", "área Long Tail")? Hoy el sitio nombra Long Tail pero no Rangers.

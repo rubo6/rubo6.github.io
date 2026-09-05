@@ -23,11 +23,7 @@
       "resourceLoadDuration": 36,
       "elementRenderDelay": 1193
     },
-    "runs": [
-      60,
-      88,
-      90
-    ]
+    "runs": [60, 88, 90]
   },
   "desktop": {
     "performance": 100,
