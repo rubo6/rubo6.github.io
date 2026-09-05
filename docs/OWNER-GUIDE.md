@@ -4,7 +4,7 @@ Todo lo de esta guía requiere tu cuenta o tu tarjeta; no lo puede hacer un agen
 
 ## Contador de visitas
 
-El pie de página muestra el total de visitas leyendo el contador público de GoatCounter. Para activarlo: https://rubo6.goatcounter.com/settings/main → sección "Visitor counter" → marca "Allow adding visitor counts on your website" y guarda. Mientras no esté activo, la línea simplemente no aparece (no hay error visible).
+El pie de página muestra el total de visitas leyendo el contador público de GoatCounter. Para activarlo: https://rubo6.goatcounter.com/settings/main → sección "Visitor counter" → marca "Allow adding visitor counts on your website" y guarda. Mientras no esté activo, la línea simplemente no aparece (no hay error visible). Activado el 2026-09-05; el build comprueba el endpoint, así que si algún día lo desactivas la línea desaparece sola en el siguiente deploy.
 
 ## Archivos grandes (Git LFS)
 
