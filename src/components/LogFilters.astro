@@ -188,6 +188,7 @@ const semesters = [...new Set(posts.map((p) => p.data.semester).filter(Boolean))
 </style>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   function mount() {
     const form = document.querySelector<HTMLFormElement>('[data-log-filters]:not([data-bound])');
     if (!form) return;
@@ -252,6 +253,5 @@ const semesters = [...new Set(posts.map((p) => p.data.semester).filter(Boolean))
     if ([...term.options].some((o) => o.value === t)) term.value = t;
     apply(false);
   }
-  mount();
-  document.addEventListener('astro:after-swap', mount);
+  onReady(mount);
 </script>

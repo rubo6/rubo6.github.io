@@ -37,6 +37,7 @@ Reglas para no romperlo:
 - Nunca encender Rocket Loader, Auto Minify, Mirage, Polish ni Email Address Obfuscation: inyectan scripts o reescriben assets y la CSP los bloquea.
 - Si el sitio muestra error 526, baja SSL/TLS a **Full** y pide al agente que investigue el certificado de GitHub.
 - El aviso de DNS en la configuracion de GitHub Pages es esperado.
+- Desde la red corporativa de Mercado Libre (VPN GlobalProtect) el sitio da `ERR_CONNECTION_RESET`: el filtro corta el TLS hacia `rubo6.dev`. No es un fallo del sitio; apaga la VPN o usa otra red. Si quieres verlo desde la oficina, pide a IT que categoricen el dominio.
 - Alertas recomendadas en `Notifications -> Add`: HTTP DDoS Attack Alerter, Security Events Alert, Billing.
 
 ### Mantenimiento

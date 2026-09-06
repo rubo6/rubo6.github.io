@@ -182,7 +182,7 @@ scene: crab
 
 ## UI strings
 
-`src/i18n/ui.ts`: add the key to `en`, `es` and `pt-br`; the build fails until all three exist. Client scripts get strings through `clientStrings()`.
+`src/i18n/ui.ts`: add the key to `en`, `es` and `pt-br`; the build fails until all three exist, and `npm run check:content` fails if a key is never used. Client scripts get strings through `clientStrings()`.
 
 ## Recurring tasks
 

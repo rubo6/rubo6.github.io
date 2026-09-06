@@ -123,6 +123,7 @@ const t = useTranslations(locale);
 </style>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   function bindCopy() {
     document.querySelectorAll<HTMLButtonElement>('[data-copy]:not([data-bound])').forEach((btn) => {
       btn.dataset.bound = '1';
@@ -138,6 +139,5 @@ const t = useTranslations(locale);
       });
     });
   }
-  bindCopy();
-  document.addEventListener('astro:after-swap', bindCopy);
+  onReady(bindCopy);
 </script>

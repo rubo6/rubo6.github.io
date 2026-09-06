@@ -310,6 +310,7 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
 </style>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   // SVG paints in document order: move the hovered/focused star to the end of its group so the
   // magnified label is drawn above its neighbours.
   function bind() {
@@ -320,6 +321,5 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
       star.addEventListener('focus', raise);
     });
   }
-  bind();
-  document.addEventListener('astro:after-swap', bind);
+  onReady(bind);
 </script>

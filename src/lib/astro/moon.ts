@@ -5,7 +5,7 @@
 import { julianDate } from './time';
 
 /** Mean length of the synodic month in days. */
-export const SYNODIC_MONTH = 29.530588853;
+const SYNODIC_MONTH = 29.530588853;
 
 /** Reference new moon: 2000-01-06 18:14 UTC (JD 2451550.2597). */
 const REFERENCE_NEW_MOON_JD = 2_451_550.2597;

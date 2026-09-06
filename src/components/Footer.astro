@@ -162,6 +162,7 @@ const updated = new Intl.DateTimeFormat(intl, {
 <script>
   import { moonPhase } from '@/lib/astro';
   import { readJson } from '@/scripts/sky';
+  import { onReady } from '@/scripts/lifecycle';
 
   /** SVG path of the lit part of a moon disc of radius r centred at (c, c). */
   function moonPath(phase: number, r: number, c: number): string {
@@ -185,11 +186,11 @@ const updated = new Intl.DateTimeFormat(intl, {
     if (name && names[m.name]) name.textContent = names[m.name] ?? '';
     if (pct) pct.textContent = `${Math.round(m.illumination * 100)}%`;
   }
-  paint();
-  document.addEventListener('astro:after-swap', paint);
+  onReady(paint);
 </script>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   // Total page views from GoatCounter's public counter endpoint (cookieless, same service as the
   // beacon). Hidden until the number arrives; stays hidden if the counter is not enabled.
   let attempted = false;
@@ -212,6 +213,5 @@ const updated = new Intl.DateTimeFormat(intl, {
       /* offline or counter disabled: stay hidden */
     }
   }
-  showVisits();
-  document.addEventListener('astro:after-swap', showVisits);
+  onReady(showVisits);
 </script>

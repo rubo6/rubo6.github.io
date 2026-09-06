@@ -24,7 +24,7 @@ export const localeMeta: Record<
 const en = {
   'site.title': 'Rubo · Observatory',
   'site.description':
-    'Personal observatory of Eduardo Rubén Bernal Puente — Data & Analytics Engineer at Mercado Libre, Data Science student at ITAM.',
+    'Personal observatory of Eduardo Rubén Bernal Puente, Junior Data Analyst at Mercado Libre and Data Science student at ITAM.',
 
   'nav.sky': 'Sky',
   'nav.observatory': 'Observatory',
@@ -72,7 +72,6 @@ const en = {
 
   'toggle.theme.night': 'Switch to atlas (light) theme',
   'toggle.theme.atlas': 'Switch to night (dark) theme',
-  'toggle.mode.label': 'Universe',
   'toggle.mode.pro': 'Professional',
   'toggle.mode.personal': 'Personal',
   'toggle.mode.hint': 'Switch universe',
@@ -97,7 +96,6 @@ const en = {
   'hero.sky.caption': 'Live sky over Mexico City',
   'hero.sky.lst': 'Local sidereal time',
   'hero.sky.lstHint': 'Not the clock time: the right ascension crossing the meridian right now.',
-  'hero.sky.reduced': 'Static rendering (reduced motion)',
   'hero.sky.aria':
     'Star map of the current sky above Mexico City, computed from a bright-star catalogue',
 
@@ -154,8 +152,6 @@ const en = {
   'contrib.total': 'contributions',
   'contrib.year': 'last 12 months',
   'contrib.recent': 'last 90 days, public events',
-  'contrib.less': 'less',
-  'contrib.more': 'more',
   'contrib.mon': 'Mon',
   'contrib.wed': 'Wed',
   'contrib.fri': 'Fri',
@@ -192,7 +188,6 @@ const en = {
 
   'footer.built':
     'Built with Astro, TypeScript and real astronomy. No cookies, no trackers: only a cookieless page count.',
-  'footer.source': 'Source on GitHub',
   'footer.moon': 'Moon tonight',
   'footer.visits': 'visits',
   'footer.updated': 'Last observation',
@@ -231,7 +226,7 @@ export type UIKey = keyof typeof en;
 const es: Record<UIKey, string> = {
   'site.title': 'Rubo · Observatorio',
   'site.description':
-    'Observatorio personal de Eduardo Rubén Bernal Puente: Data & Analytics Engineer en Mercado Libre y estudiante de Ciencia de Datos en el ITAM.',
+    'Observatorio personal de Eduardo Rubén Bernal Puente, Analista de Datos Jr. en Mercado Libre y estudiante de Ciencia de Datos en el ITAM.',
 
   'nav.sky': 'Cielo',
   'nav.observatory': 'Observatorio',
@@ -279,7 +274,6 @@ const es: Record<UIKey, string> = {
 
   'toggle.theme.night': 'Cambiar a tema atlas (claro)',
   'toggle.theme.atlas': 'Cambiar a tema noche (oscuro)',
-  'toggle.mode.label': 'Universo',
   'toggle.mode.pro': 'Profesional',
   'toggle.mode.personal': 'Personal',
   'toggle.mode.hint': 'Cambiar de universo',
@@ -305,7 +299,6 @@ const es: Record<UIKey, string> = {
   'hero.sky.lst': 'Tiempo sidéreo local',
   'hero.sky.lstHint':
     'No es la hora del reloj: es la ascensión recta que cruza el meridiano en este instante.',
-  'hero.sky.reduced': 'Render estático (movimiento reducido)',
   'hero.sky.aria':
     'Mapa estelar del cielo actual sobre la Ciudad de México, calculado a partir de un catálogo de estrellas brillantes',
 
@@ -363,8 +356,6 @@ const es: Record<UIKey, string> = {
   'contrib.total': 'contribuciones',
   'contrib.year': 'últimos 12 meses',
   'contrib.recent': 'últimos 90 días, eventos públicos',
-  'contrib.less': 'menos',
-  'contrib.more': 'más',
   'contrib.mon': 'Lun',
   'contrib.wed': 'Mié',
   'contrib.fri': 'Vie',
@@ -404,7 +395,6 @@ const es: Record<UIKey, string> = {
 
   'footer.built':
     'Hecho con Astro, TypeScript y astronomía de verdad. Sin cookies ni rastreadores: solo un conteo de visitas anónimo.',
-  'footer.source': 'Código en GitHub',
   'footer.moon': 'La Luna esta noche',
   'footer.visits': 'visitas',
   'footer.updated': 'Última observación',
@@ -441,7 +431,7 @@ const es: Record<UIKey, string> = {
 const ptBr: Record<UIKey, string> = {
   'site.title': 'Rubo · Observatório',
   'site.description':
-    'Observatório pessoal de Eduardo Rubén Bernal Puente: Data & Analytics Engineer no Mercado Livre e estudante de Ciência de Dados no ITAM.',
+    'Observatório pessoal de Eduardo Rubén Bernal Puente, Analista de Dados Jr. no Mercado Livre e estudante de Ciência de Dados no ITAM.',
 
   'nav.sky': 'Céu',
   'nav.observatory': 'Observatório',
@@ -489,7 +479,6 @@ const ptBr: Record<UIKey, string> = {
 
   'toggle.theme.night': 'Mudar para o tema atlas (claro)',
   'toggle.theme.atlas': 'Mudar para o tema noite (escuro)',
-  'toggle.mode.label': 'Universo',
   'toggle.mode.pro': 'Profissional',
   'toggle.mode.personal': 'Pessoal',
   'toggle.mode.hint': 'Trocar de universo',
@@ -515,7 +504,6 @@ const ptBr: Record<UIKey, string> = {
   'hero.sky.lst': 'Tempo sideral local',
   'hero.sky.lstHint':
     'Não é a hora do relógio: é a ascensão reta que cruza o meridiano neste instante.',
-  'hero.sky.reduced': 'Renderização estática (movimento reduzido)',
   'hero.sky.aria':
     'Mapa estelar do céu atual sobre a Cidade do México, calculado a partir de um catálogo de estrelas brilhantes',
 
@@ -573,8 +561,6 @@ const ptBr: Record<UIKey, string> = {
   'contrib.total': 'contribuições',
   'contrib.year': 'últimos 12 meses',
   'contrib.recent': 'últimos 90 dias, eventos públicos',
-  'contrib.less': 'menos',
-  'contrib.more': 'mais',
   'contrib.mon': 'Seg',
   'contrib.wed': 'Qua',
   'contrib.fri': 'Sex',
@@ -614,7 +600,6 @@ const ptBr: Record<UIKey, string> = {
 
   'footer.built':
     'Feito com Astro, TypeScript e astronomia de verdade. Sem cookies nem rastreadores: só uma contagem de visitas anônima.',
-  'footer.source': 'Código no GitHub',
   'footer.moon': 'A Lua hoje',
   'footer.visits': 'visitas',
   'footer.updated': 'Última observação',

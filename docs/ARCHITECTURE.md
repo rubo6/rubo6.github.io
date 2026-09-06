@@ -42,7 +42,7 @@ The token exists only in GitHub Actions; the site never talks to GitHub from the
 
 ## Client modules (`src/scripts/`)
 
-Astro ships no JavaScript by default. Each module is mounted from a component `<script>`, is idempotent (`data-bound`) and re-runs on `astro:after-swap`.
+Astro ships no JavaScript by default. Each module is mounted from a component `<script>` through `src/scripts/lifecycle.ts`: `onReady(init)` for idempotent initialisers (they mark elements with `data-bound`) and `remountOnSwap(mount)` for modules that own observers or loops and return a dispose function. Both re-run after every ClientRouter navigation (`astro:after-swap`); never wire that listener by hand.
 
 | Module           | Mounted by           | Responsibility                                                                                                                                                                                  |
 | ---------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

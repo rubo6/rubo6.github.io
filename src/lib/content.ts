@@ -51,10 +51,6 @@ export async function getProjects(locale: Locale): Promise<Project[]> {
   return [...byKey.values()].sort((a, b) => a.data.order - b.data.order);
 }
 
-export async function getProject(locale: Locale, key: string): Promise<Project | undefined> {
-  return (await getProjects(locale)).find((p) => p.data.key === key);
-}
-
 export async function getNebulae(): Promise<Nebula[]> {
   return (await getCollection('nebulae')).map((n) => n.data);
 }
@@ -105,10 +101,6 @@ export async function getPosts(locale: Locale): Promise<Post[]> {
   for (const p of all) if (p.data.locale === defaultLocale) byKey.set(p.data.key, p);
   for (const p of all) if (p.data.locale === locale) byKey.set(p.data.key, p);
   return [...byKey.values()].sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
-}
-
-export async function getPost(locale: Locale, key: string): Promise<Post | undefined> {
-  return (await getPosts(locale)).find((p) => p.data.key === key);
 }
 
 /** Rough reading time in minutes from the Markdown body (220 wpm). */

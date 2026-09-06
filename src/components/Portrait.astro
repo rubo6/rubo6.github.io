@@ -288,6 +288,7 @@ const media = [
 </style>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   function mount() {
     document.querySelectorAll<HTMLElement>('[data-portrait]:not([data-bound])').forEach((fig) => {
       fig.dataset.bound = '1';
@@ -329,6 +330,5 @@ const media = [
       }
     });
   }
-  mount();
-  document.addEventListener('astro:after-swap', mount);
+  onReady(mount);
 </script>

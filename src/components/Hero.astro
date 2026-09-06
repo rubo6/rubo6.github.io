@@ -278,6 +278,7 @@ const skyData = {
 </style>
 
 <script>
+  import { onReady } from '@/scripts/lifecycle';
   import { mountSky, readJson } from '@/scripts/sky';
 
   let dispose: (() => void) | null = null;
@@ -302,6 +303,5 @@ const skyData = {
     if (w.requestIdleCallback) w.requestIdleCallback(fn, { timeout: 1200 });
     else window.setTimeout(fn, 200);
   };
-  idle(boot);
-  document.addEventListener('astro:after-swap', () => idle(boot));
+  onReady(() => idle(boot));
 </script>

@@ -885,9 +885,6 @@ const personalScene = personal.clusters.map((c, i) => ({
 
 <script>
   import { mountAllObservatories } from '@/scripts/observatory';
-  let dispose = mountAllObservatories();
-  document.addEventListener('astro:after-swap', () => {
-    dispose();
-    dispose = mountAllObservatories();
-  });
+  import { remountOnSwap } from '@/scripts/lifecycle';
+  remountOnSwap(mountAllObservatories);
 </script>

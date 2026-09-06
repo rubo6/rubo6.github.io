@@ -402,6 +402,6 @@ const anchors = [
 
 <script>
   import { initUniverseControls } from '@/scripts/universe';
-  initUniverseControls();
-  document.addEventListener('astro:after-swap', initUniverseControls);
+  import { onReady } from '@/scripts/lifecycle';
+  onReady(initUniverseControls);
 </script>

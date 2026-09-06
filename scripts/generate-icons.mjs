@@ -54,7 +54,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
     <path d="M40 40 L66 20 M40 40 L16 56" stroke="#f2c46d" stroke-width="1.6" stroke-opacity=".8"/>
   </g>
   <text x="96" y="330" font-family="Georgia, 'Iowan Old Style', serif" font-size="72" fill="#f4efe6">Eduardo Rubén Bernal Puente</text>
-  <text x="96" y="392" font-family="Georgia, serif" font-size="34" fill="#f2c46d">Data &amp; Analytics Engineer · Data Science @ ITAM</text>
+  <text x="96" y="392" font-family="Georgia, serif" font-size="34" fill="#f2c46d">Junior Data Analyst · Data Science @ ITAM</text>
   <text x="96" y="470" font-family="Consolas, 'Courier New', monospace" font-size="22" fill="#9ad9e8" letter-spacing="4">RUBO6.GITHUB.IO · PERSONAL OBSERVATORY · MEXICO CITY</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile(out('og/default.png'));

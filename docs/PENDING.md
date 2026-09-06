@@ -18,6 +18,11 @@
 - Refrescar `now/*.json` cada pocas semanas (`updated`).
 - Cuando todas las certificaciones estén ganadas, renombrar la nebulosa `upcoming` a "Certifications".
 
+## Deuda tecnica conocida (opcional, solo si se vuelve a tocar esa zona)
+
+- `src/components/Observatory.astro` (~890 lineas) contiene las dos escenas (profesional y personal) y sus estilos. Funciona y la edicion de contenido no la toca, asi que no se dividio. Si algun dia se rediseña el universo personal, extraer `PersonalUniverse.astro` moviendo el bloque `field-personal` + `personal-extra` y sus reglas CSS; el script `mountAllObservatories` ya soporta varias escenas.
+- `Nav.astro` y `Trajectory.astro` rondan las 400 lineas por sus estilos; aceptable.
+
 ## Producto (ideas aprobadas o razonables, sin fecha)
 
 - CV en PDF generado en CI con Playwright (`/cv` → `public/cv-<locale>.pdf`) para que el enlace de descarga sea estable.

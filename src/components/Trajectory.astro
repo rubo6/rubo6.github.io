@@ -368,6 +368,6 @@ const step = (c - 40) / orbits;
 
 <script>
   import { initOrbits } from '@/scripts/orbits';
-  initOrbits();
-  document.addEventListener('astro:after-swap', initOrbits);
+  import { onReady } from '@/scripts/lifecycle';
+  onReady(initOrbits);
 </script>

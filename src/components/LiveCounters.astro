@@ -168,9 +168,6 @@ const parts = ['y', 'mo', 'd', 'h', 'm', 's'] as const;
 
 <script>
   import { mountCounters } from '@/scripts/counters';
-  let dispose = mountCounters();
-  document.addEventListener('astro:after-swap', () => {
-    dispose();
-    dispose = mountCounters();
-  });
+  import { remountOnSwap } from '@/scripts/lifecycle';
+  remountOnSwap(mountCounters);
 </script>

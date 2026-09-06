@@ -12,18 +12,18 @@ export function julianDate(date: Date): number {
 }
 
 /** Julian centuries since J2000.0. */
-export function julianCenturies(jd: number): number {
+function julianCenturies(jd: number): number {
   return (jd - J2000) / 36_525;
 }
 
 /** Normalizes an angle in degrees to [0, 360). */
-export function normalizeDegrees(deg: number): number {
+function normalizeDegrees(deg: number): number {
   const d = deg % 360;
   return d < 0 ? d + 360 : d;
 }
 
 /** Normalizes hours to [0, 24). */
-export function normalizeHours(h: number): number {
+function normalizeHours(h: number): number {
   const x = h % 24;
   return x < 0 ? x + 24 : x;
 }
