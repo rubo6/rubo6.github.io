@@ -50,7 +50,13 @@ function syncThemeColor(): void {
         : '#0b1026';
 }
 
+let themeSwitchTimer = 0;
 export function setTheme(theme: Theme): void {
+  // Theme (night/atlas) is a quick crossfade; only the mode switch gets the long "universe moves"
+  // interpolation. The attribute shortens --dur-universe for the frames in which the tokens change.
+  root().setAttribute('data-switching', 'theme');
+  window.clearTimeout(themeSwitchTimer);
+  themeSwitchTimer = window.setTimeout(() => root().removeAttribute('data-switching'), 450);
   root().setAttribute('data-theme', theme);
   persist(KEY_THEME, theme);
   syncThemeColor();

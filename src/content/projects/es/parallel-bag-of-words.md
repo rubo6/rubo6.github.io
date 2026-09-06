@@ -13,6 +13,7 @@ highlights:
   - Flujo contenerizado para corridas reproducibles
   - Pruebas de humo automatizadas
 featured: true
+visibility: course
 order: 20
 ---
 

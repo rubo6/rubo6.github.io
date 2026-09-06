@@ -154,7 +154,11 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().int().default(100),
     /** Visibility: "public" renders everything; "confidential" hides metrics and repo. */
-    visibility: z.enum(['public', 'confidential']).default('public'),
+    /**
+     * public: repo link and stats shown. confidential: employer work, no repo, disclaimer.
+     * course: university work whose code cannot be published (course policy), disclaimer, no repo.
+     */
+    visibility: z.enum(['public', 'confidential', 'course']).default('public'),
   }),
 });
 

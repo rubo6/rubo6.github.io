@@ -13,6 +13,7 @@ highlights:
   - Containerized workflow for reproducible runs
   - Automated smoke tests
 featured: true
+visibility: course
 order: 20
 ---
 

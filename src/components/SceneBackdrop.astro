@@ -74,15 +74,24 @@ const meta = credits.find((c) => c.id === id);
     transform: scale(1.04);
     animation: scene-breathe 28s ease-in-out infinite alternate;
   }
-  .scene-header .scene-img :global(img) {
-    opacity: 0.7;
+  /* <Picture class> lands on the <img> itself, so target .scene-img directly (a descendant
+     selector never matched and the photo rendered at full opacity). */
+  .scene-header .scene-img {
+    opacity: 0.85;
   }
-  .scene-section .scene-img :global(img) {
-    opacity: 0.28;
+  /* Section variant: the page background is near-black, so the photo needs to stay bright enough
+     to read as a photograph; the cards on top have their own 60 % fills for text contrast. */
+  .scene-section .scene-img {
+    opacity: 0.62;
   }
-  :global([data-theme='atlas']) .scene-img :global(img) {
-    opacity: 0.42;
+  :global([data-theme='atlas']) .scene-img {
+    opacity: 0.55;
     filter: saturate(0.9);
+  }
+  .scene-section .scene-veil {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--bg-0) 45%, transparent), transparent 30%),
+      linear-gradient(0deg, color-mix(in oklab, var(--bg-0) 70%, transparent), transparent 30%);
   }
   .scene-veil {
     position: absolute;

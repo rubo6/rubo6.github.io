@@ -13,6 +13,7 @@ highlights:
   - Fluxo conteinerizado para execuções reproduzíveis
   - Testes de fumaça automatizados
 featured: true
+visibility: course
 order: 20
 ---
 

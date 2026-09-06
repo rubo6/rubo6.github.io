@@ -1,95 +1,80 @@
-# AGENTS.md — working in this repository
+# AGENTS.md — how to work in this repository
 
-This file is the canonical instruction set for AI coding agents (Claude Code, Codex, Cursor, Copilot…) and a good primer for humans. `CLAUDE.md` defers here.
+Canonical guide for any coding agent (Claude, GPT/Codex, Cursor, Copilot, small models included) and for humans. `CLAUDE.md` and `.claude/skills/observatory-architect/SKILL.md` only point here. It is written so that most tasks need **this file plus one document** from `docs/`.
 
 ## What this is
 
-The personal site of Eduardo Rubén "Rubo" Bernal Puente, deployed to GitHub Pages at https://rubo6.dev. Astro 7 (static), TypeScript strict, Tailwind CSS 4, zero UI framework, zero third-party runtime requests. Concept: an astronomical **observatory** (see [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)).
+The personal site of Eduardo Rubén "Rubo" Bernal Puente: https://rubo6.dev (GitHub Pages, repo `rubo6/rubo6.github.io`). Astro 7 static output, TypeScript strict, Tailwind CSS 4, no UI framework, no cookies. The visual concept is an **astronomical observatory**: projects are nebulae, project facts are stars, the career is drawn as orbits, skills as constellations. Two modes (professional / personal), two themes (night / atlas), three locales (EN at `/`, ES at `/es/`, PT-BR at `/pt-br/`).
+
+## Read only what the task needs
+
+| Task                                                                                    | Read first                  | Then edit                                              |
+| --------------------------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------ |
+| Change what the site **says** (job, project, skill, certification, post, personal item) | `docs/CONTENT.md`           | `src/content/**`, labels in `src/i18n/ui.ts`           |
+| Change how it **looks** (colours, type, spacing, motion, a component)                   | `docs/DESIGN.md`            | `src/styles/global.css` tokens, component `<style>`    |
+| Change **behaviour**, build, routing, loaders, CI                                       | `docs/ARCHITECTURE.md`      | `src/scripts/`, `src/components/`, `.github/workflows` |
+| Add an external origin or dependency; any privacy question                              | `docs/SECURITY-BASELINE.md` | `src/layouts/Base.astro` CSP + a new ADR               |
+| Something only Rubo can do (accounts, tokens, DNS, GoatCounter)                         | `docs/OWNER.md`             | nothing; tell Rubo                                     |
+| What Rubo still owes, roadmap, portfolio ideas                                          | `docs/PENDING.md`           | that file                                              |
+| Why something is the way it is                                                          | `docs/decisions/ADR-*.md`   | add an ADR, never rewrite an accepted one              |
+| Evidence for academic skills (official syllabi)                                         | `docs/research/*.md`        | —                                                      |
+
+Do not read components to change content. Do not read every content file to change one. Do not load `docs/research/*` unless you are adding an academic skill.
 
 ## Commands
 
 ```bash
-npm install                # Node >= 22.12 (see .node-version)
-npm run dev                # dev server on :4321
-npm run validate           # format:check + lint + check (types) + test + build — run before every commit
-npm run format             # prettier --write
-node scripts/vitals.mjs    # web vitals on dist/ via astro preview :4173 (desktop + throttled mobile)
-npm run test:e2e           # Playwright smoke tests against dist/ (run `npm run build` first; needs `npx playwright install chromium` once)
-node scripts/generate-icons.mjs   # regenerate public/icons and public/og from public/favicon.svg
+npm install                 # Node 24 (see .node-version); Node >= 22.12 works
+npm run dev                 # http://localhost:4321
+npm run new -- project <key>   # scaffold a project in EN/ES/PT-BR with TODO markers
+npm run new -- post <key>      # scaffold a log entry in EN/ES
+npm run format              # prettier --write (content JSON gets reformatted; run before diffing)
+npm run validate            # format:check + lint + astro check + unit tests + content check + build. Run ONCE at the end.
+npm run test:e2e            # Playwright smoke suite against dist/ (after a build; `npx playwright install chromium` once)
 ```
 
-CI runs exactly `npm run validate`, then the Playwright smoke suite against the production build, then `npm audit`. If it fails locally it will fail in CI.
+CI runs exactly `npm run validate`, then the Playwright suite, then `npm audit`. If validate passes locally, CI passes. Pushing to `main` deploys; a daily cron rebuilds so build-time data (GitHub stats, moon, counters) stays fresh. Lighthouse runs on a GitHub runner after each deploy and writes `docs/lighthouse/latest.json`; never trust a Lighthouse number from a busy laptop.
 
-## Lighthouse
-
-`.github/workflows/lighthouse.yml` audits https://rubo6.dev on a GitHub runner after every successful deploy (plus weekly and on demand), writes `docs/lighthouse/latest.json` and `history.jsonl` back to `main` (with `[skip ci]`; CI and deploy also ignore that folder) and posts a table in the job summary. The README badges read `latest.json`. Do not run Lighthouse on a busy laptop and trust the number: compare `benchmarkIndex` first.
-
-## Large files
-
-Official telescope originals live in `src/assets/nebulae/raw/` and are tracked with **Git LFS** (`.gitattributes`). `git clone` gets pointers only; run `git lfs pull` when you need the originals to regenerate `src/assets/nebulae/*.{avif,webp}` or `src/assets/scenes/*`. Never add multi-megabyte binaries outside LFS. History was rewritten on 2026-09-05 to drop the old raw blobs (~18 MB); clones made before that date must be re-cloned.
+On Rubo's Windows machine Node lives at `C:\Users\ext_eduapuen\Desktop\dev\tools\node24` (Git Bash: `export PATH=/c/Users/ext_eduapuen/Desktop/dev/tools/node24:$PATH`).
 
 ## Invariants (do not break)
 
-1. **Content is data.** All texts, dates, links and lists live in `src/content/` and are validated by `src/content.config.ts`. Never hardcode CV facts in components. To change what the site _says_, edit content; to change how it _looks_, edit components/styles.
-2. **English is mandatory, other locales fall back.** Every content entry exists in `en`; `es` and `pt-br` are optional but expected for tier-1 content. UI strings live in `src/i18n/ui.ts` and must be added to all three locales at once (`UIKey` type enforces it).
-3. **Tone.** Professional surfaces (observatory, trajectory, CV, nav) use a formal register; personal surfaces (personal universe, footer quips) are warm and informal. Keep this split per locale.
-4. **Security rules are enforced by lint and must stay that way:** no `eval`/`Function`, no `innerHTML`/`outerHTML`/`insertAdjacentHTML`/`document.write`, no `Math.random`. Use DOM APIs, `textContent`, and deterministic hashes (`unitHash` in `src/scripts/sky.ts`) or `crypto.getRandomValues`.
-5. **No inline scripts.** The CSP is `script-src 'self'`. Use Astro `<script>` (bundled) and pass data through `<script type="application/json">` serialized with `safeJson()` from `src/lib/json.ts`. Never use `define:vars`, `is:inline` scripts, or `set:html` with untrusted data.
-6. **Self-host everything; one sanctioned third party.** Fonts, icons, images and scripts are self-hosted. The single exception is GoatCounter (cookieless analytics, ADR-0006) and its two origins in the CSP. Adding any other external `<script>`, `<link>`, `<img>` or `fetch` is a design decision that needs an ADR and a CSP change.
-7. **No secrets, no PII beyond the professional e-mail.** No phone numbers, no home address, no tokens. Anything needing a credential runs in GitHub Actions with a repository secret at build time.
-8. **Accessibility is not optional.** Semantic HTML, visible focus, keyboard paths for every interaction, `prefers-reduced-motion` honoured, 4.5:1 contrast for text, `aria-*` where semantics fall short. Check both themes and both modes.
-9. **Determinism.** Builds must be reproducible: no random layouts, no time-dependent markup except the footer build date and moon phase (which the client refreshes).
+1. **Content is data.** Every text, date, link and list lives in `src/content/` and is validated by zod in `src/content.config.ts`. Never hardcode CV facts in components. A bad edit fails the build with a precise message; that is the safety net.
+2. **English is the root; ES and PT-BR follow.** Content missing in a locale falls back to English (`src/lib/content.ts`). UI strings in `src/i18n/ui.ts` must be added to the three locales at once (the `UIKey` type enforces it).
+3. **Two registers.** Professional surfaces (observatory, trajectory, CV, nav, contact) are formal, first person. Personal surfaces (`src/content/personal/*`, footer quips) are warm and informal.
+4. **Strict CSP, no inline JS.** `script-src 'self' https://gc.zgo.at`. Astro `<script>` blocks are bundled to files; `vite.build.assetsInlineLimit: 0` keeps them external. Server→client data goes through `<script type="application/json">` + `safeJson()`. Never `define:vars`, never `is:inline` JavaScript, never `set:html` with untrusted data.
+5. **Lint bans** `eval`, `innerHTML`/`outerHTML`/`insertAdjacentHTML`/`document.write`, `Math.random`. Use DOM APIs and `unitHash()` for deterministic pseudo-randomness. Never disable a rule; change the code.
+6. **Self-host everything.** Fonts, icons, images, scripts. The single sanctioned third party is GoatCounter (cookieless analytics, ADR-0006). Any other external origin needs an ADR and a CSP change.
+7. **Privacy.** Professional e-mail only. No phone, address, IDs or GPA anywhere, CV included. Profile links carry an `audience`: only `professional` ones (GitHub, LinkedIn) reach the professional mode, the CV and the JSON-LD; leisure profiles are `personal`. Employer work stays at public-CV level (`visibility: confidential`); course work whose code cannot be published is `visibility: course`.
+8. **Accessibility.** Semantic HTML, one `h1`, visible focus, keyboard paths (Escape closes, arrows move between nebulae), `prefers-reduced-motion` honoured (sky static, orbits still), 4.5:1 text contrast in both themes.
+9. **Determinism.** Only the footer build date, moon phase and build-time loaders depend on time. No random layouts.
+10. **Large binaries only in Git LFS** (`src/assets/nebulae/raw/`, see `.gitattributes`). Derived AVIF/WebP are normal files.
 
-## Where things are
+## Voice rules (any public text, all locales)
 
-| Path                         | Purpose                                                                                                 |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `src/content/`               | All content (JSON/Markdown) — see [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md)                        |
-| `src/content.config.ts`      | Zod schemas; the contract for every collection                                                          |
-| `src/i18n/ui.ts`             | UI strings, locale metadata, `localePath()`, `clientStrings()`                                          |
-| `src/lib/astro/`             | Pure astronomy math (tested)                                                                            |
-| `src/lib/content.ts`         | Typed accessors with English fallback                                                                   |
-| `src/scripts/`               | Client-side TypeScript modules (sky canvas, universe controls, observatory, counters)                   |
-| `src/components/`            | Astro components; `Home.astro` composes the landing page                                                |
-| `src/pages/`                 | Routes for `en` (root), `es/`, `pt-br/`; project pages and CV per locale; `404`                         |
-| `src/styles/global.css`      | Design tokens (`@property`), themes, modes, base styles, motion                                         |
-| `src/data/bright-stars.json` | Star catalogue and constellation lines                                                                  |
-| `public/theme-init.js`       | Blocking theme/mode bootstrap (external on purpose, CSP)                                                |
-| `.github/workflows/`         | `deploy.yml` (Pages + daily cron), `ci.yml`, `codeql.yml`                                               |
-| `docs/`                      | Plan, architecture, design system, content guide, security baseline, ADRs, asset prompts, questionnaire |
+1. One astronomical metaphor per section, not per sentence; the design already carries the concept.
+2. No indirect self-praise ("boring" as a virtue, "honest" pipelines, "the interesting part is not X but Y"). Say what was done and what changed.
+3. At most one triad per paragraph.
+4. No adverbs of degree ("markedly", "deliberately", "happily"). A number if there is one; otherwise the plain sentence.
+5. One idea per bullet. A semicolon means two bullets.
+6. `·` only in UI labels. In running text, job titles, company names and skill lists use commas and parentheses (CV parsers do not understand the middle dot).
+7. Vary bullet openers.
+8. Log titles carry one concrete hook, never a "Nth term:" or "Lab log:" prefix.
+9. **One job title, everywhere**: "Junior Data Analyst (Data & Analytics Engineering), Contractor" at "Mercado Libre (Mercado Pago Point)". Also in JSON-LD `jobTitle` and in project roles. The engineering work is described in the bullets.
+10. Institution rankings, admission statistics and full syllabi go to `trajectory[].background` (folded on the site, never in the CV), not to bullets.
 
-## How to do common tasks
+## Never publish
 
-- **Add a project:** new `src/content/projects/en/<key>.md` (+ `es/`, `pt-br/`). Frontmatter fields are documented in `content.config.ts`. `key` is the URL slug and must match across locales. Set `visibility: confidential` for employer work: it hides the repo link and shows a disclaimer.
-- **Add a nebula (category):** append to `src/content/nebulae.json` **and** extend the `nebula` enum in `content.config.ts` (two places: `nebulae` and `projects`). Give it a real astronomical object, a 3-colour palette and a `scene` position (percent).
-- **Add a UI string:** add the key to `en`, `es`, `pt-br` in `src/i18n/ui.ts`; TypeScript will fail until all three exist.
-- **Add a locale:** extend `locales` in `src/i18n/ui.ts` and `astro.config.ts`, add `src/pages/<locale>/…` mirroring `es/`, add content files. Consider tier-2 (UI + summaries only) before full translation.
-- **Change design tokens:** only in `src/styles/global.css`. Every colour must remain a registered `@property` so mode switches animate.
-- **Add a dependency:** justify it (an ADR if it is runtime code), run `npm install <pkg>` (never hand-edit the lockfile), keep `npm audit --audit-level=high` clean.
-
-## Recurring content tasks
-
-- **A certification is completed** (DataCamp, AWS Academy, Anthropic, the Ibero AI diploma in Dec 2026): edit `src/content/certifications.json` → set `status: "earned"`, `date: "YYYY-MM-DD"`, add `url` (Credly / badge / public PDF, https only) and refresh `skills`. If it is a new certification, add an entry with a unique `id`. Then run `npm run validate`, check the "In progress" nebula and the CV page in all three locales, commit as `content: certification <name> earned`. When _all_ current ones are earned, rename the `upcoming` nebula labels to "Certifications" in `src/content/nebulae.json` (labels/descriptions in EN/ES/PT-BR).
-- **A new job or role**: add an entry to `src/content/trajectory/<locale>.json` (all three), set `orbit: 0` for it and shift the others by one, update `dates.meliStart` (or add a new date key) in `profile/*.json` if a live clock should follow it, and add a `professional` project if there is public work to show.
-- **A repository goes public**: add `repo: owner/name` to the matching project (all locales) and, if it was `visibility: confidential`, decide with Rubo whether it can become `public`.
-- **A new personal interest**: add a cluster to `src/content/personal/<locale>.json` with a real astronomical object as its `object`.
-
-## Skills for agents
-
-- `.claude/skills/observatory-architect/` — the project skill: architecture map, recipes, design/security references and a per-session log. Claude Code loads it automatically; Codex and other agents should read its `SKILL.md` and `references/` at the start of a session. Update `references/session-log.md` at the end of every session.
+Phone number · home address · IDs · GPA (ITAM or Bátiz) · the LinkedIn portrait photograph (never commit it) · internal Mercado Libre tool or program names other than "Rangers" and "Longtail" · dashboards, internal repo or deployment processes · business metrics beyond the ones already in `trajectory` (the subscriptions-per-agent figure was approved by Rubo on 2026-09-06) · leisure profile links in the professional mode · code of course projects marked `visibility: course`.
 
 ## Definition of done
 
-- `npm run validate` passes.
-- Checked in the browser: night + atlas themes, professional + personal modes, mobile width, keyboard navigation, reduced motion.
-- New strings exist in EN/ES/PT-BR.
-- Docs updated when structure or behaviour changed (this file, `docs/`, README).
-- Commit messages follow Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `content:`).
+`npm run validate` green · affected pages checked in the browser in both modes (and both themes if styles changed; mobile width if layout changed) · strings and content in EN/ES/PT-BR · docs updated when structure or behaviour changed · Conventional Commit (`content:`, `feat:`, `fix:`, `docs:`, `chore:`) pushed to `main` (Rubo prefers direct pushes).
 
-## Do not
+## Working cheaply (small models, limited credit)
 
-- Do not add a contact form, analytics, cookie banners or chat widgets.
-- Do not put the phone number anywhere, including the printable CV.
-- Do not weaken the CSP (`script-src` must stay `'self'`).
-- Do not commit `dist/`, `.astro/`, `node_modules/` or `.env*`.
-- Do not disable lint rules to make code pass; fix the code.
+- Scaffold with `npm run new`, fill the TODO markers, run `npm run format`, then one `npm run validate`.
+- Copy an existing sibling file instead of inventing structure; the schema comment in `src/content.config.ts` is the field reference.
+- Content changes never need a browser check beyond the one page they affect.
+- Do not open `dist/`, `node_modules/`, `docs/lighthouse/*.jsonl` or `src/data/bright-stars.json` unless the task is about them.
+- Known gotchas: quote YAML strings that contain a colon; after a schema change stop the dev server and delete `.astro/data-store.json`; Windows paths in Python heredocs need forward slashes.

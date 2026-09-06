@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.svg" alt="Rubo · Observatory — Eduardo Rubén Bernal Puente, Data & Analytics Engineer" width="100%">
+  <img src=".github/assets/banner.svg" alt="Rubo · Observatory — Eduardo Rubén Bernal Puente, Junior Data Analyst and Data Science student" width="100%">
 </p>
 
 <p align="center">
@@ -23,22 +23,23 @@
 
 # Rubo · Observatory
 
-**Live at [rubo6.dev](https://rubo6.dev)** (`rubo6.github.io` redirects there).
+**Live at [rubo6.dev](https://rubo6.dev).**
 
-My personal site is an **observatory**. The hero renders the _real_ sky above Mexico City at the moment you open it, computed from a bright-star catalogue with sidereal-time math written in TypeScript and covered by unit tests. Projects live inside **nebulae**, each highlight is a **star**, my trajectory is drawn as **orbits**, and skills as **constellations**. A switch flips the whole universe from _professional_ to _personal_.
+My personal site is an **observatory**. The hero renders the real sky above Mexico City at the moment you open it, computed from a bright-star catalogue with sidereal-time math written in TypeScript and covered by unit tests. Projects live inside **nebulae** (official JWST and Hubble imagery, credited), each highlight is a **star**, my trajectory is drawn as **orbits** with a camera that follows the entry you are reading, and skills as **constellations**. A switch flips the whole universe from _professional_ to _personal_.
 
-It is also a small engineering project: static output, content separated from presentation, security rules enforced by lint, no cookies or trackers (only a cookieless page count), and a repository designed so both humans and AI coding agents can extend it safely.
+It is also a small engineering project: static output, content separated from presentation, security rules enforced by lint, no cookies (only a cookieless page count), and a repository documented so that humans and AI coding agents, including small models, can extend it safely.
 
-## What you will find on the site
+## On the site
 
-| Section               | What it is                                                                                                                                                    | Where the data lives                                             |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| **Sky**               | Live star map over CDMX (150 stars, 29 constellation figures), local sidereal clock, mission clocks (time at Mercado Libre, at ITAM, countdown to graduation) | `src/data/bright-stars.json`, `src/content/profile/*.json`       |
-| **Observatory**       | Nebulae = project categories (modelled after Orion, Carina, Eagle, Helix, Lagoon, Horsehead). Stars = project highlights. Click to focus the telescope.       | `src/content/nebulae.json`, `src/content/projects/<locale>/*.md` |
-| **Personal universe** | Same telescope pointed at me: astronomy, music, gaming, soft skills with evidence, fun facts                                                                  | `src/content/personal/*.json`                                    |
-| **Trajectory**        | Work, leadership and education as orbits                                                                                                                      | `src/content/trajectory/*.json`                                  |
-| **Skills**            | Constellations sized by proficiency; certifications in progress                                                                                               | `src/content/skills.json`, `src/content/certifications.json`     |
-| **CV**                | Print-ready résumé generated from the same content, in three languages                                                                                        | `/cv`, `/es/cv`, `/pt-br/cv`                                     |
+| Section               | What it is                                                                                                     | Data                                                         |
+| --------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Sky**               | Live star map over CDMX (150 stars, 29 constellation figures), local sidereal clock, mission clocks            | `src/data/bright-stars.json`, `src/content/profile/*.json`   |
+| **Observatory**       | Nebulae = project categories, stars = project facts; click to focus the telescope                              | `src/content/nebulae.json`, `src/content/projects/<locale>/` |
+| **Personal universe** | The informal half: astronomy, music, gaming, swimming, soft skills with evidence, GitHub contribution calendar | `src/content/personal/*.json`                                |
+| **Trajectory**        | Work, leadership and education as orbits; institution details folded                                           | `src/content/trajectory/*.json`                              |
+| **Skills**            | Constellations sized by proficiency, each star with its provenance; certifications                             | `src/content/skills.json`, `src/content/certifications.json` |
+| **Log** and **Now**   | Study log by term with filters and RSS; what I am doing this month                                             | `src/content/posts/<locale>/`, `src/content/now/*.json`      |
+| **CV**                | Print-ready, parser-friendly résumé generated from the same content, in three languages                        | `/cv`, `/es/cv`, `/pt-br/cv`                                 |
 
 Two themes (**night** / **atlas**) × two modes (**professional** / **personal**), three languages (EN root, ES, PT-BR), `prefers-reduced-motion` respected everywhere.
 
@@ -47,73 +48,64 @@ Two themes (**night** / **atlas**) × two modes (**professional** / **personal**
 ```mermaid
 flowchart LR
   subgraph Content["src/content (zod-validated)"]
-    P[profile] --- T[trajectory] --- PR[projects] --- N[nebulae] --- S[skills] --- C[certifications] --- PE[personal]
+    P[profile] --- T[trajectory] --- PR[projects] --- S[skills] --- L[posts]
   end
-  subgraph Lib["src/lib"]
-    A[astro/ · JD · GMST · Alt/Az · moon · durations]
+  subgraph Lib["src/lib + src/loaders"]
+    A[astro/ · JD · GMST · Alt/Az · moon]
     CT[content.ts · locale fallback]
+    G[GitHub stats + contributions at build]
   end
-  subgraph UI["src/components (Astro, zero-JS by default)"]
-    H[Hero + SkyCanvas] --> O[Observatory] --> TR[Trajectory] --> K[Constellation] --> F[Footer]
+  subgraph UI["src/components (Astro, no UI framework)"]
+    H[Hero + sky canvas] --> O[Observatory] --> TR[Trajectory] --> K[Constellation] --> F[Footer]
   end
   Content --> CT --> UI
+  G --> UI
   A --> H
-  A --> F
-  UI -->|astro build| D[dist/ 31 static pages]
-  D -->|withastro/action + deploy-pages| GH[(GitHub Pages)]
-  Cron[daily cron] -.rebuild.-> D
+  UI -->|astro build| D[dist/ ~100 static pages]
+  D -->|GitHub Actions| GH[(GitHub Pages · rubo6.dev)]
+  GH -->|after deploy| LH[Lighthouse → docs/lighthouse]
 ```
 
-- **Astro 7** static output, i18n routing, View Transitions. No UI framework: the interactive bits (sky canvas, universe switch, observatory focus, live clocks) are small vanilla TypeScript modules in `src/scripts/`.
-- **Tailwind CSS 4** as a Vite plugin. Design tokens are registered CSS `@property` values, so switching mode animates every colour instead of snapping. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md).
-- **Astronomy** is real: `src/lib/astro` implements Julian dates, Greenwich/local sidereal time, equatorial→horizontal transforms, a stereographic zenith projection and moon phase, validated against worked examples from Meeus (`tests/unit/astro.test.ts`).
-- **No randomness.** Star dust, twinkle phases and layouts derive from an FNV-1a hash of their names, so every build is reproducible and `Math.random` is banned by lint.
+- **Astro 7** static output, i18n routing, view transitions. Interactive parts are small vanilla TypeScript modules in `src/scripts/`.
+- **Tailwind CSS 4** as a Vite plugin; design tokens are registered CSS `@property` values so a mode switch interpolates every colour.
+- **Real astronomy** in `src/lib/astro` (Julian dates, sidereal time, equatorial→horizontal, stereographic projection, moon phase) validated against Meeus.
+- **No randomness**: star dust and twinkle phases derive from an FNV-1a hash, so every build is reproducible.
 
-## Edit content in 60 seconds
+## Edit content
 
-1. **Add a project:** copy any file in `src/content/projects/en/`, change the frontmatter (`key` must be unique and identical across locales), pick a `nebula`, list 1–8 `highlights`. Optionally add `es/` and `pt-br/` versions; missing locales fall back to English.
-2. **Update a role or study:** edit `src/content/trajectory/<locale>.json`. `end: null` means "present" and keeps the live clock running.
-3. **Change a date that drives a clock:** `src/content/profile/<locale>.json → dates`.
-4. Run `npm run validate`. Schemas in `src/content.config.ts` will tell you exactly what is wrong.
+```bash
+npm run new -- project <key>   # scaffolds EN/ES/PT-BR with TODO markers
+npm run new -- post <key>      # scaffolds a log entry
+npm run validate               # schemas tell you exactly what is wrong
+```
 
-Full guide: [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md).
+Guide with an example per collection: [docs/CONTENT.md](docs/CONTENT.md).
 
 ## Develop
 
 ```bash
 npm install
 npm run dev        # http://localhost:4321
-npm run validate   # format · lint · types · tests · build (what CI runs)
-npm run test:e2e   # Playwright smoke tests against the built site (desktop + mobile)
+npm run validate   # format · lint · types · tests · content check · build (what CI runs)
+npm run test:e2e   # Playwright smoke tests against the built site
 ```
 
-Requires Node ≥ 22.12 (see `.node-version`). Pushing to `main` deploys via GitHub Actions; a daily cron rebuilds so build-time data stays fresh.
+Node 24 (`.node-version`). Pushing to `main` deploys; a daily cron rebuilds so build-time data stays fresh; Lighthouse runs on a GitHub runner after each deploy.
 
 ## For AI agents
 
-Start with [AGENTS.md](AGENTS.md). It defines the invariants (content vs. presentation, security rules, i18n, tone), the commands to run, and what _not_ to do. `CLAUDE.md` points there too. Architecture decisions are recorded in [docs/decisions](docs/decisions).
+Start with [AGENTS.md](AGENTS.md): it maps each kind of task to the single document to read, and lists the invariants, voice rules and what must never be published. Decisions are in [docs/decisions](docs/decisions).
 
 ## Security
 
-- Strict Content-Security-Policy via `<meta>`: no inline scripts; the only external origin is GoatCounter, a cookieless analytics service (ADR-0006).
+- Strict Content-Security-Policy via `<meta>`: no inline scripts; the only external origin is GoatCounter, a cookieless analytics service.
 - ESLint bans `eval`, `innerHTML`, `document.write`, `Math.random`.
 - CI: format, lint, types, tests, build, `npm audit`, dependency review, CodeQL; Dependabot weekly; all actions pinned to commit SHAs with least-privilege permissions.
-- No forms, no cookies, no phone number. Analytics are anonymous and cookieless. Contact is a professional e-mail only.
-- Report an issue: see [SECURITY.md](SECURITY.md) or `/.well-known/security.txt`.
-
-## Roadmap
-
-- [ ] Official JWST / Hubble imagery per nebula (credited), with the procedural renderer as fallback
-- [ ] Build-time GitHub loader: stars, forks, languages and last commit per repository
-- [ ] Bitácora (blog) with MDX and RSS · "Now" page
-- [ ] NASA APOD of the day at build time (secret-based, daily cron)
-- [ ] Automated CV PDF in CI (Playwright print)
-- [ ] Tier-2 locales (FR, DE, IT, JA, ZH) for UI strings and summaries
-- [ ] Custom domain
+- No forms, no cookies, no phone number. Report an issue: [SECURITY.md](SECURITY.md) or `/.well-known/security.txt`.
 
 ## Credits
 
-Type: [Fraunces](https://github.com/undercasetype/Fraunces), [Instrument Sans](https://github.com/Instrument/instrument-sans), [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (self-hosted via Fontsource). Star data: hand-curated subset of the Yale Bright Star Catalogue. Astronomy formulas: Jean Meeus, _Astronomical Algorithms_.
+Type: [Fraunces](https://github.com/undercasetype/Fraunces), [Instrument Sans](https://github.com/Instrument/instrument-sans), [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (self-hosted via Fontsource). Star data: hand-curated subset of the Yale Bright Star Catalogue. Astronomy formulas: Jean Meeus, _Astronomical Algorithms_. Imagery: ESA/Webb and ESA/Hubble releases (CC BY 4.0), credited in place.
 
 ## License
 

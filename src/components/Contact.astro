@@ -67,7 +67,7 @@ const t = useTranslations(locale);
     position: relative;
     isolation: isolate;
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow: clip; /* not hidden: hidden would make this a scroll container and break position: sticky inside */
     padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem);
     padding-block: 5rem 6rem;
     scroll-margin-top: var(--nav-h);

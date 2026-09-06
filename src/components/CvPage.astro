@@ -31,7 +31,7 @@ const [profile, trajectory, projects, skills, certifications] = await Promise.al
 const work = trajectory.filter((e) => e.kind === 'work');
 const education = trajectory.filter((e) => e.kind === 'education');
 const leadership = trajectory.filter((e) => e.kind === 'leadership');
-const featured = projects.filter((p) => p.data.featured && p.data.visibility === 'public');
+const featured = projects.filter((p) => p.data.featured && p.data.visibility !== 'confidential');
 ---
 
 <Base locale={locale} path="/cv" title={t('cv.pageTitle')} description={profile.summary}>

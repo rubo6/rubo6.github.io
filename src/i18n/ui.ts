@@ -140,6 +140,7 @@ const en = {
   'repo.updated': 'last push',
   'observatory.details': 'Read the log',
   'observatory.confidential': 'Internal project · details limited to the public CV',
+  'observatory.course': 'Course project · code not published (course policy)',
   'observatory.present': 'present',
   'observatory.empty': 'No projects catalogued here yet. Telescope time is booked.',
 
@@ -347,6 +348,7 @@ const es: Record<UIKey, string> = {
   'repo.updated': 'último push',
   'observatory.details': 'Leer la bitácora',
   'observatory.confidential': 'Proyecto interno · detalle limitado al CV público',
+  'observatory.course': 'Proyecto de curso · código no publicado (política de la materia)',
   'observatory.present': 'actual',
   'observatory.empty':
     'Aún no hay proyectos catalogados aquí. El tiempo de telescopio ya está reservado.',
@@ -556,6 +558,7 @@ const ptBr: Record<UIKey, string> = {
   'repo.updated': 'último push',
   'observatory.details': 'Ler o diário',
   'observatory.confidential': 'Projeto interno · detalhes limitados ao CV público',
+  'observatory.course': 'Projeto de disciplina · código não publicado (política do curso)',
   'observatory.present': 'atual',
   'observatory.empty':
     'Ainda não há projetos catalogados aqui. O tempo de telescópio já está reservado.',

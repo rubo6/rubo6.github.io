@@ -164,7 +164,7 @@ const step = (c - 40) / orbits;
     position: relative;
     isolation: isolate;
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow: clip; /* not hidden: hidden would make this a scroll container and break position: sticky inside */
     padding-inline: clamp(1.25rem, 4vw, 3rem);
     padding-block: 5rem;
     scroll-margin-top: var(--nav-h);
@@ -181,6 +181,13 @@ const step = (c - 40) / orbits;
     top: calc(var(--nav-h) + 2rem);
     margin: 0;
     aspect-ratio: 1;
+    /* Soft dark backing so orbit lines and planets read over the Rho Ophiuchi photo in both themes. */
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--bg-0) 78%, transparent) 0 52%,
+      transparent 74%
+    );
+    border-radius: 50%;
   }
   /* Planets are positioned by src/scripts/orbits.ts (rotate transform); the camera follows the
      active entry by animating the SVG viewBox. */

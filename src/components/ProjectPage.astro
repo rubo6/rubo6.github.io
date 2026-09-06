@@ -84,8 +84,14 @@ const path = `/projects/${project.data.key}`;
         )
       }
       {
-        project.data.visibility === 'confidential' && (
-          <p class="mono text-xs text-ink-muted mt-4">{t('observatory.confidential')}</p>
+        project.data.visibility !== 'public' && (
+          <p class="mono text-xs text-ink-muted mt-4">
+            {t(
+              project.data.visibility === 'course'
+                ? 'observatory.course'
+                : 'observatory.confidential',
+            )}
+          </p>
         )
       }
     </header>
