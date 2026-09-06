@@ -4,21 +4,22 @@
     {
       "id": "meli-point",
       "kind": "work",
-      "org": "Mercado Libre · Mercado Pago Point",
+      "org": "Mercado Libre (Mercado Pago Point)",
       "orgUrl": "https://www.mercadopago.com.mx/point",
-      "role": "Analista de Datos Jr. · ingeniería de datos y analítica (contratista)",
+      "role": "Analista de Datos Jr. (Ingeniería de Datos y Analítica), contratista",
       "location": "Ciudad de México",
       "start": "2025-11-03",
       "end": null,
-      "summary": "Área Longtail de Mercado Pago Point (comercios pequeños y medianos), equipo de Adquisición. Desde enero de 2026 llevo la parte de datos de Rangers, el canal de adquisición con agentes en campo, para México, donde se lanzó en septiembre de 2025 (Brasil y Argentina tienen sus propios equipos). Trabajo totalmente remoto con un equipo regional en español.",
+      "summary": "Equipo de Adquisición, área Longtail de Mercado Pago Point (comercios pequeños y medianos). Desde enero de 2026 soy el responsable de datos de Rangers en México, el canal de agentes en campo que se lanzó aquí en septiembre de 2025. Equipo regional remoto, en español.",
       "bullets": [
-        "Responsable de la capa de datos de Rangers en México: ETL/ELT en BigQuery con un orquestador interno, unas 60 tablas (30 en el nuevo backend), millones de filas al día, cinco dashboards en producción en Looker Studio y Google Sheets y cinco más en cola.",
-        "Reconstruí el proceso de asignación de comercios a agentes: doce pasos manuales separados en varios entornos se convirtieron en un solo job parametrizado. Se edita una hoja, se ejecuta y el archivo está listo en menos de dos horas en lugar de una jornada completa; agentes, cuotas y activaciones cambian sin tocar código.",
-        "Construí la plataforma interna (Next.js, Firebase, BigQuery, Sheets) que da a los agentes una vista de su propia cartera, la única herramienta de su tipo en el área. La productividad por agente subió de forma notable tras su lanzamiento en junio de 2026 y el proyecto recibió reconocimiento formal del liderazgo.",
-        "Responsable de calidad de datos y pagos: defino los datos detrás de la compensación variable de los agentes, agrego pasos de auditoría que detienen un job antes de que un error se propague, atiendo las alertas por correo el mismo día y corro revisiones de anomalías que detectaron dos casos de comportamiento irregular (mayo y junio de 2026) para su investigación.",
-        "Automaticé el reporte mensual a la autoridad de movilidad de la Ciudad de México sobre recargas de tarjetas de transporte en terminales Point: consultas a mano convertidas en cinco dashboards que se actualizan solos.",
-        "Python en producción (pandas, pyarrow, google-cloud-bigquery) con pruebas en pytest; Git con revisión de código; optimización de consultas y dominio de las herramientas internas aprendidos en el puesto; planeación semanal, one-to-ones y syncs cortos con operaciones, facturación, pagos, cashback y medición.",
-        "Mentor de dos compañeros en las herramientas de datos del equipo y participante en las revisiones de negocio mensuales y trimestrales."
+        "Responsable de la capa de datos de Rangers en México: pipelines ETL/ELT en BigQuery programados con un orquestador interno, unas 60 tablas (30 en el nuevo backend), cargas diarias de millones de filas, cinco dashboards en producción en Looker Studio y Google Sheets y cinco más en curso.",
+        "Reconstruí el proceso de asignación de comercios a agentes. Doce pasos manuales en varios entornos son ahora un solo job parametrizado: se edita una hoja, se ejecuta y el archivo está listo en menos de dos horas en lugar de una jornada completa. Agentes, cuotas y activaciones cambian sin tocar código.",
+        "Construí la plataforma web interna (Next.js, Firebase, BigQuery, Sheets) donde los agentes en campo ven por primera vez su propia cartera. El promedio mensual de suscripciones por agente pasó de 4 en enero de 2026 a 18 en junio, el mes del lanzamiento, y a 27 en septiembre. Reconocida por el liderazgo del área.",
+        "Responsable de calidad de datos y pagos: defino los datos detrás de la compensación variable de los agentes, agrego pasos de auditoría que detienen un job antes de que un error se propague, atiendo las alertas por correo el mismo día y corro revisiones de anomalías. Así se detectaron dos casos de comportamiento irregular (mayo y junio de 2026) que pasaron a investigación.",
+        "Automaticé el reporte mensual a la autoridad de movilidad de la Ciudad de México sobre recargas de tarjetas de transporte en terminales Point. Las consultas a mano son ahora cinco dashboards que se actualizan solos.",
+        "Python en producción (pandas, pyarrow, google-cloud-bigquery) con pruebas en pytest, y Git con revisión de código.",
+        "Planeación semanal y one-to-ones con los equipos de operaciones, facturación, pagos, cashback y medición; revisiones de negocio mensuales y trimestrales.",
+        "Mentor de dos compañeros en las herramientas de datos del equipo."
       ],
       "stack": [
         "BigQuery",
@@ -61,7 +62,6 @@
       "bullets": [
         "Programa de Educación Continua de 120 horas: fundamentos y paradigmas de la IA, algoritmos de aprendizaje automático, aprendizaje supervisado y no supervisado en Python, agentes inteligentes y chatbots, RPA, procesamiento de lenguaje natural y redes neuronales artificiales, incluida la ética de la IA.",
         "Proyecto final: un chatbot con una automatización en n8n, construido con el stack de aprendizaje de máquina en Python del programa.",
-        "Reputación: universidad jesuita fundada en 1943, integrante del Sistema Universitario Jesuita (SUJ) y de AUSJAL, con unos 12,000 estudiantes. Banda 851–900 mundial y 6.ª de México en el QS World University Rankings 2027; acreditación institucional CIEES 2025–2032; 1.ª en Diseño y 2.ª en Arquitectura y Contaduría en la encuesta a empleadores de Reforma 2025.",
         "Diploma y certificado previstos para diciembre de 2026."
       ],
       "stack": ["Machine Learning", "Deep Learning", "Chatbots", "n8n"],
@@ -83,6 +83,9 @@
           "label": "IBERO · Diplomado en IA",
           "url": "https://www.diplomados.ibero.mx/Programas/Detalle-de-programa.aspx?id=40&idArea=2&tipo=Diplomado&a%C3%B1o=2026&version=1&idPropuesta=1053"
         }
+      ],
+      "background": [
+        "Reputación: universidad jesuita fundada en 1943, integrante del Sistema Universitario Jesuita (SUJ) y de AUSJAL, con unos 12,000 estudiantes. Banda 851–900 mundial y 6.ª de México en el QS World University Rankings 2027; acreditación institucional CIEES 2025–2032; 1.ª en Diseño y 2.ª en Arquitectura y Contaduría en la encuesta a empleadores de Reforma 2025."
       ]
     },
     {
@@ -131,11 +134,8 @@
       "end": "2028-05-10",
       "summary": "Graduación esperada: mayo de 2028 (plan de nueve semestres; las optativas se tomarán dentro de una maestría para terminar ambos grados juntos).",
       "bullets": [
-        "Materias del Plan B (temarios oficiales): Cálculo I–III, Geometría Vectorial, Álgebra Lineal, Pensamiento Matemático, Matemáticas Discretas; Probabilidad I–II, Estadística Matemática, Métodos Lineales (GLM), Métodos Multivariados, Estadística Bayesiana; Algoritmos y Programas, Estructuras de Datos (Avanzadas), Bases de Datos, Bases de Datos No Relacionales, Fuentes de Datos, Visualización de Información, Aprendizaje de Máquina, Inteligencia Artificial, Cómputo Paralelo y en la Nube, Arquitectura para Grandes Volúmenes de Datos, Minería y Análisis de Datos; Economía I–IV, Diseño de Mercados, Inferencia Causal; Legalidad y Ética en Ciencia de Datos; y el tronco humanístico del ITAM (Ideas e Instituciones Políticas I–III, Civilización Contemporánea, historia y realidad de México).",
-        "Herramientas por materia: R en toda la secuencia de estadística; Java en la secuencia de estructuras de datos; Python, Bash, Linux, expresiones regulares y Git en Fuentes de Datos; MongoDB, Cassandra, Neo4j, Spark/Hadoop y Docker en NoSQL; C++ con OpenMP y MPI en Cómputo Paralelo; agentes y búsqueda en Python en IA.",
+        "Materias relevantes: Aprendizaje de Máquina, Inteligencia Artificial, Bases de Datos y Bases de Datos NoSQL, Cómputo Paralelo y en la Nube, Arquitectura para Grandes Volúmenes de Datos, Minería de Datos, Estadística Bayesiana, Inferencia Causal. Herramientas por materia: R, Java, Python, Bash, C++ con OpenMP y MPI, MongoDB, Cassandra, Neo4j, Spark, Docker.",
         "Enfoque académico: ingeniería de datos, machine learning, visión por computadora y cómputo paralelo.",
-        "Reputación: 4.ª universidad de México y banda 751–760 mundial en el QS World University Rankings 2027, y 1.ª de México / 30.ª del mundo en el indicador QS Employment Outcomes (95.5 % de egresados empleados entre 7 y 11 meses después de graduarse). 42.ª de América Latina en QS 2026. Economía está en el lugar =185 mundial (QS por materia 2025) y es primer lugar en la encuesta a empleadores de Reforma en 2024, 2025 y 2026; Ciencias de la Computación entró al QS por materia en 2025 (701–750).",
-        "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030.",
         "Materias favoritas hasta ahora: Estructuras de Datos, Inteligencia Artificial, Fuentes de Datos y, este semestre, Arquitectura para Grandes Volúmenes de Datos. Proyectos finales: un sitio web desde cero (Fuentes de Datos) y un modelo de aprendizaje de máquina de probabilidad de gol con interfaz tipo videojuego (Inteligencia Artificial).",
         "Asesor de Cálculo de Probabilidades I; plan de titulación por proyecto terminal en lugar de tesis."
       ],
@@ -174,6 +174,12 @@
           "label": "ITAM · temario de Aprendizaje de Máquina",
           "url": "https://dac.itam.mx/sites/default/files/u438/com-23701_aprendizaje_de_maquina.pdf"
         }
+      ],
+      "background": [
+        "Reputación: 4.ª universidad de México y banda 751–760 mundial en el QS World University Rankings 2027, y 1.ª de México / 30.ª del mundo en el indicador QS Employment Outcomes (95.5 % de egresados empleados entre 7 y 11 meses después de graduarse). 42.ª de América Latina en QS 2026. Economía está en el lugar =185 mundial (QS por materia 2025) y es primer lugar en la encuesta a empleadores de Reforma en 2024, 2025 y 2026; Ciencias de la Computación entró al QS por materia en 2025 (701–750).",
+        "La Licenciatura en Ciencia de Datos (8 semestres; Departamento de Estadística fundado en 1997) reporta que el 100 % de sus egresados 2020–2022 trabaja o cursa un posgrado, con un promedio de seis ofertas laborales durante la carrera. Acreditación FIMPES lisa y llana 2023–2030.",
+        "Materias del Plan B (temarios oficiales): Cálculo I–III, Geometría Vectorial, Álgebra Lineal, Pensamiento Matemático, Matemáticas Discretas; Probabilidad I–II, Estadística Matemática, Métodos Lineales (GLM), Métodos Multivariados, Estadística Bayesiana; Algoritmos y Programas, Estructuras de Datos (Avanzadas), Bases de Datos, Bases de Datos No Relacionales, Fuentes de Datos, Visualización de Información, Aprendizaje de Máquina, Inteligencia Artificial, Cómputo Paralelo y en la Nube, Arquitectura para Grandes Volúmenes de Datos, Minería y Análisis de Datos; Economía I–IV, Diseño de Mercados, Inferencia Causal; Legalidad y Ética en Ciencia de Datos; y el tronco humanístico del ITAM (Ideas e Instituciones Políticas I–III, Civilización Contemporánea, historia y realidad de México).",
+        "Herramientas por materia: R en toda la secuencia de estadística; Java en la secuencia de estructuras de datos; Python, Bash, Linux, expresiones regulares y Git en Fuentes de Datos; MongoDB, Cassandra, Neo4j, Spark/Hadoop y Docker en NoSQL; C++ con OpenMP y MPI en Cómputo Paralelo; agentes y búsqueda en Python en IA."
       ]
     },
     {
@@ -185,15 +191,11 @@
       "location": "Ciudad de México",
       "start": "2018-08-13",
       "end": "2021-07-23",
-      "summary": "Bachillerato bivalente del IPN (certificado de nivel medio superior + título técnico), Plan 2008. Título expedido en diciembre de 2022. El Bátiz es el plantel del IPN con el puntaje de corte más alto del examen COMIPEMS en el país, unos diez aciertos por encima del siguiente.",
+      "summary": "Bachillerato bivalente del IPN (certificado de nivel medio superior + título técnico), Plan 2008. Título expedido en diciembre de 2022.",
       "bullets": [
-        "Formación profesional: Programación Orientada a Objetos, Programación y Servicios Web, Bases de Datos (diseño normalizado y lenguajes de manipulación de datos), Introducción a la Ingeniería de Pruebas y Automatización de Pruebas, Seguridad Web y Aplicaciones, Introducción a los Sistemas Distribuidos, Métodos Ágiles de Programación, Ingeniería de Software Básica y cuatro semestres de Laboratorio de Proyectos de TI.",
-        "Estándares y herramientas nombrados en los programas oficiales del Plan 2008: UML (todos los diagramas), JUnit y diseño de pruebas de caja blanca y negra, XP, Scrum y Crystal, servicios web SOAP/WSDL/UDDI, sockets y RPC, criptografía simétrica y de clave pública, SSL/TLS, Kerberos e IPsec, PSP, CMMI y COCOMO, MoProSoft.",
+        "Formación profesional: programación orientada a objetos y web, diseño de bases de datos, ingeniería de pruebas (JUnit), seguridad web y de aplicaciones, sistemas distribuidos, métodos ágiles (Scrum, XP) y cuatro semestres de laboratorios de proyectos de TI.",
         "Proyectos de laboratorio: aplicaciones de escritorio en Java (una calculadora, un gestor de inventario y cargas para una naviera), sitios en HTML5 escritos a mano, diseño y ejercicios de bases de datos en MySQL. Proyecto final: un videojuego web en 2D hecho en PHP donde niños resuelven ejercicios de química para avanzar de nivel. Primer lenguaje: Java; después C/C++, PHP, JavaScript, Python y SQL.",
         "Admitido con 118 de 128 aciertos en el COMIPEMS 2018 (el corte del plantel ese año rondaba los 105). Primer lugar en una feria escolar con un proyecto de conciencia ambiental.",
-        "Tronco científico completo en paralelo: Álgebra, Geometría y Trigonometría, Geometría Analítica, Cálculo Diferencial e Integral, Probabilidad y Estadística, Física I–IV, Química I–IV, además de filosofía, historia y seis semestres de inglés.",
-        "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar.",
-        "Ranking: en el COMIPEMS 2024 el corte del CECyT 9 fue de 102 aciertos de 128, el más alto de todos los planteles del IPN (el siguiente pidió 94) y por encima del CCH Sur de la UNAM; el aspirante con el puntaje más alto de todo el concurso 2024 (126/128) eligió el Bátiz. Fue nombrado el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos hasta 2012 (92 % del alumnado en nivel excelente en Matemáticas) y en 2015 seguía siendo el único bachillerato público en el top 5 nacional tanto por demanda de ingreso como por admisión a la universidad.",
         "Egresé en julio de 2021 tras año y medio de clases en línea por la pandemia (los exámenes remotos se hicieron deliberadamente difíciles); el título de Técnico en Programación se expidió en diciembre de 2022 porque el examen de titulación tuvo que esperar a las sesiones presenciales."
       ],
       "stack": ["C++", "Java", "JavaScript", "SQL", "Pruebas de software"],
@@ -223,6 +225,14 @@
           "label": "Milenio · puntaje máximo 2024",
           "url": "https://www.milenio.com/politica/comunidad/examen-comipems-2024-quienes-fueron-aspirantes-con-puntaje-mas-alto"
         }
+      ],
+      "background": [
+        "El Bátiz es el plantel del IPN con el puntaje de corte más alto del examen COMIPEMS en el país, unos diez aciertos por encima del siguiente.",
+        "Selectividad: el corte del CECyT 9 en el examen COMIPEMS fue de 102 a 106 aciertos de 128 cada año entre 2019 y 2023, el más alto de todos los planteles del IPN y unos diez por encima del segundo; la prensa lo llama el plantel del IPN al que es más difícil entrar.",
+        "Ranking: en el COMIPEMS 2024 el corte del CECyT 9 fue de 102 aciertos de 128, el más alto de todos los planteles del IPN (el siguiente pidió 94) y por encima del CCH Sur de la UNAM; el aspirante con el puntaje más alto de todo el concurso 2024 (126/128) eligió el Bátiz. Fue nombrado el mejor bachillerato del país en la prueba ENLACE cinco años consecutivos hasta 2012 (92 % del alumnado en nivel excelente en Matemáticas) y en 2015 seguía siendo el único bachillerato público en el top 5 nacional tanto por demanda de ingreso como por admisión a la universidad.",
+        "Formación profesional: Programación Orientada a Objetos, Programación y Servicios Web, Bases de Datos (diseño normalizado y lenguajes de manipulación de datos), Introducción a la Ingeniería de Pruebas y Automatización de Pruebas, Seguridad Web y Aplicaciones, Introducción a los Sistemas Distribuidos, Métodos Ágiles de Programación, Ingeniería de Software Básica y cuatro semestres de Laboratorio de Proyectos de TI.",
+        "Estándares y herramientas nombrados en los programas oficiales del Plan 2008: UML (todos los diagramas), JUnit y diseño de pruebas de caja blanca y negra, XP, Scrum y Crystal, servicios web SOAP/WSDL/UDDI, sockets y RPC, criptografía simétrica y de clave pública, SSL/TLS, Kerberos e IPsec, PSP, CMMI y COCOMO, MoProSoft.",
+        "Tronco científico completo en paralelo: Álgebra, Geometría y Trigonometría, Geometría Analítica, Cálculo Diferencial e Integral, Probabilidad y Estadística, Física I–IV, Química I–IV, además de filosofía, historia y seis semestres de inglés."
       ]
     }
   ]

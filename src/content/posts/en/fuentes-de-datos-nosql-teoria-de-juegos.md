@@ -1,5 +1,5 @@
 ---
-title: 'Fifth term: APIs, JSON, the central limit theorem and auctions'
+title: 'APIs, JSON, the central limit theorem and auctions'
 key: fuentes-de-datos-nosql-teoria-de-juegos
 locale: en
 date: '2025-06-06'

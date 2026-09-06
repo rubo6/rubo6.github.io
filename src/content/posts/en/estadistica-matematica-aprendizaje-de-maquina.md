@@ -1,5 +1,5 @@
 ---
-title: 'Sixth term: maximum likelihood, bias-variance and the first job'
+title: 'Maximum likelihood, bias-variance and the first job'
 key: estadistica-matematica-aprendizaje-de-maquina
 locale: en
 date: '2025-12-05'

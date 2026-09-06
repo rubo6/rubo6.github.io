@@ -1,5 +1,5 @@
 ---
-title: "Third term: Big-O, Lagrange multipliers and Marx's critique"
+title: "Big-O, Lagrange multipliers and Marx's critique"
 key: estructuras-de-datos-calculo-iii-marx
 locale: en
 date: '2024-06-07'

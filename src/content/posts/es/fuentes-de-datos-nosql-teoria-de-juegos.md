@@ -1,5 +1,5 @@
 ---
-title: 'Quinto semestre: APIs, JSON, el teorema central del límite y subastas'
+title: 'APIs, JSON, el teorema central del límite y subastas'
 key: fuentes-de-datos-nosql-teoria-de-juegos
 locale: es
 date: '2025-06-06'

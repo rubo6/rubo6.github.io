@@ -77,6 +77,12 @@ const trajectory = defineCollection({
         stack: z.array(z.string()).default([]),
         /** Public references backing reputation / ranking claims (rendered as small links). */
         sources: z.array(z.object({ label: z.string(), url: httpsUrl })).default([]),
+        /**
+         * Institution facts and full syllabi that are worth keeping but not worth a bullet:
+         * rankings, admission statistics, complete course lists. Rendered folded on the site
+         * (details/summary) and never printed in the CV.
+         */
+        background: z.array(z.string()).default([]),
         /** Orbit radius index in the trajectory scene (0 = innermost / most recent). */
         orbit: z.number().int().min(0),
       }),

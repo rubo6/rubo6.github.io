@@ -16,6 +16,5 @@ featured: true
 order: 20
 ---
 
-Hecho para la materia de Cómputo Paralelo del ITAM. Lo interesante no es el Bag-of-Words en sí, sino la
-estrategia de particionado: balancear por tamaño de documento le gana al round-robin ingenuo en cuanto las
-entradas se sesgan.
+Hecho para la materia de Cómputo Paralelo del ITAM. Balancear las particiones por tamaño de documento le gana
+al round-robin en cuanto las entradas se sesgan, y las mediciones dicen por cuánto.

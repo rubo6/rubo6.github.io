@@ -4,8 +4,8 @@ key: meli-point-pipelines
 locale: es
 nebula: professional
 summary: Pipelines en producción sobre BigQuery y un orquestador interno que alimentan analítica, dashboards y reportería operativa de Mercado Pago Point.
-role: Data Engineer
-period: { start: '2025-10-01', end: null }
+role: Analista de Datos Jr. (responsable de la capa de datos)
+period: { start: '2025-11-03', end: null }
 stack: [BigQuery, SQL, Python, Plataforma interna de orquestación, Looker]
 highlights:
   - Snapshots diarios idempotentes con particionado seguro por zona horaria (America/Mexico_City)
@@ -17,6 +17,7 @@ order: 2
 visibility: confidential
 ---
 
-Los pipelines que mantienen honesta la analítica de Point: ingesta, limpieza, modelado y validación en BigQuery,
-orquestados por una plataforma interna. Mi enfoque es la confiabilidad: jobs idempotentes, auditorías explícitas
-antes de cargar y documentación que hace reproducible cada paso.
+Ingesta, modelado y validación en BigQuery, programados por un orquestador interno. Snapshots diarios
+idempotentes particionados en America/Mexico_City, auditorías antes de cada carga y documentación que permite a
+cualquier compañero volver a correr un paso. Los pipelines empezaron un mes antes que yo (octubre de 2025); están
+a mi cargo desde que entré en noviembre.

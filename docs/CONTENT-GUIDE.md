@@ -20,7 +20,7 @@ Identity, headline, tagline, summary, personal intro, location (lat/lon feed the
 
 ### `trajectory/<locale>.json`
 
-Array of entries with `kind` (`work` | `leadership` | `education`), `org`, `role`, `location`, `start`, `end` (`null` = present), `bullets`, `stack`, and `orbit` (0 = innermost/most recent). Keep bullets factual and in the CV's voice.
+Array of entries with `kind` (`work` | `leadership` | `education`), `org`, `role`, `location`, `start`, `end` (`null` = present), `bullets`, `stack`, `sources` (links backing claims), `background` (institution facts and full syllabi, folded on the site and never printed in the CV) and `orbit` (0 = innermost/most recent). Keep bullets factual, one idea each, in the CV's voice; see the voice rules in the observatory-architect skill.
 
 ### `projects/<locale>/<key>.md`
 

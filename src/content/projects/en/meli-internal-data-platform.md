@@ -4,8 +4,8 @@ key: meli-internal-data-platform
 locale: en
 nebula: professional
 summary: Web platform that centralizes operational workflows and data access for the Point team, built on Next.js 16 and Firebase over BigQuery.
-role: Data / Analytics Engineer
-period: { start: '2025-10-01', end: null }
+role: Junior Data Analyst (data layer owner)
+period: { start: '2025-11-03', end: null }
 stack: [Next.js 16, TypeScript, Firebase Functions, Firestore, BigQuery, Google Sheets]
 highlights:
   - Centralizes operational workflows that previously lived in scattered spreadsheets
@@ -18,7 +18,8 @@ visibility: confidential
 ---
 
 Internal product, so details stay at the level of the public CV. The platform gives the Mercado Pago Point
-team a single place to run operational workflows and query curated data, replacing ad-hoc spreadsheets.
+team one place to run operational workflows and query curated data instead of scattered spreadsheets. The
+project started in October 2025; I took it over when I joined in November and have owned it since.
 
 What I own: the data layer (BigQuery models and Firestore collections), the Cloud Functions that move data
 between them, and the documentation that lets the rest of the team operate and extend it.

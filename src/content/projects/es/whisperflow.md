@@ -25,7 +25,7 @@ WhisperFlow es el resultado: mantienes una tecla, hablas, sueltas, y el texto ap
 Todo ocurre en la máquina: captura a 16 kHz, reconocimiento de voz local, un pipeline pequeño de postproceso e
 inyección vía portapapeles o teclas sintéticas con una vista previa segura como respaldo.
 
-La ingeniería de la que más me orgullezco es la parte aburrida: un threat model escrito, invariantes forzadas por
+La parte a la que más cuidado le puse es la fontanería: un threat model escrito, invariantes forzadas por
 el esquema de configuración (el audio nunca se persiste, el texto dictado nunca se loguea), un runtime de Python
 congelado para no depender del Python del equipo, verificación de integridad de modelos y binarios, y una suite de
 pruebas alrededor de la máquina de estados que coordina el hilo del atajo, el callback de audio y el worker por

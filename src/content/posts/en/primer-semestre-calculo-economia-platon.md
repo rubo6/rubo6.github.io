@@ -1,5 +1,5 @@
 ---
-title: 'First term: Calculus, supply and demand, and Plato in the same week'
+title: 'Calculus, supply and demand, and Plato in the same week'
 key: primer-semestre-calculo-economia-platon
 locale: en
 date: '2023-06-10'

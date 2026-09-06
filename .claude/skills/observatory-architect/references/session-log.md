@@ -92,3 +92,8 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - `profile.links[].audience` (`professional` | `personal`, default professional). Spotify/Xbox/Steam are `personal`: hidden outside `[data-mode='personal']` in Contact, excluded from the CV and from JSON-LD `sameAs`. Rule recorded in SKILL.md invariant 7, design-and-security.md (table) and content-recipes.md.
 - `docs/REVIEW-2026-09-05-recruiter-ats.md`: full-content review as a top-tier recruiter and as an ATS parser, plus writing tics and proposed rewrites (EN/ES). Nothing applied yet; six decisions pending from Rubo (single job title, school rankings, low-level skills, in-progress certifications, platform recognition wording, voice rules).
 - Known follow-ups from that review if approved: MeLi project `period.start` 2025-10-01 → 2025-11-03; CV print single column; `·` out of job-title strings; CV page title "Eduardo Ruben Bernal Puente - CV".
+
+## Session 3e — 2026-09-06 (review applied)
+
+- Rubo's decisions on the recruiter/ATS review applied in EN/ES/PT-BR: single real job title everywhere; MeLi project dates = his start (origin in October 2025 explained in the body); platform impact with real numbers (avg. monthly subscriptions per agent 4 → 18 → 27, Jan/Jun/Sep 2026, publishable per Rubo); `trajectory[].background` folds rankings, admission stats and full syllabi (site only, `<details>`); CV prints skills level ≥ 3, one column, comma separators, page title with his name; voice rules recorded in SKILL.md; rewrites and log-title cleanup done.
+- Certifications stay generic until earned. Repos for Keeper / Bag-of-Words / production pipeline still pending from Rubo.

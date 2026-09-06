@@ -4,8 +4,8 @@ key: meli-internal-data-platform
 locale: es
 nebula: professional
 summary: Plataforma web que centraliza flujos operativos y acceso a datos para el equipo de Point, construida con Next.js 16 y Firebase sobre BigQuery.
-role: Data / Analytics Engineer
-period: { start: '2025-10-01', end: null }
+role: Analista de Datos Jr. (responsable de la capa de datos)
+period: { start: '2025-11-03', end: null }
 stack: [Next.js 16, TypeScript, Firebase Functions, Firestore, BigQuery, Google Sheets]
 highlights:
   - Centraliza flujos operativos que antes vivían en hojas de cálculo dispersas
@@ -18,8 +18,8 @@ visibility: confidential
 ---
 
 Es un producto interno, así que el detalle se queda al nivel del CV público. La plataforma le da al equipo de
-Mercado Pago Point un solo lugar para ejecutar flujos operativos y consultar datos curados, reemplazando hojas
-de cálculo ad hoc.
+Mercado Pago Point un lugar para ejecutar flujos operativos y consultar datos curados en vez de hojas de cálculo
+dispersas. El proyecto arrancó en octubre de 2025; lo retomé al entrar en noviembre y desde entonces está a mi cargo.
 
 Lo que está a mi cargo: la capa de datos (modelos en BigQuery y colecciones de Firestore), las Cloud Functions
 que mueven datos entre ambas y la documentación que permite al resto del equipo operarla y extenderla.

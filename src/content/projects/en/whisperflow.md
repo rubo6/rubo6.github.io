@@ -25,7 +25,7 @@ the result: hold a key, speak, release, and the text lands in the app you were u
 machine: capture at 16 kHz, on-device speech recognition, a small post-processing pipeline, and injection through
 the clipboard or synthetic keystrokes with a safe preview fallback.
 
-The engineering I am proudest of is the boring part: a written threat model, invariants forced by the config
+The part I put the most care into is the plumbing: a written threat model, invariants forced by the config
 schema (audio is never persisted, dictated text is never logged), a frozen Python runtime so it does not depend on
 whatever Python the host has, integrity checks on models and binaries, and a test suite around the state machine
 that coordinates the hotkey thread, the audio callback and the per-dictation worker.

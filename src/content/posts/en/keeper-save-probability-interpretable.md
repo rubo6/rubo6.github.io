@@ -1,5 +1,5 @@
 ---
-title: 'Lab log: 577 World Cup shots and a model you can explain'
+title: '577 World Cup shots and a model you can explain'
 key: keeper-save-probability-interpretable
 locale: en
 date: '2025-05-30'

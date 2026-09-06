@@ -1,5 +1,5 @@
 ---
-title: 'Eighth term, in progress: big data, mining, multivariate methods and the applied project'
+title: 'Big data, mining, multivariate methods and the applied project (eighth term, in progress)'
 key: octavo-semestre-big-data-multivariados
 locale: en
 date: '2026-09-01'

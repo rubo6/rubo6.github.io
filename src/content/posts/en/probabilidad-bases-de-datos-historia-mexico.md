@@ -1,5 +1,5 @@
 ---
-title: 'Fourth term: sigma-algebras, SQL and the Porfiriato'
+title: 'Sigma-algebras, SQL and the Porfiriato'
 key: probabilidad-bases-de-datos-historia-mexico
 locale: en
 date: '2024-12-06'

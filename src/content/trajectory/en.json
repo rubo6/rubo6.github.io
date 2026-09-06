@@ -4,21 +4,22 @@
     {
       "id": "meli-point",
       "kind": "work",
-      "org": "Mercado Libre · Mercado Pago Point",
+      "org": "Mercado Libre (Mercado Pago Point)",
       "orgUrl": "https://www.mercadopago.com.mx/point",
-      "role": "Junior Data Analyst · data & analytics engineering (contractor)",
+      "role": "Junior Data Analyst (Data & Analytics Engineering), Contractor",
       "location": "Mexico City",
       "start": "2025-11-03",
       "end": null,
-      "summary": "Longtail area of Mercado Pago Point (small and mid-size merchants), Acquisition team. Since January 2026 I own the data side of Rangers, the field-agent acquisition channel, for Mexico, where it launched in September 2025 (Brazil and Argentina have their own teams). Fully remote, Spanish-speaking regional team.",
+      "summary": "Acquisition team, Longtail area of Mercado Pago Point (small and mid-size merchants). Since January 2026 I am the data owner for Rangers in Mexico, the field-agent channel that launched here in September 2025. Remote, Spanish-speaking regional team.",
       "bullets": [
-        "Own the data layer of Rangers in Mexico: ETL/ELT on BigQuery with an internal orchestrator, about 60 tables (30 in the new backend), millions of rows a day, five live dashboards in Looker Studio and Google Sheets and five more in the pipeline.",
-        "Rebuilt the agent-to-merchant assignment process: twelve disconnected manual steps across several environments became one parameterised job. Edit a sheet, run, and the file is ready in under two hours instead of a full working day; agents, quotas and activations change without touching code.",
-        "Built the internal platform (Next.js, Firebase, BigQuery, Sheets) that gives field agents a view of their own portfolio, the only tool of its kind in the area. Agent productivity rose markedly after its launch in June 2026 and the project earned formal recognition from leadership.",
-        "Own data quality and payouts: define the data behind the agents’ variable compensation, add audit steps that stop a job before an error spreads, answer alert e-mails the same day, and run anomaly checks that flagged two cases of irregular behaviour (May and June 2026) for investigation.",
-        "Automated the monthly regulatory report to Mexico City’s mobility authority on transit-card top-ups through Point terminals: hand-run queries became five self-refreshing dashboards.",
-        "Python in production (pandas, pyarrow, google-cloud-bigquery) with pytest tests; Git with code review; query optimisation and internal-tooling mastery learned on the job; weekly planning, one-to-ones and short syncs with operations, invoicing, payouts, cashback and measurement stakeholders.",
-        "Mentor two colleagues on the team’s data tooling and take part in the monthly and quarterly business reviews."
+        "Own the Rangers data layer in Mexico: ETL/ELT pipelines on BigQuery scheduled by an internal orchestrator, about 60 tables (30 in the new backend), daily loads in the millions of rows, five live dashboards in Looker Studio and Google Sheets and five more in progress.",
+        "Rebuilt the agent-to-merchant assignment process. Twelve manual steps across several environments are now one parameterised job: edit a sheet, run it, and the file is ready in under two hours instead of a full working day. Agents, quotas and activations change without touching code.",
+        "Built the internal web platform (Next.js, Firebase, BigQuery, Sheets) where field agents see their own portfolio for the first time. Average monthly subscriptions per agent went from 4 in January 2026 to 18 in June, the month it launched, and 27 by September. Recognised by the area's leadership.",
+        "Own data quality and payouts: I define the data behind the agents' variable compensation, add audit steps that stop a job before an error spreads, answer alert e-mails the same day and run anomaly checks. Two cases of irregular behaviour (May and June 2026) were flagged for investigation this way.",
+        "Automated the monthly regulatory report to Mexico City's mobility authority on transit-card top-ups at Point terminals. Hand-run queries are now five self-refreshing dashboards.",
+        "Production Python (pandas, pyarrow, google-cloud-bigquery) with pytest, and Git with code review.",
+        "Weekly planning and one-to-ones with operations, invoicing, payouts, cashback and measurement stakeholders; monthly and quarterly business reviews.",
+        "Mentor two colleagues on the team's data tooling."
       ],
       "stack": [
         "BigQuery",
@@ -61,7 +62,6 @@
       "bullets": [
         "Continuing Education 120-hour programme: foundations and paradigms of AI, machine learning algorithms, supervised and unsupervised learning in Python, intelligent agents and chatbots, RPA, natural language processing and artificial neural networks, including AI ethics.",
         "Final project: a chatbot with an n8n automation, built with the Python machine-learning stack covered in the programme.",
-        "Reputation: Jesuit university founded in 1943, member of the Jesuit University System (SUJ) and AUSJAL, about 12,000 students. 851–900 worldwide and 6th in Mexico in the QS World University Rankings 2027; institutional CIEES accreditation 2025–2032; first in Design and second in Architecture and Accounting in Reforma's 2025 employer survey.",
         "Diploma and certificate expected in December 2026."
       ],
       "stack": ["Machine Learning", "Deep Learning", "Chatbots", "n8n"],
@@ -83,6 +83,9 @@
           "label": "IBERO · AI diploma programme",
           "url": "https://www.diplomados.ibero.mx/Programas/Detalle-de-programa.aspx?id=40&idArea=2&tipo=Diplomado&a%C3%B1o=2026&version=1&idPropuesta=1053"
         }
+      ],
+      "background": [
+        "Reputation: Jesuit university founded in 1943, member of the Jesuit University System (SUJ) and AUSJAL, about 12,000 students. 851–900 worldwide and 6th in Mexico in the QS World University Rankings 2027; institutional CIEES accreditation 2025–2032; first in Design and second in Architecture and Accounting in Reforma's 2025 employer survey."
       ]
     },
     {
@@ -131,11 +134,8 @@
       "end": "2028-05-10",
       "summary": "Expected graduation: May 2028 (nine-term plan; electives to be taken inside a master’s programme so both degrees finish together).",
       "bullets": [
-        "Plan B coursework (official syllabi): Calculus I–III, Vector Geometry, Linear Algebra, Mathematical Thinking, Discrete Mathematics; Probability I–II, Mathematical Statistics, Linear Methods (GLMs), Multivariate Methods, Bayesian Statistics; Algorithms and Programs, Data Structures (Advanced), Databases, NoSQL Databases, Data Sources, Information Visualization, Machine Learning, Artificial Intelligence, Parallel and Cloud Computing, Big Data Architecture, Data Mining; Economics I–IV, Market Design, Causal Inference; Legality and Ethics in Data Science; and the ITAM humanities core (Ideas and Political Institutions I–III, Contemporary Civilization, Mexican history and reality).",
-        "Tooling by course: R across the statistics sequence; Java in the data-structures sequence; Python, Bash, Linux, regex and Git in Data Sources; MongoDB, Cassandra, Neo4j, Spark/Hadoop and Docker in NoSQL; C++ with OpenMP and MPI in Parallel Computing; Python agents and search in AI.",
+        "Relevant coursework: Machine Learning, Artificial Intelligence, Databases and NoSQL Databases, Parallel and Cloud Computing, Big Data Architecture, Data Mining, Bayesian Statistics, Causal Inference. Tools by course: R, Java, Python, Bash, C++ with OpenMP and MPI, MongoDB, Cassandra, Neo4j, Spark, Docker.",
         "Academic focus: data engineering, machine learning, computer vision and parallel computing.",
-        "Reputation: 4th university in Mexico and 751–760 worldwide in the QS World University Rankings 2027, and 1st in Mexico / 30th worldwide in the QS Employment Outcomes indicator (95.5 % of graduates employed within 7–11 months). 42nd in QS Latin America 2026. Economics is ranked =185 worldwide (QS by Subject 2025) and first in Reforma's employer survey in 2024, 2025 and 2026; Computer Science entered QS by Subject in 2025 (701–750).",
-        "The Data Science degree (8 semesters, Statistics Department founded in 1997) reports that 100 % of its 2020–2022 graduates are working or in graduate school, with an average of six job offers during the programme. Full FIMPES accreditation 2023–2030.",
         "Favourite courses so far: Data Structures, Artificial Intelligence, Data Sources and, this term, Architecture for Large Data Volumes. Final projects included a website built from scratch (Data Sources) and a machine-learning goal-probability model with a game-like interface (Artificial Intelligence).",
         "Tutor for Probability I; planning a terminal project rather than a thesis."
       ],
@@ -174,6 +174,12 @@
           "label": "ITAM · Machine Learning syllabus",
           "url": "https://dac.itam.mx/sites/default/files/u438/com-23701_aprendizaje_de_maquina.pdf"
         }
+      ],
+      "background": [
+        "Reputation: 4th university in Mexico and 751–760 worldwide in the QS World University Rankings 2027, and 1st in Mexico / 30th worldwide in the QS Employment Outcomes indicator (95.5 % of graduates employed within 7–11 months). 42nd in QS Latin America 2026. Economics is ranked =185 worldwide (QS by Subject 2025) and first in Reforma's employer survey in 2024, 2025 and 2026; Computer Science entered QS by Subject in 2025 (701–750).",
+        "The Data Science degree (8 semesters, Statistics Department founded in 1997) reports that 100 % of its 2020–2022 graduates are working or in graduate school, with an average of six job offers during the programme. Full FIMPES accreditation 2023–2030.",
+        "Plan B coursework (official syllabi): Calculus I–III, Vector Geometry, Linear Algebra, Mathematical Thinking, Discrete Mathematics; Probability I–II, Mathematical Statistics, Linear Methods (GLMs), Multivariate Methods, Bayesian Statistics; Algorithms and Programs, Data Structures (Advanced), Databases, NoSQL Databases, Data Sources, Information Visualization, Machine Learning, Artificial Intelligence, Parallel and Cloud Computing, Big Data Architecture, Data Mining; Economics I–IV, Market Design, Causal Inference; Legality and Ethics in Data Science; and the ITAM humanities core (Ideas and Political Institutions I–III, Contemporary Civilization, Mexican history and reality).",
+        "Tooling by course: R across the statistics sequence; Java in the data-structures sequence; Python, Bash, Linux, regex and Git in Data Sources; MongoDB, Cassandra, Neo4j, Spark/Hadoop and Docker in NoSQL; C++ with OpenMP and MPI in Parallel Computing; Python agents and search in AI."
       ]
     },
     {
@@ -185,15 +191,11 @@
       "location": "Mexico City",
       "start": "2018-08-13",
       "end": "2021-07-23",
-      "summary": "IPN bivalent upper-secondary programme (high-school diploma + technical degree), Plan 2008. Title issued December 2022. The Bátiz is the IPN campus with the highest COMIPEMS cut-off score in the country, roughly ten points above the next one.",
+      "summary": "IPN bivalent upper-secondary programme (high-school diploma + technical degree), Plan 2008. Title issued December 2022.",
       "bullets": [
-        "Programming track: Object-Oriented Programming, Web Programming and Services, Databases (normalized design and data manipulation languages), Introduction to Test Engineering and Test Automation, Web and Application Security, Introduction to Distributed Systems, Agile Programming Methods, Basic Software Engineering, and four semesters of IT Project Labs.",
-        "Standards and tools named in the official Plan 2008 programmes: UML (all diagram types), JUnit and white/black-box test design, XP, Scrum and Crystal, SOAP/WSDL/UDDI web services, sockets and RPC, symmetric and public-key cryptography, SSL/TLS, Kerberos and IPsec, PSP, CMMI and COCOMO, MoProSoft.",
+        "Programming track: object-oriented and web programming, database design, test engineering (JUnit), web and application security, distributed systems, agile methods (Scrum, XP) and four semesters of IT project labs.",
         "Lab projects: Java desktop apps (a calculator, an inventory and cargo manager for a shipping company), hand-coded HTML5 sites, MySQL database design and exercises. Final project: a 2D web videogame in PHP where kids solve chemistry exercises to advance levels. First language: Java; then C/C++, PHP, JavaScript, Python and SQL.",
         "Admitted with 118 of 128 correct answers in the 2018 COMIPEMS exam (the campus cut-off that year was around 105). First place at a school fair with an environmental-awareness project.",
-        "Full scientific core alongside the technical track: Algebra, Geometry and Trigonometry, Analytic Geometry, Differential and Integral Calculus, Probability and Statistics, Physics I–IV, Chemistry I–IV, plus philosophy, history and six semesters of English.",
-        "Selectivity: the CECyT 9 cut-off in the COMIPEMS entrance exam was 102–106 of 128 questions every year between 2019 and 2023, the highest of any IPN campus and about ten points above the second; the press calls it the hardest IPN campus to get into.",
-        "Ranking: in the 2024 COMIPEMS the CECyT 9 cut-off was 102 of 128, the highest of any IPN campus (the next was 94) and above UNAM's CCH Sur; the top scorer of the whole 2024 exam (126/128) chose the Bátiz. It was named Mexico's best high school in the ENLACE test five years in a row up to 2012 (92 % of students at the excellent level in Mathematics) and in 2015 it was still the only public high school in the national top 5 both by admission demand and by university admission rate.",
         "Graduated in July 2021 after a year and a half of online classes during the pandemic (remote exams were made deliberately hard); the technical title (Técnico en Programación) was issued in December 2022 because the titling exam had to wait for in-person sessions."
       ],
       "stack": ["C++", "Java", "JavaScript", "SQL", "Software testing"],
@@ -223,6 +225,14 @@
           "label": "Milenio · top scorer 2024",
           "url": "https://www.milenio.com/politica/comunidad/examen-comipems-2024-quienes-fueron-aspirantes-con-puntaje-mas-alto"
         }
+      ],
+      "background": [
+        "The Bátiz is the IPN campus with the highest COMIPEMS cut-off score in the country, roughly ten points above the next one.",
+        "Selectivity: the CECyT 9 cut-off in the COMIPEMS entrance exam was 102–106 of 128 questions every year between 2019 and 2023, the highest of any IPN campus and about ten points above the second; the press calls it the hardest IPN campus to get into.",
+        "Ranking: in the 2024 COMIPEMS the CECyT 9 cut-off was 102 of 128, the highest of any IPN campus (the next was 94) and above UNAM's CCH Sur; the top scorer of the whole 2024 exam (126/128) chose the Bátiz. It was named Mexico's best high school in the ENLACE test five years in a row up to 2012 (92 % of students at the excellent level in Mathematics) and in 2015 it was still the only public high school in the national top 5 both by admission demand and by university admission rate.",
+        "Programming track: Object-Oriented Programming, Web Programming and Services, Databases (normalized design and data manipulation languages), Introduction to Test Engineering and Test Automation, Web and Application Security, Introduction to Distributed Systems, Agile Programming Methods, Basic Software Engineering, and four semesters of IT Project Labs.",
+        "Standards and tools named in the official Plan 2008 programmes: UML (all diagram types), JUnit and white/black-box test design, XP, Scrum and Crystal, SOAP/WSDL/UDDI web services, sockets and RPC, symmetric and public-key cryptography, SSL/TLS, Kerberos and IPsec, PSP, CMMI and COCOMO, MoProSoft.",
+        "Full scientific core alongside the technical track: Algebra, Geometry and Trigonometry, Analytic Geometry, Differential and Integral Calculus, Probability and Statistics, Physics I–IV, Chemistry I–IV, plus philosophy, history and six semesters of English."
       ]
     }
   ]

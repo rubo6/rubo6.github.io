@@ -16,5 +16,5 @@ featured: true
 order: 20
 ---
 
-Built for the Parallel Computing course at ITAM. The interesting part is not the Bag-of-Words itself but the
-partitioning strategy: balancing by document size beats naive round-robin as soon as inputs are skewed.
+Built for the Parallel Computing course at ITAM. Balancing partitions by document size beats round-robin as
+soon as inputs are skewed, and the measurements say by how much.

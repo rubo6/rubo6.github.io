@@ -1,5 +1,5 @@
 ---
-title: 'Bitácora de laboratorio: un Bag-of-Words paralelo con MPI y lo que enseña medir'
+title: 'Un Bag-of-Words paralelo con MPI y lo que enseña medir'
 key: bag-of-words-paralelo-mpi
 locale: es
 date: '2025-12-15'

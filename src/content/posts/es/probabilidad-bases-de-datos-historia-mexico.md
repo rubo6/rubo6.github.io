@@ -1,5 +1,5 @@
 ---
-title: 'Cuarto semestre: sigma-álgebras, SQL y el Porfiriato'
+title: 'Sigma-álgebras, SQL y el Porfiriato'
 key: probabilidad-bases-de-datos-historia-mexico
 locale: es
 date: '2024-12-06'

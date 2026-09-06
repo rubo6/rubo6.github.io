@@ -1,5 +1,5 @@
 ---
-title: 'Séptimo semestre: inferencia causal, MPI y la ética de decidir con datos'
+title: 'Inferencia causal, MPI y la ética de decidir con datos'
 key: inferencia-causal-mpi-etica
 locale: es
 date: '2026-06-05'

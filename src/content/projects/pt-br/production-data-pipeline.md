@@ -16,5 +16,5 @@ featured: true
 order: 10
 ---
 
-Um pipeline deliberadamente "chato", construído como os sistemas de produção são construídos: cada job pode ser
-reexecutado com segurança, cada etapa é testada e a documentação explica como operá-lo, não apenas como funciona.
+Um pipeline de ingestão de CSV construído como os que eu gostaria de herdar: jobs reexecutáveis, um teste por
+etapa e um runbook que diz o que fazer quando algo falha.

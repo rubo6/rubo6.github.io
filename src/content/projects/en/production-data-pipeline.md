@@ -16,5 +16,5 @@ featured: true
 order: 10
 ---
 
-A deliberately "boring" pipeline built the way production systems are built: every job can be re-run
-safely, every step is tested, and the documentation explains how to operate it, not just how it works.
+A CSV ingestion pipeline built like the ones I would want to inherit: re-runnable jobs, a test per step, and a
+runbook that says what to do when something fails.

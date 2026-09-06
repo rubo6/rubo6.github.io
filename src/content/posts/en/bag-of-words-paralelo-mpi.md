@@ -1,5 +1,5 @@
 ---
-title: 'Lab log: a parallel Bag-of-Words with MPI and what measuring teaches'
+title: 'A parallel Bag-of-Words with MPI and what measuring teaches'
 key: bag-of-words-paralelo-mpi
 locale: en
 date: '2025-12-15'

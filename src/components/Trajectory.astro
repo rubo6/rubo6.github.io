@@ -131,6 +131,16 @@ const step = (c - 40) / orbits;
                   ))}
                 </ul>
               )}
+              {e.background.length > 0 && (
+                <details class="background">
+                  <summary>{t('trajectory.background')}</summary>
+                  <ul class="bullets">
+                    {e.background.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
               {e.sources.length > 0 && (
                 <p class="sources">
                   <span>{t('trajectory.sources')}:</span>
@@ -284,6 +294,21 @@ const step = (c - 40) / orbits;
   }
   .bullets li::marker {
     color: var(--accent);
+  }
+  .background {
+    margin-top: 0.9rem;
+    font-size: var(--text-sm);
+  }
+  .background > summary {
+    cursor: pointer;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+  .background > summary:hover {
+    color: var(--ink);
+  }
+  .background[open] > summary {
+    margin-bottom: 0.5rem;
   }
   .sources {
     margin: 0.9rem 0 0;

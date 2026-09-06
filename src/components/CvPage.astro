@@ -34,7 +34,7 @@ const leadership = trajectory.filter((e) => e.kind === 'leadership');
 const featured = projects.filter((p) => p.data.featured && p.data.visibility === 'public');
 ---
 
-<Base locale={locale} path="/cv" title={t('cv.title')} description={profile.summary}>
+<Base locale={locale} path="/cv" title={t('cv.pageTitle')} description={profile.summary}>
   <Nav locale={locale} path="/cv" minimal />
   <main id="main" class="cv container-content">
     <a class="back mono text-sm no-print" href={localePath(locale, '/')}>← {t('cv.back')}</a>
@@ -85,7 +85,7 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
                 </span>
               </div>
               <p class="muted">
-                {e.org} · {e.location}
+                {e.org}, {e.location}
               </p>
               <ul>
                 {e.bullets.map((b) => (
@@ -110,7 +110,7 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
                 </span>
               </div>
               <p class="muted">
-                {e.org} · {e.location}
+                {e.org}, {e.location}
               </p>
               <ul>
                 {e.bullets.map((b) => (
@@ -135,7 +135,7 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
                 </span>
               </div>
               <p class="muted">
-                {e.org} · {e.location}
+                {e.org}, {e.location}
               </p>
               <ul>
                 {e.bullets.map((b) => (
@@ -154,7 +154,7 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
             <div class="item">
               <div class="item-head">
                 <strong>{p.data.title}</strong>
-                <span class="mono">{p.data.stack.slice(0, 4).join(' · ')}</span>
+                <span class="mono">{p.data.stack.slice(0, 4).join(', ')}</span>
               </div>
               <p>{p.data.summary}</p>
             </div>
@@ -169,7 +169,11 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
             {
               skills.map((g) => (
                 <li>
-                  <strong>{pick(g.labels, locale)}:</strong> {g.items.map((i) => i.name).join(', ')}
+                  <strong>{pick(g.labels, locale)}:</strong>{' '}
+                  {g.items
+                    .filter((i) => i.level >= 3)
+                    .map((i) => i.name.replace(/\s·\s/g, ', '))
+                    .join(', ')}
                   .
                 </li>
               ))
@@ -314,6 +318,10 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
   @media print {
     .cv {
       padding: 0;
+    }
+    /* One column so CV parsers read skills, certifications and languages in order. */
+    .two {
+      grid-template-columns: 1fr;
     }
     .sheet {
       box-shadow: none;

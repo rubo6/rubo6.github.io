@@ -1,5 +1,5 @@
 ---
-title: 'Seventh term: causal inference, MPI and the ethics of deciding with data'
+title: 'Causal inference, MPI and the ethics of deciding with data'
 key: inferencia-causal-mpi-etica
 locale: en
 date: '2026-06-05'

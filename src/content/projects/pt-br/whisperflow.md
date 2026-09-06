@@ -26,7 +26,7 @@ usando. Tudo acontece na máquina: captura a 16 kHz, reconhecimento de voz local
 pós-processamento e injeção via área de transferência ou teclas sintéticas, com uma pré-visualização segura como
 fallback.
 
-A engenharia de que mais me orgulho é a parte chata: um threat model escrito, invariantes impostas pelo esquema de
+A parte em que mais capricho coloquei é o encanamento: um threat model escrito, invariantes impostas pelo esquema de
 configuração (o áudio nunca é persistido, o texto ditado nunca é registrado em log), um runtime Python congelado
 para não depender do Python da máquina, verificação de integridade de modelos e binários, e uma suíte de testes em
 torno da máquina de estados que coordena a thread do atalho, o callback de áudio e o worker por ditado.

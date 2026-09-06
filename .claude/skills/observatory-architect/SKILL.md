@@ -56,6 +56,21 @@ On Rubo's Windows machine Node 24 is portable at `C:\Users\ext_eduapuen\Desktop\
 8. **Accessibility.** Semantic HTML, visible focus, keyboard paths (Escape closes, arrows move between nebulae), `prefers-reduced-motion` honoured (the sky goes static, orbits stop), 4.5:1 contrast for text in both themes.
 9. **Determinism.** Only the footer build date and moon phase depend on time at build; the client refreshes both.
 
+## Voice rules (approved by Rubo, 2026-09-05)
+
+The site read as machine-written not because of errors but because the same fifteen devices appeared everywhere. When writing or translating any public text:
+
+1. One astronomical metaphor per section, not per sentence. The concept lives in the design; the copy can be literal.
+2. No indirect self-praise ("boring" as a virtue, "honest" pipelines, "the interesting part is not X but Y"). Say what was done and what changed.
+3. At most one triad per paragraph. Two items or four break the machine rhythm.
+4. No adverbs of degree ("markedly", "deliberately", "happily"). A number if there is one; otherwise the plain sentence.
+5. One idea per bullet. If a bullet needs a semicolon, it is two bullets.
+6. `·` only in UI labels and footers. In running text, job titles, company names and skill lists use commas and parentheses (ATS parsers do not understand the middle dot).
+7. Vary bullet openers; not every line starts with a past-tense verb or with "Own".
+8. Log titles carry one concrete hook, never a "Nth term:" or "Lab log:" template prefix.
+9. One job title, everywhere: the real one ("Junior Data Analyst (Data & Analytics Engineering), Contractor"), also in JSON-LD `jobTitle` and in project roles. The engineering work is described in the bullets.
+10. Institution rankings, admission statistics and full syllabi go to `trajectory[].background` (folded on the site, never in the CV), not to bullets.
+
 ## How to approach a request
 
 - **"Add / update X on my page"** → find the collection in `references/content-recipes.md`, edit content in all three locales (English first), run `npm run validate`, check both modes in the browser, commit as `content: …`.

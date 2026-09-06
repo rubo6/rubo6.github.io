@@ -1,5 +1,5 @@
 ---
-title: 'Sexto semestre: máxima verosimilitud, sesgo-varianza y el primer trabajo'
+title: 'Máxima verosimilitud, sesgo-varianza y el primer trabajo'
 key: estadistica-matematica-aprendizaje-de-maquina
 locale: es
 date: '2025-12-05'

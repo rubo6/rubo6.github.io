@@ -16,6 +16,5 @@ featured: true
 order: 20
 ---
 
-Feito para a disciplina de Computação Paralela do ITAM. O interessante não é o Bag-of-Words em si, mas a
-estratégia de particionamento: balancear por tamanho de documento supera o round-robin ingênuo assim que as
-entradas ficam desbalanceadas.
+Feito para a disciplina de Computação Paralela do ITAM. Balancear as partições por tamanho de documento supera
+o round-robin assim que as entradas ficam desbalanceadas, e as medições dizem por quanto.

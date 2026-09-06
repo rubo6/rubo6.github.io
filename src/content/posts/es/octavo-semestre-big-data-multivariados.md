@@ -1,5 +1,5 @@
 ---
-title: 'Octavo semestre, en curso: grandes volúmenes, minería, multivariados y el proyecto aplicado'
+title: 'Grandes volúmenes, minería, multivariados y el proyecto aplicado (octavo semestre, en curso)'
 key: octavo-semestre-big-data-multivariados
 locale: es
 date: '2026-09-01'

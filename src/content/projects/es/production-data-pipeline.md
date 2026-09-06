@@ -16,6 +16,5 @@ featured: true
 order: 10
 ---
 
-Un pipeline deliberadamente "aburrido", construido como se construyen los sistemas en producción: cada job se
-puede volver a correr sin riesgo, cada paso tiene pruebas y la documentación explica cómo operarlo, no solo cómo
-funciona.
+Un pipeline de ingesta de CSV construido como los que me gustaría heredar: jobs que se pueden volver a correr,
+una prueba por paso y un runbook que dice qué hacer cuando algo falla.

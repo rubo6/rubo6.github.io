@@ -152,3 +152,7 @@ No publicado, por decisión de Rubo o por confidencialidad: promedio del ITAM, p
 - **E** alimenta la nebulosa Comunidad y la entrada de liderazgo en la bitácora.
 - **F** se aplica con la receta "Complete a certification" de `AGENTS.md`.
 - **G** alimenta el universo personal.
+
+### Seguimiento 2026-09-06
+
+- Repos que faltan en el sitio (no son de MeLi, son tuyos): **Keeper Save Probability** (IA/estadística, primavera 2025), **Parallel Bag-of-Words** (Cómputo Paralelo, otoño 2025) y **Production-style data pipeline** (personal, 2025). Pásame las URLs de GitHub o hazlos públicos y te digo cuáles enlazar.

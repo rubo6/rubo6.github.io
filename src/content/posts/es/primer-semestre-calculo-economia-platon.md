@@ -1,5 +1,5 @@
 ---
-title: 'Primer semestre: Cálculo, oferta y demanda, y Platón en la misma semana'
+title: 'Cálculo, oferta y demanda, y Platón en la misma semana'
 key: primer-semestre-calculo-economia-platon
 locale: es
 date: '2023-06-10'

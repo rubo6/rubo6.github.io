@@ -119,7 +119,7 @@ const en = {
   'observatory.lead':
     'Each nebula is a region of my work. Each star inside it is a fact about a project. Select a nebula to focus the telescope.',
   'observatory.lead.personal':
-    'Same telescope, pointed at me. Each nebula here is something I care about outside work. Pick one.',
+    'The informal half. Each nebula is something I do when I am not working. Pick one.',
   'observatory.select': 'Select a nebula',
   'observatory.back': 'Back to the wide field',
   'observatory.projects': 'projects',
@@ -167,6 +167,7 @@ const en = {
   'trajectory.kind.education': 'Education',
   'trajectory.present': 'present',
   'trajectory.sources': 'Sources',
+  'trajectory.background': 'About the institution and full coursework',
 
   'certs.title': 'Certifications in progress',
   'certs.status.earned': 'Earned',
@@ -182,8 +183,7 @@ const en = {
   'constellation.hint': 'Hover or focus a star to see the course or job behind it.',
 
   'contact.title': 'Contact',
-  'contact.lead':
-    'Open to data engineering, analytics engineering and ML roles. The fastest channel is email.',
+  'contact.lead': 'Open to data and analytics engineering roles. Email gets the fastest reply.',
   'contact.email': 'Email',
   'contact.copy': 'Copy email',
   'contact.copied': 'Copied',
@@ -212,6 +212,7 @@ const en = {
   'notfound.cta': 'Return to the observatory',
 
   'cv.title': 'Curriculum vitae',
+  'cv.pageTitle': 'Eduardo Rubén Bernal Puente – CV',
   'cv.print': 'Print / save as PDF',
   'cv.back': 'Back to the observatory',
   'cv.summary': 'Summary',
@@ -325,7 +326,7 @@ const es: Record<UIKey, string> = {
   'observatory.lead':
     'Cada nebulosa es una región de mi trabajo. Cada estrella dentro de ella es un dato de un proyecto. Elige una nebulosa para enfocar el telescopio.',
   'observatory.lead.personal':
-    'El mismo telescopio, apuntado hacia mí. Cada nebulosa aquí es algo que me importa fuera del trabajo. Elige una.',
+    'La mitad informal. Cada nebulosa es algo que hago cuando no estoy trabajando. Elige una.',
   'observatory.select': 'Elegir una nebulosa',
   'observatory.back': 'Volver al campo amplio',
   'observatory.projects': 'proyectos',
@@ -374,6 +375,7 @@ const es: Record<UIKey, string> = {
   'trajectory.kind.education': 'Formación',
   'trajectory.present': 'actual',
   'trajectory.sources': 'Fuentes',
+  'trajectory.background': 'Sobre la institución y el plan de estudios completo',
 
   'certs.title': 'Certificaciones en curso',
   'certs.status.earned': 'Obtenida',
@@ -392,7 +394,7 @@ const es: Record<UIKey, string> = {
 
   'contact.title': 'Contacto',
   'contact.lead':
-    'Abierto a roles de ingeniería de datos, analytics engineering y ML. El canal más rápido es el correo.',
+    'Abierto a roles de ingeniería de datos y analytics engineering. Por correo respondo más rápido.',
   'contact.email': 'Correo',
   'contact.copy': 'Copiar correo',
   'contact.copied': 'Copiado',
@@ -421,6 +423,7 @@ const es: Record<UIKey, string> = {
   'notfound.cta': 'Volver al observatorio',
 
   'cv.title': 'Currículum',
+  'cv.pageTitle': 'Eduardo Rubén Bernal Puente – CV',
   'cv.print': 'Imprimir / guardar como PDF',
   'cv.back': 'Volver al observatorio',
   'cv.summary': 'Resumen',
@@ -532,7 +535,7 @@ const ptBr: Record<UIKey, string> = {
   'observatory.lead':
     'Cada nebulosa é uma região do meu trabalho. Cada estrela dentro dela é um dado de um projeto. Escolha uma nebulosa para focar o telescópio.',
   'observatory.lead.personal':
-    'O mesmo telescópio, apontado para mim. Cada nebulosa aqui é algo de que gosto fora do trabalho. Escolha uma.',
+    'A metade informal. Cada nebulosa é algo que faço quando não estou trabalhando. Escolha uma.',
   'observatory.select': 'Escolher uma nebulosa',
   'observatory.back': 'Voltar ao campo amplo',
   'observatory.projects': 'projetos',
@@ -581,6 +584,7 @@ const ptBr: Record<UIKey, string> = {
   'trajectory.kind.education': 'Formação',
   'trajectory.present': 'atual',
   'trajectory.sources': 'Fontes',
+  'trajectory.background': 'Sobre a instituição e o currículo completo',
 
   'certs.title': 'Certificações em andamento',
   'certs.status.earned': 'Obtida',
@@ -599,7 +603,7 @@ const ptBr: Record<UIKey, string> = {
 
   'contact.title': 'Contato',
   'contact.lead':
-    'Aberto a vagas de engenharia de dados, analytics engineering e ML. O canal mais rápido é o e-mail.',
+    'Aberto a vagas de engenharia de dados e analytics engineering. Por e-mail respondo mais rápido.',
   'contact.email': 'E-mail',
   'contact.copy': 'Copiar e-mail',
   'contact.copied': 'Copiado',
@@ -628,6 +632,7 @@ const ptBr: Record<UIKey, string> = {
   'notfound.cta': 'Voltar ao observatório',
 
   'cv.title': 'Currículo',
+  'cv.pageTitle': 'Eduardo Rubén Bernal Puente – CV',
   'cv.print': 'Imprimir / salvar como PDF',
   'cv.back': 'Voltar ao observatório',
   'cv.summary': 'Resumo',

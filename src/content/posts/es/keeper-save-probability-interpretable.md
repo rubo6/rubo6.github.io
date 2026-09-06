@@ -1,5 +1,5 @@
 ---
-title: 'Bitácora de laboratorio: 577 tiros del Mundial y un modelo que se puede explicar'
+title: '577 tiros del Mundial y un modelo que se puede explicar'
 key: keeper-save-probability-interpretable
 locale: es
 date: '2025-05-30'

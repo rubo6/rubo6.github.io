@@ -2,9 +2,9 @@
   "locale": "es",
   "name": "Eduardo Rubén Bernal Puente",
   "nickname": "Rubo",
-  "headline": "Data & Analytics Engineer · Estudiante de Ciencia de Datos en el ITAM",
-  "tagline": "Construyo los pipelines, modelos y productos de datos que convierten señales crudas en decisiones.",
-  "summary": "Estudiante de Ciencia de Datos en el ITAM con experiencia práctica en Ingeniería de Datos y Analítica dentro del ecosistema de Mercado Pago en Mercado Libre. Diseño pipelines ETL/ELT, modelos de datos en BigQuery, productos de datos internos y flujos analíticos; en paralelo desarrollo proyectos de machine learning y cómputo paralelo. Sólido en SQL, Python, TypeScript/JavaScript, arquitectura de datos y ejecución transversal.",
+  "headline": "Analista de Datos Jr. en Mercado Libre, con ingeniería analítica para Mercado Pago Point. Ciencia de Datos en el ITAM, generación 2028.",
+  "tagline": "Mantengo los datos de un canal de ventas en campo correctos, a tiempo y útiles para quienes lo operan.",
+  "summary": "Estudiante de Ciencia de Datos en el ITAM (titulación en mayo de 2028) y Analista de Datos Jr. en Mercado Libre desde noviembre de 2025. Soy responsable de la capa de data warehouse en BigQuery de Rangers, el canal de agentes en campo de Mercado Pago Point en México: pipelines ETL/ELT, calidad de datos, y los dashboards y herramientas internas construidos encima. SQL y Python en producción, con pruebas y revisión de código. Proyectos de machine learning y cómputo paralelo en la universidad.",
   "personalIntro": "Fuera del trabajo soy Rubo: melómano, gamer y alguien capaz de perder una noche entera frente a un telescopio. Este universo es el informal.",
   "location": {
     "city": "Ciudad de México",

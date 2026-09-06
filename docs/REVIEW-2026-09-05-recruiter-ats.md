@@ -191,3 +191,21 @@ EN: "Relevant coursework: Machine Learning, Artificial Intelligence, Databases a
 4. Certificaciones en curso: nombre exacto y mes esperado de cada una, o las paso a "Ahora" hasta que existan.
 5. Frase publicable sobre el reconocimiento de la plataforma (o la dejamos en "in daily use by the Mexico team").
 6. Si apruebas las reglas de C2, las dejo en la skill como "voice rules" y aplico las reescrituras de C3 en los tres idiomas.
+
+---
+
+## E. Estado (2026-09-06): decisiones de Rubo y lo aplicado
+
+Decisiones: título único (sí); rankings plegados sin perder texto (sí); todas las habilidades en el sitio, en el CV sólo nivel 3+ (sí); certificaciones se quedan genéricas hasta tener los certificados; la plataforma no puede enlazarse, pero sí publicar el promedio de suscripciones por agente (4 en enero 2026, 18 en junio, 27 en septiembre); reglas de voz aprobadas. Sobre las fechas de los proyectos de MeLi: el proyecto arrancó en octubre de 2025 y Rubo lo retomó al entrar en noviembre; los proyectos llevan ahora su fecha de entrada y el texto explica el origen.
+
+Aplicado en EN/ES/PT-BR:
+
+- A1 título único "Junior Data Analyst (Data & Analytics Engineering), Contractor" en trayectoria, JSON-LD (`jobTitle`, `worksFor`) y roles de los dos proyectos de MeLi; headline, tagline y summary del perfil reescritos (C3).
+- A2 fechas de proyectos → 2025-11-03 con la aclaración del origen en octubre.
+- A3/A4 nuevo campo `trajectory[].background`: rankings, selectividad, temarios completos y tronco científico plegados bajo "About the institution and full coursework"; en el CV no se imprimen. Viñetas cortas nuevas de "Relevant coursework" (ITAM) y "Programming track" (Bátiz).
+- A5 números reales en la viñeta de la plataforma; sin "markedly", sin "the only tool of its kind", sin "formal recognition".
+- A6 CV con habilidades de nivel ≥ 3; el sitio conserva todas.
+- B1 impresión a una columna; B2 separadores: puesto y empresa con paréntesis, stack y habilidades con comas; B6 título de página "Eduardo Rubén Bernal Puente – CV". Keywords "data warehouse" y "ETL/ELT" en el summary.
+- C2 reglas de voz en la skill (sección "Voice rules"); C3 reescrituras aplicadas; viñeta-cajón de MeLi dividida en dos; títulos de bitácora sin prefijo "Nth term:" / "Lab log:"; "boring", "honest", "the interesting part" y "happily" eliminados en los tres idiomas.
+
+Pendiente de Rubo: URLs de los repos de Keeper Save Probability, Parallel Bag-of-Words y Production-style data pipeline (son proyectos tuyos de ITAM y personales, no de MeLi; si están privados en GitHub, con hacerlos públicos basta). Fechas de certificaciones cuando existan.

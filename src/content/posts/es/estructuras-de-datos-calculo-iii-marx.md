@@ -1,5 +1,5 @@
 ---
-title: 'Tercer semestre: O grande, multiplicadores de Lagrange y la crítica de Marx'
+title: 'O grande, multiplicadores de Lagrange y la crítica de Marx'
 key: estructuras-de-datos-calculo-iii-marx
 locale: es
 date: '2024-06-07'
