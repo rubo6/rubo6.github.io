@@ -386,7 +386,10 @@ const anchors = [
       font-size: var(--text-base);
     }
     .menu-btn {
+      /* .icon-btn is inline-grid; as a flex column the two bars need explicit centring. */
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .mode-label {
       display: none;
