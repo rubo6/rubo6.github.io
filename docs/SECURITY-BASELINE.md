@@ -72,16 +72,21 @@ See `docs/OWNER.md`: GitHub 2FA and push protection (done), Cloudflare hardening
 | Spoofed e-mail from `@rubo6.dev`?                                  | Needs SPF `v=spf1 -all`, DMARC `p=reject` and a Null MX (pending, `docs/OWNER.md`). The domain sends no mail; these records declare it to receivers.                                                                                                                                                                          |
 | Privacy leaks?                                                     | See the "Never publish" list in `AGENTS.md`; enforced by `audience`, `visibility`, `background` and `scripts/check-content.mjs`. Analytics are cookieless and aggregated.                                                                                                                                                     |
 
-## Edge protection: Cloudflare proxy (Rubo's decision; steps in docs/OWNER.md)
+## Edge protection: Cloudflare proxy (applied 2026-09-06, ADR-0010)
 
-Today the DNS records are **DNS-only** (grey cloud): visitors reach GitHub Pages directly, GitHub issues and renews the certificate, Cloudflare is registrar and DNS only. Simple, correct, enough for a portfolio.
+Traffic reaches Cloudflare first (records proxied, SSL Full (strict), HSTS with preload). Cloudflare adds what GitHub Pages cannot: free managed WAF rules, the rate-limit rule `humano` (per IP, more than 60 requests in 10 s → block 10 s), Bot Fight Mode, Browser Integrity Check, layer-7 DDoS mitigation, and a Response Header Transform rule `security-headers` that sends `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy` and a `Content-Security-Policy` header equal to the meta CSP plus `frame-ancestors 'none'`.
 
-Turning the proxy on (orange cloud) is the only way to add a WAF with managed rules, **rate limiting per IP** (one free rule, e.g. more than 60 requests in 10 s from one IP → block 10 s), Bot Fight Mode, layer-7 DDoS mitigation, caching, and real security response headers via Transform Rules (`Strict-Transport-Security`, `X-Content-Type-Options`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`, `X-Frame-Options`), which GitHub Pages cannot send and a meta CSP cannot express. Trade-offs: GitHub's Pages settings will show a DNS warning and may grey out "Enforce HTTPS" (HTTPS stays enforced by Cloudflare and the `.dev` HSTS preload); SSL mode must be **Full (strict)** (fall back to Full only if GitHub's certificate renewal ever fails); Cloudflare sees the traffic. If the proxy is enabled, record it in an ADR and keep the CAA list Cloudflare needs.
+Rules for agents:
+
+- **The CSP lives in two places**: the meta tag in `src/layouts/Base.astro` and the Cloudflare header. Change both or the browser enforces the intersection. Tell Rubo the exact new header value; only he can edit the Cloudflare rule.
+- Never rely on Cloudflare features that rewrite HTML or inject scripts (Rocket Loader, Auto Minify, Mirage, Email Obfuscation); they are off and must stay off.
+- GitHub's Pages settings show a DNS warning because the records resolve to Cloudflare; expected. HTTPS is enforced by Cloudflare and by the `.dev` HSTS preload.
+- Blocked requests are visible in Cloudflare → Security → Analytics; a legitimate visitor should never trigger `humano` (a full page load is ~15–25 requests).
 
 ## Checklist for every change (any agent)
 
 1. Content change: `npm run validate` (content check + schemas) and re-read "Never publish" in `AGENTS.md`.
-2. New `<script>`, `fetch`, `<img>` or `<link>` to a foreign origin: stop. It needs an ADR, a CSP edit in `Base.astro`, this file and the Playwright assertion updated. Prefer self-hosting (ADR-0009).
+2. New `<script>`, `fetch`, `<img>` or `<link>` to a foreign origin: stop. It needs an ADR, a CSP edit in `Base.astro` **and the same edit in the Cloudflare `security-headers` rule (ask Rubo)**, this file and the Playwright assertion updated. Prefer self-hosting (ADR-0009).
 3. New dependency: `npm install <pkg>`, justify it in the commit, keep `npm audit` clean; never hand-edit the lockfile.
 4. New workflow or action: pin to a full commit SHA, `permissions: {}` at workflow level, minimal per job, `persist-credentials: false`.
 5. Client code: no `innerHTML`, no `eval`, no `Math.random`, no inline handlers; data through `safeJson()`.

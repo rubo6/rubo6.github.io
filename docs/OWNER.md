@@ -5,7 +5,7 @@ Todo lo de aquí requiere tu cuenta, tu tarjeta o una decisión tuya; ningún ag
 ## Estado de las cuentas
 
 - ✅ GitHub: 2FA, push protection, Dependabot, CodeQL, private vulnerability reporting (2026-09-03).
-- ✅ Dominio `rubo6.dev` en Cloudflare Registrar (vence 2027-09-03), registros A/AAAA/CNAME en modo DNS-only, HTTPS forzado en GitHub Pages, DNSSEC y CAA (2026-09-06).
+- ✅ Dominio `rubo6.dev` en Cloudflare Registrar (vence 2027-09-03), registros A/AAAA/CNAME en proxy de Cloudflare desde 2026-09-06 (ADR-0010), DNSSEC, CAA, SPF/DMARC/Null MX.
 - ✅ GoatCounter `rubo6.goatcounter.com` con el contador público activado (2026-09-05). Panel: https://rubo6.goatcounter.com.
 - ✅ Secreto `GH_TRAFFIC_TOKEN` en el repo (views/clones y calendario de contribuciones). Caduca al año de crearlo: cuando GitHub te avise, repite el paso de "Rotar el token".
 
@@ -27,29 +27,22 @@ Estado verificado el 2026-09-06 por DNS: **DNSSEC activo** (registro DS y firmas
 
 En el plan Free no hay alerta de "dominio por vencer": Cloudflare Registrar avisa por correo automaticamente 30 y 7 dias antes, y con auto-renew activado no hace falta mas. Lo que si puedes crear en `Notifications -> Add`: **Billing (payment failure)** y, si activas el proxy, **HTTP DDoS Attack Alerter** y **Security Events Alert**. Si el formulario falla, comprueba que el correo de la cuenta este verificado (`Manage account -> Members`).
 
-### Decision: proxy de Cloudflare, si o no
+### Proxy de Cloudflare: activado el 2026-09-06 (ADR-0010)
 
-Hoy las nubes estan grises (DNS-only): el visitante habla directo con GitHub Pages y GitHub emite el certificado. Es correcto y suficiente para un portafolio, pero **no permite limitar peticiones**: GitHub Pages no tiene WAF ni rate limiting, y Cloudflare solo actua sobre el trafico que pasa por su proxy.
+Hecho por Rubo: registros en proxy, SSL Full (strict), Always Use HTTPS, TLS minimo 1.2, HSTS con preload, reglas gestionadas gratuitas, regla de limite `humano` (60 peticiones por 10 s por IP, bloqueo 10 s), Bot Fight Mode, Browser Integrity Check, regla `security-headers` con cinco cabeceras mas la CSP con `frame-ancestors 'none'`, cache "Respect Existing Headers", optimizaciones de Speed apagadas. securityheaders.com: todas las cabeceras en verde.
 
-Si quieres el limite "humano" de peticiones y proteccion maxima, activa el proxy con esta configuracion exacta:
+Reglas para no romperlo:
 
-1. `DNS -> Records`: cambia los 4 `A`, los 4 `AAAA` y el `CNAME www` a **Proxied** (nube naranja).
-2. `SSL/TLS -> Overview`: modo **Full (strict)**. Si algun dia GitHub deja de renovar su certificado (error 526), baja a **Full**.
-3. `SSL/TLS -> Edge Certificates`: **Always Use HTTPS** on, **Minimum TLS 1.2**, **TLS 1.3** on, **HSTS** on (max-age 6 meses, includeSubDomains, preload; `.dev` ya esta precargado), **Automatic HTTPS Rewrites** on.
-4. `Security -> WAF -> Managed rules`: activa el **Cloudflare Managed Ruleset** gratuito.
-5. `Security -> WAF -> Rate limiting rules -> Create`: nombre `humano`, expresion `(http.request.uri.path ne "/robots.txt")`, caracteristica `IP`, umbral **60 peticiones por 10 segundos**, accion **Block** durante **10 segundos**. Un humano navegando no pasa de 20-30 peticiones en 10 s ni recargando; un script si. Es la unica regla gratuita del plan.
-6. `Security -> Bots`: **Bot Fight Mode** on. `Security -> Settings`: nivel de seguridad **Medium**, **Browser Integrity Check** on.
-7. `Rules -> Transform Rules -> Modify Response Header -> Create`: cabeceras estaticas que GitHub Pages no puede enviar: `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY`, `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()`, `Cross-Origin-Opener-Policy: same-origin`.
-8. `Caching -> Configuration`: Browser Cache TTL "Respect existing headers". `Speed`: todo apagado (minificar o Rocket Loader romperian la CSP).
-9. En `https://github.com/rubo6/rubo6.github.io/settings/pages` aparecera un aviso de DNS porque ahora ve las IP de Cloudflare; es esperado. HTTPS sigue forzado por Cloudflare.
-10. Pide al agente un ADR-0010 registrando la decision y crea las alertas de la seccion anterior.
-
-Si decides **quedarte en DNS-only**, desactiva `SSL/TLS -> Edge Certificates -> Universal SSL` para que los CAA queden solo con Let's Encrypt, y da el tema por cerrado: la proteccion volumetrica la da la CDN de GitHub (Fastly).
+- Si alguien cambia la CSP en `src/layouts/Base.astro`, debe copiar el mismo valor a la regla `security-headers` en `Rules -> Overview` (mas `frame-ancestors 'none'`). Si no, el navegador aplica la mas estricta de las dos y algo deja de cargar.
+- Nunca encender Rocket Loader, Auto Minify, Mirage, Polish ni Email Address Obfuscation: inyectan scripts o reescriben assets y la CSP los bloquea.
+- Si el sitio muestra error 526, baja SSL/TLS a **Full** y pide al agente que investigue el certificado de GitHub.
+- El aviso de DNS en la configuracion de GitHub Pages es esperado.
+- Alertas recomendadas en `Notifications -> Add`: HTTP DDoS Attack Alerter, Security Events Alert, Billing.
 
 ### Mantenimiento
 
 - `public/js/count.js` es una copia del script de GoatCounter (ADR-0009). Dos veces al ano pide al agente que lo actualice desde `https://gc.zgo.at/count.js`.
-- Comprobacion externa: https://dnsviz.net/d/rubo6.dev/ (DNSSEC), https://securityheaders.com/?q=rubo6.dev (cabeceras; solo mejora con el proxy), https://observatory.mozilla.org/ (vision general).
+- Comprobacion externa: https://dnsviz.net/d/rubo6.dev/ (DNSSEC), https://securityheaders.com/?q=https://rubo6.dev (cabeceras), https://observatory.mozilla.org/ (vision general). En `Security -> Analytics` se ven las peticiones bloqueadas por la regla `humano`.
 
 ## Rotar el token de GitHub (cuando caduque)
 
