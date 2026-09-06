@@ -85,3 +85,10 @@ Append one entry per working session: what changed, decisions, what is pending. 
 - Lighthouse run; Playwright smoke tests; automated CV PDF.
 - WhisperFlow: Rubo uploads the four model zips + SHA256SUMS.txt from `Desktop/WhisperFlow-dist/release-assets/` as a GitHub Release (tag `v0.1.0`); then test `scripts/fetch_release_models.py` end to end.
 - Rubo's account tasks: 2FA, push protection (account level), Steam public, certifications when earned.
+
+## Session 3d — 2026-09-05 (visit counter live, link audiences, recruiter/ATS review)
+
+- GoatCounter visitor counter enabled by Rubo; footer shows the total on rubo6.dev (build-time gate + client fetch).
+- `profile.links[].audience` (`professional` | `personal`, default professional). Spotify/Xbox/Steam are `personal`: hidden outside `[data-mode='personal']` in Contact, excluded from the CV and from JSON-LD `sameAs`. Rule recorded in SKILL.md invariant 7, design-and-security.md (table) and content-recipes.md.
+- `docs/REVIEW-2026-09-05-recruiter-ats.md`: full-content review as a top-tier recruiter and as an ATS parser, plus writing tics and proposed rewrites (EN/ES). Nothing applied yet; six decisions pending from Rubo (single job title, school rankings, low-level skills, in-progress certifications, platform recognition wording, voice rules).
+- Known follow-ups from that review if approved: MeLi project `period.start` 2025-10-01 → 2025-11-03; CV print single column; `·` out of job-title strings; CV page title "Eduardo Ruben Bernal Puente - CV".

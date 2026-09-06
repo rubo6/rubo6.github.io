@@ -2,6 +2,10 @@
 
 Every recipe ends with `npm run validate`, a browser check in both modes, and a `content:` commit. Content goes in English first; Spanish and Portuguese follow the same structure. Quote any frontmatter string that contains a colon (`summary: "…: …"`), otherwise YAML turns it into a mapping and the build fails.
 
+## Add a profile link (GitHub, Spotify, Steam…)
+
+`src/content/profile/{en,es,pt-br}.json → links[]`: `{ label, url (https), kind, audience }`. `audience: professional` only for career identities (GitHub, LinkedIn, Scholar/ORCID); everything leisure-related is `audience: personal` and shows only in the personal universe. Same entry in the three locales.
+
 ## Add a log entry (bitácora)
 
 1. Create `src/content/posts/en/<key>.md` and `src/content/posts/es/<key>.md` (PT-BR falls back to EN). Frontmatter: `title`, `key`, `locale`, `date` (never in the future), optional `updated`, `summary` (≤ 280 chars), `area` (`math` · `stats` · `computing` · `datascience` · `economics` · `humanities` · `astronomy` · `work` · `leadership`), optional `semester`, `courses[]`, `tags[]`, `featured`, `draft`, optional `scene` (official-imagery backdrop id from `src/assets/scenes/credits.json`: `crab` · `cartwheel` · `tarantula` · `wr124` · `stephans-quintet`). Quote any string containing a colon.

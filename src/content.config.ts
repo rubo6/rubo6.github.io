@@ -36,6 +36,13 @@ const profile = defineCollection({
         label: z.string(),
         url: httpsUrl,
         kind: z.enum(['github', 'linkedin', 'spotify', 'steam', 'xbox', 'other']),
+        /**
+         * Who may see the link. `professional` links appear everywhere (contact cards in both
+         * modes, printable CV, JSON-LD `sameAs`). `personal` links (gaming, music, any leisure
+         * profile) render only while the personal universe is active and never reach the CV or
+         * structured data — recruiters and crawlers must not see them.
+         */
+        audience: z.enum(['professional', 'personal']).default('professional'),
       }),
     ),
     dates: z.object({

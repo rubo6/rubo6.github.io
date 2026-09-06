@@ -58,6 +58,15 @@ Lockfile committed; CI installs with `--ignore-scripts`; `npm audit` gate; depen
 
 Professional e-mail only. No phone, address or IDs anywhere (CV included). Employer work at public-CV level (`visibility: confidential`). Analytics cookieless (GoatCounter). `security.txt` expires 2027-09-01 — bump yearly.
 
+**Link audiences** (`profile/*.json → links[].audience`, schema default `professional`):
+
+| Link kind                                            | `audience`     | Where it renders                                                                                    |
+| ---------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------- |
+| GitHub, LinkedIn, scholarly IDs, a professional blog | `professional` | Contact cards in both modes, printable CV, JSON-LD `sameAs`                                         |
+| Spotify, Xbox, Steam, Discord, Twitch, any hobby ID  | `personal`     | Contact cards only with `[data-mode='personal']` (CSS `.personal-only`), never CV / structured data |
+
+Rationale: recruiters and ATS crawlers read the professional mode and the CV; gaming or music handles there look unprofessional and leak identity hints. The site is static, so `personal` links are still present in the HTML — they are hidden from the professional _view_, not secret. Anything that must never be public does not go in the repo at all (the LinkedIn portrait file, internal MeLi tool names, GPA, business metrics).
+
 ## Gotchas seen in practice
 
 - YAML: colons inside unquoted frontmatter strings → quote them.

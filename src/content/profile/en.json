@@ -17,22 +17,26 @@
     {
       "label": "GitHub",
       "url": "https://github.com/rubo6",
-      "kind": "github"
+      "kind": "github",
+      "audience": "professional"
     },
     {
       "label": "LinkedIn",
       "url": "https://www.linkedin.com/in/eruben-datascience",
-      "kind": "linkedin"
+      "kind": "linkedin",
+      "audience": "professional"
     },
     {
       "label": "Spotify",
       "url": "https://open.spotify.com/user/d6hedn5s0vafnjx1co5uz8gdb",
-      "kind": "spotify"
+      "kind": "spotify",
+      "audience": "personal"
     },
     {
       "label": "Xbox",
       "url": "https://www.xbox.com/play/user/Mthra",
-      "kind": "xbox"
+      "kind": "xbox",
+      "audience": "personal"
     }
   ],
   "dates": {

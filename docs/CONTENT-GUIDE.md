@@ -12,7 +12,7 @@ Everything the site says lives in `src/content/`. Schemas in `src/content.config
 
 ### `profile/<locale>.json`
 
-Identity, headline, tagline, summary, personal intro, location (lat/lon feed the sky), professional e-mail, links, languages and the **dates that drive the live clocks**:
+Identity, headline, tagline, summary, personal intro, location (lat/lon feed the sky), professional e-mail, links (each with `audience: professional | personal`; leisure profiles such as Spotify, Xbox or Steam are `personal` and never appear in the professional mode, the CV or the structured data), languages and the **dates that drive the live clocks**:
 
 ```json
 "dates": { "meliStart": "2025-10-01", "itamStart": "2023-08-01", "graduation": "2027-12-01" }

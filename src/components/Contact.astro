@@ -36,7 +36,10 @@ const t = useTranslations(locale);
     </div>
     {
       profile.links.map((l, i) => (
-        <div class="card glow lift reveal" data-delay={String(i + 2)}>
+        <div
+          class:list={['card glow lift reveal', l.audience === 'personal' && 'personal-only']}
+          data-delay={String(i + 2)}
+        >
           <p class="mono label">{l.label}</p>
           <a class="value" href={l.url} rel="noopener noreferrer me" target="_blank">
             {l.url.replace('https://www.', '').replace('https://', '')} ↗
@@ -101,6 +104,13 @@ const t = useTranslations(locale);
     min-height: 2.25rem;
     padding: 0.4rem 0.9rem;
     font-size: var(--text-sm);
+  }
+  /* Leisure profiles (Spotify, Xbox, Steam…) exist only in the personal universe. */
+  .personal-only {
+    display: none;
+  }
+  :global([data-mode='personal']) .personal-only {
+    display: grid;
   }
   .langs {
     list-style: none;

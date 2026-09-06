@@ -54,7 +54,7 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility ===
           >
           {
             profile.links
-              .filter((l) => l.kind === 'github' || l.kind === 'linkedin')
+              .filter((l) => l.audience === 'professional')
               .map((l) => (
                 <>
                   {' · '}
