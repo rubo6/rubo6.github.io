@@ -7,7 +7,7 @@ Threat model: a public static site with no backend. Assets at risk: (1) the inte
 - **Content-Security-Policy via `<meta>`** in `src/layouts/Base.astro` (GitHub Pages cannot set headers, so `frame-ancestors` and reporting are unavailable):
 
   ```
-  default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline';
+  default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';
   img-src 'self' data: https://rubo6.goatcounter.com; font-src 'self';
   connect-src 'self' https://rubo6.goatcounter.com; media-src 'self'; object-src 'none';
   base-uri 'self'; form-action 'none'; upgrade-insecure-requests
@@ -16,7 +16,7 @@ Threat model: a public static site with no backend. Assets at risk: (1) the inte
   `style-src 'unsafe-inline'` is accepted (ADR-0005): styles cannot execute code and Astro inlines stylesheets. `script-src` never allows inline code. Any new origin = ADR + CSP edit + this file.
 
 - **No inline JavaScript.** Astro `<script>` bundles to external files; `vite.build.assetsInlineLimit: 0` prevents Astro from inlining small chunks (it once did, and the live site lost all JavaScript while dev looked fine; `grep -c '<script type="module">' dist/index.html` must be 0). Server→client data goes through `<script type="application/json">` + `safeJson()`.
-- **One third party**: GoatCounter (cookieless analytics, ADR-0006): tag from `gc.zgo.at`, beacon and public counter from `rubo6.goatcounter.com`. Nothing else external at runtime; fonts, images and icons are self-hosted.
+- **No third-party code runs on the page.** GoatCounter's `count.js` is a self-hosted copy in `public/js/` (ADR-0009); the only third-party traffic is the beacon and the public counter to `rubo6.goatcounter.com`. Fonts, images and icons are self-hosted.
 - `referrer` meta `strict-origin-when-cross-origin`; external links `rel="noopener noreferrer"` (+ `me` for own profiles); no forms, no cookies; `localStorage` holds two allowlisted preference strings; `robots.txt`, sitemap and `/.well-known/security.txt` (expires 2027-09-01, bump yearly) in `public/`.
 
 ## Code
@@ -57,3 +57,33 @@ The site is static, so anything rendered for the personal mode is still in the H
 ## Owner checklist (accounts, not code)
 
 See `docs/OWNER.md`: GitHub 2FA and push protection (done), Cloudflare hardening (DNSSEC, e-mail anti-spoofing records, CAA, registrar lock), yearly `security.txt` bump, token rotation, Dependabot and CodeQL review.
+
+## Threats, answered plainly
+
+| Question                                                           | Answer                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Can someone "inspect element" and take the site down or change it? | No. DevTools edits only that visitor's local copy. The published files live on GitHub's CDN and change only through a push to `main` by an account with write access. Protecting the site means protecting the GitHub and Cloudflare accounts (2FA, push protection, no shared tokens).                                       |
+| SQL injection, stored XSS, CSRF, auth bypass, session theft?       | Not applicable: no server, database, form, login or session. The only input a visitor controls is the URL, and every page is a pre-built file.                                                                                                                                                                                |
+| Reflected or DOM XSS through our own JavaScript?                   | Mitigated by design: `script-src 'self'`, no inline JS, lint bans `innerHTML` and friends, client code only reads JSON we serialised with `safeJson()`. New scripts must keep to `textContent` and DOM APIs.                                                                                                                  |
+| Supply chain (a dependency or an Action turning malicious)?        | Lockfile, `--ignore-scripts`, `npm audit` gate, dependency review, CodeQL, Dependabot, SHA-pinned actions, no third-party script origin. Residual risk: a poisoned build-time dependency; review Dependabot PRs instead of auto-merging.                                                                                      |
+| Many requests from a bot or script (scraping, layer-7 flood)?      | GitHub Pages sits behind Fastly with volumetric protection and a soft bandwidth budget (100 GB/month): a burst cannot take the site down, a sustained flood could get it throttled. GitHub Pages has no rate limiting or WAF. **The only place to enforce a per-visitor request limit is Cloudflare's proxy** (next section). |
+| Defacement through DNS?                                            | DNSSEC is enabled (DS at the registrar, RRSIG on every answer); registrar is Cloudflare with transfer lock. The domain cannot be re-pointed without the Cloudflare account.                                                                                                                                                   |
+| Someone issuing a certificate for rubo6.dev?                       | CAA allows Let's Encrypt (GitHub Pages' CA). While Cloudflare Universal SSL is on, Cloudflare adds CAA for its own CAs too; expected if the proxy is used, removable by disabling Universal SSL if the site stays DNS-only.                                                                                                   |
+| Spoofed e-mail from `@rubo6.dev`?                                  | Needs SPF `v=spf1 -all`, DMARC `p=reject` and a Null MX (pending, `docs/OWNER.md`). The domain sends no mail; these records declare it to receivers.                                                                                                                                                                          |
+| Privacy leaks?                                                     | See the "Never publish" list in `AGENTS.md`; enforced by `audience`, `visibility`, `background` and `scripts/check-content.mjs`. Analytics are cookieless and aggregated.                                                                                                                                                     |
+
+## Edge protection: Cloudflare proxy (Rubo's decision; steps in docs/OWNER.md)
+
+Today the DNS records are **DNS-only** (grey cloud): visitors reach GitHub Pages directly, GitHub issues and renews the certificate, Cloudflare is registrar and DNS only. Simple, correct, enough for a portfolio.
+
+Turning the proxy on (orange cloud) is the only way to add a WAF with managed rules, **rate limiting per IP** (one free rule, e.g. more than 60 requests in 10 s from one IP → block 10 s), Bot Fight Mode, layer-7 DDoS mitigation, caching, and real security response headers via Transform Rules (`Strict-Transport-Security`, `X-Content-Type-Options`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`, `X-Frame-Options`), which GitHub Pages cannot send and a meta CSP cannot express. Trade-offs: GitHub's Pages settings will show a DNS warning and may grey out "Enforce HTTPS" (HTTPS stays enforced by Cloudflare and the `.dev` HSTS preload); SSL mode must be **Full (strict)** (fall back to Full only if GitHub's certificate renewal ever fails); Cloudflare sees the traffic. If the proxy is enabled, record it in an ADR and keep the CAA list Cloudflare needs.
+
+## Checklist for every change (any agent)
+
+1. Content change: `npm run validate` (content check + schemas) and re-read "Never publish" in `AGENTS.md`.
+2. New `<script>`, `fetch`, `<img>` or `<link>` to a foreign origin: stop. It needs an ADR, a CSP edit in `Base.astro`, this file and the Playwright assertion updated. Prefer self-hosting (ADR-0009).
+3. New dependency: `npm install <pkg>`, justify it in the commit, keep `npm audit` clean; never hand-edit the lockfile.
+4. New workflow or action: pin to a full commit SHA, `permissions: {}` at workflow level, minimal per job, `persist-credentials: false`.
+5. Client code: no `innerHTML`, no `eval`, no `Math.random`, no inline handlers; data through `safeJson()`.
+6. Before shipping: `npm run test:e2e` (asserts the CSP, no inline scripts, no foreign scripts) and check that Best Practices stays 100 in `docs/lighthouse/latest.json` after deploy.
+7. Twice a year: refresh `public/js/count.js` from `https://gc.zgo.at/count.js`; bump `security.txt` `Expires` before 2027-09-01.

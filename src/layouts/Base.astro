@@ -40,7 +40,8 @@ const ogImageUrl = new URL(ogImage, site);
  * Content-Security-Policy delivered via <meta> because GitHub Pages cannot set response headers.
  * frame-ancestors and report-uri are not honoured in meta CSP, so they are intentionally absent.
  * Keep this list minimal. The only third party is GoatCounter (cookieless analytics, ADR-0006):
- * its script comes from gc.zgo.at and it reports to rubo6.goatcounter.com.
+ * its count.js is self-hosted at /js/count.js (ADR-0009), so script-src is strictly 'self'; the
+ * beacon and the public counter go to rubo6.goatcounter.com (img-src / connect-src).
  *
  * style-src allows 'unsafe-inline' on purpose: Astro emits per-element `style="--var:…"` attributes
  * (nebula positions, star dust) and inlines small stylesheets. Inline *styles* cannot execute code;
@@ -48,7 +49,7 @@ const ogImageUrl = new URL(ogImage, site);
  */
 const csp = [
   "default-src 'self'",
-  "script-src 'self' https://gc.zgo.at",
+  "script-src 'self'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://rubo6.goatcounter.com",
   "font-src 'self'",
@@ -112,13 +113,15 @@ const csp = [
 
     <ClientRouter />
     <slot name="head" />
-    <!-- GoatCounter: cookieless, no personal data, honours Do-Not-Track; skips localhost automatically. -->
+    <!-- GoatCounter: cookieless, no personal data, honours Do-Not-Track; skips localhost automatically.
+         count.js is a self-hosted copy (public/js/count.js, ISC licence); refresh it from
+         https://gc.zgo.at/count.js a few times a year (see docs/OWNER.md). -->
     <script
       is:inline
       data-goatcounter="https://rubo6.goatcounter.com/count"
       data-goatcounter-settings='{"no_onload": false, "allow_local": false}'
       async
-      src="https://gc.zgo.at/count.js"></script>
+      src="/js/count.js"></script>
   </head>
   <body class="min-h-dvh antialiased">
     <a href="#main" class="sr-only-focusable">{t('nav.skip')}</a>

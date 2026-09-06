@@ -78,7 +78,7 @@ test.describe('home', () => {
         })
         .map((s) => (s.getAttribute('src') ?? s.textContent ?? '').slice(0, 80)),
     );
-    expect(offenders.filter((s) => !s.includes('gc.zgo.at'))).toEqual([]);
+    expect(offenders).toEqual([]);
   });
 });
 

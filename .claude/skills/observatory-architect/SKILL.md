@@ -19,4 +19,6 @@ Everything you need is in the repository, written so that one file plus one docu
 
 Claude Code specifics: Node 24 is portable at `C:\Users\ext_eduapuen\Desktop\dev\tools\node24` (Git Bash: `export PATH=/c/Users/ext_eduapuen/Desktop/dev/tools/node24:$PATH`); the Browser pane dev server is `.claude/launch.json` → `astro-dev`. After a schema change stop the dev server and delete `.astro/data-store.json`.
 
+Security is part of every change: run the checklist at the end of `docs/SECURITY-BASELINE.md` before committing anything that touches scripts, origins, dependencies or workflows.
+
 Do not create new documentation files; extend the existing ones. Record decisions as `docs/decisions/ADR-000N-*.md`.

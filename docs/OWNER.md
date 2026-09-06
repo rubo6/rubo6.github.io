@@ -5,25 +5,51 @@ Todo lo de aquí requiere tu cuenta, tu tarjeta o una decisión tuya; ningún ag
 ## Estado de las cuentas
 
 - ✅ GitHub: 2FA, push protection, Dependabot, CodeQL, private vulnerability reporting (2026-09-03).
-- ✅ Dominio `rubo6.dev` en Cloudflare Registrar (vence 2027-09-03), registros A/AAAA/CNAME en modo DNS-only, HTTPS forzado en GitHub Pages.
+- ✅ Dominio `rubo6.dev` en Cloudflare Registrar (vence 2027-09-03), registros A/AAAA/CNAME en modo DNS-only, HTTPS forzado en GitHub Pages, DNSSEC y CAA (2026-09-06).
 - ✅ GoatCounter `rubo6.goatcounter.com` con el contador público activado (2026-09-05). Panel: https://rubo6.goatcounter.com.
 - ✅ Secreto `GH_TRAFFIC_TOKEN` en el repo (views/clones y calendario de contribuciones). Caduca al año de crearlo: cuando GitHub te avise, repite el paso de "Rotar el token".
 
-## Cloudflare: lo que falta (15 minutos, todo gratis)
+## Cloudflare
 
-El sitio lo sirve GitHub Pages; Cloudflare solo es registrador y DNS. Por eso el tablero muestra 0 visitantes y sugiere "Proxy DNS records": **no lo actives**. Con el proxy naranja, GitHub no puede renovar el certificado del dominio y las herramientas de Cloudflare (WAF, caché, analítica, Bot Fight Mode, AI Crawl Control, robots.txt gestionado) no aportan nada a un sitio estático sin backend. Lo que sí conviene:
+Estado verificado el 2026-09-06 por DNS: **DNSSEC activo** (registro DS y firmas RRSIG), **CAA presentes** (`issue` e `issuewild` para `letsencrypt.org`; Cloudflare anade ademas los de sus propias autoridades mientras Universal SSL este encendido, por eso el aviso naranja en la tabla), registros A/AAAA/CNAME correctos. **Pendiente**: SPF, DMARC y Null MX (no existen todavia).
 
-1. **DNSSEC**: `DNS → Settings → DNSSEC → Enable`. Como el registrador también es Cloudflare, el registro DS se publica solo. Evita que alguien suplante tus DNS.
-2. **Anti-suplantación de correo**: nadie envía correo desde `@rubo6.dev`, así que hay que declararlo para que no puedan falsificar remitentes con tu dominio. `Email → DMARC Management` te lo hace en un clic, o añade en `DNS → Records`:
-   - `TXT` `@` → `v=spf1 -all`
-   - `TXT` `_dmarc` → `v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;`
-   - `MX` `@` → `.` con prioridad `0` (Null MX: "este dominio no recibe correo")
-3. **CAA**: `DNS → Records → Add → CAA`, nombre `@`, flag `0`, tag `issue`, valor `letsencrypt.org`. GitHub Pages emite sus certificados con Let's Encrypt; así ninguna otra autoridad puede emitir uno para tu dominio. Repite con tag `issuewild` y el mismo valor.
-4. **Registrar**: `Domain Registration → Manage → rubo6.dev`: auto-renew activado, transfer lock activado, redacción de WHOIS activada (viene por defecto).
-5. **Cuenta**: `Manage account → Authentication → 2FA` con app autenticadora; guarda los códigos de recuperación en tu gestor de contraseñas.
-6. **Avisos**: `Notifications → Add` → "Domain expiration" y "Billing"; el correo de la cuenta debe ser uno que leas.
+### Pendiente inmediato (5 minutos)
 
-Comprobación: https://dnsviz.net/d/rubo6.dev/ (DNSSEC) y https://mxtoolbox.com/SuperTool.aspx?action=dmarc%3arubo6.dev (DMARC). Si algún día quieres correo `hola@rubo6.dev`, `Email → Email Routing` lo redirige gratis a tu Gmail; entonces se quitan el Null MX y se ajusta el SPF.
+1. **Anti-suplantacion de correo** en `DNS -> Records -> Add record`:
+   - `TXT`, nombre `@`, contenido `v=spf1 -all`
+   - `TXT`, nombre `_dmarc`, contenido `v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;`
+   - `MX`, nombre `@`, servidor de correo `.`, prioridad `0` (Null MX: "este dominio no recibe correo")
+     Si prefieres el asistente: `Email -> DMARC Management -> Get started` crea los tres.
+2. **Registrar**: `Domain Registration -> Manage -> rubo6.dev`: auto-renew activado y transfer lock activado.
+3. **Cuenta**: `Manage account -> Authentication`: 2FA con app autenticadora y codigos de recuperacion en el gestor de contrasenas.
+
+### Notificaciones
+
+En el plan Free no hay alerta de "dominio por vencer": Cloudflare Registrar avisa por correo automaticamente 30 y 7 dias antes, y con auto-renew activado no hace falta mas. Lo que si puedes crear en `Notifications -> Add`: **Billing (payment failure)** y, si activas el proxy, **HTTP DDoS Attack Alerter** y **Security Events Alert**. Si el formulario falla, comprueba que el correo de la cuenta este verificado (`Manage account -> Members`).
+
+### Decision: proxy de Cloudflare, si o no
+
+Hoy las nubes estan grises (DNS-only): el visitante habla directo con GitHub Pages y GitHub emite el certificado. Es correcto y suficiente para un portafolio, pero **no permite limitar peticiones**: GitHub Pages no tiene WAF ni rate limiting, y Cloudflare solo actua sobre el trafico que pasa por su proxy.
+
+Si quieres el limite "humano" de peticiones y proteccion maxima, activa el proxy con esta configuracion exacta:
+
+1. `DNS -> Records`: cambia los 4 `A`, los 4 `AAAA` y el `CNAME www` a **Proxied** (nube naranja).
+2. `SSL/TLS -> Overview`: modo **Full (strict)**. Si algun dia GitHub deja de renovar su certificado (error 526), baja a **Full**.
+3. `SSL/TLS -> Edge Certificates`: **Always Use HTTPS** on, **Minimum TLS 1.2**, **TLS 1.3** on, **HSTS** on (max-age 6 meses, includeSubDomains, preload; `.dev` ya esta precargado), **Automatic HTTPS Rewrites** on.
+4. `Security -> WAF -> Managed rules`: activa el **Cloudflare Managed Ruleset** gratuito.
+5. `Security -> WAF -> Rate limiting rules -> Create`: nombre `humano`, expresion `(http.request.uri.path ne "/robots.txt")`, caracteristica `IP`, umbral **60 peticiones por 10 segundos**, accion **Block** durante **10 segundos**. Un humano navegando no pasa de 20-30 peticiones en 10 s ni recargando; un script si. Es la unica regla gratuita del plan.
+6. `Security -> Bots`: **Bot Fight Mode** on. `Security -> Settings`: nivel de seguridad **Medium**, **Browser Integrity Check** on.
+7. `Rules -> Transform Rules -> Modify Response Header -> Create`: cabeceras estaticas que GitHub Pages no puede enviar: `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY`, `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()`, `Cross-Origin-Opener-Policy: same-origin`.
+8. `Caching -> Configuration`: Browser Cache TTL "Respect existing headers". `Speed`: todo apagado (minificar o Rocket Loader romperian la CSP).
+9. En `https://github.com/rubo6/rubo6.github.io/settings/pages` aparecera un aviso de DNS porque ahora ve las IP de Cloudflare; es esperado. HTTPS sigue forzado por Cloudflare.
+10. Pide al agente un ADR-0010 registrando la decision y crea las alertas de la seccion anterior.
+
+Si decides **quedarte en DNS-only**, desactiva `SSL/TLS -> Edge Certificates -> Universal SSL` para que los CAA queden solo con Let's Encrypt, y da el tema por cerrado: la proteccion volumetrica la da la CDN de GitHub (Fastly).
+
+### Mantenimiento
+
+- `public/js/count.js` es una copia del script de GoatCounter (ADR-0009). Dos veces al ano pide al agente que lo actualice desde `https://gc.zgo.at/count.js`.
+- Comprobacion externa: https://dnsviz.net/d/rubo6.dev/ (DNSSEC), https://securityheaders.com/?q=rubo6.dev (cabeceras; solo mejora con el proxy), https://observatory.mozilla.org/ (vision general).
 
 ## Rotar el token de GitHub (cuando caduque)
 

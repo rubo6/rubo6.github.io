@@ -1,6 +1,6 @@
 # ADR-0006 · Cookieless analytics with GoatCounter
 
-- Status: accepted · Date: 2026-09-03
+- Status: accepted · Date: 2026-09-03 · Amended by ADR-0009 (2026-09-06): count.js is now self-hosted, `script-src` back to `'self'`.
 
 ## Context
 
