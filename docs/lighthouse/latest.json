@@ -1,54 +1,80 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-09-06T07:50:29.571Z",
-  "runner": "github-actions#34020112863",
+  "measuredAt": "2026-09-06T08:24:16.990Z",
+  "runner": "github-actions#34021649183",
   "mobile": {
-    "performance": 84,
+    "performance": 94,
     "accessibility": 100,
-    "bestPractices": 100,
+    "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 4166,
-    "fcpMs": 1485,
-    "speedIndexMs": 2959,
-    "tbtMs": 144,
+    "lcpMs": 2878,
+    "fcpMs": 1528,
+    "speedIndexMs": 1923,
+    "tbtMs": 72,
     "cls": 0,
-    "benchmarkIndex": 2416,
+    "benchmarkIndex": 2236,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-06T07:50:00.733Z",
-    "failedAudits": [],
+    "fetchTime": "2026-09-06T08:23:32.580Z",
+    "failedAudits": [
+      {
+        "id": "errors-in-console",
+        "sample": null,
+        "snippet": null,
+        "explanation": null
+      },
+      {
+        "id": "inspector-issues",
+        "sample": null,
+        "snippet": null,
+        "explanation": null
+      }
+    ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 13,
-      "resourceLoadDelay": 58,
-      "resourceLoadDuration": 47,
-      "elementRenderDelay": 1230
+      "timeToFirstByte": 46,
+      "resourceLoadDelay": 137,
+      "resourceLoadDuration": 71,
+      "elementRenderDelay": 222
     },
     "runs": [
-      66,
       84,
-      87
+      94,
+      95
     ]
   },
   "desktop": {
-    "performance": 100,
+    "performance": 99,
     "accessibility": 100,
-    "bestPractices": 100,
+    "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 638,
-    "fcpMs": 438,
-    "speedIndexMs": 752,
-    "tbtMs": 0,
-    "cls": 0,
-    "benchmarkIndex": 2388,
+    "lcpMs": 708,
+    "fcpMs": 428,
+    "speedIndexMs": 744,
+    "tbtMs": 15,
+    "cls": 0.066,
+    "benchmarkIndex": 2266,
     "lighthouseVersion": "13.4.1",
-    "fetchTime": "2026-09-06T07:50:17.134Z",
-    "failedAudits": [],
+    "fetchTime": "2026-09-06T08:24:04.689Z",
+    "failedAudits": [
+      {
+        "id": "errors-in-console",
+        "sample": null,
+        "snippet": null,
+        "explanation": null
+      },
+      {
+        "id": "inspector-issues",
+        "sample": null,
+        "snippet": null,
+        "explanation": null
+      }
+    ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 109,
-      "resourceLoadDelay": 129,
-      "resourceLoadDuration": 106,
-      "elementRenderDelay": 299
+      "timeToFirstByte": 37,
+      "resourceLoadDelay": 133,
+      "resourceLoadDuration": 57,
+      "elementRenderDelay": 348
     }
   }
 }
