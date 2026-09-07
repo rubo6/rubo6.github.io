@@ -1,7 +1,9 @@
 // Turns official ESA/Webb / ESA/Hubble releases in src/assets/nebulae/raw/<release-id>.jpg into the
 // wide 1600×900 AVIF/WebP "scene" backdrops used by section and page headers (log entries, 404,
 // Now, log index, contact). Mapping, crop hints and credit lines live in src/assets/scenes/credits.json.
-// Run: node scripts/optimize-scenes.mjs   (raw/ is stored in Git LFS; outputs are committed as normal files)
+// Run: node scripts/optimize-scenes.mjs [id ...]   (raw/ is stored in Git LFS; outputs are committed as normal files)
+// Without ids every scene is re-encoded; pass ids to touch only those files.
+// `shape: "portrait"` in credits.json renders 900×1200 instead of 1600×900 (contact-form panel).
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -9,8 +11,8 @@ import sharp from 'sharp';
 const raw = (f) => fileURLToPath(new URL(`../src/assets/nebulae/raw/${f}`, import.meta.url));
 const out = (f) => fileURLToPath(new URL(`../src/assets/scenes/${f}`, import.meta.url));
 
-const W = 1600;
-const H = 900;
+const SHAPES = { wide: [1600, 900], portrait: [900, 1200] };
+const only = process.argv.slice(2);
 const AVIF_MAX = 200 * 1024;
 const WEBP_MAX = 300 * 1024;
 
@@ -26,6 +28,8 @@ await mkdir(out(''), { recursive: true });
 const credits = JSON.parse(await readFile(out('credits.json'), 'utf8'));
 
 for (const c of credits) {
+  if (only.length && !only.includes(c.id)) continue;
+  const [W, H] = SHAPES[c.shape ?? 'wide'];
   const src = sharp(raw(`${c.release}.jpg`), { limitInputPixels: false }).rotate();
   const meta = await src.metadata();
   const wide = src

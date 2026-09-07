@@ -6,6 +6,7 @@ src/lib/astro (pure math, tested) ───────────────�
 src/loaders (GitHub API at build) ─► repoStats, contributions collections       ├─► src/scripts/*.ts (small client modules)
                                                                                 └─► src/styles/global.css (tokens)
 push to main / daily cron ─► deploy.yml (withastro/action → deploy-pages) ─► https://rubo6.dev ─► lighthouse.yml
+worker/ (Cloudflare Worker, deployed by Rubo with wrangler) ─► https://rubo6.dev/api/contact* ─► Resend ─► Rubo's inbox
 ```
 
 ## Build and hosting
@@ -14,7 +15,7 @@ push to main / daily cron ─► deploy.yml (withastro/action → deploy-pages) 
 - `vite.build.assetsInlineLimit: 0` keeps every JS chunk and font external (the CSP forbids inline scripts). `build.inlineStylesheets: 'always'` inlines CSS (allowed by `style-src 'unsafe-inline'`, ADR-0005) and removed ~12 render-blocking requests.
 - `devToolbar` is disabled: it injects inline scripts the CSP blocks.
 - `npm run build` first runs `scripts/generate-og.mjs` (Open Graph PNGs for log entries), then `astro build`. Output: ~100 pages (3 locales × home, projects, CV, log index and entries, now, 404), sitemap, robots, icons, OG images.
-- Hosting: GitHub Pages with the custom domain `rubo6.dev` (`public/CNAME`); DNS at Cloudflare, records DNS-only (grey cloud) so GitHub issues the certificate.
+- Hosting: GitHub Pages with the custom domain `rubo6.dev` (`public/CNAME`); DNS at Cloudflare, records proxied through Cloudflare since ADR-0010 (WAF, rate limit, security headers); GitHub still issues the origin certificate.
 
 ## Routing
 
@@ -44,17 +45,32 @@ The token exists only in GitHub Actions; the site never talks to GitHub from the
 
 Astro ships no JavaScript by default. Each module is mounted from a component `<script>` through `src/scripts/lifecycle.ts`: `onReady(init)` for idempotent initialisers (they mark elements with `data-bound`) and `remountOnSwap(mount)` for modules that own observers or loops and return a dispose function. Both re-run after every ClientRouter navigation (`astro:after-swap`); never wire that listener by hand.
 
-| Module           | Mounted by           | Responsibility                                                                                                                                                                                  |
-| ---------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `universe.ts`    | `Nav.astro`          | theme / mode / language / menu controls, active nav anchor, `.reveal` observer, `universe:*` events                                                                                             |
-| `sky.ts`         | `Hero.astro`         | canvas star map: catalogue → Alt/Az → stereographic projection; static layer cached per second, twinkle ≤ 30 fps (1 fps on phones), warp on mode change, stops off-screen; exports `unitHash()` |
-| `orbits.ts`      | `Trajectory.astro`   | planets positioned by JS; an IntersectionObserver marks the entry being read and the SVG `viewBox` glides to its planet (camera); reduced motion → static planets, camera jumps                 |
-| `observatory.ts` | `Observatory.astro`  | nebula focus / dim / zoom, panels, Escape and arrow keys, `#observatory:<id>` deep links                                                                                                        |
-| `counters.ts`    | `LiveCounters.astro` | live durations from `data-start` / `data-end`                                                                                                                                                   |
-| `alive.ts`       | `Base.astro`         | pointer spotlight for `.glow` (`--mx/--my`), dome-shutter overlay around navigations; both off under reduced motion                                                                             |
-| Footer module    | `Footer.astro`       | refreshes the moon phase; fetches the GoatCounter public counter once per session (line is only rendered when the endpoint answered at build time)                                              |
+| Module                                | Mounted by            | Responsibility                                                                                                                                                                                                                        |
+| ------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `universe.ts`                         | `Nav.astro`           | theme / mode / language / menu controls, active nav anchor, `.reveal` observer, `universe:*` events                                                                                                                                   |
+| `sky.ts`                              | `Hero.astro`          | canvas star map: catalogue → Alt/Az → stereographic projection; static layer cached per second, twinkle ≤ 30 fps (1 fps on phones), warp on mode change, stops off-screen; exports `unitHash()`                                       |
+| `orbits.ts`                           | `Trajectory.astro`    | planets positioned by JS; an IntersectionObserver marks the entry being read and the SVG `viewBox` glides to its planet (camera); reduced motion → static planets, camera jumps                                                       |
+| `observatory.ts`                      | `Observatory.astro`   | nebula focus / dim / zoom, panels, Escape and arrow keys, `#observatory:<id>` deep links                                                                                                                                              |
+| `counters.ts`                         | `LiveCounters.astro`  | live durations from `data-start` / `data-end`                                                                                                                                                                                         |
+| `alive.ts`                            | `Base.astro`          | pointer spotlight for `.glow` (`--mx/--my`), dome-shutter overlay around navigations; both off under reduced motion                                                                                                                   |
+| `contact-signal.ts` + `pow.worker.ts` | `ContactSignal.astro` | "Send a signal" dialog: open/close animations, attachment list, proof-of-work solved in a Web Worker from the moment the dialog opens, multipart POST to `/api/contact`, success state; strings from the `signal-strings` JSON island |
+| Footer module                         | `Footer.astro`        | refreshes the moon phase; fetches the GoatCounter public counter once per session (line is only rendered when the endpoint answered at build time)                                                                                    |
 
 Data reaches the client only through `<script type="application/json">` produced with `safeJson()` (`src/lib/json.ts`, escapes `<>&` and U+2028/9) and read with `readJson()`.
+
+## Contact Worker (`worker/`, ADR-0012)
+
+The only dynamic endpoint. A Cloudflare Worker on the `rubo6.dev` zone, routed at `rubo6.dev/api/contact*`, so the browser calls its own origin (no CORS, CSP unchanged). Files:
+
+- `worker/src/index.ts`: HTTP handling. `GET /api/contact/challenge` returns a signed proof-of-work challenge; `POST /api/contact` (multipart) checks Origin, body size (≤ 6.25 MB), the per-IP rate limit (`RATE_LIMITER` binding, 3/min), the honeypot (`website`), the solution (`pow`), the fields, the attachments, then sends through Resend (`fetch` to `api.resend.com` with the `RESEND_API_KEY` secret). Errors are generic JSON codes; nothing about the visitor is logged.
+- `worker/src/lib.ts`: pure functions (challenge HMAC, validation, filename sanitising, magic-byte sniffing, base64, mail payload). Unit-tested in `tests/unit/contact-worker.test.ts`.
+- `src/lib/pow.ts`: the hashing shared by the browser and the Worker.
+- `worker/wrangler.jsonc`: name `rubo6-contact`, route, vars (`MAIL_TO`, `MAIL_FROM`, `ALLOWED_ORIGINS`, `POW_BITS`), rate-limit binding, observability. Secrets (`POW_SECRET`, `RESEND_API_KEY`) are set with `npm run worker:secret -- <NAME>`, never written to files.
+- `worker/tsconfig.json`: separate TypeScript project (workers types, no DOM); the root `tsconfig.json` excludes `worker/`.
+
+Local development: `npm run worker:dev` (Miniflare, no Cloudflare login) reads `worker/.dev.vars` (copy `.dev.vars.example`; `MAIL_DRY_RUN=1` prints the e-mail in the terminal, `POW_BITS=10` makes the challenge instant). `astro.config.ts` proxies `/api` from the dev server (:4321) to the Worker (:8787). The Playwright suite does not need the Worker: `tests/e2e/contact.spec.ts` mocks both endpoints and checks the multipart body the page sends.
+
+Checks: `npm run check` runs `tsc -p worker` and `wrangler deploy --dry-run` (bundle + config validation, no account). Deploying is Rubo's job (`docs/OWNER.md`); the static site never waits for the Worker.
 
 ## Theming
 
@@ -70,17 +86,18 @@ Originals from ESA/Webb and ESA/Hubble live in `src/assets/nebulae/raw/` under *
 
 ## CI/CD
 
-- `ci.yml`: `npm ci --ignore-scripts`, `npm run validate`, Playwright smoke suite (`tests/e2e/smoke.spec.ts`, Chromium desktop + Pixel 7 and WebKit Desktop Safari + iPhone 14, hermetic: third-party requests aborted, `workers: 1`, `ASTRO_PREVIEW_BACKGROUND=1` so Astro's preview does not daemonise), `npm audit --omit=dev --audit-level=high`; dependency review on PRs.
+- `ci.yml`: `npm ci --ignore-scripts`, `npm run validate` (includes the Worker type-check and dry-run bundle), Playwright smoke suite (`tests/e2e/smoke.spec.ts`, Chromium desktop + Pixel 7 and WebKit Desktop Safari + iPhone 14, hermetic: third-party requests aborted, `workers: 1`, `ASTRO_PREVIEW_BACKGROUND=1` so Astro's preview does not daemonise), `npm audit --omit=dev --audit-level=high`; dependency review on PRs.
 - `deploy.yml`: build with `withastro/action`, publish with `actions/deploy-pages`; on push to `main`, manual dispatch and a daily cron (05:17 America/Mexico_City). `GH_TRAFFIC_TOKEN` is read here.
 - `lighthouse.yml`: after each successful deploy, weekly and on demand; three mobile runs (median kept) plus desktop against the live URL; `scripts/lighthouse-summary.mjs` writes `docs/lighthouse/latest.json` and `history.jsonl` (committed with `[skip ci]`; `ci.yml`/`deploy.yml` ignore that folder). README badges read `latest.json`. Compare `benchmarkIndex` before comparing scores.
 - `codeql.yml`: weekly and on push, `security-extended`. All actions pinned to commit SHAs, `permissions: {}` at workflow level, Dependabot weekly.
 
 ## Local checks
 
-`node scripts/vitals.mjs` (after a build; uses `astro preview` on :4173) prints LCP, CLS, long tasks and transfer weight per key page for desktop and a throttled phone. Lighthouse locally needs installed Google Chrome via `CHROME_PATH` and an idle machine; prefer the CI numbers.
+`node scripts/probe-contact.mjs <outdir>` drives the contact dialog end to end (dev server :4321 + `npm run worker:dev`) in Chromium and WebKit, desktop and phone, and saves screenshots; the Worker log shows the `[dry-run]` e-mail. `node scripts/vitals.mjs` (after a build; uses `astro preview` on :4173) prints LCP, CLS, long tasks and transfer weight per key page for desktop and a throttled phone. Lighthouse locally needs installed Google Chrome via `CHROME_PATH` and an idle machine; prefer the CI numbers.
 
 ## Gotchas
 
+- `wrangler dev` writes a temporary bundle under `worker/.wrangler/`; it is git-ignored and excluded from ESLint and Prettier. If lint suddenly complains about `middleware-loader.entry.ts`, that folder leaked into the run.
 - After changing a collection schema the dev server may return stale entries (new fields `undefined`): stop it, delete `.astro/data-store.json`, restart. `astro build` is unaffected.
 - JSX comments inside Astro attribute lists break the ESLint parser; use HTML comments above the element.
 - A rule written inside `<style is:global>` with `:global()` is silently dropped; write the plain selector.

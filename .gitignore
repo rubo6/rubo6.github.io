@@ -36,3 +36,7 @@ src/data/generated/
 src/assets/generated/raw/
 
 # official nebula source images (re-download via scripts/optimize-nebulae.mjs comments / credits.json)
+
+# Cloudflare Worker (contact form): local secrets and wrangler cache
+worker/.dev.vars
+.wrangler/

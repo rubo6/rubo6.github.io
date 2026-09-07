@@ -1,6 +1,6 @@
 # ADR-0004 · No contact form, no third-party services, no phone number
 
-- Status: accepted · Date: 2026-09-03
+- Status: accepted · Date: 2026-09-03 · The contact-form part is superseded by ADR-0012 (2026-09-07); the phone-number and third-party-script parts stand.
 
 ## Context
 

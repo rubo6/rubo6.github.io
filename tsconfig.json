@@ -15,5 +15,5 @@
     "astro.config.ts",
     "vitest.config.ts"
   ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "worker"]
 }

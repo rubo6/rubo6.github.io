@@ -6,7 +6,14 @@ import globals from 'globals';
 
 export default tseslint.config(
   {
-    ignores: ['dist/**', '.astro/**', 'node_modules/**', 'src/data/**', 'public/js/**'], // public/js = vendored third-party (GoatCounter count.js, ADR-0009)
+    ignores: [
+      'dist/**',
+      '.astro/**',
+      '**/.wrangler/**',
+      'node_modules/**',
+      'src/data/**',
+      'public/js/**',
+    ], // public/js = vendored third-party (GoatCounter count.js, ADR-0009)
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

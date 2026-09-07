@@ -1,6 +1,6 @@
 # Security policy
 
-This is a static personal website. It has no backend, no database, no authentication and stores no visitor data. The attack surface is the build pipeline and the static assets themselves.
+This is a static personal website plus one small Cloudflare Worker that forwards contact-form messages by e-mail (`worker/`). There is no database, no authentication and no stored visitor data. The attack surface is the build pipeline, the static assets and that endpoint (see `docs/SECURITY-BASELINE.md`).
 
 ## Reporting a vulnerability
 

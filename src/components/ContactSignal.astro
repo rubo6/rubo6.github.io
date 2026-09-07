@@ -1,0 +1,793 @@
+---
+/**
+ * "Send a signal": the contact form dialog (ADR-0012). A native <dialog> rendered as a liquid-glass
+ * panel: a portrait crop of the Crab Nebula (its pulsar is the sky's own repeating signal) on one
+ * side, the form on the other. Opened by any [data-signal-open] button (Contact.astro places one).
+ * Behaviour: src/scripts/contact-signal.ts. Server: worker/ (Cloudflare Worker at /api/contact).
+ */
+import { Picture } from 'astro:assets';
+import { useTranslations, type Locale } from '@/i18n/ui';
+import { safeJson } from '@/lib/json';
+import crab from '@/assets/scenes/crab-portrait.avif';
+import credits from '@/assets/scenes/credits.json';
+
+interface Props {
+  locale: Locale;
+  email: string;
+}
+const { locale, email } = Astro.props;
+const t = useTranslations(locale);
+const meta = credits.find((c) => c.id === 'crab-portrait');
+
+const strings = {
+  verifying: t('signal.verifying'),
+  sending: t('signal.sending'),
+  invalid: t('signal.errInvalid'),
+  files: t('signal.errFiles'),
+  rate: t('signal.errRate'),
+  challenge: t('signal.errChallenge'),
+  network: t('signal.errNetwork'),
+  send: t('signal.errSend'),
+  doneBody: t('signal.doneBody'),
+  remove: t('signal.remove'),
+};
+---
+
+<dialog class="signal" data-signal aria-labelledby="signal-title">
+  <div class="glass">
+    <!-- The fill lives on its own layer: WebKit drops the background of the element that carries
+         backdrop-filter inside the top layer, so the panel would otherwise turn see-through. -->
+    <div class="glass-fill" aria-hidden="true"></div>
+    <button type="button" class="close" data-signal-close aria-label={t('signal.close')}>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path
+          d="M6 6l12 12M18 6L6 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <aside class="visual">
+      <Picture
+        src={crab}
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        widths={[480, 900]}
+        sizes="(max-width: 900px) 100vw, 26rem"
+        alt=""
+        class="visual-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="visual-veil" aria-hidden="true"></div>
+      {
+        meta && (
+          <p class="credit mono">
+            <a href={meta.source} rel="noopener noreferrer" target="_blank" tabindex="-1">
+              {meta.object} · {meta.telescope} · {t('observatory.imageCredit')}: {meta.credit}
+            </a>
+          </p>
+        )
+      }
+      <div class="quote">
+        <p class="kicker mono">{t('signal.kicker')}</p>
+        <h2 id="signal-title" class="title">{t('signal.title')}</h2>
+        <p class="sub">{t('signal.sub')}</p>
+      </div>
+    </aside>
+
+    <form class="form" data-signal-form novalidate autocomplete="on">
+      <div class="row">
+        <div class="field">
+          <label for="signal-name">{t('signal.name')}</label>
+          <input
+            id="signal-name"
+            name="name"
+            type="text"
+            required
+            maxlength="100"
+            autocomplete="name"
+            enterkeyhint="next"
+          />
+        </div>
+        <div class="field">
+          <label for="signal-email">{t('signal.email')}</label>
+          <input
+            id="signal-email"
+            name="email"
+            type="email"
+            required
+            maxlength="254"
+            autocomplete="email"
+            inputmode="email"
+            enterkeyhint="next"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label for="signal-subject">{t('signal.subject')}</label>
+        <input
+          id="signal-subject"
+          name="subject"
+          type="text"
+          required
+          maxlength="150"
+          autocomplete="off"
+          enterkeyhint="next"
+        />
+      </div>
+      <div class="field">
+        <label for="signal-message">{t('signal.message')}</label>
+        <textarea
+          id="signal-message"
+          name="message"
+          required
+          maxlength="5000"
+          rows="6"
+          aria-describedby="signal-message-hint"></textarea>
+        <div class="hint-row">
+          <p id="signal-message-hint" class="hint">{t('signal.messageHint')}</p>
+          <p class="hint mono" data-signal-count aria-hidden="true">0 / 5000</p>
+        </div>
+      </div>
+      <div class="field">
+        <span class="label" id="signal-files-label">{t('signal.files')}</span>
+        <label class="dropzone" for="signal-files">
+          <input
+            id="signal-files"
+            name="files"
+            type="file"
+            multiple
+            accept=".pdf,.docx,.png,.jpg,.jpeg,.txt,application/pdf,image/png,image/jpeg,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            data-signal-file-input
+            aria-labelledby="signal-files-label"
+            aria-describedby="signal-files-hint"
+          />
+          <span class="dropzone-cta">{t('signal.filesAdd')}</span>
+          <span id="signal-files-hint" class="hint">{t('signal.filesHint')}</span>
+        </label>
+        <ul class="files" data-signal-files hidden></ul>
+      </div>
+      <!-- Honeypot: invisible to people, tempting to bots. Never focusable, never autofilled. -->
+      <div class="hp" aria-hidden="true">
+        <label for="signal-website">Website</label>
+        <input id="signal-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="actions">
+        <p class="status mono" data-signal-status role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary" data-signal-submit>{t('signal.send')}</button>
+      </div>
+      <p class="fine">
+        {t('signal.privacy')}
+        {t('signal.fallback')}
+        <a href={`mailto:${email}`}>{email}</a>
+      </p>
+    </form>
+
+    <div class="done" data-signal-done hidden>
+      <svg class="done-mark" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.2"
+        ></circle>
+        <circle
+          cx="32"
+          cy="32"
+          r="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          opacity=".6"></circle>
+        <circle cx="32" cy="32" r="3.5" fill="currentColor"></circle>
+        <path d="M18 32h9M37 32h9M32 18v9M32 37v9" stroke="currentColor" stroke-width="1"></path>
+      </svg>
+      <h3 class="done-title">{t('signal.doneTitle')}</h3>
+      <p class="done-body" data-signal-done-body>{t('signal.doneBody')}</p>
+      <button type="button" class="btn btn-ghost" data-signal-close>{t('signal.back')}</button>
+    </div>
+  </div>
+</dialog>
+
+<script type="application/json" id="signal-strings" set:html={safeJson(strings)} />
+
+<style>
+  /* ---------- the dialog box: no chrome of its own, the glass panel is the surface ---------- */
+  .signal {
+    border: 0;
+    padding: 0;
+    margin: auto;
+    width: min(66rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    background: transparent;
+    color: var(--ink);
+    overflow: visible;
+  }
+  .signal:not([open]) {
+    display: none;
+  }
+  /* Fixed colours here: ::backdrop does not inherit the theme tokens in every engine. */
+  .signal::backdrop {
+    background: rgb(4 6 16 / 0.66);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+  }
+  :global([data-theme='atlas']) .signal::backdrop {
+    background: rgb(52 42 24 / 0.38);
+  }
+  :global(html.signal-open) {
+    overflow: hidden;
+  }
+
+  /* ---------- liquid glass ---------- */
+  .glass {
+    --glass-fill: color-mix(in oklab, var(--bg-1) 84%, transparent);
+    --glass-rim: rgb(255 255 255 / 0.55);
+    --glass-rim-soft: rgb(255 255 255 / 0.07);
+    --glass-sheen: rgb(255 255 255 / 0.14);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(17rem, 5fr) 7fr;
+    /* minmax(0, 1fr): the form row must shrink to the panel so it scrolls inside the glass on short
+       viewports instead of overflowing into the clipped area (where clicks hit the dialog box). */
+    grid-template-rows: minmax(0, 1fr);
+    max-height: calc(100dvh - 2rem);
+    border-radius: 1.75rem;
+    overflow: clip;
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    backdrop-filter: blur(28px) saturate(170%);
+    box-shadow:
+      0 40px 90px -30px rgb(0 0 0 / 0.75),
+      0 0 0 1px color-mix(in oklab, var(--ink) 10%, transparent),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.22),
+      inset 0 -1px 0 0 rgb(255 255 255 / 0.04);
+    isolation: isolate;
+  }
+  .glass-fill {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--glass-fill);
+    pointer-events: none;
+  }
+  .glass > .visual,
+  .glass > .form,
+  .glass > .done {
+    position: relative;
+    z-index: 1;
+  }
+  /* Specular rim: a 1px gradient ring, brighter where light would catch the edge. */
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      var(--glass-rim) 0%,
+      var(--glass-rim-soft) 30%,
+      rgb(255 255 255 / 0.02) 55%,
+      var(--glass-rim-soft) 75%,
+      var(--glass-rim) 100%
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  /* Slow sheen crossing the glass (transform-only). */
+  .glass::after {
+    content: '';
+    position: absolute;
+    inset: -20% auto -20% 0;
+    width: 60%;
+    z-index: 2;
+    background: linear-gradient(
+      100deg,
+      transparent 25%,
+      var(--glass-sheen) 48%,
+      rgb(255 255 255 / 0.2) 50%,
+      var(--glass-sheen) 52%,
+      transparent 75%
+    );
+    transform: translateX(-120%) skewX(-8deg);
+    animation: signal-sheen 14s var(--ease-out) infinite;
+    pointer-events: none;
+  }
+  :global([data-theme='atlas']) .glass {
+    --glass-fill: color-mix(in oklab, var(--bg-1) 90%, transparent);
+    --glass-rim: rgb(255 255 255 / 0.9);
+    --glass-rim-soft: rgb(27 34 64 / 0.12);
+    --glass-sheen: rgb(255 255 255 / 0.35);
+    box-shadow:
+      0 40px 90px -30px rgb(27 34 64 / 0.45),
+      0 0 0 1px color-mix(in oklab, var(--ink) 16%, transparent),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.8);
+  }
+  @keyframes signal-sheen {
+    0%,
+    55% {
+      transform: translateX(-120%) skewX(-8deg);
+    }
+    100% {
+      transform: translateX(260%) skewX(-8deg);
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 5;
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    color: var(--ink);
+    background: color-mix(in oklab, var(--bg-0) 45%, transparent);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition:
+      background var(--dur-fast),
+      transform var(--dur-fast) var(--ease-out);
+  }
+  .close:hover {
+    background: color-mix(in oklab, var(--bg-0) 70%, transparent);
+    transform: rotate(90deg);
+  }
+
+  /* ---------- image side ---------- */
+  .visual {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    display: grid;
+    align-content: end;
+  }
+  .visual-img,
+  .visual-img :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 45%;
+    transform: scale(1.04);
+    animation: signal-breathe 26s ease-in-out infinite alternate;
+  }
+  @keyframes signal-breathe {
+    to {
+      transform: scale(1.1) translate3d(-1%, 1%, 0);
+    }
+  }
+  /* Blends the photo into the glass on its inner edge and darkens the foot for the text. */
+  .visual-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, transparent 70%, var(--glass-fill) 100%),
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--bg-0) 25%, transparent) 0%,
+        transparent 30%,
+        transparent 45%,
+        color-mix(in oklab, var(--bg-0) 82%, transparent) 100%
+      );
+  }
+  :global([data-theme='atlas']) .visual-veil {
+    background:
+      linear-gradient(90deg, transparent 70%, var(--glass-fill) 100%),
+      linear-gradient(180deg, transparent 40%, rgb(6 8 20 / 0.85) 100%);
+  }
+  .quote {
+    position: relative;
+    z-index: 1;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    /* The quote sits on the photograph in both themes, so it uses the night inks. */
+    color: #f4efe6;
+  }
+  .kicker {
+    margin: 0 0 0.6rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9ad9e8;
+  }
+  .title {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    line-height: 1.12;
+  }
+  .sub {
+    margin: 0.9rem 0 0;
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    color: rgb(244 239 230 / 0.82);
+  }
+  .credit {
+    position: absolute;
+    top: 0.9rem;
+    left: 1.1rem;
+    z-index: 1;
+    margin: 0;
+    max-width: calc(100% - 4.5rem);
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    color: rgb(244 239 230 / 0.6);
+  }
+  .credit a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .credit a:hover {
+    color: #f2c46d;
+  }
+
+  /* ---------- form side ---------- */
+  .form,
+  .done {
+    min-height: 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .form {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding-top: clamp(3.25rem, 5vw, 3.75rem); /* room for the close button */
+  }
+  .row {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+  label,
+  .label {
+    font-size: var(--text-sm);
+    color: var(--ink-muted);
+  }
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.7rem 0.95rem;
+    font: inherit;
+    color: var(--ink);
+    background: color-mix(in oklab, var(--bg-0) 42%, transparent);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+    transition:
+      border-color var(--dur-fast),
+      box-shadow var(--dur-fast);
+  }
+  :global([data-theme='atlas']) input[type='text'],
+  :global([data-theme='atlas']) input[type='email'],
+  :global([data-theme='atlas']) textarea {
+    background: rgb(255 255 255 / 0.45);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 8.5rem;
+    line-height: 1.5;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 28%, transparent);
+  }
+  .was-submitted input:invalid,
+  .was-submitted textarea:invalid {
+    border-color: var(--accent-2);
+  }
+  .hint-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .hint {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+  .dropzone {
+    display: grid;
+    gap: 0.25rem;
+    justify-items: start;
+    padding: 0.9rem 1rem;
+    border: 1px dashed color-mix(in oklab, var(--ink) 30%, transparent);
+    border-radius: var(--radius-md);
+    background: color-mix(in oklab, var(--bg-0) 25%, transparent);
+    cursor: pointer;
+    transition: border-color var(--dur-fast);
+  }
+  .dropzone:hover,
+  .dropzone:focus-within {
+    border-color: var(--accent);
+  }
+  .dropzone input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .dropzone-cta {
+    font-size: var(--text-sm);
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    text-underline-offset: 0.2em;
+  }
+  .files {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .files :global(li) {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.8rem;
+    font-size: var(--text-sm);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: color-mix(in oklab, var(--bg-0) 30%, transparent);
+  }
+  .files :global(.file-name) {
+    overflow-wrap: anywhere;
+  }
+  .files :global(.file-size) {
+    color: var(--ink-muted);
+    font-size: var(--text-xs);
+  }
+  .files :global(.file-remove) {
+    min-height: 2.25rem;
+    padding: 0 0.6rem;
+    color: var(--accent-2);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-top: 0.25rem;
+  }
+  .status {
+    flex: 1 1 14rem;
+    margin: 0;
+    min-height: 1.2em;
+    font-size: var(--text-xs);
+    color: var(--accent-3);
+  }
+  .status.is-error {
+    color: var(--accent-2);
+  }
+  .form[aria-busy='true'] .btn-primary {
+    opacity: 0.7;
+    cursor: progress;
+  }
+  .fine {
+    margin: 0;
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+  .fine a {
+    color: var(--ink);
+  }
+
+  /* ---------- success state ---------- */
+  .done {
+    display: grid;
+    gap: 0.9rem;
+    justify-items: start;
+    align-content: center;
+    min-height: 22rem;
+    color: var(--ink);
+    animation: signal-rise 520ms var(--ease-out) both;
+  }
+  .done-mark {
+    color: var(--accent);
+    animation: signal-pulse 2.6s ease-in-out infinite;
+  }
+  .done-title {
+    margin: 0;
+    font-size: var(--text-2xl);
+  }
+  .done-body {
+    margin: 0;
+    max-width: 34ch;
+    color: var(--ink-muted);
+    overflow-wrap: anywhere;
+  }
+  @keyframes signal-pulse {
+    50% {
+      transform: scale(1.06);
+      opacity: 0.8;
+    }
+  }
+
+  /* ---------- open / close motion (closing mirrors opening) ---------- */
+  .signal.is-open .glass {
+    animation: signal-rise 520ms var(--ease-out) both;
+  }
+  .signal.is-open::backdrop {
+    animation: signal-fade 420ms ease-out both;
+  }
+  .signal.is-leaving .glass {
+    animation: signal-sink 300ms var(--ease-out) both;
+  }
+  .signal.is-leaving::backdrop {
+    animation: signal-fade 300ms ease-in reverse both;
+  }
+  @keyframes signal-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+    }
+  }
+  @keyframes signal-sink {
+    to {
+      opacity: 0;
+      transform: translateY(12px) scale(0.985);
+    }
+  }
+  @keyframes signal-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* ---------- phones: a bottom sheet with the photograph as a band on top ---------- */
+  @media (max-width: 900px) {
+    .signal {
+      width: 100%;
+      max-width: none;
+      max-height: 100dvh;
+      margin: auto 0 0;
+    }
+    .glass {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto minmax(0, 1fr);
+      max-height: 100dvh;
+      border-radius: 1.5rem 1.5rem 0 0;
+      /* Two full-screen blurs are heavy on phones: lighter glass, the backdrop carries the depth. */
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+      backdrop-filter: blur(16px) saturate(150%);
+    }
+    .signal::backdrop {
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    /* Nearly opaque on phones (after the theme rules, so it wins in both themes): the sheet covers
+       the page and legibility must not depend on the blur. */
+    .signal .glass {
+      --glass-fill: color-mix(in oklab, var(--bg-1) 96%, transparent);
+    }
+    .visual {
+      height: min(38vh, 20rem);
+      min-height: 13rem;
+    }
+    .visual-veil {
+      background: linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--bg-0) 20%, transparent) 0%,
+        transparent 30%,
+        color-mix(in oklab, var(--bg-0) 80%, transparent) 78%,
+        var(--glass-fill) 100%
+      );
+    }
+    :global([data-theme='atlas']) .visual-veil {
+      background: linear-gradient(
+        180deg,
+        transparent 30%,
+        rgb(6 8 20 / 0.8) 78%,
+        var(--glass-fill) 100%
+      );
+    }
+    .quote {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    .title {
+      font-size: clamp(1.35rem, 6vw, 1.7rem);
+    }
+    .sub {
+      font-size: var(--text-xs);
+    }
+    .form,
+    .done {
+      padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    }
+    .form {
+      padding-top: 1.25rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .done {
+      min-height: 16rem;
+    }
+    .close {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+    .signal.is-open .glass {
+      animation-name: signal-rise-sheet;
+    }
+    .signal.is-leaving .glass {
+      animation-name: signal-sink-sheet;
+    }
+    @keyframes signal-rise-sheet {
+      from {
+        opacity: 0;
+        transform: translateY(6%);
+      }
+    }
+    @keyframes signal-sink-sheet {
+      to {
+        opacity: 0;
+        transform: translateY(6%);
+      }
+    }
+    .glass::after {
+      animation-duration: 22s;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      background: var(--bg-1);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .signal::backdrop {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glass::after,
+    .visual-img,
+    .visual-img :global(img),
+    .done,
+    .done-mark,
+    .signal.is-open .glass,
+    .signal.is-open::backdrop,
+    .signal.is-leaving .glass,
+    .signal.is-leaving::backdrop {
+      animation: none;
+    }
+    .close:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  import '@/scripts/contact-signal';
+</script>

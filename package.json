@@ -17,7 +17,12 @@
     "dev": "astro dev",
     "build": "node scripts/generate-og.mjs && astro build",
     "preview": "astro preview",
-    "check": "astro check",
+    "check": "astro check && npm run check:worker",
+    "check:worker": "tsc -p worker && wrangler deploy --config worker/wrangler.jsonc --dry-run --outdir .wrangler/dry-run",
+    "worker:dev": "wrangler dev --config worker/wrangler.jsonc --port 8787 --ip 127.0.0.1",
+    "worker:deploy": "wrangler deploy --config worker/wrangler.jsonc",
+    "worker:secret": "wrangler secret put --config worker/wrangler.jsonc",
+    "worker:tail": "wrangler tail --config worker/wrangler.jsonc",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -42,6 +47,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "^5.20260907.1",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.62.1",
     "eslint": "^10.9.1",
@@ -51,6 +57,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.0",
     "typescript-eslint": "^8.0.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "wrangler": "^4.129.0"
   }
 }

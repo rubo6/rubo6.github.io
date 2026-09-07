@@ -89,5 +89,19 @@
     "license": "CC BY 4.0 (ESA/Webb)",
     "crop": "attention",
     "uses": ["skills section backdrop"]
+  },
+  {
+    "id": "crab-portrait",
+    "release": "weic2326a",
+    "object": "Crab Nebula (M1) — pulsar wind nebula",
+    "source": "https://esawebb.org/images/weic2326a/",
+    "telescope": "JWST",
+    "instrument": "NIRCam + MIRI",
+    "released": "2023-10-30",
+    "credit": "NASA, ESA, CSA, STScI, T. Temim (Princeton University)",
+    "license": "CC BY 4.0 (ESA/Webb)",
+    "crop": "centre",
+    "shape": "portrait",
+    "uses": ["contact form panel (a pulsar: the sky's own repeating signal)"]
   }
 ]

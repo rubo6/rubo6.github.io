@@ -4,6 +4,7 @@
 
 ## Lo que debe Rubo
 
+- **Formulario de contacto (rama `feat/contact-signal`)**: probarlo en localhost, dar el OK, y luego seguir `docs/OWNER.md → Formulario de contacto` (cuenta Resend, dos secretos, `npm run worker:deploy`, merge a `main`). Opcional después: verificar el dominio en Resend para enviar desde `senal@rubo6.dev` y revisar la promesa "respondo en menos de dos días hábiles" (`signal.sub`).
 - **Keeper Save Probability**: URL del repo (o hacerlo público) para enlazarlo en el proyecto. Es el único de los proyectos públicos sin repo; Parallel Bag-of-Words es de curso (`visibility: course`) y no se publica.
 - **Proyecto final de IA** (modelo de probabilidad de gol con interfaz tipo juego, primavera 2026, distinto de Keeper): repos por enviar; entrará como proyecto `academic`.
 - **Certificaciones**: nombre oficial, fecha y enlace de verificación de cada una al terminarla (DataCamp Data Engineer, AWS Academy, Anthropic; diploma Ibero en diciembre de 2026).

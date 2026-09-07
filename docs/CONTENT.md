@@ -184,7 +184,9 @@ scene: crab
 
 ## UI strings
 
-`src/i18n/ui.ts`: add the key to `en`, `es` and `pt-br`; the build fails until all three exist, and `npm run check:content` fails if a key is never used. Client scripts get strings through `clientStrings()`.
+`src/i18n/ui.ts`: add the key to `en`, `es` and `pt-br`; the build fails until all three exist, and `npm run check:content` fails if a key is never used. Client scripts get strings through `clientStrings()` or a component's own JSON island (`ContactSignal.astro` → `signal-strings`).
+
+The contact form's copy lives under `signal.*`: `signal.title` is the hook phrase on the photograph, `signal.sub` the promise beneath it (today "reply within two working days": change it if Rubo cannot keep it), `signal.ctaLead` the card text in the Contact section, `signal.err*` the messages for each failure code returned by the Worker. Limits quoted in `signal.filesHint` and `signal.errFiles` must match `LIMITS` in `worker/src/lib.ts`.
 
 ## Recurring tasks
 

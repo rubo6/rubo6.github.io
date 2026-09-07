@@ -101,7 +101,7 @@ Start with [AGENTS.md](AGENTS.md): it maps each kind of task to the single docum
 - Strict Content-Security-Policy via `<meta>`: no inline scripts; the only external origin is GoatCounter, a cookieless analytics service.
 - ESLint bans `eval`, `innerHTML`, `document.write`, `Math.random`.
 - CI: format, lint, types, tests, build, `npm audit`, dependency review, CodeQL; Dependabot weekly; all actions pinned to commit SHAs with least-privilege permissions.
-- No forms, no cookies, no phone number. Report an issue: [SECURITY.md](SECURITY.md) or `/.well-known/security.txt`.
+- One form (the contact dialog) served by a same-origin Cloudflare Worker with a self-hosted proof-of-work check instead of a captcha vendor; no cookies, no phone number. Report an issue: [SECURITY.md](SECURITY.md) or `/.well-known/security.txt`.
 
 ## Credits
 

@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 /**
  * Site configuration for https://rubo6.dev (GitHub Pages, custom domain; rubo6.github.io redirects here)
  *
- * - Static output (GitHub Pages). No server, no runtime secrets.
+ * - Static output (GitHub Pages). No server, no runtime secrets. The only dynamic endpoint,
+ *   /api/contact, is a separate Cloudflare Worker (worker/, ADR-0012).
  * - i18n: English is the root locale; other locales live under /<locale>/.
  * - Tailwind CSS v4 runs as a Vite plugin (no @astrojs/tailwind integration).
  */
@@ -52,6 +53,18 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      // Local development of the contact form: `npm run worker:dev` serves the Worker on :8787 and
+      // the dev server forwards /api to it, so the browser talks to one origin like in production.
+      proxy: {
+        '/api': {
+          target: 'http://127.0.0.1:8787',
+          // Host must be the Worker's own (wrangler dev drops the Origin header when Host differs);
+          // the browser's Origin header itself is forwarded untouched.
+          changeOrigin: true,
+        },
+      },
+    },
     build: {
       // Never inline JS or fonts as inline <script> / data: URLs: the strict CSP
       // (script-src 'self', font-src 'self') would block them in production.

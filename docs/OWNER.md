@@ -7,6 +7,7 @@ Todo lo de aquí requiere tu cuenta, tu tarjeta o una decisión tuya; ningún ag
 - ✅ GitHub: 2FA, push protection, Dependabot, CodeQL, private vulnerability reporting (2026-09-03).
 - ✅ Dominio `rubo6.dev` en Cloudflare Registrar (vence 2027-09-03), registros A/AAAA/CNAME en proxy de Cloudflare desde 2026-09-06 (ADR-0010), DNSSEC, CAA, SPF/DMARC/Null MX.
 - ✅ GoatCounter `rubo6.goatcounter.com` con el contador público activado (2026-09-05). Panel: https://rubo6.goatcounter.com.
+- ⬜ Formulario de contacto: cuenta Resend + secretos del Worker + `npm run worker:deploy` (seccion "Formulario de contacto").
 - ✅ Secreto `GH_TRAFFIC_TOKEN` en el repo (views/clones y calendario de contribuciones). Caduca al año de crearlo: cuando GitHub te avise, repite el paso de "Rotar el token".
 
 ## Cloudflare
@@ -44,6 +45,38 @@ Reglas para no romperlo:
 
 - `public/js/count.js` es una copia del script de GoatCounter (ADR-0009). Dos veces al ano pide al agente que lo actualice desde `https://gc.zgo.at/count.js`.
 - Comprobacion externa: https://dnsviz.net/d/rubo6.dev/ (DNSSEC), https://securityheaders.com/?q=https://rubo6.dev (cabeceras), https://observatory.mozilla.org/ (vision general). En `Security -> Analytics` se ven las peticiones bloqueadas por la regla `humano`.
+
+## Formulario de contacto: Worker de Cloudflare (ADR-0012)
+
+El boton "Enviar una señal" de la seccion Contacto abre un formulario que envia el mensaje a `eruben.bernal@gmail.com` a traves de un Worker de Cloudflare en `rubo6.dev/api/contact`. El sitio sigue siendo estatico; el Worker se publica aparte y solo tu puedes hacerlo (usa tu cuenta de Cloudflare). Todo es gratis en los limites actuales (Workers Free: 100 000 peticiones al dia; Resend Free: 3 000 correos al mes, 100 al dia).
+
+### Probarlo en tu maquina (sin cuentas)
+
+1. En la terminal del repo: `npm run worker:dev` (usa `worker/.dev.vars`; si no existe, copia `worker/.dev.vars.example` a `worker/.dev.vars`). Con `MAIL_DRY_RUN=1` el correo no se envia: se imprime en esa terminal.
+2. En otra terminal: `npm run dev` y abre http://127.0.0.1:4321 → Contacto → "Enviar una señal". En el panel Browser de Claude Code sirven las configuraciones `astro-dev` y `worker-dev`.
+3. Al enviar, el mensaje completo aparece en la terminal del Worker con `[dry-run]`.
+
+### Publicarlo (unos 10 minutos, una sola vez)
+
+1. **Cuenta de Resend**: https://resend.com/signup con tu Gmail (`eruben.bernal@gmail.com`). Confirma el correo. No hace falta tarjeta.
+2. **API key**: https://resend.com/api-keys → _Create API Key_ → nombre `rubo6-contact`, permiso _Sending access_, dominio _All domains_. Copiala; solo se muestra una vez.
+   Mientras no verifiques un dominio, Resend envia desde `onboarding@resend.dev` y **solo entrega a la direccion de tu cuenta**, que es justo el destinatario. Suficiente para empezar.
+3. **Iniciar sesion en Cloudflare desde wrangler**: en la terminal del repo `npx wrangler login` (abre el navegador; acepta los permisos). Tu maquina queda autorizada; los agentes no pueden hacer este paso.
+4. **Secretos del Worker** (te los pide por teclado, no quedan en ningun archivo):
+   - `npm run worker:secret -- POW_SECRET` → pega una cadena aleatoria larga. Para generarla: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
+   - `npm run worker:secret -- RESEND_API_KEY` → pega la API key de Resend.
+     Si wrangler pregunta si quieres crear el Worker `rubo6-contact`, responde si.
+5. **Publicar**: `npm run worker:deploy`. Debe terminar con la ruta `rubo6.dev/api/contact*` asignada a la zona `rubo6.dev`. Comprueba: https://rubo6.dev/api/contact/challenge debe devolver un JSON con `"ok":true`.
+6. **Mezclar la rama**: `git checkout main && git merge feat/contact-signal && git push`. El deploy de GitHub Pages publica el sitio con el boton.
+7. **Prueba real**: abre https://rubo6.dev, envia un mensaje con un PDF pequeño y revisa tu Gmail (mira tambien Spam la primera vez; marca "No es spam").
+
+### Despues (opcional)
+
+- **Enviar desde tu dominio**: en Resend → _Domains_ → _Add domain_ → `rubo6.dev` → region más cercana. Resend te da tres registros DNS (un TXT `resend._domainkey`, y en el subdominio `send`: un MX y un TXT SPF). Añadelos en Cloudflare → DNS → Records **como DNS only** (nube gris) y pulsa _Verify_ en Resend. Luego en `worker/wrangler.jsonc` cambia `MAIL_FROM` a `"Observatorio rubo6.dev <senal@rubo6.dev>"` y ejecuta `npm run worker:deploy`. Tu SPF `v=spf1 -all` del dominio raiz y el Null MX no cambian: Resend usa el subdominio `send.rubo6.dev`.
+- **Ver que pasa**: `npm run worker:tail` muestra las peticiones en vivo; Cloudflare → Workers & Pages → `rubo6-contact` → _Logs_ y _Metrics_. Nunca se registran datos del visitante.
+- **Ajustar la proteccion**: en `worker/wrangler.jsonc`, `POW_BITS` (17 hoy: ~1 s en laptop, unos segundos en telefono; 18 duplica el coste al bot) y el limite `3 requests/60 s` por IP. Cambiar y `npm run worker:deploy`.
+- **Rotar secretos**: repite el paso 4 con valores nuevos; el cambio es inmediato.
+- **Si algo falla**: el boton muestra "El observatorio no respondio" cuando el Worker no contesta (mira _Logs_); "No se pudo enviar" cuando Resend rechaza (API key caducada o cuota del dia agotada). El enlace `mailto:` de la tarjeta sigue funcionando en cualquier caso.
 
 ## Rotar el token de GitHub (cuando caduque)
 

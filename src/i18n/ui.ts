@@ -186,6 +186,39 @@ const en = {
   'contact.copied': 'Copied',
   'contact.languages': 'Languages',
 
+  'signal.kicker': 'Signal · Contact',
+  'signal.cta': 'Send a signal',
+  'signal.ctaLead':
+    'A form that lands in my inbox: subject, message and, if you need them, attachments. No account needed.',
+  'signal.title': 'Every collaboration starts with a signal.',
+  'signal.sub':
+    'Tell me about the role or the problem you are solving. I read every message and reply from my own inbox within two working days.',
+  'signal.name': 'Your name',
+  'signal.email': 'Your e-mail (for my reply)',
+  'signal.subject': 'Subject',
+  'signal.message': 'Message',
+  'signal.messageHint': 'Plain text. Links are welcome; formatting is not needed.',
+  'signal.files': 'Attachments (optional)',
+  'signal.filesHint': 'PDF, DOCX, PNG, JPG or TXT. Up to 3 files, 6 MB in total.',
+  'signal.filesAdd': 'Choose files',
+  'signal.remove': 'Remove',
+  'signal.send': 'Send signal',
+  'signal.sending': 'Sending…',
+  'signal.verifying': 'Checking that a browser, not a script, is sending this…',
+  'signal.doneTitle': 'Signal received.',
+  'signal.doneBody': 'Thank you. Your message is on its way to my inbox; I will reply to {email}.',
+  'signal.back': 'Back to the observatory',
+  'signal.close': 'Close',
+  'signal.fallback': 'Prefer your own mail client?',
+  'signal.errInvalid': 'Please check the highlighted fields.',
+  'signal.errFiles':
+    'Attachments: up to 3 files (PDF, DOCX, PNG, JPG or TXT), 4 MB each and 6 MB in total.',
+  'signal.errRate': 'Too many messages from this connection. Please wait a minute and try again.',
+  'signal.errChallenge': 'The verification expired. Please send again.',
+  'signal.errNetwork': 'The observatory did not answer. Try again, or write to me directly.',
+  'signal.errSend': 'The message could not be sent. Please write to me directly.',
+  'signal.privacy': 'Your message and attachments go straight to my mailbox and nowhere else.',
+
   'footer.built':
     'Built with Astro, TypeScript and real astronomy. No cookies, no trackers: only a cookieless page count.',
   'footer.moon': 'Moon tonight',
@@ -394,6 +427,40 @@ const es: Record<UIKey, string> = {
   'contact.copied': 'Copiado',
   'contact.languages': 'Idiomas',
 
+  'signal.kicker': 'Señal · Contacto',
+  'signal.cta': 'Enviar una señal',
+  'signal.ctaLead':
+    'Un formulario que llega a mi correo: asunto, mensaje y, si hace falta, adjuntos. Sin cuentas ni registros.',
+  'signal.title': 'Toda colaboración empieza con una señal.',
+  'signal.sub':
+    'Cuénteme del puesto o del problema que quiere resolver. Leo cada mensaje y respondo desde mi correo en menos de dos días hábiles.',
+  'signal.name': 'Su nombre',
+  'signal.email': 'Su correo (para responderle)',
+  'signal.subject': 'Asunto',
+  'signal.message': 'Mensaje',
+  'signal.messageHint': 'Texto plano. Los enlaces son bienvenidos; el formato no hace falta.',
+  'signal.files': 'Adjuntos (opcional)',
+  'signal.filesHint': 'PDF, DOCX, PNG, JPG o TXT. Hasta 3 archivos, 6 MB en total.',
+  'signal.filesAdd': 'Elegir archivos',
+  'signal.remove': 'Quitar',
+  'signal.send': 'Enviar señal',
+  'signal.sending': 'Enviando…',
+  'signal.verifying': 'Comprobando que envía un navegador y no un script…',
+  'signal.doneTitle': 'Señal recibida.',
+  'signal.doneBody': 'Gracias. Su mensaje ya va hacia mi buzón; le respondo a {email}.',
+  'signal.back': 'Volver al observatorio',
+  'signal.close': 'Cerrar',
+  'signal.fallback': '¿Prefiere su propio cliente de correo?',
+  'signal.errInvalid': 'Revise los campos señalados.',
+  'signal.errFiles':
+    'Adjuntos: hasta 3 archivos (PDF, DOCX, PNG, JPG o TXT), 4 MB cada uno y 6 MB en total.',
+  'signal.errRate':
+    'Demasiados mensajes desde esta conexión. Espere un minuto e inténtelo de nuevo.',
+  'signal.errChallenge': 'La verificación caducó. Envíe de nuevo.',
+  'signal.errNetwork': 'El observatorio no respondió. Inténtelo de nuevo o escríbame directo.',
+  'signal.errSend': 'No se pudo enviar el mensaje. Escríbame directo.',
+  'signal.privacy': 'Su mensaje y sus adjuntos van directo a mi buzón y a ningún otro lugar.',
+
   'footer.built':
     'Hecho con Astro, TypeScript y astronomía de verdad. Sin cookies ni rastreadores: solo un conteo de visitas anónimo.',
   'footer.moon': 'La Luna esta noche',
@@ -599,6 +666,41 @@ const ptBr: Record<UIKey, string> = {
   'contact.copy': 'Copiar e-mail',
   'contact.copied': 'Copiado',
   'contact.languages': 'Idiomas',
+
+  'signal.kicker': 'Sinal · Contato',
+  'signal.cta': 'Enviar um sinal',
+  'signal.ctaLead':
+    'Um formulário que chega ao meu e-mail: assunto, mensagem e, se precisar, anexos. Sem contas nem cadastros.',
+  'signal.title': 'Toda colaboração começa com um sinal.',
+  'signal.sub':
+    'Conte-me sobre a vaga ou o problema que quer resolver. Leio cada mensagem e respondo do meu e-mail em até dois dias úteis.',
+  'signal.name': 'Seu nome',
+  'signal.email': 'Seu e-mail (para a resposta)',
+  'signal.subject': 'Assunto',
+  'signal.message': 'Mensagem',
+  'signal.messageHint': 'Texto simples. Links são bem-vindos; formatação não é necessária.',
+  'signal.files': 'Anexos (opcional)',
+  'signal.filesHint': 'PDF, DOCX, PNG, JPG ou TXT. Até 3 arquivos, 6 MB no total.',
+  'signal.filesAdd': 'Escolher arquivos',
+  'signal.remove': 'Remover',
+  'signal.send': 'Enviar sinal',
+  'signal.sending': 'Enviando…',
+  'signal.verifying': 'Verificando que é um navegador, e não um script, que envia isto…',
+  'signal.doneTitle': 'Sinal recebido.',
+  'signal.doneBody':
+    'Obrigado. Sua mensagem já está a caminho da minha caixa de entrada; respondo para {email}.',
+  'signal.back': 'Voltar ao observatório',
+  'signal.close': 'Fechar',
+  'signal.fallback': 'Prefere o seu próprio cliente de e-mail?',
+  'signal.errInvalid': 'Revise os campos destacados.',
+  'signal.errFiles':
+    'Anexos: até 3 arquivos (PDF, DOCX, PNG, JPG ou TXT), 4 MB cada e 6 MB no total.',
+  'signal.errRate': 'Muitas mensagens desta conexão. Aguarde um minuto e tente de novo.',
+  'signal.errChallenge': 'A verificação expirou. Envie de novo.',
+  'signal.errNetwork': 'O observatório não respondeu. Tente de novo ou escreva-me diretamente.',
+  'signal.errSend': 'Não foi possível enviar a mensagem. Escreva-me diretamente.',
+  'signal.privacy':
+    'Sua mensagem e seus anexos vão direto para a minha caixa de entrada e para nenhum outro lugar.',
 
   'footer.built':
     'Feito com Astro, TypeScript e astronomia de verdade. Sem cookies nem rastreadores: só uma contagem de visitas anônima.',

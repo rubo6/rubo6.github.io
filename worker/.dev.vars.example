@@ -1,0 +1,8 @@
+# Copy to worker/.dev.vars (git-ignored) for `npm run worker:dev`. Production values are Worker secrets.
+POW_SECRET=local-development-secret-change-me
+# Local dev: print the e-mail in the wrangler terminal instead of sending it.
+MAIL_DRY_RUN=1
+# The Astro dev server proxies /api to the Worker, so the browser's origin is the dev server.
+ALLOWED_ORIGINS=http://127.0.0.1:4321,http://localhost:4321
+# Lower difficulty so local tests are instant (production uses wrangler.jsonc → 17).
+POW_BITS=10

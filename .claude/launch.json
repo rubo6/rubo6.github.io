@@ -13,6 +13,22 @@
         "4321"
       ],
       "port": 4321
+    },
+    {
+      "name": "worker-dev",
+      "runtimeExecutable": "C:\\Users\\ext_eduapuen\\Desktop\\dev\\tools\\node24\\node.exe",
+      "runtimeArgs": [
+        "node_modules/wrangler/bin/wrangler.js",
+        "dev",
+        "--config",
+        "worker/wrangler.jsonc",
+        "--port",
+        "8787",
+        "--ip",
+        "127.0.0.1"
+      ],
+      "port": 8787,
+      "autoPort": false
     }
   ]
 }
