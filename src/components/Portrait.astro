@@ -4,7 +4,8 @@
  *  - Illustration: three generated portraits that follow the universe —
  *      night + professional → editorial, night + personal → constellation, atlas theme → engraving.
  *  - Video: optional short loop (public/media/portrait.mp4 + .webm). Rendered only when the file exists.
- *      Muted, no autoplay, plays on user request, honours prefers-reduced-motion.
+ *      Muted, no autoplay, plays on user request, honours prefers-reduced-motion. Sources are attached
+ *      on first play so no media request happens at page load (WebKit delays load otherwise).
  *  - Photo: optional real photograph (src/assets/generated/photo.avif/.webp). Rendered only when present.
  * Tabs are real buttons with aria-pressed; the active medium is announced via the frame's aria-label.
  */
@@ -93,10 +94,9 @@ const media = [
             width="880"
             height="1100"
             aria-label={t('portrait.video')}
-          >
-            {hasWebm && <source src="/media/portrait.webm" type="video/webm" />}
-            <source src="/media/portrait.mp4" type="video/mp4" />
-          </video>
+            data-webm={hasWebm ? '/media/portrait.webm' : undefined}
+            data-mp4="/media/portrait.mp4"
+          />
           <button type="button" class="play" data-portrait-play aria-label={t('portrait.play')}>
             <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M8 5v14l11-7z" fill="currentColor" />
@@ -314,6 +314,23 @@ const media = [
       if (video && play) {
         const toggle = () => {
           if (video.paused) {
+            // Sources are attached on first play only: a <video> with <source> children makes
+            // WebKit start resource selection at page load (and delay the load event) even with
+            // preload="none". Nothing media-related touches the network until the visitor asks.
+            if (!video.querySelector('source')) {
+              for (const [attr, type] of [
+                ['webm', 'video/webm'],
+                ['mp4', 'video/mp4'],
+              ] as const) {
+                const src = video.dataset[attr];
+                if (!src) continue;
+                const source = document.createElement('source');
+                source.src = src;
+                source.type = type;
+                video.appendChild(source);
+              }
+              video.load();
+            }
             video
               .play()
               .then(() => play.setAttribute('data-playing', 'true'))

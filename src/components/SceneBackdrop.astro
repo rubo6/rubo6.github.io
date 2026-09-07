@@ -149,7 +149,34 @@ const meta = credits.find((c) => c.id === id);
       transform: scale(1.1) translate3d(-1%, -1%, 0);
     }
   }
-  @media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  /* Phones: a 16:9 photo stretched behind a section several screens tall shows only a blurry
+     sliver. Below 900px the section backdrop becomes a band at the top of the section (the photo
+     keeps its framing) that fades into the page background. Header backdrops are short already. */
+  @media (max-width: 900px) {
+    .scene-section {
+      bottom: auto;
+      height: min(70vh, 32rem);
+    }
+    /* The band ends mid-section, so the credit sits at its top edge instead of over the cards. */
+    .scene-section .scene-credit {
+      top: 0.6rem;
+      bottom: auto;
+      max-width: 60%;
+    }
+    .scene-section .scene-veil {
+      background:
+        linear-gradient(180deg, color-mix(in oklab, var(--bg-0) 45%, transparent), transparent 30%),
+        linear-gradient(
+          0deg,
+          var(--bg-0) 0%,
+          color-mix(in oklab, var(--bg-0) 60%, transparent) 30%,
+          transparent 60%
+        );
+    }
+  }
+  /* The slow breathe is a transform on one image; phones keep it. Only reduced motion stops it. */
+  @media (prefers-reduced-motion: reduce) {
+    .scene-img,
     .scene-img :global(img) {
       animation: none;
     }

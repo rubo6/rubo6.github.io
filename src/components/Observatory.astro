@@ -695,6 +695,18 @@ const personalScene = personal.clusters.map((c, i) => ({
     background: color-mix(in oklab, var(--bg-1) 70%, transparent);
     animation: rise var(--dur-slow) var(--ease-out);
   }
+  /* Closing mirrors the opening: same easing, shorter, so "back to the wide field" feels like the
+     telescope pulling away instead of the panel blinking out. */
+  .panel.is-leaving {
+    animation: sink var(--dur-base) var(--ease-out) both;
+    pointer-events: none;
+  }
+  @keyframes sink {
+    to {
+      opacity: 0;
+      transform: translateY(14px) scale(0.985);
+    }
+  }
   .panel-head {
     display: flex;
     gap: 1.5rem;
@@ -867,12 +879,13 @@ const personalScene = personal.clusters.map((c, i) => ({
       grid-template-columns: 1fr;
     }
   }
-  /* Touch devices: blurred gas layers stay still (36 animated blurred layers are too costly on phones). */
+  /* Touch devices keep the drift (transform-only, runs on the compositor) at half speed; a still
+     nebula read as "broken" on phones. Only prefers-reduced-motion stops it. */
   @media (pointer: coarse) {
     .gas-a,
     .gas-b,
     .gas-c {
-      animation: none;
+      animation-duration: 90s;
     }
   }
   @media (prefers-reduced-motion: reduce) {

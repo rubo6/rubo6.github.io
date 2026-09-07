@@ -70,7 +70,7 @@ Originals from ESA/Webb and ESA/Hubble live in `src/assets/nebulae/raw/` under *
 
 ## CI/CD
 
-- `ci.yml`: `npm ci --ignore-scripts`, `npm run validate`, Playwright smoke suite (`tests/e2e/smoke.spec.ts`, desktop + Pixel 7, hermetic: third-party requests aborted, `workers: 1`, `ASTRO_PREVIEW_BACKGROUND=1` so Astro's preview does not daemonise), `npm audit --omit=dev --audit-level=high`; dependency review on PRs.
+- `ci.yml`: `npm ci --ignore-scripts`, `npm run validate`, Playwright smoke suite (`tests/e2e/smoke.spec.ts`, Chromium desktop + Pixel 7 and WebKit Desktop Safari + iPhone 14, hermetic: third-party requests aborted, `workers: 1`, `ASTRO_PREVIEW_BACKGROUND=1` so Astro's preview does not daemonise), `npm audit --omit=dev --audit-level=high`; dependency review on PRs.
 - `deploy.yml`: build with `withastro/action`, publish with `actions/deploy-pages`; on push to `main`, manual dispatch and a daily cron (05:17 America/Mexico_City). `GH_TRAFFIC_TOKEN` is read here.
 - `lighthouse.yml`: after each successful deploy, weekly and on demand; three mobile runs (median kept) plus desktop against the live URL; `scripts/lighthouse-summary.mjs` writes `docs/lighthouse/latest.json` and `history.jsonl` (committed with `[skip ci]`; `ci.yml`/`deploy.yml` ignore that folder). README badges read `latest.json`. Compare `benchmarkIndex` before comparing scores.
 - `codeql.yml`: weekly and on push, `security-extended`. All actions pinned to commit SHAs, `permissions: {}` at workflow level, Dependabot weekly.

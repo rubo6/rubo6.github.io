@@ -38,7 +38,6 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility !==
   <Nav locale={locale} path="/cv" minimal />
   <main id="main" class="cv container-content">
     <a class="back mono text-sm no-print" href={localePath(locale, '/')}>← {t('cv.back')}</a>
-    <a class="back mono text-sm no-print" href={localePath(locale, '/')}>← {t('cv.back')}</a>
     <div class="toolbar no-print">
       <h1 class="text-2xl">{t('cv.title')}</h1>
       <button type="button" class="btn btn-primary" data-print>{t('cv.print')}</button>

@@ -32,5 +32,8 @@ export default defineConfig({
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
+    // WebKit is the Safari engine: the only way to catch Safari-only CSS/JS differences on Windows/Linux.
+    { name: 'safari', use: { ...devices['Desktop Safari'] } },
+    { name: 'iphone', use: { ...devices['iPhone 14'] } },
   ],
 });

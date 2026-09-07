@@ -58,16 +58,23 @@ function bindDome(): void {
       await Promise.all([original(), wait(SHUTTER_MS)]);
     };
   });
-  document.addEventListener('astro:after-swap', () => {
+  const open = () => {
     const el = shutter();
-    if (!el) return;
+    if (!el || !el.classList.contains('is-closing')) return;
     // Let the new page paint one frame behind the closed shutter, then open.
     window.requestAnimationFrame(() => {
       el.classList.remove('is-closing');
       el.classList.add('is-open');
       window.setTimeout(() => el.classList.remove('is-open'), SHUTTER_MS + 100);
     });
-  });
+  };
+  document.addEventListener('astro:after-swap', open);
+  // Fail-safes: if a navigation is aborted (double click, view transition rejected, offline), the
+  // shutter must never stay closed over the page.
+  document.addEventListener('astro:page-load', open);
+  document.addEventListener('astro:before-preparation', () =>
+    window.setTimeout(open, SHUTTER_MS * 5),
+  );
 }
 
 export function initAlive(): void {

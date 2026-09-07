@@ -73,14 +73,20 @@ export function mountSky(opts: SkyOptions): () => void {
   // depends only on them — horizon, constellation lines, labels) are recomputed once per second into
   // an offscreen canvas. Each animation frame only clears, blits that layer and draws the twinkling
   // stars. Glows come from one pre-rendered sprite instead of a radial gradient per star per frame.
-  // Twinkle is capped at 30 fps on desktop. Touch devices do not twinkle at all: they redraw once a
-  // second (the sky still rotates) and animate only during the warp, so the canvas costs ~nothing.
-  // "Low power" = touch device or narrow viewport (Lighthouse's mobile emulation may not report a
+  // Twinkle is capped at 30 fps on desktop and 12 fps on touch/narrow devices (a frozen sky read
+  // as broken on phones; 12 fps of blitting a cached layer is cheap). Devices asking to save data
+  // or with little memory fall back to one redraw per second (the sky still rotates).
+  // "Coarse" = touch device or narrow viewport (Lighthouse's mobile emulation may not report a
   // coarse pointer, so the viewport width is the second signal).
   const coarse =
     window.matchMedia('(pointer: coarse)').matches ||
     window.matchMedia('(max-width: 900px)').matches;
-  const frameMs = coarse ? 1000 : 1000 / 30;
+  const nav = navigator as Navigator & {
+    connection?: { saveData?: boolean };
+    deviceMemory?: number;
+  };
+  const lowPower = Boolean(nav.connection?.saveData) || (nav.deviceMemory ?? 8) < 3;
+  const frameMs = lowPower ? 1000 : coarse ? 1000 / 12 : 1000 / 30;
   let lastDraw = -Infinity;
   let positions = new Map<string, { x: number; y: number; alt: number }>();
   let positionsAt = -Infinity;
@@ -244,7 +250,7 @@ export function mountSky(opts: SkyOptions): () => void {
 
     // Stars
     const t = now / 1000;
-    const twinkleOn = !reduced.matches && !coarse;
+    const twinkleOn = !reduced.matches && !lowPower;
     for (const s of catalog.stars) {
       const p = positions.get(s.n);
       if (!p) continue;

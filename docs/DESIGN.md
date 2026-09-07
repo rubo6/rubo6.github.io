@@ -55,6 +55,25 @@ Only official JWST / Hubble / ESO releases (public domain or CC BY 4.0) with cre
 
 Semantic landmarks · one `h1`, ordered headings · skip link · visible `:focus-visible` · keyboard: Tab everything, Escape closes menus and panels, arrows move between nebulae · `aria-pressed` on nebulae, `aria-live="polite"` on panels, `role="timer"` on clocks · contrast ≥ 4.5:1 in both themes (CI runs Lighthouse in the light scheme, so atlas problems show up there) · touch targets ≥ 44 px · safe-area padding · reduced motion honoured.
 
+## Responsive and browser rules (ADR-0011)
+
+Rubo reviews the site on his phone and in Safari as much as on a laptop. The rule is **adapt, never remove**: every effect has a desktop form, a phone form and a reduced-motion form, shipped together.
+
+| Effect                  | Desktop (≥ 900 px, fine pointer)          | Phone (< 900 px or coarse pointer)                                                                | `prefers-reduced-motion`    |
+| ----------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------- |
+| Sky canvas              | 30 fps twinkle, cached static layer       | 12 fps twinkle, dpr ≤ 1.5; 1 fps when `saveData` or `deviceMemory < 3`                            | static, refresh every 60 s  |
+| Nebula gas drift        | 40–70 s loops                             | same loops at half speed (transform-only)                                                         | off                         |
+| Section backdrops       | full-section photo, opacity 0.62, breathe | band at the top of the section (`min(70vh, 32rem)`), fades into the background, credit at the top | breathe off                 |
+| Trajectory solar system | sticky side column with camera follow     | 7.5 rem sticky strip under the nav (`order: -1`), camera follow kept, entries scroll underneath   | planets still, camera jumps |
+| Reveal entrances        | blur + rise                               | opacity + rise (blur is too costly)                                                               | instant                     |
+| Page transition         | dome shutter (fail-safe reopen)           | same                                                                                              | none                        |
+| Nebula panel            | rise on open, sink on close               | same                                                                                              | instant                     |
+| Hover effects           | spotlight, lift, label magnifier          | none (no hover); tap targets ≥ 44 px                                                              | none                        |
+
+Browser support: Chrome/Edge and Safari (macOS and iOS) current versions, Firefox best-effort. Lightning CSS adds vendor prefixes; never hand-write them. Do not use `upgrade-insecure-requests`, `:has()` for critical layout, or `text-wrap: pretty` as a dependency (all fall back safely). `requestIdleCallback` needs the `setTimeout` fallback it already has (Safari lacks it).
+
+Verification: `npm run test:e2e` runs the smoke suite in Chromium (desktop, Pixel 7) and WebKit (Desktop Safari, iPhone 14). The Browser pane's mobile emulation does not deliver IntersectionObserver callbacks reliably and its screenshots can come out black; use a Playwright script with a real device profile instead (the two-engine probe used on 2026-09-06 lives in git history: `test-results/mobile-probe.mjs` pattern).
+
 ## Before merging visual work
 
-Both themes × both modes · mobile (375 px) and desktop (≥ 1280 px) · keyboard · reduced motion · no new third-party request in the Network panel · `npm run validate`.
+Both themes × both modes · phone (375 px, Pixel 7 and iPhone 14 in Playwright) and desktop (≥ 1280 px) · keyboard · reduced motion · the phone form and the reduced-motion form of any new animation · no new third-party request in the Network panel · `npm run validate` and `npm run test:e2e`.

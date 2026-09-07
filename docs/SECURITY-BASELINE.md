@@ -10,8 +10,10 @@ Threat model: a public static site with no backend. Assets at risk: (1) the inte
   default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';
   img-src 'self' data: https://rubo6.goatcounter.com; font-src 'self';
   connect-src 'self' https://rubo6.goatcounter.com; media-src 'self'; object-src 'none';
-  base-uri 'self'; form-action 'none'; upgrade-insecure-requests
+  base-uri 'self'; form-action 'none'
   ```
+
+  `upgrade-insecure-requests` is deliberately absent from the meta CSP: HTTPS is already forced by the `.dev` HSTS preload and by Cloudflare, and WebKit applies the directive even on `http://127.0.0.1`, which broke fonts and navigations in the Safari-engine Playwright runs. The Cloudflare header may keep it (production is HTTPS-only anyway).
 
   `style-src 'unsafe-inline'` is accepted (ADR-0005): styles cannot execute code and Astro inlines stylesheets. `script-src` never allows inline code. Any new origin = ADR + CSP edit + this file.
 
@@ -78,7 +80,7 @@ Traffic reaches Cloudflare first (records proxied, SSL Full (strict), HSTS with 
 
 Rules for agents:
 
-- **The CSP lives in two places**: the meta tag in `src/layouts/Base.astro` and the Cloudflare header. Change both or the browser enforces the intersection. Tell Rubo the exact new header value; only he can edit the Cloudflare rule.
+- **The CSP lives in two places**: the meta tag in `src/layouts/Base.astro` and the Cloudflare header. Change both or the browser enforces the intersection (the header may additionally carry `frame-ancestors 'none'` and `upgrade-insecure-requests`, which the meta version cannot or must not). Tell Rubo the exact new header value; only he can edit the Cloudflare rule.
 - Never rely on Cloudflare features that rewrite HTML or inject scripts (Rocket Loader, Auto Minify, Mirage, Email Obfuscation); they are off and must stay off.
 - GitHub's Pages settings show a DNS warning because the records resolve to Cloudflare; expected. HTTPS is enforced by Cloudflare and by the `.dev` HSTS preload.
 - Blocked requests are visible in Cloudflare → Security → Analytics; a legitimate visitor should never trigger `humano` (a full page load is ~15–25 requests).

@@ -58,7 +58,9 @@ const csp = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'none'",
-  'upgrade-insecure-requests',
+  // No upgrade-insecure-requests: redundant behind HSTS preload (.dev) and Cloudflare's Always-HTTPS,
+  // and WebKit applies it even on http://127.0.0.1, which broke every font and navigation in the
+  // Safari-engine Playwright runs against `astro preview`.
 ].join('; ');
 ---
 

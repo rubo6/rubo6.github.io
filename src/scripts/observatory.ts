@@ -37,12 +37,29 @@ export function mountObservatory(scene: HTMLElement): () => void {
     }
     for (const p of panels) {
       const show = p.dataset.nebulaPanel === id;
-      p.hidden = !show;
-      if (show && scroll)
-        p.scrollIntoView({
-          behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-          block: 'nearest',
-        });
+      if (show) {
+        p.classList.remove('is-leaving');
+        p.hidden = false;
+        if (scroll)
+          p.scrollIntoView({
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+            block: 'nearest',
+          });
+      } else if (!p.hidden) {
+        // Closing gets the mirror of the opening animation instead of vanishing (see .panel.is-leaving).
+        if (prefersReducedMotion()) p.hidden = true;
+        else {
+          p.classList.add('is-leaving');
+          const done = () => {
+            if (p.classList.contains('is-leaving')) {
+              p.hidden = true;
+              p.classList.remove('is-leaving');
+            }
+          };
+          p.addEventListener('animationend', done, { once: true });
+          window.setTimeout(done, 420);
+        }
+      }
     }
     if (hint) hint.hidden = Boolean(id);
 
@@ -61,8 +78,9 @@ export function mountObservatory(scene: HTMLElement): () => void {
   nebulae.forEach((n) => n.addEventListener('click', onNebula));
 
   const onBack = () => {
+    const previous = focused;
     focus(null);
-    nebulae.find((n) => n.dataset.nebula === focused)?.focus();
+    nebulae.find((n) => n.dataset.nebula === previous)?.focus();
   };
   backButtons.forEach((b) => b.addEventListener('click', onBack));
 
