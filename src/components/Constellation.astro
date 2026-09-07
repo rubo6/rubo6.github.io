@@ -303,7 +303,14 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
       grid-template-columns: 1fr;
     }
   }
-  /* Soft skills live here, next to the hard skills, because each one is backed by a work or study fact. */
+  /* Soft skills live here, next to the hard skills, because each one is backed by a work or study
+     fact. They are professional content: hidden while the personal universe is active (Rubo's call). */
+  :global([data-mode='personal']) .soft {
+    display: none;
+  }
+  :global([data-mode='personal']) .boxes {
+    grid-template-columns: 1fr;
+  }
   .soft {
     padding: 1.5rem;
     border: 1px solid var(--line);

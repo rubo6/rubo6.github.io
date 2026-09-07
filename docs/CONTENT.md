@@ -58,7 +58,7 @@ Build-time collections that are not files: `repoStats` (GitHub API per `repo:` i
 
 - `links[].audience`: `professional` (GitHub, LinkedIn, Scholar, ORCID) shows everywhere including the CV and the JSON-LD `sameAs`; `personal` (Spotify, Xbox, Steam, Discord…) shows only while the personal universe is active. When in doubt, `personal`.
 - `dates` drive the live clocks in the hero (`LiveCounters.astro`). `birthday` drives the personal-mode age clock.
-- `softSkills` are professional (Skills section box and CV), never in the personal universe; each needs a verifiable `evidence` sentence.
+- `softSkills` are professional (Skills section box and CV) and hidden while the personal mode is active (`[data-mode='personal'] .soft`); each needs a verifiable `evidence` sentence.
 
 ## trajectory
 
