@@ -51,36 +51,6 @@
       "items": ["Swimmer since age 8", "Still the best way to think about a hard problem"]
     }
   ],
-  "softSkills": [
-    {
-      "name": "Team leadership",
-      "evidence": "Led a 3-person team at AIESEC through the whole attraction-to-realization pipeline and the technical execution of ECOBOX AI at DataLab ITAM."
-    },
-    {
-      "name": "Communication with international stakeholders",
-      "evidence": "Ran attraction campaigns and stakeholder communication in English for an international volunteer programme."
-    },
-    {
-      "name": "Documentation and knowledge transfer",
-      "evidence": "Maintain architecture docs, changelogs and migration handoffs so the team can operate what I build without me."
-    },
-    {
-      "name": "Ownership under ambiguity",
-      "evidence": "Contributed to a data-architecture migration where producer-consumer flows had to be redesigned while keeping downstream consumers working."
-    },
-    {
-      "name": "Research coordination",
-      "evidence": "Coordinate research planning across student-led data-science initiatives."
-    },
-    {
-      "name": "Cross-functional execution",
-      "evidence": "Work across data, product and operations teams to ship internal data products and reporting."
-    },
-    {
-      "name": "Discipline and long-term practice",
-      "evidence": "Fifteen years of swimming and more than a decade of piano: I stick with things."
-    }
-  ],
   "funFacts": [
     "The stars in the hero are real: they are computed from a bright-star catalogue for the sky above Mexico City at the moment you open the page.",
     "Fonts, scripts and images are all self-hosted. The only outside request is an anonymous, cookieless page count.",

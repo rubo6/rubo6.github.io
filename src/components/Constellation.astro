@@ -5,7 +5,7 @@
  * across builds and needs no JavaScript.
  */
 import { useTranslations, type Locale } from '@/i18n/ui';
-import { pick, type Certification, type SkillGroup } from '@/lib/content';
+import { pick, type Certification, type Profile, type SkillGroup } from '@/lib/content';
 import { unitHash } from '@/scripts/sky';
 import SectionHeading from './SectionHeading.astro';
 import SceneBackdrop from './SceneBackdrop.astro';
@@ -14,8 +14,9 @@ interface Props {
   locale: Locale;
   groups: SkillGroup[];
   certifications: Certification[];
+  softSkills: Profile['softSkills'];
 }
-const { locale, groups, certifications } = Astro.props;
+const { locale, groups, certifications, softSkills } = Astro.props;
 const t = useTranslations(locale);
 
 const W = 360;
@@ -145,32 +146,49 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
     }
   </div>
 
-  <div class="certs reveal" data-delay="2">
-    <h3 class="text-lg">{t('certs.title')}</h3>
-    <ul class="cert-list">
-      {
-        certifications.map((c) => (
-          <li class={`cert status-${c.status}`}>
-            <span class="cert-status mono">
-              {t(`certs.status.${c.status}` as 'certs.status.earned')}
-            </span>
-            <span class="cert-name">
-              {c.url ? (
-                <a href={c.url} rel="noopener noreferrer" target="_blank">
-                  {c.name} ↗
-                </a>
-              ) : (
-                c.name
-              )}
-            </span>
-            <span class="cert-issuer text-ink-muted">
-              {c.issuer}
-              {c.date ? ` · ${c.date.slice(0, 7)}` : ''}
-            </span>
-          </li>
-        ))
-      }
-    </ul>
+  <div class="boxes">
+    {
+      softSkills.length > 0 && (
+        <div class="soft reveal glow lift" data-delay="1">
+          <h3 class="text-lg">{t('constellation.soft')}</h3>
+          <ul class="soft-list">
+            {softSkills.map((s) => (
+              <li>
+                <strong>{s.name}</strong>
+                <span class="text-ink-muted">{s.evidence}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+    <div class="certs reveal" data-delay="2">
+      <h3 class="text-lg">{t('certs.title')}</h3>
+      <ul class="cert-list">
+        {
+          certifications.map((c) => (
+            <li class={`cert status-${c.status}`}>
+              <span class="cert-status mono">
+                {t(`certs.status.${c.status}` as 'certs.status.earned')}
+              </span>
+              <span class="cert-name">
+                {c.url ? (
+                  <a href={c.url} rel="noopener noreferrer" target="_blank">
+                    {c.name} ↗
+                  </a>
+                ) : (
+                  c.name
+                )}
+              </span>
+              <span class="cert-issuer text-ink-muted">
+                {c.issuer}
+                {c.date ? ` · ${c.date.slice(0, 7)}` : ''}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -273,8 +291,38 @@ const radius = (level: number) => [0, 2.2, 3, 3.9, 5][level] ?? 3;
     border-radius: 50%;
     background: var(--ink);
   }
-  .certs {
+  .boxes {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 1.5rem;
     margin-top: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .boxes {
+      grid-template-columns: 1fr;
+    }
+  }
+  /* Soft skills live here, next to the hard skills, because each one is backed by a work or study fact. */
+  .soft {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-1) 60%, transparent);
+  }
+  .soft-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .soft-list li {
+    display: grid;
+    gap: 0.15rem;
+    font-size: var(--text-sm);
+  }
+  .certs {
     padding: 1.5rem;
     border: 1px dashed var(--line);
     border-radius: var(--radius-lg);

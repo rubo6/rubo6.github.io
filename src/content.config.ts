@@ -54,6 +54,8 @@ const profile = defineCollection({
       birthday: isoDate.optional(),
     }),
     languages: z.array(z.object({ name: z.string(), level: z.string() })),
+    /** Professional soft skills, each backed by a concrete fact. Rendered in the Skills section and the CV. */
+    softSkills: z.array(z.object({ name: z.string(), evidence: z.string() })).default([]),
   }),
 });
 
@@ -198,7 +200,6 @@ const personal = defineCollection({
         items: z.array(z.string()),
       }),
     ),
-    softSkills: z.array(z.object({ name: z.string(), evidence: z.string() })),
     funFacts: z.array(z.string()),
   }),
 });

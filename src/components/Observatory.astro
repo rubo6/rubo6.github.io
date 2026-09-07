@@ -431,19 +431,6 @@ const personalScene = personal.clusters.map((c, i) => ({
     }
 
     <div class="personal-extra">
-      <div class="soft glow lift">
-        <h3 class="text-lg">{t('personal.soft')}</h3>
-        <ul class="soft-list">
-          {
-            personal.softSkills.map((s) => (
-              <li>
-                <strong>{s.name}</strong>
-                <span class="text-ink-muted">{s.evidence}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
       <div class="facts-box glow lift">
         <h3 class="text-lg">{t('personal.facts')}</h3>
         <ul class="fun">
@@ -830,25 +817,18 @@ const personalScene = personal.clusters.map((c, i) => ({
     gap: 1.5rem;
     margin-top: 1.5rem;
   }
-  .soft,
   .facts-box {
     padding: 1.5rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background: color-mix(in oklab, var(--bg-1) 60%, transparent);
   }
-  .soft-list,
   .fun {
     list-style: none;
     margin: 1rem 0 0;
     padding: 0;
     display: grid;
     gap: 0.9rem;
-  }
-  .soft-list li {
-    display: grid;
-    gap: 0.15rem;
-    font-size: var(--text-sm);
   }
   .fun li {
     padding-left: 1rem;

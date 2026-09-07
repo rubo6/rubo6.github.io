@@ -31,15 +31,15 @@ It is also a small engineering project: static output, content separated from pr
 
 ## On the site
 
-| Section               | What it is                                                                                                     | Data                                                         |
-| --------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Sky**               | Live star map over CDMX (150 stars, 29 constellation figures), local sidereal clock, mission clocks            | `src/data/bright-stars.json`, `src/content/profile/*.json`   |
-| **Observatory**       | Nebulae = project categories, stars = project facts; click to focus the telescope                              | `src/content/nebulae.json`, `src/content/projects/<locale>/` |
-| **Personal universe** | The informal half: astronomy, music, gaming, swimming, soft skills with evidence, GitHub contribution calendar | `src/content/personal/*.json`                                |
-| **Trajectory**        | Work, leadership and education as orbits; institution details folded                                           | `src/content/trajectory/*.json`                              |
-| **Skills**            | Constellations sized by proficiency, each star with its provenance; certifications                             | `src/content/skills.json`, `src/content/certifications.json` |
-| **Log** and **Now**   | Study log by term with filters and RSS; what I am doing this month                                             | `src/content/posts/<locale>/`, `src/content/now/*.json`      |
-| **CV**                | Print-ready, parser-friendly résumé generated from the same content, in three languages                        | `/cv`, `/es/cv`, `/pt-br/cv`                                 |
+| Section               | What it is                                                                                                    | Data                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Sky**               | Live star map over CDMX (150 stars, 29 constellation figures), local sidereal clock, mission clocks           | `src/data/bright-stars.json`, `src/content/profile/*.json`   |
+| **Observatory**       | Nebulae = project categories, stars = project facts; click to focus the telescope                             | `src/content/nebulae.json`, `src/content/projects/<locale>/` |
+| **Personal universe** | The informal half: astronomy, music, gaming, swimming, fun facts, GitHub contribution calendar                | `src/content/personal/*.json`                                |
+| **Trajectory**        | Work, leadership and education as orbits; institution details folded                                          | `src/content/trajectory/*.json`                              |
+| **Skills**            | Constellations sized by proficiency, each star with its provenance; soft skills with evidence; certifications | `src/content/skills.json`, `src/content/certifications.json` |
+| **Log** and **Now**   | Study log by term with filters and RSS; what I am doing this month                                            | `src/content/posts/<locale>/`, `src/content/now/*.json`      |
+| **CV**                | Print-ready, parser-friendly résumé generated from the same content, in three languages                       | `/cv`, `/es/cv`, `/pt-br/cv`                                 |
 
 Two themes (**night** / **atlas**) × two modes (**professional** / **personal**), three languages (EN root, ES, PT-BR), `prefers-reduced-motion` respected everywhere.
 

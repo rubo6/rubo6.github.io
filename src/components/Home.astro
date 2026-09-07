@@ -94,7 +94,12 @@ const jsonLd = {
     <Ticker items={tickerSky} label={t('ticker.sky')} direction="left" />
     <Observatory locale={locale} nebulae={nebulae} projects={projects} personal={personal} />
     <Trajectory locale={locale} entries={trajectory} />
-    <Constellation locale={locale} groups={skills} certifications={certifications} />
+    <Constellation
+      locale={locale}
+      groups={skills}
+      certifications={certifications}
+      softSkills={profile.softSkills}
+    />
     <LogLatest locale={locale} />
     <Contact locale={locale} profile={profile} />
   </main>

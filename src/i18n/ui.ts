@@ -143,7 +143,7 @@ const en = {
   'observatory.empty': 'No projects catalogued here yet. Telescope time is booked.',
 
   'personal.title': 'Personal universe',
-  'personal.soft': 'Soft skills, with evidence',
+  'constellation.soft': 'Soft skills, with evidence',
   'personal.facts': 'Fun facts',
   'ticker.sky': 'Deep-sky objects in this observatory',
   'ticker.stack': 'Working stack',
@@ -217,6 +217,7 @@ const en = {
   'cv.leadership': 'Leadership & activities',
   'cv.projects': 'Selected projects',
   'cv.skills': 'Technical skills',
+  'cv.soft': 'Soft skills',
   'cv.certs': 'Certifications',
   'cv.languages': 'Languages',
 } as const;
@@ -347,7 +348,7 @@ const es: Record<UIKey, string> = {
     'Aún no hay proyectos catalogados aquí. El tiempo de telescopio ya está reservado.',
 
   'personal.title': 'Universo personal',
-  'personal.soft': 'Soft skills, con evidencia',
+  'constellation.soft': 'Soft skills, con evidencia',
   'personal.facts': 'Datos curiosos',
   'ticker.sky': 'Objetos de cielo profundo de este observatorio',
   'ticker.stack': 'Stack de trabajo',
@@ -424,6 +425,7 @@ const es: Record<UIKey, string> = {
   'cv.leadership': 'Liderazgo y actividades',
   'cv.projects': 'Proyectos seleccionados',
   'cv.skills': 'Habilidades técnicas',
+  'cv.soft': 'Habilidades interpersonales',
   'cv.certs': 'Certificaciones',
   'cv.languages': 'Idiomas',
 };
@@ -552,7 +554,7 @@ const ptBr: Record<UIKey, string> = {
     'Ainda não há projetos catalogados aqui. O tempo de telescópio já está reservado.',
 
   'personal.title': 'Universo pessoal',
-  'personal.soft': 'Soft skills, com evidências',
+  'constellation.soft': 'Soft skills, com evidências',
   'personal.facts': 'Curiosidades',
   'ticker.sky': 'Objetos de céu profundo deste observatório',
   'ticker.stack': 'Stack de trabalho',
@@ -629,6 +631,7 @@ const ptBr: Record<UIKey, string> = {
   'cv.leadership': 'Liderança e atividades',
   'cv.projects': 'Projetos selecionados',
   'cv.skills': 'Habilidades técnicas',
+  'cv.soft': 'Habilidades interpessoais',
   'cv.certs': 'Certificações',
   'cv.languages': 'Idiomas',
 };

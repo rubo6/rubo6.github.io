@@ -54,36 +54,6 @@
       ]
     }
   ],
-  "softSkills": [
-    {
-      "name": "Liderazgo de equipos",
-      "evidence": "Lideré un equipo de 3 personas en AIESEC a lo largo de todo el pipeline de atracción a realización, y la ejecución técnica de ECOBOX AI en DataLab ITAM."
-    },
-    {
-      "name": "Comunicación con stakeholders internacionales",
-      "evidence": "Coordiné campañas de atracción y comunicación en inglés con stakeholders de un programa internacional de voluntariado."
-    },
-    {
-      "name": "Documentación y transferencia de conocimiento",
-      "evidence": "Mantengo documentación de arquitectura, changelogs y handoffs de migración para que el equipo pueda operar lo que construyo sin mí."
-    },
-    {
-      "name": "Ownership en la ambigüedad",
-      "evidence": "Contribuí a una migración de arquitectura de datos donde había que rediseñar flujos productor-consumidor sin romper a los consumidores."
-    },
-    {
-      "name": "Coordinación de investigación",
-      "evidence": "Coordino la planeación de investigación en iniciativas estudiantiles de ciencia de datos."
-    },
-    {
-      "name": "Ejecución transversal",
-      "evidence": "Trabajo con equipos de datos, producto y operaciones para entregar productos de datos internos y reportería."
-    },
-    {
-      "name": "Disciplina y práctica a largo plazo",
-      "evidence": "Quince años nadando y más de una década tocando piano: cuando empiezo algo, sigo."
-    }
-  ],
   "funFacts": [
     "Las estrellas del inicio son reales: se calculan a partir de un catálogo de estrellas brillantes para el cielo sobre la Ciudad de México en el momento en que abres la página.",
     "Fuentes, scripts e imágenes viven aquí. La única petición externa es un conteo de visitas anónimo y sin cookies.",

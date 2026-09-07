@@ -51,12 +51,14 @@ Build-time collections that are not files: `repoStats` (GitHub API per `repo:` i
     "graduation": "2028-05-10",
     "birthday": "2003-06-15"
   },
-  "languages": [{ "name": "English", "level": "Professional working proficiency" }]
+  "languages": [{ "name": "English", "level": "Professional working proficiency" }],
+  "softSkills": [{ "name": "Team leadership", "evidence": "one concrete fact from work or study" }]
 }
 ```
 
 - `links[].audience`: `professional` (GitHub, LinkedIn, Scholar, ORCID) shows everywhere including the CV and the JSON-LD `sameAs`; `personal` (Spotify, Xbox, Steam, Discord…) shows only while the personal universe is active. When in doubt, `personal`.
 - `dates` drive the live clocks in the hero (`LiveCounters.astro`). `birthday` drives the personal-mode age clock.
+- `softSkills` are professional (Skills section box and CV), never in the personal universe; each needs a verifiable `evidence` sentence.
 
 ## trajectory
 
@@ -150,7 +152,7 @@ Groups have an `id`, localized `labels`, a real `constellation` name and up to ~
 
 ## personal
 
-`intro`, `clusters[]` (`id`, `title`, `object` = a real deep-sky object, `blurb`, `items[]`), `softSkills[]` (`name`, `evidence`), `funFacts[]`. Informal register. The first five clusters are positioned automatically; a sixth needs a new entry in `personalScene` inside `Observatory.astro` and an image mapping in `personalImage`.
+`intro`, `clusters[]` (`id`, `title`, `object` = a real deep-sky object, `blurb`, `items[]`), `funFacts[]`. Informal register. Soft skills do not belong here (they moved to `profile.softSkills` on 2026-09-06 because recruiters read the professional mode). The first five clusters are positioned automatically; a sixth needs a new entry in `personalScene` inside `Observatory.astro` and an image mapping in `personalImage`.
 
 ## posts (study log)
 

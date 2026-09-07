@@ -54,5 +54,35 @@
       "name": "English",
       "level": "Professional working proficiency"
     }
+  ],
+  "softSkills": [
+    {
+      "name": "Team leadership",
+      "evidence": "Led a four-member AIESEC team through the attraction-to-realization pipeline (nine international volunteers placed) and mentor two colleagues on the data tooling at Mercado Libre."
+    },
+    {
+      "name": "Stakeholder communication",
+      "evidence": "Weekly planning and one-to-ones with operations, invoicing, payouts, cashback and measurement teams; monthly and quarterly business reviews; earlier, international coordination in English at AIESEC."
+    },
+    {
+      "name": "Documentation and knowledge transfer",
+      "evidence": "Architecture notes, changelogs and handoffs kept current so the team can operate and extend what I build without me."
+    },
+    {
+      "name": "Ownership under ambiguity",
+      "evidence": "Took over the Rangers data layer two months after joining and rebuilt a twelve-step manual process into one parameterised job while the backend was being migrated."
+    },
+    {
+      "name": "Data quality mindset",
+      "evidence": "Audit steps that stop a job before an error spreads, same-day response to alerts, anomaly checks that surfaced two irregular cases for investigation."
+    },
+    {
+      "name": "Research coordination",
+      "evidence": "Research Manager at DataLab ITAM: planned and documented the ECOBOX AI work so a student team with exams could still deliver a model and a paper."
+    },
+    {
+      "name": "Long-term discipline",
+      "evidence": "Fifteen years of swimming and more than a decade of piano alongside a full course load and a job."
+    }
   ]
 }

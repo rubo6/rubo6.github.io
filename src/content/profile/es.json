@@ -54,5 +54,35 @@
       "name": "Inglés",
       "level": "Competencia profesional"
     }
+  ],
+  "softSkills": [
+    {
+      "name": "Liderazgo de equipos",
+      "evidence": "Lideré un equipo de cuatro personas en AIESEC a lo largo del pipeline de atracción a realización (nueve voluntarios internacionales colocados) y soy mentor de dos compañeros en las herramientas de datos de Mercado Libre."
+    },
+    {
+      "name": "Comunicación con stakeholders",
+      "evidence": "Planeación semanal y one-to-ones con los equipos de operaciones, facturación, pagos, cashback y medición; revisiones de negocio mensuales y trimestrales; antes, coordinación internacional en inglés en AIESEC."
+    },
+    {
+      "name": "Documentación y transferencia de conocimiento",
+      "evidence": "Notas de arquitectura, changelogs y handoffs al día para que el equipo opere y extienda lo que construyo sin mí."
+    },
+    {
+      "name": "Ownership en la ambigüedad",
+      "evidence": "Tomé la capa de datos de Rangers dos meses después de entrar y convertí un proceso manual de doce pasos en un solo job parametrizado mientras se migraba el backend."
+    },
+    {
+      "name": "Mentalidad de calidad de datos",
+      "evidence": "Pasos de auditoría que detienen un job antes de que un error se propague, respuesta a alertas el mismo día y revisiones de anomalías que sacaron a la luz dos casos irregulares para investigación."
+    },
+    {
+      "name": "Coordinación de investigación",
+      "evidence": "Research Manager en DataLab ITAM: planeé y documenté el trabajo de ECOBOX AI para que un equipo de estudiantes con exámenes entregara igual un modelo y un paper."
+    },
+    {
+      "name": "Disciplina de largo plazo",
+      "evidence": "Quince años de natación y más de una década de piano junto con la carga completa de materias y un trabajo."
+    }
   ]
 }

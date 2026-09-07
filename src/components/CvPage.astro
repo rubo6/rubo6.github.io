@@ -178,6 +178,20 @@ const featured = projects.filter((p) => p.data.featured && p.data.visibility !==
               ))
             }
           </ul>
+          {
+            profile.softSkills.length > 0 && (
+              <>
+                <h3>{t('cv.soft')}</h3>
+                <ul class="plain">
+                  {profile.softSkills.map((s) => (
+                    <li>
+                      <strong>{s.name}:</strong> {s.evidence}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )
+          }
         </div>
         <div>
           <h3>{t('cv.certs')}</h3>
