@@ -1,20 +1,20 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-10-22T15:56:56.811Z",
-  "runner": "github-actions#39809228193",
+  "measuredAt": "2026-10-23T15:48:53.039Z",
+  "runner": "github-actions#39981175792",
   "mobile": {
-    "performance": 91,
+    "performance": 94,
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 2733,
-    "fcpMs": 1447,
-    "speedIndexMs": 1988,
-    "tbtMs": 241,
+    "lcpMs": 2347,
+    "fcpMs": 1408,
+    "speedIndexMs": 1810,
+    "tbtMs": 218,
     "cls": 0,
-    "benchmarkIndex": 2317,
+    "benchmarkIndex": 2399,
     "lighthouseVersion": "13.5.0",
-    "fetchTime": "2026-10-22T15:56:27.591Z",
+    "fetchTime": "2026-10-23T15:48:07.324Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -31,14 +31,14 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 132,
-      "resourceLoadDelay": 175,
-      "resourceLoadDuration": 58,
-      "elementRenderDelay": 145
+      "timeToFirstByte": 60,
+      "resourceLoadDelay": 208,
+      "resourceLoadDuration": 29,
+      "elementRenderDelay": 164
     },
     "runs": [
-      83,
-      91,
+      81,
+      94,
       94
     ]
   },
@@ -47,14 +47,14 @@
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 717,
-    "fcpMs": 340,
-    "speedIndexMs": 788,
-    "tbtMs": 0,
-    "cls": 0.002,
-    "benchmarkIndex": 2442,
+    "lcpMs": 723,
+    "fcpMs": 443,
+    "speedIndexMs": 846,
+    "tbtMs": 37,
+    "cls": 0,
+    "benchmarkIndex": 1885,
     "lighthouseVersion": "13.5.0",
-    "fetchTime": "2026-10-22T15:56:44.398Z",
+    "fetchTime": "2026-10-23T15:48:40.662Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -71,10 +71,10 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 64,
-      "resourceLoadDelay": 166,
-      "resourceLoadDuration": 190,
-      "elementRenderDelay": 262
+      "timeToFirstByte": 103,
+      "resourceLoadDelay": 228,
+      "resourceLoadDuration": 103,
+      "elementRenderDelay": 343
     }
   }
 }
