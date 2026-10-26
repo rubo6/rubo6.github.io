@@ -41,7 +41,7 @@ jobs:
           persist-credentials: false
 
       - name: Build with Astro
-        uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6.1.2
+        uses: withastro/action@a8b97df764791eb61fbf3338ef713b0e61ae05c5 # v6.1.4
         env:
           # Fine-grained PAT (Administration: read-only on selected repos). Used only at build time
           # by src/loaders/github.ts to read repository traffic; never reaches the browser.
