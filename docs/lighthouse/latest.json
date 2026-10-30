@@ -1,20 +1,20 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-10-29T17:30:17.978Z",
-  "runner": "github-actions#40921617145",
+  "measuredAt": "2026-10-30T17:04:45.353Z",
+  "runner": "github-actions#41095308211",
   "mobile": {
     "performance": 93,
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 3032,
-    "fcpMs": 1862,
-    "speedIndexMs": 1862,
+    "lcpMs": 3059,
+    "fcpMs": 1889,
+    "speedIndexMs": 1889,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 4063,
+    "benchmarkIndex": 2877,
     "lighthouseVersion": "13.6.0",
-    "fetchTime": "2026-10-29T17:29:54.456Z",
+    "fetchTime": "2026-10-30T17:04:20.356Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -31,13 +31,13 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 91,
-      "resourceLoadDelay": 110,
-      "resourceLoadDuration": 32,
-      "elementRenderDelay": 136
+      "timeToFirstByte": 147,
+      "resourceLoadDelay": 178,
+      "resourceLoadDuration": 73,
+      "elementRenderDelay": 77
     },
     "runs": [
-      86,
+      93,
       93,
       95
     ]
@@ -47,14 +47,14 @@
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 701,
-    "fcpMs": 351,
-    "speedIndexMs": 642,
+    "lcpMs": 704,
+    "fcpMs": 571,
+    "speedIndexMs": 772,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 4121,
+    "benchmarkIndex": 2955,
     "lighthouseVersion": "13.6.0",
-    "fetchTime": "2026-10-29T17:30:07.632Z",
+    "fetchTime": "2026-10-30T17:04:34.573Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -71,10 +71,10 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 138,
-      "resourceLoadDelay": 108,
-      "resourceLoadDuration": 139,
-      "elementRenderDelay": 191
+      "timeToFirstByte": 180,
+      "resourceLoadDelay": 152,
+      "resourceLoadDuration": 170,
+      "elementRenderDelay": 169
     }
   }
 }
