@@ -1,20 +1,20 @@
 {
   "url": "https://rubo6.dev/",
-  "measuredAt": "2026-11-09T22:45:24.255Z",
-  "runner": "github-actions#42714387854",
+  "measuredAt": "2026-11-10T18:52:48.972Z",
+  "runner": "github-actions#42879274051",
   "mobile": {
     "performance": 94,
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 2890,
-    "fcpMs": 1151,
-    "speedIndexMs": 1506,
-    "tbtMs": 133,
+    "lcpMs": 2797,
+    "fcpMs": 1927,
+    "speedIndexMs": 1927,
+    "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 2925,
+    "benchmarkIndex": 4406,
     "lighthouseVersion": "13.6.0",
-    "fetchTime": "2026-11-09T22:44:59.827Z",
+    "fetchTime": "2026-11-10T18:52:12.622Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -31,13 +31,13 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 52,
-      "resourceLoadDelay": 123,
-      "resourceLoadDuration": 47,
-      "elementRenderDelay": 152
+      "timeToFirstByte": 127,
+      "resourceLoadDelay": 118,
+      "resourceLoadDuration": 100,
+      "elementRenderDelay": 70
     },
     "runs": [
-      92,
+      86,
       94,
       95
     ]
@@ -47,14 +47,14 @@
     "accessibility": 100,
     "bestPractices": 92,
     "seo": 100,
-    "lcpMs": 688,
-    "fcpMs": 556,
-    "speedIndexMs": 704,
+    "lcpMs": 683,
+    "fcpMs": 548,
+    "speedIndexMs": 685,
     "tbtMs": 0,
     "cls": 0,
-    "benchmarkIndex": 3117,
+    "benchmarkIndex": 4210,
     "lighthouseVersion": "13.6.0",
-    "fetchTime": "2026-11-09T22:45:13.740Z",
+    "fetchTime": "2026-11-10T18:52:38.759Z",
     "failedAudits": [
       {
         "id": "errors-in-console",
@@ -71,10 +71,10 @@
     ],
     "lcp": {
       "element": "section#sky > div.sky-wrap > picture > img.sky-bg",
-      "timeToFirstByte": 92,
-      "resourceLoadDelay": 105,
-      "resourceLoadDuration": 119,
-      "elementRenderDelay": 193
+      "timeToFirstByte": 151,
+      "resourceLoadDelay": 106,
+      "resourceLoadDuration": 154,
+      "elementRenderDelay": 141
     }
   }
 }
